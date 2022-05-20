@@ -8,6 +8,7 @@ import time
 import numpy as np
 import csv
 import pandas as pd
+import matplotlib.pyplot as plt
 
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
 
@@ -39,8 +40,17 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     print(ozone_df)
     for row in ozone_2d49rows:
         print('%s'%row)
- 
-    ozone_df.to_csv('reshaped.csv')
+"""
+Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
+"""
+x = np.linspace(0, 2 *np.pi, 200)
+y = np.sin(x)
+fig, ax = plt.subplots()
+ax.plot(x,y)
+plt.show()
+
+# Sends the DataFrame to csv format
+ozone_df.to_csv('reshaped.csv')
 #    for i in ozone_2d:
 #       print(ozone_2d[i])
 #   print(ozone_2d)
