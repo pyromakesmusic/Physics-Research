@@ -25,10 +25,13 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     os.getcwd()
     os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
 
-
-
     print(ozone_array)
-
+    
+# Now we have printed the 1D array, we want to use numpy functions to turn the 1d array of lists into a 2d array.
+    ozone_2d = np.array(ozone_array)
+    
+    print(ozone_2d)
+    
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 #for i in safe_sites:
 #   break
