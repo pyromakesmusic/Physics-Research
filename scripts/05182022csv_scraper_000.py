@@ -43,11 +43,22 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
 """
 Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
 """
+x = np.linspace(start=1, stop=12,num=12)
+y = np.linspace(start=2010, stop=2019, num=10)
+fig, ax = plt.subplots()
+ax.plot(x,y)
+plt.show()
+"""
 x = np.linspace(0, 2 *np.pi, 200)
 y = np.sin(x)
 fig, ax = plt.subplots()
 ax.plot(x,y)
 plt.show()
+"""
+
+"""
+Let's list all the months in the data sample.
+"""
 
 # Sends the DataFrame to csv format
 ozone_df.to_csv('reshaped.csv')
