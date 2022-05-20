@@ -22,9 +22,13 @@ def find_dir():
 months_choices = []
 for i in range(1,13):
     months_choices.append((datetime.date(2010, i, i).strftime('%B')))
+
+years_choices = []
+for i in range(1,11):
+    years_choices.append(2009+i)
     
 print(months_choices)
-    
+print(years_choices)
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 #for i in safe_sites:
 #   break
