@@ -41,6 +41,11 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     for i in range(len(ozone_2d)):
         print(ozone_2d[i])
         
+        
+"""
+We need to find ways to identify and label the different sets of cells.
+A few possible identifiers for cells: month, list of headings, site title, instrument identifier, regulated or non-regulatory, blank, dates, max daily ozone.
+"""
 # Now let's give the user a chance to provide input in the form of  two integers which should be the index of some cell in the array so that we can attempt to find a pattern.
 """
     while True:
