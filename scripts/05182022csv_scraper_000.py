@@ -5,6 +5,7 @@ to copy the stripped data to a second, cleaner file.
 """
 import os
 import time
+import datetime
 import string
 import numpy as np
 import csv
@@ -18,7 +19,11 @@ def find_dir():
     os.getcwd()
     os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
 
-
+months_choices = []
+for i in range(1,13):
+    months_choices.append((datetime.date(2010, i, i).strftime('%B')))
+    
+print(months_choices)
     
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 #for i in safe_sites:
@@ -27,7 +32,7 @@ def find_dir():
 #    break
 
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
-
+# months = ['January', 'February, ]
 """
 for i in safe_sites:
     print(i)
@@ -52,10 +57,13 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     ozone_2d = np.array(ozone_array)
     ozone_2d49rows = ozone_2d.reshape(9,593)
     ozone_df = pd.DataFrame(data=ozone_2d49rows)
-                           #columns=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49])
+
+
+"""                           #columns=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49])
     print(ozone_df)
     for row in ozone_2d49rows:
         print('%s'%row)
+"""
 """
 Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
 """
