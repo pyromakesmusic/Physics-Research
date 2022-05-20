@@ -5,16 +5,34 @@ to copy the stripped data to a second, cleaner file.
 """
 import os
 import time
+import string
 import numpy as np
 import csv
 import pandas as pd
+import matplotlib as mpl
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
+def find_dir():
+    # Finds and navigates to the correct directory for the data.        
+    os.getcwd()
+    os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
+
+
+    
+# we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
+#for i in safe_sites:
+#   break
+#for row in inputfile:
+#    break
+
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
 
+"""
 for i in safe_sites:
     print(i)
+"""
+
     
 with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-2020.txt', 'r') as inputfile:
 #          ozone_array = np.loadtxt(inputfile, delimiter=",")
@@ -26,10 +44,7 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     ozone_array = list(inputfile_read)
 
                  
-# Finds and navigates to the correct directory for the data.
-          
-    os.getcwd()
-    os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
+
 
 #    print(ozone_array)
     
@@ -44,18 +59,20 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
 """
 Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
 """
-x = np.linspace(start=1, stop=12,num=12)
-y = np.linspace(start=2010, stop=2019, num=12)
-fig, ax = plt.subplots()
-ax.plot(x,y)
+def make_plot():
+    x = np.linspace(start=1, stop=12,num=12)
+    y = np.linspace(start=2010, stop=2019, num=12)
+    z = np.linspace(start=-10, stop=150, num=15)
+    fig = mpl.pyplot.figure()
+    pyplot_2 = fig.plot3D(x,y,z, projection='3D')
 
-plt.axes(projection='3d')
+    plt.axes(projection='3d')
 """
-x = np.linspace(0, 2 *np.pi, 200)
-y = np.sin(x)
-fig, ax = plt.subplots()
-ax.plot(x,y)
-plt.show()
+    x = np.linspace(0, 2 *np.pi, 200)
+    y = np.sin(x)
+    fig, ax = plt.subplots()
+    ax.plot(x,y)
+    plt.show()
 """
 
 """
@@ -90,6 +107,7 @@ A few possible identifiers for cells: month, list of headings, site title, instr
 """
 # Now let's give the user a chance to provide input in the form of  two integers which should be the index of some cell in the array so that we can attempt to find a pattern.
 """
+def index_check():
     while True:
         try:
             first = int(input('What is the first index of your desired cell? '))
@@ -105,9 +123,3 @@ A few possible identifiers for cells: month, list of headings, site title, instr
     
     print(ozone_2d[first][second])
 """
-    
-# we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
-#for i in safe_sites:
-#   break
-#for row in inputfile:
-#    break
