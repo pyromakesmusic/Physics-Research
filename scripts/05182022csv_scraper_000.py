@@ -33,9 +33,14 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     
 # Now we have printed the 1D array, we want to use numpy functions to turn the 1d array of lists into a 2d array.
     ozone_2d = np.array(ozone_array)
-    
+ 
+#    for i in ozone_2d:
+#       print(ozone_2d[i])
     print(ozone_2d)
     
+    for i in range(len(ozone_2d)):
+        print(ozone_2d[i])
+        
 # Now let's give the user a chance to provide input in the form of  two integers which should be the index of some cell in the array so that we can attempt to find a pattern.
 """
     while True:
