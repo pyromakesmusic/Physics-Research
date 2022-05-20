@@ -6,6 +6,7 @@ to copy the stripped data to a second, cleaner file.
 import os
 import time
 import datetime
+import math
 import string
 import numpy as np
 import csv
@@ -25,10 +26,17 @@ for i in range(1,13):
 
 years_choices = []
 for i in range(1,11):
-    years_choices.append(2009+i)
+    years_choices.append(i)
+    
+month_date = []
+for i in range(1,124):
+    month_date.append(str(months_choices[i % 12] + ' ' + str(2010 + years_choices[math.floor(i * 1/12)])))
+
+# There has to be a better way to do this...
     
 print(months_choices)
 print(years_choices)
+print(month_date)
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 #for i in safe_sites:
 #   break
