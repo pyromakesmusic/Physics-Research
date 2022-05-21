@@ -19,23 +19,24 @@ def find_dir():
     # Finds and navigates to the correct directory for the data.        
     os.getcwd()
     os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
-
+"""
+"""
 months_choices = []
 for i in range(1,13):
-    months_choices.append((datetime.date(2010, i, i).strftime('%B')))
+    months_choices.append((datetime.date(2009, i, i).strftime('%B')))
 
 years_choices = []
-for i in range(1,11):
+for i in range(0,11):
     years_choices.append(i)
     
 month_date = []
-for i in range(1,124):
+for i in range(5,117):
     month_date.append(str(months_choices[i % 12] + ' ' + str(2010 + years_choices[math.floor(i * 1/12)])))
 
 # There has to be a better way to do this...
     
-print(months_choices)
-print(years_choices)
+# print(months_choices)
+# print(years_choices)
 print(month_date)
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 #for i in safe_sites:
