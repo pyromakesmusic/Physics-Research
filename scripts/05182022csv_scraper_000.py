@@ -22,7 +22,21 @@ def find_dir():
 """
 """
 
+# Just trying to construct a loop here to display only the parts of these strings stripped of the underscore and everything after.
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
+safe_siteID = []
+
+def site_pop():
+    for i in safe_sites:
+        while i < 24:
+            if i == safesites.index(i):
+                safe_siteID.append(safe_sites.index == index(i))
+            else:
+                i++
+        
+    
+site_pop()
+print(safe_siteID)
 
 """
 for i in safe_sites:
@@ -51,7 +65,7 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
 
 
                            #columns=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49])
-    print(ozone_df)
+    print(ozone_2d)
     for row in ozone_2d49rows:
         print('%s'%row)
 
