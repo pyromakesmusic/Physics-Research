@@ -119,9 +119,10 @@ def sitestrp():
 
 
 # This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
+
 def tceqstrp():
     i = 0
-    while i < ozone_df.count():
+    while i < ozone_df.length():
         print(ozone_df[i, 1])
         if np.in1d(ozone_df[i, 1], sites_good).empty() == False:
             rows_good.append(ozone_df[i])
