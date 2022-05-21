@@ -77,12 +77,14 @@ safe_siteID = []
 
 def sitename_strip():
     i = 0
-    for i in range(len(safe_sites)):
-        safe_siteID.append(safe_sites[i].partition('_')[0])
-        print(safe_siteID)
-        i = i + 1
+    for i in range(0, len(safe_sites)):
+        safe_siteID.append(i)
+        safe_sitestrp = safe_sites[i].partition('_')
+        safe_siteID[i] = safe_sitestrp
+        i = i + 1 
+       
+# Some function callls for testing.
         
-safe_siteID = safe_sites.partition('_')
 print(safe_siteID)
 print(len(safe_sites))
 print(len(safe_siteID))
@@ -104,7 +106,12 @@ def loc_slice(x):
             i = i + 1
 
             
-sitename_strip()            
+sitename_strip()
+safesite_final = np.asarray(safe_siteID)            
+print(safe_siteID)
+print(safesite_final)
+# I've done it! I've isolated the site identifiers from their components!
+print(safesite_final[:, 0])
 
 # The function call
 # loc_slice(2)
