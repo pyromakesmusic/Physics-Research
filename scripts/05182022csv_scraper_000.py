@@ -74,7 +74,9 @@ def makecsv(name):
 # Just trying to construct a loop here to display only the parts of these strings stripped of the underscore and everything after.
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
 safe_siteID = []
-
+sites_good = []
+instr_good = []
+rows_good = []
 def sitename_strip():
     i = 0
     for i in range(0, len(safe_sites)):
@@ -105,14 +107,38 @@ def loc_slice(x):
             row_intersect = []
             i = i + 1
 
-            
+def sitestrp():
+    i = 0
+    while i < len(safesite_final):
+        sites_good.append(safesite_final[i, 0])
+        instr_good.append(safesite_final[i, 2])
+        
+        print(sites_good)
+        print(instr_good)        
+        i = i + 1    
+
+
+# This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
+def tceqstrp():
+    i = 0
+    while i < ozone_df.count():
+        print(ozone_df[i, 1])
+        if np.in1d(ozone_df[i, 1], sites_good).empty() == False:
+            rows_good.append(ozone_df[i])
+        i = i + 1
+    
+    print(rows_good)
+    
 sitename_strip()
-safesite_final = np.asarray(safe_siteID)            
+safesite_final = np.asarray(safe_siteID)  
+sitestrp()          
 print(safe_siteID)
 print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
-print(safesite_final[:, 0])
-
+# print(safesite_final[:, 0])
+print(sites_good)
+print(instr_good)
+tceqstrp()
 # The function call
 # loc_slice(2)
 
@@ -199,12 +225,17 @@ Let's list all the months in the data sample.
  copy-paste of data. So when our index modulo that value
  is certain numbers, we want the row to be stricken from the record.
 """
+
+# Commenting this out briefly, since I have roughly the same thing being defined in a function definition up top.
 """
-for i in range(3):
-    print(ozone_2d[i][0])
-"""
+x = 0
+while x < ozone_df.count():
+    print(ozone_df[i, 0])
+    x = x + 1
 
      
+"""
+
 """
 We need to find ways to identify and label the different sets of cells.
 A few possible identifiers for cells: month, list of headings, site title, instrument identifier, regulated or non-regulatory, blank, dates, max daily ozone.
