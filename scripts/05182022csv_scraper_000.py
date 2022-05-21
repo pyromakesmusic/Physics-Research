@@ -3,6 +3,9 @@
 Made to cross-reference data in reading a .csv file with a list of known good data collection sites
 to copy the stripped data to a second, cleaner file.
 """
+
+# Package importations, blah blah blah
+
 import os
 import time
 import datetime
@@ -15,45 +18,40 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from mpl_toolkits import mplot3d
 
+# Now we are starting to define some functions. The dependencies are all screwy here and some of this could probably be rearranged, but I'm mostly leaving it for now.
+
 def find_dir():
     # Finds and navigates to the correct directory for the data.        
     os.getcwd()
     os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
 """
 """
-
-# Just trying to construct a loop here to display only the parts of these strings stripped of the underscore and everything after.
-safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
-safe_siteID = []
-
-def site_pop():
-    for i in safe_sites:
-        while i < 24:
-            if i == safesites.index(i):
-                safe_siteID.append(safe_sites.index == index(i))
-            else:
-                i++
-        
-    
-site_pop()
-print(safe_siteID)
-
-"""
-for i in safe_sites:
-    print(i)
-"""
-
-    
+# Start of the use of the open file.
 with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-2020.txt', 'r') as inputfile:
+# Some global variables start to be defined          
+
+# Now we are going to try to visualize some of the data, and clean it, with whichever comes fastest taking priority.
+    ozone_graph = [[]]
+
 #          ozone_array = np.loadtxt(inputfile, delimiter=",")
     
     inputfile_read = csv.reader(inputfile)
-#Trying this with pandas instead of csv now
+# Trying this with pandas instead of csv now
 #    inputfile_read = pandas.read_csv(inputfile, sep=",")
 # Should load the input file in as an array
     ozone_array = list(inputfile_read)
 
-                 
+    months_choices = []
+    for i in range(1,13):
+        months_choices.append((datetime.date(2009, i, i).strftime('%B')))
+
+    years_choices = []
+    for i in range(0,11):
+        years_choices.append(i)
+    
+    month_date = []
+    for i in range(5,117):
+        month_date.append(str(months_choices[i % 12] + ' ' + str(2010 + years_choices[math.floor(i * 1/12)])))                 
 
 
 #    print(ozone_array)
@@ -63,33 +61,85 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     ozone_2d49rows = ozone_2d.reshape(9,593)
     ozone_df = pd.DataFrame(data=ozone_2d49rows)
 
-
-                           #columns=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49])
-    print(ozone_2d)
-    for row in ozone_2d49rows:
-        print('%s'%row)
-
-months_choices = []
-for i in range(1,13):
-    months_choices.append((datetime.date(2009, i, i).strftime('%B')))
-
-years_choices = []
-for i in range(0,11):
-    years_choices.append(i)
+# Sends the DataFrame to csv format
+def makecsv(name):
+    name.to_csv(str(name) + '.csv')
     
-month_date = []
-for i in range(5,117):
-    month_date.append(str(months_choices[i % 12] + ' ' + str(2010 + years_choices[math.floor(i * 1/12)])))
+# The function below for printing the tables has proven useful. Probably need to refactor it and place it elsewhere.
+                           #columns=[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49])
+#    print(ozone_2d)
+#    for row in ozone_2d49rows:
+#        print('%s'%row)
 
-# There has to be a better way to do this...
+# Just trying to construct a loop here to display only the parts of these strings stripped of the underscore and everything after.
+safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
+safe_siteID = []
+
+def sitename_strip():
+    i = 0
+    for i in range(len(safe_sites)):
+        safe_siteID.append(safe_sites[i].partition('_')[0])
+        print(safe_siteID)
+        i = i + 1
+        
+safe_siteID = safe_sites.partition('_')
+print(safe_siteID)
+print(len(safe_sites))
+print(len(safe_siteID))
+def loc_slice(x):
+    i = 0
+    current_row = []
+    row_intersect = []
+    while i < 124:
+        current_row = ozone_2d[i]
+        print(current_row)
+        row_intersect = np.in1d(current_row, safe_sites) 
+        if  any(row_intersect) == True:
+            print(row_intersect)
+            safe_siteID.append(current_row)
+            row_intersect= []
+            i = i + 1
+        else:
+            row_intersect = []
+            i = i + 1
+
+            
+sitename_strip()            
+
+# The function call
+# loc_slice(2)
+
+# This next function is garbage. Zero points.
+"""
+def site_pop():
+    i = 1
+    while i < len(safe_sites) + 1:
+            if i == safe_sites.index(safe_sites[i]):
+                safe_siteID.append(safe_sites[i])
+            else:
+                i = i + 1
+    print(safe_sites)  
+    
+site_pop()
+"""
+
+"""
+for i in safe_sites:
+    print(i)
+"""
+
+    
+
+
+
+
+# Prints a list of the months in the study, and then the number of elements in the list.
     
 # print(months_choices)
 # print(years_choices)
-print(month_date)
-print(len(month_date))
+# print(month_date)
+# print(len(month_date))
 
-# Now we are going to try to visualize some of the data, and clean it, with whichever comes fastest taking priority.
-ozone_graph = [[]]
 
 """
 # This runs in garbage time. I am saving the world's electricity system from having to pay for it. Genuinely have to consider optimization for this subproblem.
@@ -100,9 +150,9 @@ for month in month_date:
         else: print("x")
 """        
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
-#for i in safe_sites:
+# for i in safe_sites:
 #   break
-#for row in inputfile:
+# for row in inputfile:
 #    break
 
 """
@@ -128,8 +178,6 @@ def make_plot():
 Let's list all the months in the data sample.
 """
 
-# Sends the DataFrame to csv format
-ozone_df.to_csv('reshaped.csv')
 #    for i in ozone_2d:
 #       print(ozone_2d[i])
 #   print(ozone_2d)
