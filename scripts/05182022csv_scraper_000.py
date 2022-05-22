@@ -87,9 +87,9 @@ def sitename_strip():
        
 # Some function callls for testing.
         
-print(safe_siteID)
-print(len(safe_sites))
-print(len(safe_siteID))
+#print(safe_siteID)
+#print(len(safe_sites))
+#print(len(safe_siteID))
 def loc_slice(x):
     i = 0
     current_row = []
@@ -112,33 +112,37 @@ def sitestrp():
     while i < len(safesite_final):
         sites_good.append(safesite_final[i, 0])
         instr_good.append(safesite_final[i, 2])
-        
+        i = i + 1    
+"""        
         print(sites_good)
         print(instr_good)        
-        i = i + 1    
+"""
+
 
 
 # This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
 
 def tceqstrp():
     i = 0
-    while i < ozone_df.length():
-        print(ozone_df[i, 1])
-        if np.in1d(ozone_df[i, 1], sites_good).empty() == False:
-            rows_good.append(ozone_df[i])
+    while i < 2:
+#    while i < ozone_df.length():
+#        print(ozone_df[i, 1])
+#        if np.in1d(ozone_df[i, 1], sites_good).empty() == False:
+#            rows_good.append(ozone_df[i])
+        ozone_df
         i = i + 1
     
-    print(rows_good)
+#    print(rows_good)
     
 sitename_strip()
 safesite_final = np.asarray(safe_siteID)  
 sitestrp()          
-print(safe_siteID)
-print(safesite_final)
+#print(safe_siteID)
+#print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
 # print(safesite_final[:, 0])
-print(sites_good)
-print(instr_good)
+#print(sites_good)
+#print(instr_good)
 tceqstrp()
 # The function call
 # loc_slice(2)
