@@ -58,8 +58,8 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     
 # Now we have printed the 1D array, we want to use numpy functions to turn the 1d array of lists into a 2d array.
     ozone_2d = np.array(ozone_array)
-    ozone_2d49rows = ozone_2d.reshape(9,593)
-    ozone_df = pd.DataFrame(data=ozone_2d49rows)
+    ozone_2dnewrows = ozone_2d.reshape(5337,1)
+    ozone_df = pd.DataFrame(data=ozone_2dnewrows)
 
 # Sends the DataFrame to csv format
 def makecsv(name):
@@ -141,9 +141,34 @@ sitestrp()
 #print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
 # print(safesite_final[:, 0])
-#print(sites_good)
-#print(instr_good)
-tceqstrp()
+print(sites_good)
+print(instr_good)
+print(repr(ozone_df[0][0]))
+print(repr(ozone_df[0][1]))
+print(repr(ozone_df[0][2]))
+
+i = 0
+slice_line = []
+list_of_months = []
+good_samples = []
+necessary_rows = []
+month_counter = 0
+row_counter = 0
+while i < 5336:
+    if np.in1d(ozone_df[i][0], month_date) == True:
+        slice_line.append(i)
+        month_counter = month_counter + 1
+        row_counter = row_counter + 1
+        i = i + 1
+    elif (np.in1d(ozone_df[i][1], sites_good) == True) and (np.in1d(ozone_df[i][2] == True)):
+        row_counter = row_counter + 1
+        i = i + 1
+        
+# print(slice_line)
+# print(month_counter)
+# print(row_counter)
+        
+# tceqstrp()
 # The function call
 # loc_slice(2)
 
@@ -196,6 +221,9 @@ for month in month_date:
 """
 Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
 """
+
+# This is not currently needed.
+"""
 def make_plot():
     x = np.linspace(start=1, stop=12,num=12)
     y = np.linspace(start=2010, stop=2019, num=12)
@@ -204,6 +232,7 @@ def make_plot():
     pyplot_2 = fig.plot3D(x,y,z, projection='3D')
 
     plt.axes(projection='3d')
+"""
 """
     x = np.linspace(0, 2 *np.pi, 200)
     y = np.sin(x)
