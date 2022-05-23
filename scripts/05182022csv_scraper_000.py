@@ -148,25 +148,32 @@ print(repr(ozone_df[0][0]))
 print(repr(ozone_df[0][1]))
 print(repr(ozone_df[0][4][1]))
 
-def row_scraper(x,p,q,r):
+
 """
 Variable Definitions:
     x: number of rows/arrays in the original 1x5337 row dataframe to iterate over.
     p: index of month/date combos
     q: index of site name
     r: index of instrument number
-"""    
-    print(month_date)
+"""  
+
+def row_scraper(x,p,q,r):  
+#    print(month_date)
     print(ozone_df[0][0])
     row_intersect = []
+    ozone_df_good = []
+    
     i = 0
     while i < x:
-    
-        row_intersect.append(np.intersect1d(ozone_df[0][0], month_date))
-        print(row_intersect)
-        i = i + 1
+        if np.intersect1d(ozone_df[0][i])[0], month_date) == number:
+        elif np.intersect1d(ozone_df[0][i][q], site_good) == number and np.intersect1d(ozone_df[0][i][r], instr_good) == number:
+            
+        row_intersect.append(np.intersect1d(ozone_df[0][i], month_date))
+   
 
-row_scraper()
+row_scraper(800,0,1,2)
+
+     
 # What if this worked....
 #print(np.intersect1d(ozone_df, month_date))
 
