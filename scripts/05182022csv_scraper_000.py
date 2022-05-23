@@ -141,12 +141,22 @@ sitestrp()
 #print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
 # print(safesite_final[:, 0])
-print(sites_good)
-print(instr_good)
+# Commmenting these next print statements out because I know that they work.
+#print(sites_good)
+#print(instr_good) 
 print(repr(ozone_df[0][0]))
 print(repr(ozone_df[0][1]))
-print(repr(ozone_df[0][2]))
+print(repr(ozone_df[0][4][1]))
 
+def git_gud(): #rows. get good rows.
+    if np.intersect1d(ozone_df[0][0], month_date) == 1:
+        print('do something very embarassing')
+    else:
+        print('do not do the embarrassing thing that you might otherwise have done')
+
+git_gud()
+
+"""
 i = 0
 slice_line = []
 list_of_months = []
@@ -163,7 +173,8 @@ while i < 5336:
     elif (np.in1d(ozone_df[i][1], sites_good) == True) and (np.in1d(ozone_df[i][2] == True)):
         row_counter = row_counter + 1
         i = i + 1
-        
+   
+"""     
 # print(slice_line)
 # print(month_counter)
 # print(row_counter)
