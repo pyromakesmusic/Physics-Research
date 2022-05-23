@@ -134,27 +134,56 @@ def tceqstrp():
     
 #    print(rows_good)
     
-sitename_strip()
-safesite_final = np.asarray(safe_siteID)  
-sitestrp()          
+#sitename_strip()
+#safesite_final = np.asarray(safe_siteID)  
+#sitestrp()          
 #print(safe_siteID)
 #print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
 # print(safesite_final[:, 0])
 # Commmenting these next print statements out because I know that they work.
-#print(sites_good)
-#print(instr_good) 
+print(sites_good)
+print(instr_good) 
 print(repr(ozone_df[0][0]))
 print(repr(ozone_df[0][1]))
 print(repr(ozone_df[0][4][1]))
 
-def git_gud(): #rows. get good rows.
-    if np.intersect1d(ozone_df[0][0], month_date) == 1:
-        print('do something very embarassing')
-    else:
-        print('do not do the embarrassing thing that you might otherwise have done')
 
-git_gud()
+
+# What if this worked....
+#print(np.intersect1d(ozone_df, month_date))
+
+
+
+#ef git_gud(): #rows. get good rows.
+#   x = int(0)
+#   i = int(0)
+#   while i < int(5337):
+#       
+#       if np.intersect1d(ozone_df[i], month_date[x]) != False:
+#           print('do something very embarassing')
+#           i = i + 1
+#       else:
+#          print('do not do the embarrassing thing that you might otherwise have done')
+#           i = i + 1       
+
+  
+#git_gud()
+#for num, name in np.intersect1d(ozone_df, month_date, return_indices = True)
+#rint("President{}}:{}".format(num, name))
+
+#kay, so this all worked, and we need to do something and take advantage of this now.
+#f a conditional statement is true, we want to:
+#   add the contents of a particular cell OR row to a particular indexed list indexed in a manner useful for our purposes. Requirements may include:
+#       - assign month to a PKI
+#       - assign a particular cell/list/site+instr+month to particular KPI
+#       - index the days in a comparable way across years, synoptic regimes
+        
+
+     
+
+
+
 
 """
 i = 0
@@ -173,8 +202,11 @@ while i < 5336:
     elif (np.in1d(ozone_df[i][1], sites_good) == True) and (np.in1d(ozone_df[i][2] == True)):
         row_counter = row_counter + 1
         i = i + 1
-   
-"""     
+    else row_counter = row_counter + 1
+        i = i + !
+"""
+
+     
 # print(slice_line)
 # print(month_counter)
 # print(row_counter)
@@ -184,6 +216,7 @@ while i < 5336:
 # loc_slice(2)
 
 # This next function is garbage. Zero points.
+
 """
 def site_pop():
     i = 1
@@ -195,9 +228,9 @@ def site_pop():
     print(safe_sites)  
     
 site_pop()
-"""
 
-"""
+
+
 for i in safe_sites:
     print(i)
 """
@@ -215,26 +248,30 @@ for i in safe_sites:
 # print(len(month_date))
 
 
-"""
+
 # This runs in garbage time. I am saving the world's electricity system from having to pay for it. Genuinely have to consider optimization for this subproblem.
+
+"""
 for month in month_date:
     for row in ozone_2d:
         if row == month:
             print(row[month])
         else: print("x")
-"""        
+"""
+
+        
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 # for i in safe_sites:
 #   break
 # for row in inputfile:
 #    break
 
-"""
-Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
-"""
+
+# Okay, now we want a function where the years go up vertically from 2010 to 2019, the months and days all lie along the y axis, and the x axis is max daily 8-hour ozone.
+
 
 # This is not currently needed.
-"""
+
 def make_plot():
     x = np.linspace(start=1, stop=12,num=12)
     y = np.linspace(start=2010, stop=2019, num=12)
@@ -243,18 +280,18 @@ def make_plot():
     pyplot_2 = fig.plot3D(x,y,z, projection='3D')
 
     plt.axes(projection='3d')
-"""
-"""
+
+
     x = np.linspace(0, 2 *np.pi, 200)
     y = np.sin(x)
     fig, ax = plt.subplots()
     ax.plot(x,y)
     plt.show()
-"""
 
-"""
-Let's list all the months in the data sample.
-"""
+
+
+#Let's list all the months in the data sample.
+
 
 #    for i in ozone_2d:
 #       print(ozone_2d[i])
@@ -272,14 +309,15 @@ Let's list all the months in the data sample.
 """
 
 # Commenting this out briefly, since I have roughly the same thing being defined in a function definition up top.
+
 """
 x = 0
 while x < ozone_df.count():
     print(ozone_df[i, 0])
     x = x + 1
-
-     
 """
+     
+
 
 """
 We need to find ways to identify and label the different sets of cells.
@@ -301,5 +339,5 @@ def index_check():
         except:
             print('That is invalid input.')
     
-    print(ozone_2d[first][second])
+#   print(ozone_2d[first][second])
 """
