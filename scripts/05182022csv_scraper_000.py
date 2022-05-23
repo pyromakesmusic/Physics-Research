@@ -155,20 +155,33 @@ Variable Definitions:
     p: index of month/date combos
     q: index of site name
     r: index of instrument number
+    i: local row counter variable
 """  
 
 def row_scraper(x,p,q,r):  
 #    print(month_date)
     print(ozone_df[0][0])
     row_intersect = []
+    month_counter = 0
+    year_counter = 2010
     ozone_df_good = []
     
     i = 0
     while i < x:
-        if np.intersect1d(ozone_df[0][i])[0], month_date) == number:
+        if np.intersect1d(ozone_df[0][i][0], month_date) == number:
+            row_intersect.append(np.intersect1d(ozone_df[0][i], month_date[month_counter]))
+            month_counter = month_counter + 1
+            if month_counter % 12 == 6:
+                year_counter == year_counter + 1
+                i = i + 1
+            else:
+                i = i + 1
         elif np.intersect1d(ozone_df[0][i][q], site_good) == number and np.intersect1d(ozone_df[0][i][r], instr_good) == number:
+            i = i + 1
+        else:
+            i = i + 1
             
-        row_intersect.append(np.intersect1d(ozone_df[0][i], month_date))
+
    
 
 row_scraper(800,0,1,2)
