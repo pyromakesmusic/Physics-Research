@@ -73,6 +73,15 @@ def makecsv(name):
 
 # Just trying to construct a loop here to display only the parts of these strings stripped of the underscore and everything after.
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
+slice_locations = (0,49,98,148,199,250,301,352,403,454,505,607,658,708,758,809,
+                858,907,957,1008,1059,1110,1160,1210,1261,1311,1361,1409,1457,
+                1505,1553,1601,1649,1697,1743,1789,1836,1883,1930,1978,2025,
+                2072,2119,2166,2213,2261,2309,2357,2405,2456,2507,2558,2609,
+                2710,2761,2812,2863,2914,2965,3016,3067,3118,3169,3219,3270,
+                3321,3371,3421,3471,3522,3772,3820,3866,3913,3960,4005,4053,
+                4099,4145,4190,4235,4280,4324,4369,4412,4456,4495,4536,4579,
+                4622,4665,4707,4750,4793,4836,4879,4920,4959,4998,5036,5075,
+                5118,5160,5203,5246,5292)
 safe_siteID = []
 sites_good = []
 instr_good = []
@@ -92,6 +101,13 @@ def sitename_strip():
         safe_siteID[i] = safe_sitestrp
         i = i + 1 
        
+        
+def montharray_slicer():
+    i = 0
+    while i < len(slice_locations):
+        print(ozone_df[0][slice_locations[i]])
+        i = i + 1
+
 # Some function callls for testing.
         
 #print(safe_siteID)
@@ -161,67 +177,138 @@ print(instr_good)
 
 #print(repr(ozone_df[0][0]))
 
-x = "dummy variable"
+
 # You're gonna need to move this function later.
 print(month_date[0])
 # gonna do a while/for loop test just to see if stuff works
+
+# Below me is the list of all the slcing locations for this sequence of matrices.
+
+
+
+montharray_slicer()
+
+
+
+"""
 print(ozone_df[0][0])
 print(ozone_df[0][49])
 print(ozone_df[0][98])
 print(ozone_df[0][148])
-print(ozone_df[0][200])
-print(ozone_df[0][251])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
-print(ozone_df[0][x])
+print(ozone_df[0][199])
+print(ozone_df[0][250])
+print(ozone_df[0][301])
+print(ozone_df[0][352])
+print(ozone_df[0][403])
+print(ozone_df[0][454])
+print(ozone_df[0][505])
+print(ozone_df[0][556])
+print(ozone_df[0][607])
+print(ozone_df[0][658])
+print(ozone_df[0][708])
+print(ozone_df[0][758])
+print(ozone_df[0][809])
+print(ozone_df[0][858])
+print(ozone_df[0][907])
+print(ozone_df[0][957])
+print(ozone_df[0][1008])
+print(ozone_df[0][1059])
+print(ozone_df[0][1110])
+print(ozone_df[0][1160])
+print(ozone_df[0][1210])
+print(ozone_df[0][1261])
+print(ozone_df[0][1311])
+print(ozone_df[0][1361])
+print(ozone_df[0][1409])
+print(ozone_df[0][1457])
+print(ozone_df[0][1505])
+print(ozone_df[0][1553])
+print(ozone_df[0][1601])
+print(ozone_df[0][1649])
+print(ozone_df[0][1697])
+print(ozone_df[0][1743])
+print(ozone_df[0][1789])
+print(ozone_df[0][1836])
+print(ozone_df[0][1883])
+print(ozone_df[0][1930])
+print(ozone_df[0][1978])
+print(ozone_df[0][2025])
+print(ozone_df[0][2072])
+print(ozone_df[0][2119])
+print(ozone_df[0][2166])
+print(ozone_df[0][2213])
+print(ozone_df[0][2261])
+print(ozone_df[0][2309])
+print(ozone_df[0][2357])
+print(ozone_df[0][2405])
+print(ozone_df[0][2456])
+print(ozone_df[0][2507])
+print(ozone_df[0][2558])
+print(ozone_df[0][2609])
+print(ozone_df[0][2659])
+
+print(ozone_df[0][2710])
+print(ozone_df[0][2761])
+print(ozone_df[0][2812])
+print(ozone_df[0][2863])
+print(ozone_df[0][2914])
+print(ozone_df[0][2965])
+print(ozone_df[0][3016])
+print(ozone_df[0][3067])
+print(ozone_df[0][3118])
+print(ozone_df[0][3169])
+print(ozone_df[0][3219])
+print(ozone_df[0][3270])
+print(ozone_df[0][3321])
+
+print(ozone_df[0][3371])
+print(ozone_df[0][3421])
+print(ozone_df[0][3471])
+print(ozone_df[0][3522])
+print(ozone_df[0][3573])
+print(ozone_df[0][3623])
+print(ozone_df[0][3672])
+print(ozone_df[0][3722])
+print(ozone_df[0][3772])
+print(ozone_df[0][3820])
+print(ozone_df[0][3866])
+
+print(ozone_df[0][3913])
+print(ozone_df[0][3960])
+print(ozone_df[0][4005])
+print(ozone_df[0][4053])
+print(ozone_df[0][4099])
+print(ozone_df[0][4145])
+print(ozone_df[0][4190])
+print(ozone_df[0][4235])
+print(ozone_df[0][4280])
+print(ozone_df[0][4324])
+print(ozone_df[0][4369])
+print(ozone_df[0][4412])
+print(ozone_df[0][4456])
+
+print(ozone_df[0][4495])
+print(ozone_df[0][4536])
+print(ozone_df[0][4579])
+print(ozone_df[0][4622])
+print(ozone_df[0][4665])
+print(ozone_df[0][4707])
+print(ozone_df[0][4750])
+print(ozone_df[0][4793])
+print(ozone_df[0][4836])
+print(ozone_df[0][4879])
+print(ozone_df[0][4920])
+print(ozone_df[0][4959])
+
+print(ozone_df[0][4998])
+print(ozone_df[0][5036])
+print(ozone_df[0][5075])
+print(ozone_df[0][5118])
+print(ozone_df[0][5160])
+print(ozone_df[0][5203])
+print(ozone_df[0][5246])
+print(ozone_df[0][5292])
+"""
 
 
 
