@@ -97,6 +97,10 @@ def sitename_strip():
 #print(safe_siteID)
 #print(len(safe_sites))
 #print(len(safe_siteID))
+        
+"""
+We need to figure out what the heck this function does. I think it checks if the current row intersects with the good sites.
+"""
 def loc_slice(x):
     i = 0
     current_row = []
@@ -140,20 +144,45 @@ def tceqstrp():
         i = i + 1
     
 #    print(rows_good)
-    
-#sitename_strip()
+"""    
+sitename_strip()
+"""
+
+
 
 #sitestrp()          
 #print(safe_siteID)
 #print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
-# print(safesite_final[:, 0])
+#print(safesite_final[:, 0])
 # Commmenting these next print statements out because I know that they work.
-print(sites_good)
-print(instr_good) 
-print(repr(ozone_df[0][0]))
+#print(sites_good)
+#print(instr_good) 
 
-print(multi_ozone_index[1][1])
+#print(repr(ozone_df[0][0]))
+
+# You're gonna need to move this function later.
+print(month_date[1])
+def rowcount():
+    i = 0
+    month_count = 0
+    print(month_date[month_count])
+    print(ozone_df[0][i][0])
+    while i < 5337:
+        if ozone_df[0][i][0] == month_date[month_count]:
+            print(month_count)
+            print(ozone_df[0][i][0])
+            month_count = month_count + 1
+            i = i + 49
+        else:
+            print(i)
+            i = i + 49
+
+
+# Don't forget to call the fucking function!!!
+rowcount()
+
+#print(multi_ozone_index[1][1])
     
 """
 def row_scraper(x,p,q,r):  
