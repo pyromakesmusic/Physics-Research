@@ -77,6 +77,13 @@ safe_siteID = []
 sites_good = []
 instr_good = []
 rows_good = []
+safesite_final = np.asarray(safe_siteID)  
+ozone_df_good = pd.DataFrame(
+        index = month_date,
+        columns = ('site', 'instrument', 'month', 'year', 'synaptic regime', )
+)
+multi_ozone_index = pd.MultiIndex.from_product([sites_good, month_date])
+
 def sitename_strip():
     i = 0
     for i in range(0, len(safe_sites)):
@@ -135,7 +142,7 @@ def tceqstrp():
 #    print(rows_good)
     
 #sitename_strip()
-#safesite_final = np.asarray(safe_siteID)  
+
 #sitestrp()          
 #print(safe_siteID)
 #print(safesite_final)
@@ -145,19 +152,10 @@ def tceqstrp():
 print(sites_good)
 print(instr_good) 
 print(repr(ozone_df[0][0]))
-print(repr(ozone_df[0][1]))
-print(repr(ozone_df[0][4][1]))
 
-
+print(multi_ozone_index[1][1])
+    
 """
-Variable Definitions:
-    x: number of rows/arrays in the original 1x5337 row dataframe to iterate over.
-    p: index of month/date combos
-    q: index of site name
-    r: index of instrument number
-    i: local row counter variable
-"""  
-
 def row_scraper(x,p,q,r):  
 #    print(month_date)
     print(ozone_df[0][0])
@@ -185,7 +183,7 @@ def row_scraper(x,p,q,r):
    
 
 row_scraper(800,0,1,2)
-
+"""
      
 # What if this worked....
 #print(np.intersect1d(ozone_df, month_date))
