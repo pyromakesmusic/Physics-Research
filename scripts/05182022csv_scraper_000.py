@@ -144,43 +144,109 @@ def tceqstrp():
         i = i + 1
     
 #    print(rows_good)
-"""    
+    
 sitename_strip()
-"""
 
 
 
-#sitestrp()          
-#print(safe_siteID)
+
+sitestrp()          
+print(safe_siteID)
 #print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
 #print(safesite_final[:, 0])
 # Commmenting these next print statements out because I know that they work.
-#print(sites_good)
-#print(instr_good) 
+print(sites_good)
+print(instr_good) 
 
 #print(repr(ozone_df[0][0]))
 
+x = "dummy variable"
 # You're gonna need to move this function later.
-print(month_date[1])
+print(month_date[0])
+# gonna do a while/for loop test just to see if stuff works
+print(ozone_df[0][0])
+print(ozone_df[0][49])
+print(ozone_df[0][98])
+print(ozone_df[0][148])
+print(ozone_df[0][200])
+print(ozone_df[0][251])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+print(ozone_df[0][x])
+
+
+
+
 def rowcount():
     i = 0
     month_count = 0
+    slice_index = []
     print(month_date[month_count])
-    print(ozone_df[0][i][0])
+    print(ozone_df[i][0][0])
     while i < 5337:
-        if ozone_df[0][i][0] == month_date[month_count]:
-            print(month_count)
-            print(ozone_df[0][i][0])
+        if ozone_df[i][0][0] == month_date[month_count]:
+            print(month_date[month_count])
+            print(ozone_df[i][0][0])
+            slice_index.append(i)
             month_count = month_count + 1
-            i = i + 49
+            i = i + 1
         else:
             print(i)
-            i = i + 49
+            i = i + 1
+#        print(slice_index)
 
 
 # Don't forget to call the fucking function!!!
-rowcount()
+# rowcount()
 
 #print(multi_ozone_index[1][1])
     
@@ -336,6 +402,8 @@ for month in month_date:
 
 # This is not currently needed.
 
+
+"""
 def make_plot():
     x = np.linspace(start=1, stop=12,num=12)
     y = np.linspace(start=2010, stop=2019, num=12)
@@ -351,7 +419,7 @@ def make_plot():
     fig, ax = plt.subplots()
     ax.plot(x,y)
     plt.show()
-
+"""
 
 
 #Let's list all the months in the data sample.
