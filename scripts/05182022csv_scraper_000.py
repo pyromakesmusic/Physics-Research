@@ -87,10 +87,7 @@ sites_good = []
 instr_good = []
 rows_good = []
 safesite_final = np.asarray(safe_siteID)  
-ozone_df_good = pd.DataFrame(
-        index = month_date,
-        columns = ('site', 'instrument', 'month', 'year', 'synaptic regime', )
-)
+ozone_dflist_good = [[]]
 multi_ozone_index = pd.MultiIndex.from_product([sites_good, month_date])
 
 def sitename_strip():
@@ -105,10 +102,22 @@ def sitename_strip():
 def montharray_slicer():
     i = 0
     while i < len(slice_locations):
-        print(ozone_df[0][slice_locations[i]])
+#        print(ozone_df[0][slice_locations[i]])
         i = i + 1
 
-# Some function callls for testing.
+def month_dfinput():
+    i = 0
+    while i < len(month_date):
+        ozone_dflist_good.append(month_date[i])
+        i = i + 1
+    print(ozone_dflist_good)
+#    print(ozone_dflist_good[0][0])
+
+# print(month_date)
+print(len(month_date))
+month_dfinput()
+print(ozone_df.iloc(slice_locations))
+# Some function calls for testing.
         
 #print(safe_siteID)
 #print(len(safe_sites))
@@ -117,6 +126,7 @@ def montharray_slicer():
 """
 We need to figure out what the heck this function does. I think it checks if the current row intersects with the good sites.
 """
+
 def loc_slice(x):
     i = 0
     current_row = []
@@ -160,33 +170,55 @@ def tceqstrp():
         i = i + 1
     
 #    print(rows_good)
+
+def rowcount():
+    i = 0
+    month_count = 0
+    slice_index = []
+    print(month_date[month_count])
+    print(ozone_df[i][0][0])
+    while i < 5337:
+        if ozone_df[i][0][0] == month_date[month_count]:
+            print(month_date[month_count])
+            print(ozone_df[i][0][0])
+            slice_index.append(i)
+            month_count = month_count + 1
+            i = i + 1
+        else:
+            print(i)
+            i = i + 1
+#        print(slice_index)
+
+
+# Don't forget to call the fucking function!!!
+# rowcount()
     
-sitename_strip()
+#asitename_strip()
 
 
 
 
-sitestrp()          
-print(safe_siteID)
+#sitestrp()          
+#print(safe_siteID)
 #print(safesite_final)
 # I've done it! I've isolated the site identifiers from their components!
 #print(safesite_final[:, 0])
 # Commmenting these next print statements out because I know that they work.
-print(sites_good)
-print(instr_good) 
+#print(sites_good)
+#print(instr_good) 
 
 #print(repr(ozone_df[0][0]))
 
 
 # You're gonna need to move this function later.
-print(month_date[0])
+#print(month_date[0])
 # gonna do a while/for loop test just to see if stuff works
 
 # Below me is the list of all the slcing locations for this sequence of matrices.
 
 
 
-montharray_slicer()
+#montharray_slicer()
 
 
 
@@ -197,6 +229,7 @@ print(ozone_df[0][98])
 print(ozone_df[0][148])
 print(ozone_df[0][199])
 print(ozone_df[0][250])
+
 print(ozone_df[0][301])
 print(ozone_df[0][352])
 print(ozone_df[0][403])
@@ -209,6 +242,7 @@ print(ozone_df[0][708])
 print(ozone_df[0][758])
 print(ozone_df[0][809])
 print(ozone_df[0][858])
+
 print(ozone_df[0][907])
 print(ozone_df[0][957])
 print(ozone_df[0][1008])
@@ -221,6 +255,7 @@ print(ozone_df[0][1311])
 print(ozone_df[0][1361])
 print(ozone_df[0][1409])
 print(ozone_df[0][1457])
+
 print(ozone_df[0][1505])
 print(ozone_df[0][1553])
 print(ozone_df[0][1601])
@@ -234,6 +269,7 @@ print(ozone_df[0][1930])
 print(ozone_df[0][1978])
 print(ozone_df[0][2025])
 print(ozone_df[0][2072])
+
 print(ozone_df[0][2119])
 print(ozone_df[0][2166])
 print(ozone_df[0][2213])
@@ -313,27 +349,7 @@ print(ozone_df[0][5292])
 
 
 
-def rowcount():
-    i = 0
-    month_count = 0
-    slice_index = []
-    print(month_date[month_count])
-    print(ozone_df[i][0][0])
-    while i < 5337:
-        if ozone_df[i][0][0] == month_date[month_count]:
-            print(month_date[month_count])
-            print(ozone_df[i][0][0])
-            slice_index.append(i)
-            month_count = month_count + 1
-            i = i + 1
-        else:
-            print(i)
-            i = i + 1
-#        print(slice_index)
 
-
-# Don't forget to call the fucking function!!!
-# rowcount()
 
 #print(multi_ozone_index[1][1])
     
