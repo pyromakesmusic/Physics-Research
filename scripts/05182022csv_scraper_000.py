@@ -24,8 +24,9 @@ def find_dir():
     # Finds and navigates to the correct directory for the data.        
     os.getcwd()
     os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
-"""
-"""
+
+
+
 # Start of the use of the open file.
 with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-2020.txt', 'r') as inputfile:
 # Some global variables start to be defined          
@@ -92,11 +93,10 @@ multi_ozone_index = pd.MultiIndex.from_product([sites_good, month_date])
 final_df = [[]] 
 # I think some of these variables are essentially duplicates and can be eliminated. We will see.
 
-We need to figure out what the heck this function does. I think it checks if the current row intersects with the good sites.
-"""
+# We need to figure out what the heck this function does. I think it checks if the current row intersects with the good sites.
 
 
-"""
+
 def loc_slice(x):
     i = 0
     current_row = []
@@ -113,26 +113,17 @@ def loc_slice(x):
         else:
             row_intersect = []
             i = i + 1
-"""
 
 
-"""
 def sitestrp():
     i = 0
     while i < len(safesite_final):
         sites_good.append(safesite_final[i, 0])
         instr_good.append(safesite_final[i, 2])
         i = i + 1    
-""" 
-
-
-"""       
+    
         print(sites_good)
         print(instr_good)        
-"""
-
-"""
-
 
 
 # This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
@@ -169,14 +160,25 @@ def rowcount():
             
 # May 25 0418 AM this is currently where i am at
    
-"""    
-"""        
+
+     
 def year_mod12(x):
     return x % 12
-"""
 
 
-"""
+# This is the most important function there is
+def master_loop():
+    row_count = 0
+    month_count = 0
+    year_count = 2010
+    print(row_count)
+    print(month_date[month_count])
+    print(year_count)
+    
+master_loop()
+
+# print(year_mod12(15))
+
 def df_create():
     i = 1 # i is  the row counter
     year_counter = 2010
@@ -274,9 +276,9 @@ site_pop()
    
 
 row_scraper(800,0,1,2)
-    
+"""    
 df_create()
-"""
+
 
 
 # print(month_date)
@@ -516,3 +518,4 @@ def month_dfinput():
 #        print(ozone_dflist_good)
     print(ozone_dflist_good)
 #    print(ozone_dflist_good[0][0])
+"""
