@@ -123,7 +123,8 @@ def sitestrp():
         i = i + 1    
     
         print(sites_good)
-        print(instr_good)        
+        print(instr_good)
+        print(safesite_final)        
 
 
 # This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
@@ -146,15 +147,16 @@ def rowcount():
     slice_index = []
     print(month_date[month_count])
     print(ozone_df[i][0][0])
-    while i < 5337:
+    while month_count[0] < 5337:
         if ozone_df[i][0][0] == month_date[month_count]:
             print(month_date[month_count])
-            print(ozone_df[i][0][0])
+            print(ozone_df[0][i][0])
             slice_index.append(i)
             month_count = month_count + 1
             i = i + 1
         else:
             print(i)
+            print(ozone_df[i][0][0])
             i = i + 1
 #        print(slice_index)
             
@@ -165,17 +167,70 @@ def rowcount():
 def year_mod12(x):
     return x % 12
 
+row_count = 0
+year_count = 2010
+while row_count <= 5337:
+    for month in month_date:
+        if (str(year_count) in month) == True:
+            newlist = []
+            newlist.append(ozone_df[row_count])
+            row_count = row_count + 1
+            if (int(month) % 12 == 6):
+                year_count = year_count + 1
+            else:
+                continue
+        else:
+            newlist = []
+            newlist.append(ozone_df[row_count])
+            row_count = row_count + 1
+            continue
+        
+    year_count = year_count + 1
+    print(str(year_count) in month_date[0])
 
+
+
+sitestrp()    
+#print(month_date)
+print(slice_locations)
+#print(safe_sites)    
+#print(safesite_final)
+#print(sites_good)
+#print(instr_good)
+
+
+"""    
 # This is the most important function there is
 def master_loop():
     row_count = 0
     month_count = 0
     year_count = 2010
-    print(row_count)
+
     print(month_date[month_count])
     print(year_count)
+    while row_count < 5336:
+        if ozone_df[0][row_count] == month_date[month_count]:
+            if year_mod12(row_count) == 0:
+                year_count = year_count + 1
+                row_count = row_count + 1
+                print(row_count)
+                print([month_date][month_count])
+#               print(year_count)
+            else:
+                row_count = row_count + 1
+#                print(month_date[month_count])
+#                print(year_count)              
+            print(month_date[month_count])
+        else:
+            row_count = row_count + 1
+
+            print(month_date[month_count])
+            print(year_count)
+        
     
 master_loop()
+"""
+
 
 # print(year_mod12(15))
 
@@ -228,7 +283,7 @@ def row_scraper(x,p,q,r):
         if np.intersect1d(ozone_df[0][i][0], month_date) == number:
             row_intersect.append(np.intersect1d(ozone_df[0][i], month_date[month_counter]))
             month_counter = month_counter + 1
-            if month_counter % 12 == 6:
+            if year_mod12(month_counter) == 6:
                 year_counter == year_counter + 1
                 i = i + 1
             else:
@@ -277,7 +332,9 @@ site_pop()
 
 row_scraper(800,0,1,2)
 """    
-df_create()
+
+
+# df_create()
 
 
 
