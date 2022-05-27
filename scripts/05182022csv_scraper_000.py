@@ -167,28 +167,22 @@ def rowcount():
 def year_mod12(x):
     return x % 12
 
-row_count = 0
-year_count = 2010
-while row_count <= 5337:
-    for month in month_date:
-        if (str(year_count) in month) == True:
-            newlist = []
-            newlist.append(ozone_df[row_count])
-            row_count = row_count + 1
-            if (int(month) % 12 == 6):
-                year_count = year_count + 1
-            else:
-                continue
-        else:
-            newlist = []
-            newlist.append(ozone_df[row_count])
-            row_count = row_count + 1
-            continue
+
+
+def big_checker():
+    month_count = 0
+    row_count = 0
+    year_count = 2010
+    while row_count <= 5336:
+#        print(ozone_df[0][row_count])
+        row_count = row_count + 1
+        print(row_count)
         
-    year_count = year_count + 1
-    print(str(year_count) in month_date[0])
+    print(final_df)
+#        year_count = year_count + 1
+#        print(str(year_count) in month_date[0])
 
-
+big_checker()
 
 sitestrp()    
 #print(month_date)
