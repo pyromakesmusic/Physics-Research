@@ -88,9 +88,9 @@ sites_good = []
 instr_good = []
 rows_good = []
 safesite_final = np.asarray(safe_siteID)  
-ozone_dflist_good = [[]]
+ozone_dflist_good = []
 multi_ozone_index = pd.MultiIndex.from_product([sites_good, month_date])
-final_df = [[]] 
+final_df = [] 
 # I think some of these variables are essentially duplicates and can be eliminated. We will see.
 
 # We need to figure out what the heck this function does. I think it checks if the current row intersects with the good sites.
@@ -167,26 +167,49 @@ def rowcount():
 def year_mod12(x):
     return x % 12
 
+def arr_build(a,b):
+    ex_arr = []
+    i = a
+    while i < (a + b):  
+        ex_arr.append(ozone_df[0][i])
+        i = i + 1
+#    print(ex_arr)
+    return(ex_arr)
 
+example_sheet = arr_build(0, 49)
 
 def big_checker():
     month_count = 0
     row_count = 0
     year_count = 2010
+    ex_arr = []
+    sample_count = sites_good[row_count]
     while row_count <= 5336:
-#        print(ozone_df[0][row_count])
+        if row_count in slice_locations:
+#            print(ozone_df[0][row_count])
+#           final_df[0][row_count].append(ozone_df[year_count][row_count])
+            row_count = row_count + 1
+        elif str(ozone_df[0][row_count]) in sites_good:
+#            final_df[0][row_count].append(ozone_df[year_count][row_count])
+#            print(ozone_df[0][row_count])
+            row_count = row_count + 1
+        else:
+            row_count = row_count + 1
+            continue
         row_count = row_count + 1
-        print(row_count)
         
-    print(final_df)
+#        print(row_count)
+        
+print(final_df)
 #        year_count = year_count + 1
 #        print(str(year_count) in month_date[0])
 
-big_checker()
-
-sitestrp()    
+print(example_sheet)
+#sitestrp()
+#big_checker()
+    
 #print(month_date)
-print(slice_locations)
+#print(slice_locations)
 #print(safe_sites)    
 #print(safesite_final)
 #print(sites_good)
@@ -266,7 +289,7 @@ def index_check():
             
 def row_scraper(x,p,q,r):  
 #    print(month_date)
-    print(ozone_df[0][0])
+#    print(ozone_df[0][0])
     row_intersect = []
     month_counter = 0
     year_counter = 2010
