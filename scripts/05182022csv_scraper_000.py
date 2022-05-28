@@ -129,7 +129,7 @@ def sitestrp():
 
 # This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
 
-def tceqstrp():
+def tceqstrp(p,q):
     i = 0
     while i < 2:
 #    while i < ozone_df.length():
@@ -178,6 +178,31 @@ def arr_build(a,b):
 
 example_sheet = arr_build(0, 49)
 
+
+# Function returns the difference between two different slice locations
+def smplength_get(x):
+    a = slice_locations[x]
+    b = slice_locations[x + 1]
+    return (b - a)
+
+print(smplength_get(0))
+
+# Prints the number of rows between two different slice locations
+def month_grbrshell():
+    
+    i = 0
+    pos = 0
+
+    def month_grabber():
+    
+        while i < smplength_get(pos):
+            print(ozone_df[0][i])
+            i = i + 1
+            pos = pos + 1
+
+month_grbrshell()
+
+
 def big_checker():
     month_count = 0
     row_count = 0
@@ -186,27 +211,25 @@ def big_checker():
     sample_count = sites_good[row_count]
     while row_count <= 5336:
         if row_count in slice_locations:
-#            print(ozone_df[0][row_count])
-#           final_df[0][row_count].append(ozone_df[year_count][row_count])
+            print(ozone_df[0][row_count])
+            final_df[0][row_count].append(ozone_df[year_count][row_count])
             row_count = row_count + 1
         elif str(ozone_df[0][row_count]) in sites_good:
-#            final_df[0][row_count].append(ozone_df[year_count][row_count])
-#            print(ozone_df[0][row_count])
+            final_df[0][row_count].append(ozone_df[year_count][row_count])
+            print(ozone_df[0][row_count])
             row_count = row_count + 1
         else:
             row_count = row_count + 1
             continue
         row_count = row_count + 1
         
-#        print(row_count)
+        print(row_count)
         
-print(final_df)
+#print(final_df)
 #        year_count = year_count + 1
 #        print(str(year_count) in month_date[0])
 
-print(example_sheet)
-#sitestrp()
-#big_checker()
+
     
 #print(month_date)
 #print(slice_locations)
@@ -350,6 +373,12 @@ site_pop()
 row_scraper(800,0,1,2)
 """    
 
+#site_pop()
+#print(example_sheet)
+#sitestrp()
+#big_checker()
+#print(smplength_get(1))    
+    
 
 # df_create()
 
