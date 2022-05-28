@@ -25,8 +25,6 @@ def find_dir():
     os.getcwd()
     os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\') 
 
-
-
 # Start of the use of the open file.
 with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-2020.txt', 'r') as inputfile:
 # Some global variables start to be defined          
@@ -53,7 +51,6 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     month_date = []
     for i in range(5,117):
         month_date.append(str(months_choices[i % 12] + ' ' + str(2010 + years_choices[math.floor(i * 1/12)])))                 
-
 
 #    print(ozone_array)
     
@@ -95,8 +92,6 @@ final_df = []
 
 # We need to figure out what the heck this function does. I think it checks if the current row intersects with the good sites.
 
-
-
 def loc_slice(x):
     i = 0
     current_row = []
@@ -114,7 +109,6 @@ def loc_slice(x):
             row_intersect = []
             i = i + 1
 
-
 def sitestrp():
     i = 0
     while i < len(safesite_final):
@@ -125,7 +119,6 @@ def sitestrp():
         print(sites_good)
         print(instr_good)
         print(safesite_final)        
-
 
 # This is supposed to be the start of a function to strip out all the necessary rows. Will need to perform some Boolean logic concatenation to get the total sum of conditions. Some ands and ors.
 
@@ -161,9 +154,7 @@ def rowcount():
 #        print(slice_index)
             
 # May 25 0418 AM this is currently where i am at
-   
-
-     
+    
 def year_mod12(x):
     return x % 12
 
@@ -176,32 +167,32 @@ def arr_build(a,b):
 #    print(ex_arr)
     return(ex_arr)
 
-example_sheet = arr_build(0, 49)
-
-
 # Function returns the difference between two different slice locations
 def smplength_get(x):
     a = slice_locations[x]
     b = slice_locations[x + 1]
+    print(x)
+    print(x + 1)
     return (b - a)
 
-print(smplength_get(0))
+#print(smplength_get(0))
 
 # Prints the number of rows between two different slice locations
 def month_grbrshell():
     
-    i = 0
-    pos = 0
 
     def month_grabber():
-    
+        i = 0
+        pos = 0
         while i < smplength_get(pos):
             print(ozone_df[0][i])
             i = i + 1
             pos = pos + 1
-
+            print(arr_build(i, i + 1))
+            continue
+    month_grabber()
+    
 month_grbrshell()
-
 
 def big_checker():
     month_count = 0
@@ -228,7 +219,6 @@ def big_checker():
 #print(final_df)
 #        year_count = year_count + 1
 #        print(str(year_count) in month_date[0])
-
 
     
 #print(month_date)
@@ -266,11 +256,10 @@ def master_loop():
 
             print(month_date[month_count])
             print(year_count)
-        
+     
     
 master_loop()
 """
-
 
 # print(year_mod12(15))
 
@@ -292,7 +281,7 @@ def df_create():
         print('This is a test.')
         i = i + 1
         
-        
+       
 def index_check():
     while True:
         try:
@@ -400,9 +389,6 @@ row_scraper(800,0,1,2)
     
 #asitename_strip()
 
-
-
-
 #sitestrp()          
 #print(safe_siteID)
 #print(safesite_final)
@@ -421,14 +407,7 @@ row_scraper(800,0,1,2)
 
 # Below me is the list of all the slcing locations for this sequence of matrices.
 
-
-
 #montharray_slicer()
-
-
-
-
-
 
 #print(multi_ozone_index[1][1])
     
@@ -438,8 +417,6 @@ row_scraper(800,0,1,2)
      
 # What if this worked....
 #print(np.intersect1d(ozone_df, month_date))
-
-
 
 #ef git_gud(): #rows. get good rows.
 #   x = int(0)
@@ -453,8 +430,7 @@ row_scraper(800,0,1,2)
 #          print('do not do the embarrassing thing that you might otherwise have done')
 #           i = i + 1       
 
-  
-#git_gud()
+  #git_gud()
 #for num, name in np.intersect1d(ozone_df, month_date, return_indices = True)
 #rint("President{}}:{}".format(num, name))
 
@@ -465,11 +441,7 @@ row_scraper(800,0,1,2)
 #       - assign a particular cell/list/site+instr+month to particular KPI
 #       - index the days in a comparable way across years, synoptic regimes
         
-
-     
-
-
-
+   
 
 """
 i = 0
@@ -505,17 +477,10 @@ while i < 5336:
 
 """
 
-
-
-
 for i in safe_sites:
     print(i)
 """
-
-    
-
-
-
+ 
 
 # Prints a list of the months in the study, and then the number of elements in the list.
     
@@ -523,8 +488,6 @@ for i in safe_sites:
 # print(years_choices)
 # print(month_date)
 # print(len(month_date))
-
-
 
 # This runs in garbage time. I am saving the world's electricity system from having to pay for it. Genuinely have to consider optimization for this subproblem.
 
@@ -535,7 +498,6 @@ for month in month_date:
             print(row[month])
         else: print("x")
 """
-
         
 # we want to parse the names with underscores into an array with three columns: input string, site ID, site instrumentID#
 # for i in safe_sites:
@@ -543,10 +505,7 @@ for month in month_date:
 # for row in inputfile:
 #    break
 
-
-
 """
-
 
 #Let's list all the months in the data sample.
 
@@ -557,7 +516,7 @@ for month in month_date:
     
 #   for i in range(len(ozone_2d)):
 #       print(ozone_2d[i])
-    
+   
  
 """
 # Will need to use modular arithmetic for this next bit.
@@ -572,18 +531,14 @@ for month in month_date:
 
 """
 
-
 x = 0
 while x < ozone_df.count():
     print(ozone_df[i, 0])
     x = x + 1
 """
-     
-
+    
 
 """
-
-
 
 """
 """
@@ -591,7 +546,6 @@ We need to find ways to identify and label the different sets of cells.
 A few possible identifiers for cells: month, list of headings, site title, instrument identifier, regulated or non-regulatory, blank, dates, max daily ozone.
 """
 """
-
 
 # Now let's give the user a chance to provide input in the form of  two integers which should be the index of some cell in the array so that we can attempt to find a pattern.
 """
@@ -606,7 +560,7 @@ def sitename_strip():
         safe_siteID[i] = safe_sitestrp
         i = i + 1 
        
-        
+      
 def montharray_slicer():
     i = 0
     while i < len(slice_locations):
