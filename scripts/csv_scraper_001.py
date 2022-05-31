@@ -126,7 +126,15 @@ def min_arr(x,y):
     print(arr)
     return(arr)
     
- 
+    
+def stripped_month_arr():
+    
+    i = 0
+    while i < 105:
+        a = get_slicestrt(i)
+        b = get_sliceend(i)
+        print(min_arr(a,b))
+        i = i + 1
 
 # Now must create a function that loops this with get_slicestrt, get_cliceend for each of all the months.
 # Should take one integer as an argument.
@@ -146,5 +154,5 @@ This is for print statements, etc. for running diagnostics and QA on the functio
 """
 min_arr(0,49)
 
-
-
+stripped_month_arr()
+print(len(slice_locations))
