@@ -5,6 +5,11 @@ Created on Sat May 28 21:26:20 2022
 @author: Ghost
 """
 
+
+"""
+Libraries
+"""
+
 import os
 import time
 import datetime
@@ -63,6 +68,9 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
 def makecsv(name):
     name.to_csv('changeme.csv')
     
+"""
+Declaration of Global Variables
+"""
     
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
 slice_locations = (0,49,98,148,199,250,301,352,403,454,505,607,658,708,758,809,
@@ -95,8 +103,37 @@ def showarr(x,y):
 
 # For refactoring before showarr to make it take two args which are the beginning and end of the month slice in question
 # This seems to work okay.
-def get_slicelen(i):
-    return(slice_locations[i], slice_locations[i + 1])
+def get_slicestrt(i):
+    return(slice_locations[i])
+    
+def get_sliceend(i):
+    return(slice_locations[i + 1])
+    
+    
+"""    
+x + 1 == list of column headers
+x + 4 == first data site for the month
+y - 2 == last data site for the month
+"""
+    
+# Move this function to the function definitions as soon as you are done.
+def min_arr(x,y):
+    arr = []
+    arr.append(ozone_df[0][x + 1])
+    i = x + 4
+    while i < y - 2:
+        arr.append(ozone_df[0][i])    
+        i += 1
+    print(arr)
+    
+ 
+
+# Now must create a function that loops this with get_slicestrt, get_cliceend for each of all the months.
+# Should take one integer as an argument.
+# Needs a for loop iterating through the months, indexed by the slice locations.    
+    
+def arr_loop(i):
+    final_df.append(min_arr(get_slicestrt, get_sliceend))
     
     
 """
@@ -105,4 +142,4 @@ This is for print statements, etc. for running diagnostics and QA on the functio
 """
 
 
-showarr(0, 49)
+print(final_df)
