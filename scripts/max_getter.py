@@ -77,14 +77,14 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
               
     som_fileread = csv.reader(som_file)
     daily_som = list(som_fileread)
-    print(daily_som[0])
+#    print(daily_som[0])
     daily_somdf = pd.DataFrame(data = daily_som)
     
     ozone_fileread = csv.reader(ozone_file)
     daily_ozone = list(ozone_fileread)
     daily_ozone.pop(0)
     daily_ozonedf = pd.DataFrame(data = daily_ozone)
-    
+
 
     
     
@@ -92,9 +92,32 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 5. Unit Tests
 """
 
-print(len(daily_ozone[1]))
+#print(len(daily_ozone[1]))
 
+"""
 get_day()
+
+print(len(daily_ozone[110]))
+print(daily_ozone[0][1])
+print(len(daily_ozone[0][1][1]))
+print(len(daily_ozone[0][2]))
+
+
+print(daily_ozone[0][2])
+print(len(daily_ozone[0][2]))
+"""
+
+
+"""
+Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
+"""
+def max_grabber(x):
+    i = 0    
+    while i < 77:
+        print(daily_ozone[x][i])
+        i = i + 1
+        
+max_grabber(110)
 
 """
 Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
