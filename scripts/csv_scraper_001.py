@@ -116,15 +116,15 @@ x + 4 == first data site for the month
 y - 2 == last data site for the month
 """
     
-# Move this function to the function definitions as soon as you are done.
 def min_arr(x,y):
     arr = []
     arr.append(ozone_df[0][x + 1])
-    i = x + 4
-    while i < y - 2:
+    i = (x + 4)
+    while i < (y - 2):
         arr.append(ozone_df[0][i])    
-        i += 1
+        i = i + 1
     print(arr)
+    return(arr)
     
  
 
@@ -132,7 +132,11 @@ def min_arr(x,y):
 # Should take one integer as an argument.
 # Needs a for loop iterating through the months, indexed by the slice locations.    
     
+    
+# This function doesn't work yet. Don't let yourself be confused about what it means until it does.
+# The goal is to iterate through the months and generate a rectangular array for each one.
 def arr_loop(i):
+    ozone_df[slice_locations[i]]
     final_df.append(min_arr(get_slicestrt, get_sliceend))
     
     
@@ -140,6 +144,7 @@ def arr_loop(i):
 Test Section     
 This is for print statements, etc. for running diagnostics and QA on the functions. Expect much of this to be commented out.
 """
+min_arr(0,49)
 
 
-print(final_df)
+
