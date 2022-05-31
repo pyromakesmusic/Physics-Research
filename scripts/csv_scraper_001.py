@@ -88,8 +88,18 @@ final_df = []
 def showitem(x):
     print(ozone_df[0][x])
     
+def showarr(x):
+    print(ozone_df[0][x + 1])
+    print(ozone_df[0][x + 4])
 
 
-showitem(0)
+# For refactoring before showarr to make it take two args which are the beginning and end of the month slice in question
+def get_slicelen(i):
+    slicelen = int(slice_locations[i + 1] - slice_locations[i])
+    print(slicelen)
+
+
+
+get_slicelen(0)
 
 arr_1 = ozone_df.iloc[0:49]
