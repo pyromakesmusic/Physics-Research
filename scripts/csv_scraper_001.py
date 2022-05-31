@@ -64,14 +64,14 @@ with open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\ozone_isoheight_2010-
     ozone_2dnewrows = ozone_2d.reshape(5337,1)
     ozone_df = pd.DataFrame(data=ozone_2dnewrows)
 
-# Sends the DataFrame to csv format
-def makecsv(name):
-    name.to_csv('changeme.csv')
+
     
 """
 Declaration of Global Variables
 """
-    
+
+
+savefile_id = 'list_of_months.csv'    
 safe_sites = ['C1_2','C8_2','C15_3','C26_2','C35_1','C45_1','C53_1','C78_1','C84_1','C403_3','C405_1','C406_1','C408_2','C409_2','C410_1','C416_1','C603_1','C603_2','C603_3','C617_1','C620_1','C1015_1','C1016_1','C1034_1']
 slice_locations = (0,49,98,148,199,250,301,352,403,454,505,607,658,708,758,809,
                 858,907,957,1008,1059,1110,1160,1210,1261,1311,1361,1409,1457,
@@ -91,6 +91,10 @@ ozone_dflist_good = []
 multi_ozone_index = pd.MultiIndex.from_product([sites_good, month_date])
 final_df = [] 
 
+
+# Sends the DataFrame to csv format
+def makecsv(name):
+    name.to_csv(savefile_id)
 
 # Function: want to print an item at a given slice location
 def showitem(x):
@@ -133,8 +137,9 @@ def stripped_month_arr():
     while i < 105:
         a = get_slicestrt(i)
         b = get_sliceend(i)
-        print(min_arr(a,b))
+        final_df.append(min_arr(a,b))
         i = i + 1
+    print(final_df)
 
 # Now must create a function that loops this with get_slicestrt, get_cliceend for each of all the months.
 # Should take one integer as an argument.
@@ -156,3 +161,8 @@ min_arr(0,49)
 
 stripped_month_arr()
 print(len(slice_locations))
+
+
+ozone_dflist_good = pd.DataFrame(data=final_df)
+np.swapaxes(ozone_dflist_good, 0, 1)
+makecsv(ozone_dflist_good)
