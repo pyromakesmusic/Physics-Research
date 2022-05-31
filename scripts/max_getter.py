@@ -112,8 +112,9 @@ print(len(daily_ozone[0][2]))
 Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
 """
 def max_grabber(x):
+# Need to find out what i means
     i = 0    
-    while i < 77:
+    while i < 29:
         print(daily_ozone[x][i])
         i = i + 1
         
