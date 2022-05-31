@@ -94,12 +94,19 @@ def showarr(x):
 
 
 # For refactoring before showarr to make it take two args which are the beginning and end of the month slice in question
+# This seems to work okay.
 def get_slicelen(i):
-    slicelen = int(slice_locations[i + 1] - slice_locations[i])
-    print(slicelen)
+    return(slice_locations[i], slice_locations[i + 1])
+    
+    
+"""
+Test Section     
+This is for print statements, etc. for running diagnostics and QA on the functions. Expect much of this to be commented out.
+"""
 
 
-
-get_slicelen(0)
+showarr(1)
+print(slice_locations)
+print(get_slicelen(4))
 
 arr_1 = ozone_df.iloc[0:49]
