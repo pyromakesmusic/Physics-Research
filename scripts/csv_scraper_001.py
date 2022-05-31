@@ -88,10 +88,10 @@ final_df = []
 def showitem(x):
     print(ozone_df[0][x])
     
-def showarr(x):
+def showarr(x,y):
     print(ozone_df[0][x + 1])
     print(ozone_df[0][x + 4])
-
+    print(ozone_df[0][y-2])
 
 # For refactoring before showarr to make it take two args which are the beginning and end of the month slice in question
 # This seems to work okay.
@@ -105,8 +105,4 @@ This is for print statements, etc. for running diagnostics and QA on the functio
 """
 
 
-showarr(1)
-print(slice_locations)
-print(get_slicelen(4))
-
-arr_1 = ozone_df.iloc[0:49]
+showarr(0, 49)
