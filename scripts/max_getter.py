@@ -143,32 +143,44 @@ print(len(daily_ozone[0][2]))
 """
 New function. We've found we need to use ast.literal_eval() on each of these matrix entries to get them to read as a list.
 """
-def append_test(x):
-    i = 0
+def append_test():
+    month = 0
+    row = 0
     row_aslist = False
-    while i < x:
-        row_aslist = ast.literal_eval(daily_ozone[x][i])
+    month_sample_length = len(ast.literal_eval(daily_ozone[month][row]))
+    # Currently 29 is a magic number. I think it needs to be 34, the number of rows in this table
+    print(month_sample_length)
+    while row < month_sample_length:
+        row_aslist = ast.literal_eval(daily_ozone[month_sample_length][row])
 
         threedee_df.append(row_aslist)
-        i = i + 1
+        row = row + 1
     
 # Test function call
     
-append_test(2)
-print(threedee_df[1][1])
+append_test()
+print(threedee_df[0][0])
+print(len(threedee_df[0]))
+print(threedee_df[0])
+
+print(threedee_df[1])
+
+
 """
 Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
 """
 def max_grabber(x):
 # Need to find out what i means
     i = 0    
-    while i < 1:
+    while i < 29:
         # Need to partition this into a list of strings
         evidence = ast.literal_eval(daily_ozone[x][i])
-        print(evidence)
-        print(evidence[1])
+
+
+        print(evidence[0])
         i = i + 1
         
+
 
 """
 Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
