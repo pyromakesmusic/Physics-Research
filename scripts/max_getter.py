@@ -119,8 +119,8 @@ def column_tryer(x):
         threedee_df.append(month_aslist[i])
         i = i + 1
         
-column_tryer(0)
-print(threedee_df)
+#column_tryer(0)
+#print(threedee_df)
 
 # print(threedee_df[4])
 # Index 4 is the location of the first date
@@ -205,7 +205,7 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-# column_getter(4, 31) 
+column_getter(4, 31) 
 # 4 here gives me the first day of every month
 # 31 gives me the 28th, what happens at out of bounds error?
 # I currently have 0 as x, what does that do?
