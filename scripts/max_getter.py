@@ -136,8 +136,12 @@ Right now this gives me a list for each site that extends through the sample. I 
 different sites for the same day. May need to make a subroutine returning the number of sites for each
 day.
 
+Okay, now it gives the daily maximum. I need this to work given a particular date in the SOM file, and
+I also need it to return the site as a separate argument. Forcing int in the print/try loop seems to have
+made something work correctly that I don't really understand. Look there first when debugging.
+
 """
-def df_slicer(x, c):
+def df_maxer(x, c):
     
 # Need to find out what i means
 # i should be the row/month/header
@@ -220,7 +224,7 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-df_slicer(0, 4) 
+df_maxer(0, 6) 
 # 4 here gives me the first day of every month
 # 31 gives me the 28th, what happens at out of bounds error?
 # I currently have 0 as x, what does that do?
