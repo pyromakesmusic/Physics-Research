@@ -119,9 +119,10 @@ def column_tryer(x):
         threedee_df.append(month_aslist[i])
         i = i + 1
         
-column_tryer(1)
+column_tryer(0)
 print(threedee_df)
-print(threedee_df[4])
+
+# print(threedee_df[4])
 # Index 4 is the location of the first date
 # First, let's call a date for each date in the SOM file.
 
@@ -130,16 +131,19 @@ print(threedee_df[4])
 """
 Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
 """
-def max_grabber(x):
+def column_getter(x, c):
 # Need to find out what i means
+# i should be the row/month/header
+# c should be a column constant
+# what is x?    
     i = 0    
     while i < 111:
         # Need to partition this into a list of strings
         evidence = ast.literal_eval(daily_ozone[i][x])
-        print(evidence[4])
+        print(evidence[c])
         i = i + 1
         
-
+# Good, now this correctly prints the same column in each row meaning month
 
 """
 Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
@@ -199,5 +203,9 @@ print(daily_ozone[0][2])
 print(len(daily_ozone[0][2]))
 """
 
-daily_function()
-max_grabber(0)
+
+# daily_function()
+# column_getter(4, 31) 
+# 4 here gives me the first day of every month
+# 31 gives me the 28th, what happens at out of bounds error?
+# I currently have 0 as x, what does that do?
