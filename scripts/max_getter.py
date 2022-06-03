@@ -145,25 +145,22 @@ New function. We've found we need to use ast.literal_eval() on each of these mat
 """
 def append_test():
     month = 0
-    row = 0
+    row = 1
     row_aslist = False
-    month_sample_length = len(ast.literal_eval(daily_ozone[month][row]))
+    month_sample_length = len(ast.literal_eval(daily_ozonedf[month][row]))
     # Currently 29 is a magic number. I think it needs to be 34, the number of rows in this table
     print(month_sample_length)
     while row < month_sample_length:
-        row_aslist = ast.literal_eval(daily_ozone[month_sample_length][row])
-
+        row_aslist = ast.literal_eval(daily_ozonedf[month][row])
         threedee_df.append(row_aslist)
         row = row + 1
     
 # Test function call
     
-append_test()
-print(threedee_df[0][0])
-print(len(threedee_df[0]))
-print(threedee_df[0])
 
-print(threedee_df[1])
+print(threedee_df)
+row_aslist = ast.literal_eval(daily_ozonedf[0])
+print(row_aslist)
 
 
 """
