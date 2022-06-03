@@ -137,7 +137,7 @@ different sites for the same day. May need to make a subroutine returning the nu
 day.
 
 """
-def column_getter(x, c):
+def df_slicer(x, c):
     
 # Need to find out what i means
 # i should be the row/month/header
@@ -188,9 +188,9 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
     daily_somdf = pd.DataFrame(data = daily_som)
     
     ozone_fileread = csv.reader(ozone_file)
-    daily_ozone = list(ozone_fileread)
-    daily_ozone.pop(0)
-    daily_ozonedf = pd.DataFrame(data = daily_ozone)
+    daily_ozone_deprecated = list(ozone_fileread)
+    daily_ozone_deprecated.pop(0)
+    daily_ozonedf = pd.DataFrame(data = daily_ozone_deprecated)
 
 
     
@@ -216,7 +216,7 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-column_getter(1, 4) 
+df_slicer(0, 1) 
 # 4 here gives me the first day of every month
 # 31 gives me the 28th, what happens at out of bounds error?
 # I currently have 0 as x, what does that do?
