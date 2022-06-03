@@ -149,17 +149,14 @@ def df_slicer(x, c):
         # Need to partition this into a list of strings
         try:
             evidence = ast.literal_eval(daily_ozonedf[i][x])
-            print(evidence[c])
-            if evidence[c] is int:
-                
-                daily_max.append(evidence[c])
-            else:
-                daily_max.append(0)
+            print(int(evidence[c]))
+            daily_max.append(evidence[c])
             i = i + 1
         except:
-            print('Oops')
             i = i + 1
-    print('The daily max is ' + str(max(daily_max)))
+#    print('The daily max is ' + str(max(daily_max)))
+    print(daily_max)
+    print(max(daily_max))
         
 # Good, now this correctly prints the same column in each row meaning month
 
