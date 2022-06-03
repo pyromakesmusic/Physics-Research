@@ -143,16 +143,23 @@ def df_slicer(x, c):
 # i should be the row/month/header
 # c should be a column constant
 # what is x?    
+    daily_max = []
     i = 0    
-    while i < 111:
+    while i < 37:
         # Need to partition this into a list of strings
         try:
             evidence = ast.literal_eval(daily_ozonedf[i][x])
             print(evidence[c])
+            if evidence[c] is int:
+                
+                daily_max.append(evidence[c])
+            else:
+                daily_max.append(0)
             i = i + 1
         except:
             print('Oops')
             i = i + 1
+    print('The daily max is ' + str(max(daily_max)))
         
 # Good, now this correctly prints the same column in each row meaning month
 
@@ -216,7 +223,7 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-df_slicer(0, 1) 
+df_slicer(0, 4) 
 # 4 here gives me the first day of every month
 # 31 gives me the 28th, what happens at out of bounds error?
 # I currently have 0 as x, what does that do?
