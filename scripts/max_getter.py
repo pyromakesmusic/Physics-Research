@@ -133,18 +133,17 @@ Each x in this function is a month. This returns all of the data columns, plus t
 def max_grabber(x):
 # Need to find out what i means
     i = 0    
-    while i < 29:
+    while i < 111:
         # Need to partition this into a list of strings
-        evidence = ast.literal_eval(daily_ozone[x][i])
-
-
-        print(evidence[0])
+        evidence = ast.literal_eval(daily_ozone[i][x])
+        print(evidence[4])
         i = i + 1
         
 
 
 """
 Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
+Going to try to turn this in to a primary function body with recursive calls inside.
 """
 
 def daily_function():
@@ -201,3 +200,4 @@ print(len(daily_ozone[0][2]))
 """
 
 daily_function()
+max_grabber(0)
