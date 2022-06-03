@@ -130,8 +130,15 @@ def column_tryer(x):
 
 """
 Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
+I didn't explain this well. Each x should be a new month. each c should be a new day.
+We want to modify the function to create an internal list per day and return the max each day.
+Right now this gives me a list for each site that extends through the sample. I need it to compare samples from
+different sites for the same day. May need to make a subroutine returning the number of sites for each
+day.
+
 """
 def column_getter(x, c):
+    
 # Need to find out what i means
 # i should be the row/month/header
 # c should be a column constant
@@ -139,9 +146,13 @@ def column_getter(x, c):
     i = 0    
     while i < 111:
         # Need to partition this into a list of strings
-        evidence = ast.literal_eval(daily_ozone[i][x])
-        print(evidence[c])
-        i = i + 1
+        try:
+            evidence = ast.literal_eval(daily_ozonedf[i][x])
+            print(evidence[c])
+            i = i + 1
+        except:
+            print('Oops')
+            i = i + 1
         
 # Good, now this correctly prints the same column in each row meaning month
 
@@ -205,7 +216,7 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-column_getter(4, 31) 
+column_getter(1, 4) 
 # 4 here gives me the first day of every month
 # 31 gives me the 28th, what happens at out of bounds error?
 # I currently have 0 as x, what does that do?
