@@ -86,14 +86,74 @@ for i in range(5,117):
 3. Function Definition
 """
 
+"""
+New function. We've found we need to use ast.literal_eval() on each of these matrix entries to get them to read as a list.
+"""
+def append_test():
+    month = 0
+    row = 1
+    row_aslist = False
+    month_sample_length = len(ast.literal_eval(daily_ozonedf[month][row]))
+    # Currently 29 is a magic number. I think it needs to be 34, the number of rows in this table
+    print(month_sample_length)
+    while row < month_sample_length:
+        row_aslist = ast.literal_eval(daily_ozonedf[month][row])
+        threedee_df.append(row_aslist)
+        row = row + 1
+    
+# Test function call
+    
+"""
+row_aslist = ast.literal_eval(daily_ozonedf[0][0])
+print(row_aslist)
+print(len(row_aslist))
+"""
+def column_tryer(x):
+    # x should be the column that we check all the values in for a month
+    # i is the row within the month to be iterated through
+    i = 0
+    month = 0
+    month_aslist = ast.literal_eval(daily_ozonedf[month][x])
+    print(len(month_aslist))
+    while i < len(month_aslist):
+        threedee_df.append(month_aslist[i])
+        i = i + 1
+        
+column_tryer(1)
+print(threedee_df)
+print(threedee_df[4])
+# Index 4 is the location of the first date
+# First, let's call a date for each date in the SOM file.
 
 
-def get_day():
+
+"""
+Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
+"""
+def max_grabber(x):
+# Need to find out what i means
+    i = 0    
+    while i < 29:
+        # Need to partition this into a list of strings
+        evidence = ast.literal_eval(daily_ozone[x][i])
+
+
+        print(evidence[0])
+        i = i + 1
+        
+
+
+"""
+Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
+"""
+
+def daily_function():
     i = 1
     while i < 1221:
         current_date = daily_somdf[1][i]
-        print(current_date)
+        current_month = daily_somdf[3][i]
         print(datetime.datetime.strptime(current_date, "%Y-%m-%d"))
+        print(current_month)
         i = i + 1
     return(False)
     
@@ -140,45 +200,4 @@ print(daily_ozone[0][2])
 print(len(daily_ozone[0][2]))
 """
 
-"""
-New function. We've found we need to use ast.literal_eval() on each of these matrix entries to get them to read as a list.
-"""
-def append_test():
-    month = 0
-    row = 1
-    row_aslist = False
-    month_sample_length = len(ast.literal_eval(daily_ozonedf[month][row]))
-    # Currently 29 is a magic number. I think it needs to be 34, the number of rows in this table
-    print(month_sample_length)
-    while row < month_sample_length:
-        row_aslist = ast.literal_eval(daily_ozonedf[month][row])
-        threedee_df.append(row_aslist)
-        row = row + 1
-    
-# Test function call
-    
-
-print(threedee_df)
-row_aslist = ast.literal_eval(daily_ozonedf[0])
-print(row_aslist)
-
-
-"""
-Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
-"""
-def max_grabber(x):
-# Need to find out what i means
-    i = 0    
-    while i < 29:
-        # Need to partition this into a list of strings
-        evidence = ast.literal_eval(daily_ozone[x][i])
-
-
-        print(evidence[0])
-        i = i + 1
-        
-
-
-"""
-Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
-"""
+daily_function()
