@@ -157,7 +157,7 @@ def df_maxer(x, c, t, m):
     
 
     daily_max = []
-    i = 0    
+    i = 1    
     while i < 37:
         # Need to partition this into a list of strings
         try:
@@ -176,7 +176,7 @@ def df_maxer(x, c, t, m):
     evidence = ast.literal_eval(daily_ozonedf[max_index][1])
 #    print(evidence[1])
 #    print(len(evidence))
-    return("The daily max ozone for the date of " + str(m) + " the " + str(t - 3) + "was " 
+    return("The daily max ozone for the date of " + str(m) + " the " + str(t - 3) + " was " 
            + str(max_ozone) + " which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
