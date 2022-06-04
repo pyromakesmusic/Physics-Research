@@ -129,33 +129,39 @@ def column_tryer(x):
 
 
 """
-Here we make a function that gives the number of days in each month.
+Here we make a function that returns the number of days in each month, and the 
+year.
 """
-def month_days():
-    print(monthrange(2010, 6))
-    i = 0
+def month_days(i):
+    # i should start at 0 in the loop whenever this function is called
+    print(monthrange(2010 + (i % 12), (((6 + i) % 12) + 1)))
     year = 2010 + (i % 12)
-    month = 6
+    month = (((6 + i) % 12) + 1)
     
-    while i < 112:
-        
-        print("The number of days in " + str(month_year[i]) + " is " + str(monthrange(year, month)[1]))
-        month = (((month + 1) % 12) + 1)
-        i = i + 1
-        year = year + (i % 12)
+# don't need this print statement for now        
+#        print("The number of days in " + str(month_year[i]) + " is " + str(monthrange(year, month)[1]))
+#        i = i + 1
+# also don't need the iterator math since that will be happening in the parent loop
+#    month = (((month + 1) % 12) + 1)
+#    year = year + (i % 12)
+    return (i, month,year)
 
 
 """
-Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
-I didn't explain this well. Each x should be a new month. each c should be a new day.
-We want to modify the function to create an internal list per day and return the max each day.
-Right now this gives me a list for each site that extends through the sample. I need it to compare samples from
-different sites for the same day. May need to make a subroutine returning the number of sites for each
-day.
+Each x in this function is a month. This returns all of the data columns, plus 
+the headers, for the month.
 
-Okay, now it gives the daily maximum. I need this to work given a particular date in the SOM file, and
-I also need it to return the site as a separate argument. Forcing int in the print/try loop seems to have
-made something work correctly that I don't really understand. Look there first when debugging.
+I didn't explain this well. Each x should be a new month. each c should be a 
+new day. We want to modify the function to create an internal list per day and 
+return the max each day. Right now this gives me a list for each site that 
+extends through the sample. I need it to compare samples from different sites 
+for the same day. May need to make a subroutine returning the number of sites 
+for each day.
+
+Okay, now it gives the daily maximum. I need this to work given a particular 
+date in the SOM file, and I also need it to return the site as a separate 
+argument. Forcing int in the print/try loop seems to have made something work 
+correctly that I don't really understand. Look there first when debugging.
 
 """
 
@@ -266,7 +272,11 @@ print(daily_ozone[0][2])
 print(len(daily_ozone[0][2]))
 """
 
-month_days()
+i = 0
+while i < 112:
+    print(month_days(i))
+    print(i)
+    i = i + 1
 # daily_function()
 # something about the number of NAs in the data is making this inconsistent.
 # Need to append something to the list even when it is NA.
