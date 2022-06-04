@@ -33,7 +33,7 @@ import ast
 """
 daily_somdf = False
 some_fileread = False
-daily_som = False
+daily_som_deprecated = False
 
 month_year = ['June 2010', 'July 2010', 'August 2010', 'September 2010',
               'October 2010', 'November 2010', 'December 2010', 'January 2011',
@@ -166,15 +166,17 @@ def df_maxer(x, c):
             daily_max.append(int(evidence[c]))
             i = i + 1
         except:
+            daily_max.append(-1)
             i = i + 1
 #    print('The daily max is ' + str(max(daily_max)))
     max_ozone = (max(daily_max))
     max_index = daily_max.index(max_ozone)
     print(max_ozone)
     print(max_index)
-    evidence = ast.literal_eval(daily_ozonedf[max_index + 1][1])
+    evidence = ast.literal_eval(daily_ozonedf[max_index][1])
     print(evidence[1])
-    return("The daily max was " + str(max_ozone) + " which was measured at " + str(evidence[1]))
+    print(len(evidence))
+    return("The daily max ozone was " + str(max_ozone) + " which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
 
@@ -238,7 +240,10 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-print(df_maxer(0, 5))
+# something about the number of NAs in the data is making this inconsistent.
+# Need to append something to the list even when it is NA.
+print(df_maxer(0, 6))
+
 """
 now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
 think we need to look at the daily_function() function. probably add some args.
