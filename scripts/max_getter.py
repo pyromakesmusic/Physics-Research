@@ -153,13 +153,12 @@ def df_maxer(x, c):
         # Need to partition this into a list of strings
         try:
             evidence = ast.literal_eval(daily_ozonedf[i][x])
-            print(int(evidence[c]))
-            daily_max.append(evidence[c])
+#            print(int(evidence[c]))
+            daily_max.append(int(evidence[c]))
             i = i + 1
         except:
             i = i + 1
 #    print('The daily max is ' + str(max(daily_max)))
-    print(daily_max)
     print(max(daily_max))
         
 # Good, now this correctly prints the same column in each row meaning month
@@ -191,9 +190,9 @@ os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\')
 with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\cleaned_data.csv') as ozone_file:
               
     som_fileread = csv.reader(som_file)
-    daily_som = list(som_fileread)
+    daily_som_deprecated = list(som_fileread)
 #    print(daily_som[0])
-    daily_somdf = pd.DataFrame(data = daily_som)
+    daily_somdf = pd.DataFrame(data = daily_som_deprecated)
     
     ozone_fileread = csv.reader(ozone_file)
     daily_ozone_deprecated = list(ozone_fileread)
@@ -210,7 +209,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #print(len(daily_ozone[1]))
 
 """
-get_day()
+daily_function()
 
 print(len(daily_ozone[110]))
 print(daily_ozone[0][1])
@@ -224,7 +223,18 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-df_maxer(0, 6) 
+df_maxer(0, 4)
+"""
+now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
+think we need to look at the daily_function() function. probably add some args.
+"""
+print(len(daily_somdf))
+
+
+"""
+Note - the second argument, the date, should be 3 more than the actual numeric day of the month. We will use this to loop it somehow.
+
+""" 
 # 4 here gives me the first day of every month
 # 31 gives me the 28th, what happens at out of bounds error?
 # I currently have 0 as x, what does that do?
