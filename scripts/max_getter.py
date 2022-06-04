@@ -18,6 +18,7 @@ Created on Tue May 31 03:52:47 2022
 import os
 import time
 import datetime
+from calendar import monthrange
 import math
 import string
 import numpy as np
@@ -257,7 +258,7 @@ print(len(daily_ozone[0][2]))
 print(daily_ozone[0][2])
 print(len(daily_ozone[0][2]))
 """
-
+print(monthrange(2010, 6))
 
 # daily_function()
 # something about the number of NAs in the data is making this inconsistent.
