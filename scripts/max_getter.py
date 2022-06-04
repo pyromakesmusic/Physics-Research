@@ -204,6 +204,22 @@ def df_maxer(x, c, t, m):
            + str(max_ozone) + " which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
+    
+"""
+now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
+think we need to look at the daily_function() function. probably add some args.
+"""
+# print(len(daily_somdf))
+# This returns 1221, so 1221 rows in the file to match to something or N/A
+
+
+"""
+Note - the second argument, the date, should be 3 more than the actual numeric day of the month. We will use this to loop it somehow.
+
+""" 
+# 4 here gives me the first day of every month
+# 31 gives me the 28th, what happens at out of bounds error?
+# I currently have 0 as x, what does that do?
 
 """
 Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
@@ -282,18 +298,3 @@ while i < 112:
 # Need to append something to the list even when it is NA.
 # print(df_maxer(0, 6, 0, 6))
 
-"""
-now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
-think we need to look at the daily_function() function. probably add some args.
-"""
-# print(len(daily_somdf))
-# This returns 1221, so 1221 rows in the file to match to something or N/A
-
-
-"""
-Note - the second argument, the date, should be 3 more than the actual numeric day of the month. We will use this to loop it somehow.
-
-""" 
-# 4 here gives me the first day of every month
-# 31 gives me the 28th, what happens at out of bounds error?
-# I currently have 0 as x, what does that do?
