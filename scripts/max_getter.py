@@ -132,11 +132,17 @@ def column_tryer(x):
 Here we make a function that gives the number of days in each month.
 """
 def month_days():
+    print(monthrange(2010, 6))
     i = 0
+    year = 2010 + (i % 12)
+    month = 6
+    
     while i < 112:
         
+        print("The number of days in " + str(month_year[i]) + " is " + str(monthrange(year, month)[1]))
+        month = (((month + 1) % 12) + 1)
         i = i + 1
-    return str()
+
 
 """
 Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
@@ -258,8 +264,8 @@ print(len(daily_ozone[0][2]))
 print(daily_ozone[0][2])
 print(len(daily_ozone[0][2]))
 """
-print(monthrange(2010, 6))
 
+month_days()
 # daily_function()
 # something about the number of NAs in the data is making this inconsistent.
 # Need to append something to the list even when it is NA.
