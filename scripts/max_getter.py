@@ -147,7 +147,7 @@ So then, if I'm trying to return the site at which the daily max occurs, we do
 something with the index corresponding to the site_row while shifting the 
 column backwards to the one that says site.
 """
-def df_maxer(x, c):
+def df_maxer(x, c, t, m):
     
 # Need to find out what i means
 # i should be the row/month/header
@@ -171,12 +171,13 @@ def df_maxer(x, c):
 #    print('The daily max is ' + str(max(daily_max)))
     max_ozone = (max(daily_max))
     max_index = daily_max.index(max_ozone)
-    print(max_ozone)
-    print(max_index)
+#    print(max_ozone)
+#    print(max_index)
     evidence = ast.literal_eval(daily_ozonedf[max_index][1])
-    print(evidence[1])
-    print(len(evidence))
-    return("The daily max ozone was " + str(max_ozone) + " which was measured at " + str(evidence[1]))
+#    print(evidence[1])
+#    print(len(evidence))
+    return("The daily max ozone for the date of " + str(m) + " the " + str(t - 3) + "was " 
+           + str(max_ozone) + " which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
 
@@ -200,7 +201,7 @@ def daily_function():
 def month_looper(month, length):
     i = 4
     while i < length:
-        print(df_maxer(month, i))
+        print(df_maxer(month, i, i, 6))
         i = i + 1
         
 month_looper(0,35)
@@ -251,7 +252,7 @@ print(len(daily_ozone[0][2]))
 # daily_function()
 # something about the number of NAs in the data is making this inconsistent.
 # Need to append something to the list even when it is NA.
-print(df_maxer(0, 6))
+print(df_maxer(0, 6, 0, 6))
 
 """
 now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
