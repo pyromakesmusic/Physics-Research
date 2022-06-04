@@ -174,6 +174,7 @@ def df_maxer(x, c):
     print(max_index)
     evidence = ast.literal_eval(daily_ozonedf[max_index + 1][1])
     print(evidence[1])
+    return("The daily max was " + str(max_ozone) + " which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
 
@@ -237,7 +238,7 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-df_maxer(0, 4)
+print(df_maxer(0, 5))
 """
 now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
 think we need to look at the daily_function() function. probably add some args.
