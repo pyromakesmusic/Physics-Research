@@ -195,6 +195,15 @@ def daily_function():
         i = i + 1
     return(False)
     
+# Here is our function to get the list of maxes for the whole moonth using 
+# daily_max function and return them as a list or something.
+def month_looper(month, length):
+    i = 4
+    while i < length:
+        print(df_maxer(month, i))
+        i = i + 1
+        
+month_looper(0,35)
 
 """
 4. Main
