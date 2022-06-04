@@ -134,9 +134,9 @@ year.
 """
 def month_days(i):
     # i should start at 0 in the loop whenever this function is called
-    print(monthrange(2010 + (i % 12), (((6 + i) % 12) + 1)))
-    year = 2010 + (i % 12)
-    month = (((6 + i) % 12) + 1)
+    year = 2010 + math.floor((6 + i) * 1/12)
+    month = ((6 + i) % 12) + 1
+    print(monthrange(year, month))
     
 # don't need this print statement for now        
 #        print("The number of days in " + str(month_year[i]) + " is " + str(monthrange(year, month)[1]))
@@ -144,7 +144,7 @@ def month_days(i):
 # also don't need the iterator math since that will be happening in the parent loop
 #    month = (((month + 1) % 12) + 1)
 #    year = year + (i % 12)
-    return (i, month,year)
+    return (i, year, month)
 
 
 """
@@ -289,7 +289,7 @@ print(len(daily_ozone[0][2]))
 """
 
 i = 0
-while i < 112:
+while i < 111:
     print(month_days(i))
     print(i)
     i = i + 1
