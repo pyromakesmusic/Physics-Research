@@ -141,12 +141,21 @@ I also need it to return the site as a separate argument. Forcing int in the pri
 made something work correctly that I don't really understand. Look there first when debugging.
 
 """
+
+"""
+So then, if I'm trying to return the site at which the daily max occurs, we do 
+something with the index corresponding to the site_row while shifting the 
+column backwards to the one that says site.
+"""
 def df_maxer(x, c):
     
 # Need to find out what i means
 # i should be the row/month/header
-# c should be a column constant
-# what is x?    
+# c should be a column constant, after the first few columns it denotes the day
+# what is x? no, x is the row+month. 
+# i is something else. i is the row in terms of which monitoring site.
+    
+
     daily_max = []
     i = 0    
     while i < 37:
@@ -159,7 +168,12 @@ def df_maxer(x, c):
         except:
             i = i + 1
 #    print('The daily max is ' + str(max(daily_max)))
-    print(max(daily_max))
+    max_ozone = (max(daily_max))
+    max_index = daily_max.index(max_ozone)
+    print(max_ozone)
+    print(max_index)
+    evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+    print(evidence[1])
         
 # Good, now this correctly prints the same column in each row meaning month
 
@@ -223,12 +237,13 @@ print(len(daily_ozone[0][2]))
 
 
 # daily_function()
-df_maxer(0, 4)
+df_maxer(110, 4)
 """
 now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
 think we need to look at the daily_function() function. probably add some args.
 """
-print(len(daily_somdf))
+# print(len(daily_somdf))
+# This returns 1221, so 1221 rows in the file to match to something or N/A
 
 
 """
