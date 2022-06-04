@@ -127,6 +127,15 @@ def column_tryer(x):
 # First, let's call a date for each date in the SOM file.
 
 
+"""
+Here we make a function that gives the number of days in each month.
+"""
+def month_days():
+    i = 0
+    while i < 112:
+        
+        i = i + 1
+    return str()
 
 """
 Each x in this function is a month. This returns all of the data columns, plus the headers, for the month.
@@ -147,6 +156,7 @@ So then, if I'm trying to return the site at which the daily max occurs, we do
 something with the index corresponding to the site_row while shifting the 
 column backwards to the one that says site.
 """
+
 def df_maxer(x, c, t, m):
     
 # Need to find out what i means
@@ -204,7 +214,7 @@ def month_looper(month, length):
         print(df_maxer(month, i, i, 6))
         i = i + 1
         
-month_looper(0,35)
+# month_looper(0,35)
 
 """
 4. Main
@@ -252,7 +262,7 @@ print(len(daily_ozone[0][2]))
 # daily_function()
 # something about the number of NAs in the data is making this inconsistent.
 # Need to append something to the list even when it is NA.
-print(df_maxer(0, 6, 0, 6))
+# print(df_maxer(0, 6, 0, 6))
 
 """
 now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
