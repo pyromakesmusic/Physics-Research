@@ -133,10 +133,14 @@ Here we make a function that returns the number of days in each month, and the
 year.
 """
 def month_days(i):
+    # I don't understand why using 5 instead of 6 here works for both the year 
+    # and the month when the calendar starts in June, but I'm just gonna leave
+    # it.
     # i should start at 0 in the loop whenever this function is called
-    year = 2010 + math.floor((6 + i) * 1/12)
-    month = ((6 + i) % 12) + 1
-    print(monthrange(year, month))
+    year = 2010 + math.floor((5 + i) * 1/12)
+    month = ((5 + i) % 12) + 1
+    dayrange = monthrange(year, month)[1]
+    return_list = [dayrange, i, year, month]
     
 # don't need this print statement for now        
 #        print("The number of days in " + str(month_year[i]) + " is " + str(monthrange(year, month)[1]))
@@ -144,8 +148,14 @@ def month_days(i):
 # also don't need the iterator math since that will be happening in the parent loop
 #    month = (((month + 1) % 12) + 1)
 #    year = year + (i % 12)
-    return (i, year, month)
+    return (return_list)
 
+
+def month_lengthtest():
+    i = 0
+    while i < 112:
+        print(month_days(i))
+        i = i + 1
 
 """
 Each x in this function is a month. This returns all of the data columns, plus 
@@ -272,8 +282,13 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
+newlist = month_lengthtest()
+# Think I wanna do something so the function appends to a list given as an arg
+# at a particular index.
 
-#print(len(daily_ozone[1]))
+# Also need to check if the month and year match the month and year in the 
+# daily_som file.
+# print(len(daily_ozone[1]))
 
 """
 daily_function()
@@ -288,11 +303,6 @@ print(daily_ozone[0][2])
 print(len(daily_ozone[0][2]))
 """
 
-i = 0
-while i < 111:
-    print(month_days(i))
-    print(i)
-    i = i + 1
 # daily_function()
 # something about the number of NAs in the data is making this inconsistent.
 # Need to append something to the list even when it is NA.
