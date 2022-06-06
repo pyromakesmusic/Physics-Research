@@ -210,7 +210,7 @@ def df_maxer(x, c, t, m):
     evidence = ast.literal_eval(daily_ozonedf[max_index][1])
 #    print(evidence[1])
 #    print(len(evidence))
-    return("The daily max ozone for the date of " + str(m) + " the " + str(t - 3) + " was " 
+    return("The daily max ozone for the date of " + str(month_year[m]) + " the " + str(t - 3) + " was " 
            + str(max_ozone) + " which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
@@ -251,7 +251,7 @@ def daily_function():
 def month_looper(month, length):
     i = 4
     while i < length:
-        print(df_maxer(month, i, i, 6))
+        print(df_maxer(month, i, i, 0))
         i = i + 1
         
 # month_looper(0,35)
@@ -282,7 +282,11 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
-newlist = month_lengthtest()
+# newlist = month_lengthtest()
+# print(daily_somdf)
+daily_function()
+month_looper(0, 31)
+
 # Think I wanna do something so the function appends to a list given as an arg
 # at a particular index.
 
