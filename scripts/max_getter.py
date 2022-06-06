@@ -286,9 +286,16 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 i = 0
 while i < 124:
     if i in (0,1,2,3,
-             13,14,15,16,
-             24,25,26,27):
-        print(month_looper(i, 25, i))
+             12,13,14,15,
+             24,25,26,27,
+             36,37,38,39,
+             48,49,50,51,
+             60,61,62,63,
+             72,73,74,75,
+             84,85,86,87,
+             96,97,98,99,
+             108,109,110,111):
+        print(month_looper(i, 20, i))
         print(i)
         i = i + 1
     else:
