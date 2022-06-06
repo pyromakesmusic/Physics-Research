@@ -190,7 +190,7 @@ def df_maxer(x, c, t, m):
 
     daily_max = []
     i = 1    
-    while i < 37:
+    while i < 34:
         # Need to partition this into a list of strings
         try:
             evidence = ast.literal_eval(daily_ozonedf[i][x])
@@ -282,17 +282,20 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 # print(daily_somdf)
 #daily_function()
 #month_looper(0, 34)
-"""
-i = 6
-while i < 117:
-    if i % 12 in range(6,9):
-        month_looper(i, 34)
+
+i = 0
+while i < 124:
+    if i in (0,1,2,3,
+             13,14,15,16,
+             24,25,26,27):
+        print(month_looper(i, 25, i))
+        print(i)
         i = i + 1
     else:
         i = i + 1
-        """
-        
-month_looper(0, 34, 0)
+
+
+print(i)
 # here i is the month
 
 # Think I wanna do something so the function appends to a list given as an arg
