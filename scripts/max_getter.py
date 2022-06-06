@@ -182,12 +182,10 @@ column backwards to the one that says site.
 """
 
 def df_maxer(x, c, t, m):
-    
-# Need to find out what i means
-# i should be the row/month/header
+# i is something else. i is the row in terms of which monitoring site.    
 # c should be a column constant, after the first few columns it denotes the day
 # what is x? no, x is the row+month. 
-# i is something else. i is the row in terms of which monitoring site.
+# m is the current month.
     
 
     daily_max = []
@@ -210,7 +208,7 @@ def df_maxer(x, c, t, m):
     evidence = ast.literal_eval(daily_ozonedf[max_index][1])
 #    print(evidence[1])
 #    print(len(evidence))
-    return("The daily max ozone for the " + str(t-3) + " of " + str(month_year[m]) + " was " 
+    return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
            + str(max_ozone) + " parts per billion which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
@@ -248,10 +246,10 @@ def daily_function():
     
 # Here is our function to get the list of maxes for the whole moonth using 
 # daily_max function and return them as a list or something.
-def month_looper(month, length):
+def month_looper(month, length, month_count):
     i = 4
     while i < length:
-        print(df_maxer(month, i, i, 0))
+        print(df_maxer(month, i, i, month_count))
         i = i + 1
         
 """
@@ -282,11 +280,19 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 # newlist = month_lengthtest()
 # print(daily_somdf)
-daily_function()
-month_looper(0, 34)
-i = 0
-if i % 12 is in range(6,9):
-    else: i = i + 1
+#daily_function()
+#month_looper(0, 34)
+"""
+i = 6
+while i < 117:
+    if i % 12 in range(6,9):
+        month_looper(i, 34)
+        i = i + 1
+    else:
+        i = i + 1
+        """
+        
+month_looper(0, 34, 0)
 # here i is the month
 
 # Think I wanna do something so the function appends to a list given as an arg
