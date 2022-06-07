@@ -197,17 +197,21 @@ def df_maxer(x, c, t, m):
 #            print(int(evidence[c]))
             daily_max.append(int(evidence[c]))
             i = i + 1
-        except:
+        except ValueError:
             daily_max.append(-1)
             i = i + 1
+        except SyntaxError:
+            daily_max.append(-1)
+            i = i + 1
+        finally:
 #    print('The daily max is ' + str(max(daily_max)))
-    max_ozone = (max(daily_max))
-    max_index = daily_max.index(max_ozone)
+            max_ozone = (max(daily_max))
+            max_index = daily_max.index(max_ozone)
 #    print(max_ozone)
 #    print(max_index)
-    evidence = ast.literal_eval(daily_ozonedf[max_index][1])
-#    print(evidence[1])
-#    print(len(evidence))
+        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+#        print(evidence[1])
+#        print(len(evidence))
     return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
            + str(max_ozone) + " parts per billion which was measured at " + str(evidence[1]))
         
@@ -291,11 +295,11 @@ while i < 124:
              36,37,38,39,
              48,49,50,51,
              60,61,62,63,
-             72,73,74,75,
+             72,75, # commented out 73, list index out of range
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        print(month_looper(i, 20, i))
+        print(month_looper(i, 7, i))
         print(i)
         i = i + 1
     else:
