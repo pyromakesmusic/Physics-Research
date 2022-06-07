@@ -212,9 +212,9 @@ def df_maxer(x, c, t, m):
 #    print(max_index)
                 evidence = ast.literal_eval(daily_ozonedf[max_index][1])
             except:
-                max_ozone = False
-                max_index = False
-                evidence = [False, False]
+                max_ozone = "What"
+                max_index = "Huh"
+                evidence = ["What","How"]
 #        print(evidence[1])
 #        print(len(evidence))
             return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
@@ -304,7 +304,7 @@ while i < 40:
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        print(month_looper(i, 32, i))
+        print(month_looper(i, 35, i))
         print(i)
         i = i + 1
     else:
