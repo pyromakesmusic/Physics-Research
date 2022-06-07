@@ -205,15 +205,20 @@ def df_maxer(x, c, t, m):
             i = i + 1
         finally:
 #    print('The daily max is ' + str(max(daily_max)))
-            max_ozone = (max(daily_max))
-            max_index = daily_max.index(max_ozone)
+            try:
+                max_ozone = (max(daily_max))
+                max_index = daily_max.index(max_ozone)
 #    print(max_ozone)
 #    print(max_index)
-        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+                evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+            except:
+                max_ozone = False
+                max_index = False
+                evidence = [False, False]
 #        print(evidence[1])
 #        print(len(evidence))
-    return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
-           + str(max_ozone) + " parts per billion which was measured at " + str(evidence[1]))
+            return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
+                   + str(max_ozone) + " parts per billion which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
     
@@ -288,18 +293,18 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #month_looper(0, 34)
 
 i = 0
-while i < 124:
+while i < 40:
     if i in (0,1,2,3,
              12,13,14,15,
              24,25,26,27,
              36,37,38,39,
              48,49,50,51,
              60,61,62,63,
-             72,75, # commented out 73, list index out of range
+             72,73,74,75, # commented out 73, list index out of range
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        print(month_looper(i, 7, i))
+        print(month_looper(i, 32, i))
         print(i)
         i = i + 1
     else:
