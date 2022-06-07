@@ -198,26 +198,24 @@ def df_maxer(x, c, t, m):
             daily_max.append(int(evidence[c]))
             i = i + 1
         except ValueError:
-            daily_max.append(-1)
+            print("ValueError")
             i = i + 1
         except SyntaxError:
-            daily_max.append(-1)
+            print("SyntaxError")
             i = i + 1
-        finally:
+
 #    print('The daily max is ' + str(max(daily_max)))
-            try:
-                max_ozone = (max(daily_max))
-                max_index = daily_max.index(max_ozone)
+    try:
+        max_ozone = (max(daily_max))
+        max_index = daily_max.index(max_ozone)
 #    print(max_ozone)
 #    print(max_index)
-                evidence = ast.literal_eval(daily_ozonedf[max_index][1])
-            except:
-                max_ozone = "What"
-                max_index = "Huh"
-                evidence = ["What","How"]
+        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+    except:
+        print("hooty hoo")
 #        print(evidence[1])
 #        print(len(evidence))
-            return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
+    return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
                    + str(max_ozone) + " parts per billion which was measured at " + str(evidence[1]))
         
 # Good, now this correctly prints the same column in each row meaning month
