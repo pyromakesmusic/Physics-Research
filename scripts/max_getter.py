@@ -302,7 +302,7 @@ def column_creator():
                 print(new_columns)
         else:
             i = i + 1
-    return(new_columns)
+    return(date, month_name, max_ozone, site)
 
        
 """
