@@ -291,7 +291,7 @@ def column_creator():
             try:
                 date, month_name, max_ozone, site = (month_looper(i, 33, i))
                 # 34 is the highest list index that is in range for middle term of month_looper
-                columns_list = (date, month_name, max_ozone, site)
+                columns_list = [date, month_name, max_ozone, site]
                 new_columns.append(columns_list)
                 i = i + 1
             except:
@@ -337,6 +337,10 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #month_looper(0, 34)
 
 print(column_creator())
+output_somdf = column_creator()
+output_df = pd.DataFrame(data = output_somdf)
+output_df.to_csv
+
 # here i is the month
 
 # Think I wanna do something so the function appends to a list given as an arg
