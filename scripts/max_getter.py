@@ -275,7 +275,7 @@ def month_looper(month, length, month_count, return_array):
     print(return_array)
     return(return_array)
  
-def column_creator():
+def column_creator(output_file):
     i = 0
     new_columns = []
     date = 0
@@ -308,7 +308,8 @@ def column_creator():
 #                print(new_columns)
         else:
             i = i + 1
-    return(date, month_name, max_ozone, site)
+        new_columnsdf = pd.DataFrame(columns = new_columns)
+    return(date, month_name, max_ozone, site, new_columns)
 
        
 """
@@ -342,12 +343,12 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #daily_function()
 #month_looper(0, 34)
 
-print(column_creator())
+print(column_creator('new_ozone_columns.csv'))
+"""
 output_somdf = column_creator()
 output_df = pd.DataFrame(columns = output_somdf)
 output_df.to_csv('output_columns_2010-2016.csv')
-
-# here i is the month
+"""
 
 # Think I wanna do something so the function appends to a list given as an arg
 # at a particular index.
