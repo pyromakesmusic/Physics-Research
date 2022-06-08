@@ -189,6 +189,8 @@ def df_maxer(x, c, t, m):
     
 
     daily_max = []
+    date = t - 3
+    month_name = str(month_year[m])
     i = 1    
     while i < 34:
         # Need to partition this into a list of strings
@@ -210,18 +212,22 @@ def df_maxer(x, c, t, m):
         max_index = daily_max.index(max_ozone)
 #    print(max_ozone)
 #    print(max_index)
-        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
-        site = str(evidence[1])
-        date = t-3
+#        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+#        site = str(evidence[1])
         month_name = str(month_year[m]) 
+        max_name = daily_ozonedf[max_index][1]
+        evidence = ast.literal_eval(max_name)
     except:
         print("hooty hoo")
 #        print(evidence[1])
 #        print(len(evidence))
+    finally:
+        site_name = str(evidence[1])
 #    print("Max O3 on: " + str(date) + " " + month_name + ": " 
 #                   + str(max_ozone) + " ppb; site: " + site)
     # all of these should be named variables in the function
-    return(date, month_name, max_ozone, site)
+    
+    return(date, month_name, max_ozone, site_name)
         
 # Good, now this correctly prints the same column in each row meaning month
     
@@ -296,7 +302,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #month_looper(0, 34)
 
 i = 0
-while i < 16:
+while i < 72: # at this point in time, i seems to function properly up to 
     if i in (0,1,2,3,
              12,13,14,15,
              24,25,26,27,
