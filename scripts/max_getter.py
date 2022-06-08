@@ -339,7 +339,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 print(column_creator())
 output_somdf = column_creator()
 output_df = pd.DataFrame(data = output_somdf)
-output_df.to_csv
+output_df.to_csv('output_columns_2010-2016.csv')
 
 # here i is the month
 
