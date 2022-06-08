@@ -198,10 +198,10 @@ def df_maxer(x, c, t, m):
             daily_max.append(int(evidence[c]))
             i = i + 1
         except ValueError:
-            print("ValueError")
+#            print("ValueError")
             i = i + 1
         except SyntaxError:
-            print("SyntaxError")
+#            print("SyntaxError")
             i = i + 1
 
 #    print('The daily max is ' + str(max(daily_max)))
@@ -215,8 +215,10 @@ def df_maxer(x, c, t, m):
         print("hooty hoo")
 #        print(evidence[1])
 #        print(len(evidence))
-    return("The daily max ozone for " + str(t-3) + " " + str(month_year[m]) + " was " 
-                   + str(max_ozone) + " parts per billion which was measured at " + str(evidence[1]))
+    print("Max O3 on: " + str(t-3) + " " + str(month_year[m]) + ": " 
+                   + str(max_ozone) + " ppb; site: " + str(evidence[1]))
+    # all of these should be named variables in the function
+    return(str(t-3), str(month_year[m], str(max_ozone), str(evidence[1])))
         
 # Good, now this correctly prints the same column in each row meaning month
     
@@ -291,7 +293,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #month_looper(0, 34)
 
 i = 0
-while i < 40:
+while i < 72:
     if i in (0,1,2,3,
              12,13,14,15,
              24,25,26,27,
@@ -302,7 +304,7 @@ while i < 40:
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        print(month_looper(i, 34, i))
+        print(month_looper(i, 33, i))
         # 34 is the highest list index that is in range for middle term of month_looper
         print(i)
         i = i + 1
