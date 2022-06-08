@@ -302,7 +302,8 @@ while i < 40:
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        print(month_looper(i, 35, i))
+        print(month_looper(i, 34, i))
+        # 34 is the highest list index that is in range for middle term of month_looper
         print(i)
         i = i + 1
     else:
