@@ -294,22 +294,25 @@ def column_creator(output_file):
                  96,97,98,99,
                  108,109,110,111):
             try:
-                date, month_name, max_ozone, site = (month_looper(i, 33, i, new_columns))
+                date, month_name, max_ozone, site = (month_looper(i, 35, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
                 columns_list = [date, month_name, max_ozone, site]
-                new_columns.append[i](columns_list)
+                new_columns.append(columns_list)
                 i = i + 1
             except:
                 new_columns.append('NA')
 #                print(month_looper(i, 34, i))
 #                print(i)
                 i = i + 1
-#            finally:
-#                print(new_columns)
+            finally:
+                print(new_columns)
+                new_columnsarray = np.array(new_columns)
         else:
             i = i + 1
-        new_columnsdf = pd.DataFrame(columns = new_columns)
-    return(date, month_name, max_ozone, site, new_columns)
+        new_columnsdf = pd.DataFrame(data = new_columnsarray)
+        print(new_columnsdf)
+        new_columnsdf.to_csv(output_file)
+    return(new_columnsdf)
 
        
 """
@@ -338,12 +341,16 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
+column_creator('new_columns2010-20xx.csv')
+
+"""
+The stuff below this message needs to be sorted, labeled and commented.
+"""
 # newlist = month_lengthtest()
 # print(daily_somdf)
 #daily_function()
 #month_looper(0, 34)
 
-print(column_creator('new_ozone_columns.csv'))
 """
 output_somdf = column_creator()
 output_df = pd.DataFrame(columns = output_somdf)
