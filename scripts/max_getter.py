@@ -270,7 +270,7 @@ def month_looper(month, length, month_count):
         print(df_maxer(month, i, i, month_count))
         i = i + 1
  
-def column_creator_01():
+def column_creator():
     i = 0
     new_columns = []
     date = 0
@@ -295,14 +295,14 @@ def column_creator_01():
                 new_columns.append(columns_list)
                 i = i + 1
             except:
-                print(month_looper(i, 34, i))
-                print(i)
+#                print(month_looper(i, 34, i))
+#                print(i)
                 i = i + 1
             finally:
-                    print(new_columns)
+                print(new_columns)
         else:
-                i = i + 1
-
+            i = i + 1
+    return(new_columns)
 
        
 """
@@ -336,7 +336,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #daily_function()
 #month_looper(0, 34)
 
-column_creator_01()
+print(column_creator())
 # here i is the month
 
 # Think I wanna do something so the function appends to a list given as an arg
