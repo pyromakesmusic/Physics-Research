@@ -218,8 +218,8 @@ def df_maxer(x, c, t, m):
         print("hooty hoo")
 #        print(evidence[1])
 #        print(len(evidence))
-    print("Max O3 on: " + str(date) + " " + month_name + ": " 
-                   + str(max_ozone) + " ppb; site: " + site)
+#    print("Max O3 on: " + str(date) + " " + month_name + ": " 
+#                   + str(max_ozone) + " ppb; site: " + site)
     # all of these should be named variables in the function
     return(date, month_name, max_ozone, site)
         
@@ -296,7 +296,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #month_looper(0, 34)
 
 i = 0
-while i < 72:
+while i < 16:
     if i in (0,1,2,3,
              12,13,14,15,
              24,25,26,27,
@@ -307,7 +307,7 @@ while i < 72:
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        print(month_looper(i, 33, i))
+        date, month_name, max_ozone, site = (month_looper(i, 33, i))
         # 34 is the highest list index that is in range for middle term of month_looper
         print(i)
         i = i + 1
