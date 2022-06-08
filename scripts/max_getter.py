@@ -307,10 +307,15 @@ while i < 16:
              84,85,86,87,
              96,97,98,99,
              108,109,110,111):
-        date, month_name, max_ozone, site = (month_looper(i, 33, i))
-        # 34 is the highest list index that is in range for middle term of month_looper
-        print(i)
-        i = i + 1
+        try:
+            date, month_name, max_ozone, site = (month_looper(i, 33, i))
+            # 34 is the highest list index that is in range for middle term of month_looper
+            print(i)
+            i = i + 1
+        except:
+            print(month_looper(i, 33, i))
+            print(i)
+            i = i + 1
     else:
         i = i + 1
 
