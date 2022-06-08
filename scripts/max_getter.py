@@ -282,7 +282,7 @@ def column_creator(output_file):
     month_name = 0
     max_ozone = 0
     site = 0
-    while i < 45: # at this point in time, i seems to function properly up to 
+    while i < 113: # at this point in time, i seems to function properly up to 
         if i in (0,1,2,3,
                  12,13,14,15,
                  24,25,26,27,
@@ -292,7 +292,7 @@ def column_creator(output_file):
                  72,73,74,75, # commented out 73, list index out of range
                  84,85,86,87,
                  96,97,98,99,
-                 108,109,110,111):
+                 108,109,110,111,112):
             try:
                 date, month_name, max_ozone, site = (month_looper(i, 35, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
