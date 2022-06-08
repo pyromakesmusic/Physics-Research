@@ -264,11 +264,16 @@ def daily_function():
     
 # Here is our function to get the list of maxes for the whole moonth using 
 # daily_max function and return them as a list or something.
-def month_looper(month, length, month_count):
+def month_looper(month, length, month_count, return_array):
     i = 4
     while i < length:
-        print(df_maxer(month, i, i, month_count))
+#        print(df_maxer(month, i, i, month_count))
+        date, month_name, max_ozone, site_name = (df_maxer(month, i , i, month_count))
+#        print(date, month_name, max_ozone, site_name)
+        return_array.append([date, month_name, max_ozone, site_name])
         i = i + 1
+    print(return_array)
+    return(return_array)
  
 def column_creator():
     i = 0
@@ -277,7 +282,7 @@ def column_creator():
     month_name = 0
     max_ozone = 0
     site = 0
-    while i < 73: # at this point in time, i seems to function properly up to 
+    while i < 45: # at this point in time, i seems to function properly up to 
         if i in (0,1,2,3,
                  12,13,14,15,
                  24,25,26,27,
@@ -289,17 +294,18 @@ def column_creator():
                  96,97,98,99,
                  108,109,110,111):
             try:
-                date, month_name, max_ozone, site = (month_looper(i, 33, i))
+                date, month_name, max_ozone, site = (month_looper(i, 33, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
                 columns_list = [date, month_name, max_ozone, site]
-                new_columns.append(columns_list)
+                new_columns.append[i](columns_list)
                 i = i + 1
             except:
+                new_columns.append('NA')
 #                print(month_looper(i, 34, i))
 #                print(i)
                 i = i + 1
-            finally:
-                print(new_columns)
+#            finally:
+#                print(new_columns)
         else:
             i = i + 1
     return(date, month_name, max_ozone, site)
@@ -338,7 +344,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 
 print(column_creator())
 output_somdf = column_creator()
-output_df = pd.DataFrame(data = output_somdf)
+output_df = pd.DataFrame(columns = output_somdf)
 output_df.to_csv('output_columns_2010-2016.csv')
 
 # here i is the month
