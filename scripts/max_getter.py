@@ -211,14 +211,17 @@ def df_maxer(x, c, t, m):
 #    print(max_ozone)
 #    print(max_index)
         evidence = ast.literal_eval(daily_ozonedf[max_index][1])
+        site = str(evidence[1])
+        date = t-3
+        month_name = str(month_year[m]) 
     except:
         print("hooty hoo")
 #        print(evidence[1])
 #        print(len(evidence))
-    print("Max O3 on: " + str(t-3) + " " + str(month_year[m]) + ": " 
-                   + str(max_ozone) + " ppb; site: " + str(evidence[1]))
+    print("Max O3 on: " + str(date) + " " + month_name + ": " 
+                   + str(max_ozone) + " ppb; site: " + site)
     # all of these should be named variables in the function
-    return(str(t-3), str(month_year[m], str(max_ozone), str(evidence[1])))
+    return(date, month_name, max_ozone, site)
         
 # Good, now this correctly prints the same column in each row meaning month
     
