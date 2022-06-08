@@ -269,7 +269,42 @@ def month_looper(month, length, month_count):
     while i < length:
         print(df_maxer(month, i, i, month_count))
         i = i + 1
-        
+ 
+def column_creator_01():
+    i = 0
+    new_columns = []
+    date = 0
+    month_name = 0
+    max_ozone = 0
+    site = 0
+    while i < 73: # at this point in time, i seems to function properly up to 
+        if i in (0,1,2,3,
+                 12,13,14,15,
+                 24,25,26,27,
+                 36,37,38,39,
+                 48,49,50,51,
+                 60,61,62,63,
+                 72,73,74,75, # commented out 73, list index out of range
+                 84,85,86,87,
+                 96,97,98,99,
+                 108,109,110,111):
+            try:
+                date, month_name, max_ozone, site = (month_looper(i, 33, i))
+                # 34 is the highest list index that is in range for middle term of month_looper
+                columns_list = (date, month_name, max_ozone, site)
+                new_columns.append(columns_list)
+                i = i + 1
+            except:
+                print(month_looper(i, 34, i))
+                print(i)
+                i = i + 1
+            finally:
+                    print(new_columns)
+        else:
+                i = i + 1
+
+
+       
 """
 4. Main
 
@@ -301,32 +336,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 #daily_function()
 #month_looper(0, 34)
 
-i = 0
-while i < 72: # at this point in time, i seems to function properly up to 
-    if i in (0,1,2,3,
-             12,13,14,15,
-             24,25,26,27,
-             36,37,38,39,
-             48,49,50,51,
-             60,61,62,63,
-             72,73,74,75, # commented out 73, list index out of range
-             84,85,86,87,
-             96,97,98,99,
-             108,109,110,111):
-        try:
-            date, month_name, max_ozone, site = (month_looper(i, 33, i))
-            # 34 is the highest list index that is in range for middle term of month_looper
-            print(i)
-            i = i + 1
-        except:
-            print(month_looper(i, 33, i))
-            print(i)
-            i = i + 1
-    else:
-        i = i + 1
-
-
-print(i)
+column_creator_01()
 # here i is the month
 
 # Think I wanna do something so the function appends to a list given as an arg
