@@ -44,6 +44,7 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 
     print(len(ozone_list))
     row = ast.literal_eval(str(ozone_list[1]))
+    row_list = ast.literal_eval(list(ozone_list[1]))
     print(row)
 """
 
