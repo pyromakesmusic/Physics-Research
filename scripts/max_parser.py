@@ -42,6 +42,14 @@ with open('onecolumn_md8ho.csv') as ozone_column:
     print(ozone_list)
     print(ozone_list[1]) # The data that needs to be parsed starts at index 1
 
+    print(len(ozone_list))
+    
+    i = 0
+    max_length = len(ozone_list)
+    while i < max_length:
+        print(ozone_list[i])
+        i = i + 1
+
 """
 5.UNIT TESTING
 """
