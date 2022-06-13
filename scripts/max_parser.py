@@ -39,15 +39,18 @@ with open('onecolumn_md8ho.csv') as ozone_column:
     print(ozone_column)
     ozone_array = csv.reader(ozone_column)
     ozone_list = list(ozone_array)
-    print(ozone_list)
-    print(ozone_list[1]) # The data that needs to be parsed starts at index 1
+#    print(ozone_list)
+#    print(ozone_list[1]) # The data that needs to be parsed starts at index 1
 
     print(len(ozone_list))
     
-    i = 0
+    i = 1 # It's 1 because that's where the important data starts
     max_length = len(ozone_list)
-    while i < max_length:
+    print(type(ozone_list))
+    while i < 500:
         print(ozone_list[i])
+        print(type(ozone_list[i]))
+        print(ozone_list[i][0])
         i = i + 1
 
 """
