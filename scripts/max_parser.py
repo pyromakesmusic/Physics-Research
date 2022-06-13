@@ -40,7 +40,7 @@ with open('onecolumn_md8ho.csv') as ozone_column:
     ozone_array = csv.reader(ozone_column)
     ozone_list = list(ozone_array)
     print(ozone_list)
-
+    print(ozone_list[1]) # The data that needs to be parsed starts at index 1
 
 """
 5.UNIT TESTING
