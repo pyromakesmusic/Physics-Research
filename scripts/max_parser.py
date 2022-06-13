@@ -22,6 +22,9 @@ import time
 2.GLOBAL VARIABLES
 """
 
+output_columns_array = []
+
+
 """
 3.FUNCTION DEFINITIONS
 """
@@ -29,6 +32,15 @@ import time
 """
 4.MAIN
 """
+
+os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\')
+         
+with open('onecolumn_md8ho.csv') as ozone_column:
+    print(ozone_column)
+    ozone_array = csv.reader(ozone_column)
+    ozone_list = list(ozone_array)
+    print(ozone_list)
+
 
 """
 5.UNIT TESTING
