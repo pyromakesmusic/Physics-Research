@@ -297,7 +297,7 @@ def column_creator(output_file):
                 date, month_name, max_ozone, site = (month_looper(i, 35, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
                 columns_list = [date, month_name, max_ozone, site]
-                new_columns.append(columns_list)
+                new_columns.append(date, month_name, max_ozone, site)
                 i = i + 1
             except:
                 new_columns.append('NA')

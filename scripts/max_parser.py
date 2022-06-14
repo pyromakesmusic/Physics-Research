@@ -46,9 +46,19 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 #    print(ozone_list[1]) # The data that needs to be parsed starts at index 1
 
     print(len(ozone_list))
-    row = ast.literal_eval(str(ozone_list[1]))
+    row = (ozone_list[1])
+    row_recur_one = ast.literal_eval(str(row))
+    row_recur_two = ast.literal_eval(str(row_recur_one))
+    print(row_recur_one)
+    print(row_recur_two)
 #    row_list = ast.literal_eval(list(ozone_list[1]))
     print(row)
+    print(type(row))
+    print(type(row_recur_one))
+    print(type(row_recur_two))
+    print(len(row))
+    print(row[0])
+    print(type(row[0]))
 """
 
 # This is a loop, so it's going to survive being commented out.
