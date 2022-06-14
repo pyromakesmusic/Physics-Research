@@ -60,7 +60,13 @@ with open('onecolumn_md8ho.csv') as ozone_column:
     print(row[0])
     print(type(row[0]))
     print(ast.literal_eval(row[0]))
-    print(list(row[0]))
+    print(list(ast.literal_eval(row[0])))
+    
+    i = 0
+    while i < len(list(ast.literal_eval(row[0]))):
+        print(list(ast.literal_eval(row[0]))[i])
+        print(len(list(ast.literal_eval(row[0]))))
+        i = i + 1
 """
 
 # This is a loop, so it's going to survive being commented out.
