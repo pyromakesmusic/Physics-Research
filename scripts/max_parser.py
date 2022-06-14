@@ -67,6 +67,10 @@ with open('onecolumn_md8ho.csv') as ozone_column:
         print(list(ast.literal_eval(row[0]))[i])
         print(len(list(ast.literal_eval(row[0]))))
         i = i + 1
+        
+    i = 0
+    while i < 1169:
+        print()
 """
 
 # This is a loop, so it's going to survive being commented out.
