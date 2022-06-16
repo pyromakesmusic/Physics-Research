@@ -29,12 +29,23 @@ output_columns_array = []
 3.FUNCTION DEFINITIONS
 """
 
-def lit_eval(num):
-    return(ast.literal_eval(list(ozone_list[num])))
+def lit_eval(data, num):
+    return(ast.literal_eval(list(data[num])))
 
 """
 4.MAIN
 """
+def getrow(rownum):
+    return(ozone_list[rownum])
+
+def rowlength(rownum):
+    return(len(ozone_list[rownum]))
+
+def rowtype(rownum):
+    return(type(ozone_list[rownum]))
+
+
+
 
 os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\')
          
@@ -61,16 +72,21 @@ with open('onecolumn_md8ho.csv') as ozone_column:
     print(type(row[0]))
     print(ast.literal_eval(row[0]))
     print(list(ast.literal_eval(row[0])))
+    print(list(ast.literal_eval(row[0]))[0])
     
     i = 0
     while i < len(list(ast.literal_eval(row[0]))):
         print(list(ast.literal_eval(row[0]))[i])
         print(len(list(ast.literal_eval(row[0]))))
         i = i + 1
-        
+
+
+"""        
     i = 0
     while i < 1169:
         print()
+"""
+
 """
 
 # This is a loop, so it's going to survive being commented out.
