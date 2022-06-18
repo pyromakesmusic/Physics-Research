@@ -72,7 +72,15 @@ with open('onecolumn_md8ho.csv') as ozone_column:
     i = 0
     while i < 1190:
         row_i = getrow(i)
-        print(row_i[0])
+        print(type(row_i))
+        print(row_i)
+        try:
+            print(row_i[0])
+            print(row_i[1])
+            print(row_i[2])
+            print(row_i[3])
+        except:
+            print("!! Exception !!")
         i = i + 1
 
 
