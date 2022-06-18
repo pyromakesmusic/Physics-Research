@@ -67,26 +67,10 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 
     print(len(ozone_list))
     row = (ozone_list[1])
-    row_recur_one = ast.literal_eval(str(row))
-    row_recur_two = ast.literal_eval(str(row_recur_one))
-    print(row_recur_one)
-    print(row_recur_two)
-#    row_list = ast.literal_eval(list(ozone_list[1]))
-    print(row)
-    print(type(row))
-    print(type(row_recur_one))
-    print(type(row_recur_two))
-    print(len(row))
-    print(row[0])
-    print(type(row[0]))
-    print(ast.literal_eval(row[0]))
-    print(list(ast.literal_eval(row[0])))
-    print(list(ast.literal_eval(row[0]))[0])
     
     i = 0
     while i < len(list(ast.literal_eval(row[0]))):
         print(list(ast.literal_eval(row[0]))[i])
-        print(len(list(ast.literal_eval(row[0]))))
         i = i + 1
 
 
