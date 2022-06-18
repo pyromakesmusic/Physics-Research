@@ -65,12 +65,15 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 #    print(ozone_list)
 #    print(ozone_list[1]) # The data that needs to be parsed starts at index 1
 
-    print(len(ozone_list))
+#    print(len(ozone_list))
+# The ozone_list is 1191 rows long
     row = (ozone_list[1])
     
     i = 0
-    while i < len(list(ast.literal_eval(row[0]))):
-        print(list(ast.literal_eval(row[0]))[i])
+    while i < 1190:
+        print(getrow(i))
+        print(rowlength(i))
+        print(rowtype(i))
         i = i + 1
 
 
