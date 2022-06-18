@@ -5,6 +5,15 @@ Created on Mon Jun 13 08:12:18 2022
 @author: Ghost
 """
 
+
+"""
+CONFIGURATION
+"""
+# filepath = 'D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\'
+filepath = r'C:\Users\Pyro\Documents\Summer2022Research\Summer-2022-Research'
+
+
+
 """
 1.LIBRARIES
 """
@@ -47,7 +56,7 @@ def rowtype(rownum):
 
 
 
-os.chdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\')
+os.chdir(filepath)
          
 with open('onecolumn_md8ho.csv') as ozone_column:
     print(ozone_column)
