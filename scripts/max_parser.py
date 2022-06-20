@@ -59,12 +59,17 @@ def rowtype(rownum):
 
 def cell_parser():
 # Have to start the function at 1 because I stupidly used the word null in the file which has a programming meaning
-    endpoint = 1191
+    endpoint = 500
     i = 1 # Have to start at 1 because the file contains string "Null"
     while i < endpoint:
         holder = getrow_cell(i)
         holder_parsed = ast.literal_eval(holder)
         print(holder_parsed)
+        print(holder_parsed[0])
+        print(holder_parsed[1])
+        print(holder_parsed[2])
+        print(holder_parsed[3])
+        i = i + 1
 
 
 os.chdir(filepath)
@@ -79,15 +84,7 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 #    print(len(ozone_list))
 # The ozone_list is 1191 rows long
 
-newstring = getrow_cell(1)
-
-print(type(newstring))
-
-newobj = ast.literal_eval(newstring)
-
-print(newobj)
-print(type(newobj))
-
+cell_parser()
 
 
 
