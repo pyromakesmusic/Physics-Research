@@ -31,7 +31,7 @@ import time
 2.GLOBAL VARIABLES
 """
 
-output_columns_array = []
+output_columns_array = pd.DataFrame(columns = ['date', 'month', 'ozone', 'site'])
 
 
 """
@@ -61,6 +61,7 @@ def cell_parser():
 # Have to start the function at 1 because I stupidly used the word null in the file which has a programming meaning
     endpoint = 500
     i = 1 # Have to start at 1 because the file contains string "Null"
+
     while i < endpoint:
         holder = getrow_cell(i)
         holder_parsed = ast.literal_eval(holder)
@@ -68,7 +69,7 @@ def cell_parser():
         month = holder_parsed[1]
         ozone = holder_parsed[2]
         site = holder_parsed[3]
-        output_columns_array.append([date,month,ozone,site])
+        output_columns_array.append({'date': date,'month' : month,'ozone': ozone, 'site':site}, ignore_index = True)
         print(output_columns_array)
         i = i + 1
 
