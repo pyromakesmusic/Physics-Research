@@ -9,8 +9,8 @@ Created on Mon Jun 13 08:12:18 2022
 """
 CONFIGURATION
 """
-# filepath = 'D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\'
-filepath = r'C:\Users\Pyro\Documents\Summer2022Research\Summer-2022-Research'
+filepath = 'D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\'
+# filepath = r'C:\Users\Pyro\Documents\Summer2022Research\Summer-2022-Research'
 
 
 
@@ -67,18 +67,21 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 
 #    print(len(ozone_list))
 # The ozone_list is 1191 rows long
-    row = (ozone_list[1])
-    
-    i = 0
-    while i < 1190:
-        row_i = getrow(i)
-        row_list = row_i[0]
-        print(row_list[0])
-        try:
-            print(row_i[0])
-        except:
-            print("!! Exception !!")
-        i = i + 1
+
+print(getrow(0))
+print(getrow(1))
+
+print(rowtype(0))
+print(rowtype(1))
+
+null_cell = getrow(0)
+first_cell = getrow(1)
+
+print(null_cell[0])
+print(first_cell[0])
+
+print(type(null_cell[0]))
+print(type(first_cell[0]))
 
 
 """        
