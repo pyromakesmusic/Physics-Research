@@ -64,11 +64,12 @@ def cell_parser():
     while i < endpoint:
         holder = getrow_cell(i)
         holder_parsed = ast.literal_eval(holder)
-        print(holder_parsed)
-        print(holder_parsed[0])
-        print(holder_parsed[1])
-        print(holder_parsed[2])
-        print(holder_parsed[3])
+        date = holder_parsed[0]
+        month = holder_parsed[1]
+        ozone = holder_parsed[2]
+        site = holder_parsed[3]
+        output_columns_array.append([date,month,ozone,site])
+        print(output_columns_array)
         i = i + 1
 
 
