@@ -47,13 +47,24 @@ def lit_eval(data, num):
 def getrow(rownum):
     return(ozone_list[rownum])
 
+def getrow_cell(rownum):
+    holder = getrow(rownum)
+    return(holder[0])
+
 def rowlength(rownum):
     return(len(ozone_list[rownum]))
 
 def rowtype(rownum):
     return(type(ozone_list[rownum]))
 
-
+def cell_parser():
+# Have to start the function at 1 because I stupidly used the word null in the file which has a programming meaning
+    endpoint = 1191
+    i = 1 # Have to start at 1 because the file contains string "Null"
+    while i < endpoint:
+        holder = getrow_cell(i)
+        holder_parsed = ast.literal_eval(holder)
+        print(holder_parsed)
 
 
 os.chdir(filepath)
@@ -68,20 +79,16 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 #    print(len(ozone_list))
 # The ozone_list is 1191 rows long
 
-print(getrow(0))
-print(getrow(1))
+newstring = getrow_cell(1)
 
-print(rowtype(0))
-print(rowtype(1))
+print(type(newstring))
 
-null_cell = getrow(0)
-first_cell = getrow(1)
+newobj = ast.literal_eval(newstring)
 
-print(null_cell[0])
-print(first_cell[0])
+print(newobj)
+print(type(newobj))
 
-print(type(null_cell[0]))
-print(type(first_cell[0]))
+
 
 
 """        
