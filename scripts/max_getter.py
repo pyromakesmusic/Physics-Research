@@ -275,7 +275,7 @@ def month_looper(month, length, month_count, return_array):
     print(return_array)
     return(return_array)
  
-def column_creator(output_file):
+def column_creator(output_filename):
     i = 0
     new_columns = []
     date = 0
@@ -311,7 +311,7 @@ def column_creator(output_file):
             i = i + 1
         new_columnsdf = pd.DataFrame(data = new_columnsarray)
         print(new_columnsdf)
-        new_columnsdf.to_csv(output_file)
+        new_columnsdf.to_csv(output_filename)
     return(new_columnsdf)
 
        

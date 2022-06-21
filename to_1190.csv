@@ -1,0 +1,336 @@
+,date,month,ozone,site
+0,1,June 2017,36,Channelview C15/AH115 
+1,2,June 2017,35,Channelview C15/AH115 
+2,3,June 2017,45,Houston North Wayside C405/C1033
+3,4,June 2017,44,Texas City 34th St. C620 
+4,5,June 2017,56,UH Coastal Center C697
+5,6,June 2017,56,UH WG Jones Forest C698
+6,7,June 2017,65,Conroe Relocated C78/A321
+7,8,June 2017,87,Conroe Relocated C78/A321
+8,9,June 2017,76,Channelview C15/AH115 
+9,10,June 2017,65,Houston Bayland Park C53/A146 
+10,11,June 2017,51,Mustang Bayou C619 
+11,12,June 2017,45,Channelview C15/AH115 
+12,13,June 2017,34,Texas City 34th St. C620 
+13,14,June 2017,41,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+14,15,June 2017,41,Mustang Bayou C619 
+15,16,June 2017,37,Mustang Bayou C619 
+16,17,June 2017,36,Houston Bayland Park C53/A146 
+17,18,June 2017,34,Houston Bayland Park C53/A146 
+18,19,June 2017,61,Seabrook Friendship Park C45
+19,20,June 2017,44,Park Place C416
+20,21,June 2017,32,Park Place C416
+21,22,June 2017,37,UH WG Jones Forest C698
+22,23,June 2017,51,Danciger C618 
+23,24,June 2017,46,HRM-3 Haden Road C603/A114 
+24,25,June 2017,36,Danciger C618 
+25,26,June 2017,50,Danciger C618 
+26,27,June 2017,40,Channelview C15/AH115 
+27,28,June 2017,37,Lang C408
+28,29,June 2017,35,Houston Bayland Park C53/A146 
+29,30,June 2017,36,Houston Bayland Park C53/A146 
+30,1,July 2017,36,Houston Bayland Park C53/A146 
+31,2,July 2017,40,Houston Bayland Park C53/A146 
+32,3,July 2017,39,Houston Bayland Park C53/A146 
+33,4,July 2017,37,Houston Bayland Park C53/A146 
+34,5,July 2017,43,Mustang Bayou C619 
+35,6,July 2017,54,Channelview C15/AH115 
+36,7,July 2017,50,Houston East C1/G316
+37,8,July 2017,44,Houston East C1/G316
+38,9,July 2017,41,UH Coastal Center C697
+39,10,July 2017,42,Northwest Harris Co. C26/A110/X154
+40,11,July 2017,36,Seabrook Friendship Park C45
+41,12,July 2017,38,Mustang Bayou C619 
+42,13,July 2017,46,Mustang Bayou C619 
+43,14,July 2017,59,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+44,15,July 2017,41,UH Coastal Center C697
+45,16,July 2017,60,Seabrook Friendship Park C45
+46,17,July 2017,55,Channelview C15/AH115 
+47,18,July 2017,58,Mustang Bayou C619 
+48,19,July 2017,56,Texas City 34th St. C620 
+49,20,July 2017,57,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+50,21,July 2017,48,Houston Bayland Park C53/A146 
+51,22,July 2017,35,Houston Bayland Park C53/A146 
+52,23,July 2017,31,Houston Bayland Park C53/A146 
+53,24,July 2017,35,Houston East C1/G316
+54,25,July 2017,47,Houston Bayland Park C53/A146 
+55,26,July 2017,50,Houston Bayland Park C53/A146 
+56,27,July 2017,57,Houston Bayland Park C53/A146 
+57,28,July 2017,47,Houston East C1/G316
+58,29,July 2017,49,Houston East C1/G316
+59,30,July 2017,52,Conroe Relocated C78/A321
+60,31,July 2017,71,Houston Texas Avenue C411
+61,1,August 2017,66,HRM-3 Haden Road C603/A114 
+62,2,August 2017,44,Park Place C416
+63,3,August 2017,67,Wallisville Road C617 
+64,4,August 2017,78,Northwest Harris Co. C26/A110/X154
+65,5,August 2017,44,Seabrook Friendship Park C45
+66,6,August 2017,23,Seabrook Friendship Park C45
+67,7,August 2017,34,Houston Texas Avenue C411
+68,8,August 2017,42,Houston Aldine C8/AF108/X150 
+69,9,August 2017,59,Houston Westhollow C410/C3003
+70,10,August 2017,41,Houston East C1/G316
+71,11,August 2017,39,Texas City 34th St. C620 
+72,12,August 2017,40,Houston East C1/G316
+73,13,August 2017,30,Houston Bayland Park C53/A146 
+74,14,August 2017,39,Houston Bayland Park C53/A146 
+75,15,August 2017,31,Houston Bayland Park C53/A146 
+76,16,August 2017,36,Houston Bayland Park C53/A146 
+77,17,August 2017,37,Houston Bayland Park C53/A146 
+78,18,August 2017,45,Houston East C1/G316
+79,19,August 2017,51,UH Coastal Center C697
+80,20,August 2017,46,Houston East C1/G316
+81,21,August 2017,63,Channelview C15/AH115 
+82,22,August 2017,65,Conroe Relocated C78/A321
+83,23,August 2017,56,Houston Texas Avenue C411
+84,24,August 2017,56,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+85,25,August 2017,29,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+86,26,August 2017,32,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+87,27,August 2017,32,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+88,28,August 2017,34,Monitoring_Site
+89,29,August 2017,35,Monitoring_Site
+90,30,August 2017,46,Houston Bayland Park C53/A146 
+91,31,August 2017,57,Northwest Harris Co. C26/A110/X154
+92,1,September 2017,96,Houston Aldine C8/AF108/X150 
+93,2,September 2017,77,Houston Bayland Park C53/A146 
+94,3,September 2017,78,Houston Bayland Park C53/A146 
+95,4,September 2017,74,Houston Aldine C8/AF108/X150 
+96,5,September 2017,67,Houston North Wayside C405/C1033
+97,6,September 2017,49,Houston Westhollow C410/C3003
+98,7,September 2017,63,Houston Bayland Park C53/A146 
+99,8,September 2017,82,HRM-3 Haden Road C603/A114 
+100,9,September 2017,65,Houston Bayland Park C53/A146 
+101,10,September 2017,60,Houston Bayland Park C53/A146 
+102,11,September 2017,60,Houston Bayland Park C53/A146 
+103,12,September 2017,89,Northwest Harris Co. C26/A110/X154
+104,13,September 2017,73,UH Moody Tower C695
+105,14,September 2017,85,Wallisville Road C617 
+106,15,September 2017,66,Mustang Bayou C619 
+107,16,September 2017,66,Monitoring_Site
+108,17,September 2017,58,Monitoring_Site
+109,18,September 2017,30,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+110,19,September 2017,42,Seabrook Friendship Park C45
+111,20,September 2017,38,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+112,21,September 2017,42,Park Place C416
+113,22,September 2017,66,Houston Aldine C8/AF108/X150 
+114,23,September 2017,65,Houston Aldine C8/AF108/X150 
+115,24,September 2017,57,Houston Aldine C8/AF108/X150 
+116,25,September 2017,53,Houston Aldine C8/AF108/X150 
+117,26,September 2017,54,Houston Aldine C8/AF108/X150 
+118,27,September 2017,63,Houston Monroe C406
+119,28,September 2017,54,Houston Bayland Park C53/A146 
+120,29,September 2017,69,Conroe Relocated C78/A321
+121,30,September 2017,78,Conroe Relocated C78/A321
+122,1,June 2018,64,Seabrook Friendship Park C45
+123,2,June 2018,51,Houston Bayland Park C53/A146 
+124,3,June 2018,54,Houston East C1/G316
+125,4,June 2018,66,UH Moody Tower C695
+126,5,June 2018,48,Houston East C1/G316
+127,6,June 2018,65,HRM-3 Haden Road C603/A114 
+128,7,June 2018,67,Houston Bayland Park C53/A146 
+129,8,June 2018,76,Danciger C618 
+130,9,June 2018,43,Houston Bayland Park C53/A146 
+131,10,June 2018,28,Houston Bayland Park C53/A146 
+132,11,June 2018,36,Houston Bayland Park C53/A146 
+133,12,June 2018,49,Houston Bayland Park C53/A146 
+134,13,June 2018,59,Houston Bayland Park C53/A146 
+135,14,June 2018,47,Houston Bayland Park C53/A146 
+136,15,June 2018,46,Houston Bayland Park C53/A146 
+137,16,June 2018,40,Danciger C618 
+138,17,June 2018,27,Houston Monroe C406
+139,18,June 2018,29,Channelview C15/AH115 
+140,19,June 2018,26,UH WG Jones Forest C698
+141,20,June 2018,23,Texas City 34th St. C620 
+142,21,June 2018,51,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+143,22,June 2018,40,Monitoring_Site
+144,23,June 2018,37,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+145,24,June 2018,31,Seabrook Friendship Park C45
+146,25,June 2018,26,UH Moody Tower C695
+147,26,June 2018,50,Seabrook Friendship Park C45
+148,27,June 2018,49,Seabrook Friendship Park C45
+149,28,June 2018,43,Seabrook Friendship Park C45
+150,29,June 2018,40,Houston Bayland Park C53/A146 
+151,30,June 2018,36,Houston Bayland Park C53/A146 
+152,1,July 2018,39,Houston Bayland Park C53/A146 
+153,2,July 2018,56,Houston Bayland Park C53/A146 
+154,3,July 2018,50,U of H-Sugarland C696
+155,4,July 2018,32,UH Coastal Center C697
+156,5,July 2018,48,Houston North Wayside C405/C1033
+157,6,July 2018,59,Houston Monroe C406
+158,7,July 2018,53,Lang C408
+159,8,July 2018,43,Houston Bayland Park C53/A146 
+160,9,July 2018,32,UH Coastal Center C697
+161,10,July 2018,65,Wallisville Road C617 
+162,11,July 2018,58,Texas City 34th St. C620 
+163,12,July 2018,50,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+164,13,July 2018,50,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+165,14,July 2018,39,Houston Bayland Park C53/A146 
+166,15,July 2018,31,Mustang Bayou C619 
+167,16,July 2018,46,Houston East C1/G316
+168,17,July 2018,50,U of H-Sugarland C696
+169,18,July 2018,51,UH Moody Tower C695
+170,19,July 2018,51,UH Moody Tower C695
+171,20,July 2018,56,Houston East C1/G316
+172,21,July 2018,49,U of H-Sugarland C696
+173,22,July 2018,52,Houston Westhollow C410/C3003
+174,23,July 2018,81,Houston Westhollow C410/C3003
+175,24,July 2018,73,Manvel Croix Park C84
+176,25,July 2018,72,Lang C408
+177,26,July 2018,107,UH Coastal Center C697
+178,27,July 2018,109,Houston East C1/G316
+179,28,July 2018,86,Houston East C1/G316
+180,29,July 2018,71,Houston Westhollow C410/C3003
+181,30,July 2018,64,Houston Westhollow C410/C3003
+182,31,July 2018,49,Seabrook Friendship Park C45
+183,1,August 2018,96,Park Place C416
+184,2,August 2018,78,Conroe Relocated C78/A321
+185,3,August 2018,76,Houston Monroe C406
+186,4,August 2018,42,Houston Bayland Park C53/A146 
+187,5,August 2018,58,Channelview C15/AH115 
+188,6,August 2018,45,Houston Bayland Park C53/A146 
+189,7,August 2018,39,Houston Bayland Park C53/A146 
+190,8,August 2018,41,Danciger C618 
+191,9,August 2018,33,Houston Bayland Park C53/A146 
+192,10,August 2018,43,Houston Westhollow C410/C3003
+193,11,August 2018,30,Houston Bayland Park C53/A146 
+194,12,August 2018,23,Houston Bayland Park C53/A146 
+195,13,August 2018,45,Houston Bayland Park C53/A146 
+196,14,August 2018,46,Houston Bayland Park C53/A146 
+197,15,August 2018,45,Houston Bayland Park C53/A146 
+198,16,August 2018,40,Seabrook Friendship Park C45
+199,17,August 2018,43,Seabrook Friendship Park C45
+200,18,August 2018,38,Houston Westhollow C410/C3003
+201,19,August 2018,33,Seabrook Friendship Park C45
+202,20,August 2018,36,Houston Croquet C409
+203,21,August 2018,50,Lang C408
+204,22,August 2018,74,Houston Croquet C409
+205,23,August 2018,100,Houston Texas Avenue C411
+206,24,August 2018,91,Houston East C1/G316
+207,25,August 2018,77,Channelview C15/AH115 
+208,26,August 2018,55,Houston East C1/G316
+209,27,August 2018,48,Seabrook Friendship Park C45
+210,28,August 2018,40,Seabrook Friendship Park C45
+211,29,August 2018,40,Seabrook Friendship Park C45
+212,30,August 2018,55,Channelview C15/AH115 
+213,31,August 2018,65,Houston Monroe C406
+214,1,September 2018,55,Lang C408
+215,2,September 2018,30,UH Coastal Center C697
+216,3,September 2018,28,UH Coastal Center C697
+217,4,September 2018,35,Channelview C15/AH115 
+218,5,September 2018,48,Channelview C15/AH115 
+219,6,September 2018,51,Danciger C618 
+220,7,September 2018,37,Houston Bayland Park C53/A146 
+221,8,September 2018,34,Houston Bayland Park C53/A146 
+222,9,September 2018,38,Houston Westhollow C410/C3003
+223,10,September 2018,30,Houston Westhollow C410/C3003
+224,11,September 2018,30,HRM-3 Haden Road C603/A114 
+225,12,September 2018,40,Channelview C15/AH115 
+226,13,September 2018,32,UH Moody Tower C695
+227,14,September 2018,27,Park Place C416
+228,15,September 2018,43,Channelview C15/AH115 
+229,16,September 2018,74,Texas City 34th St. C620 
+230,17,September 2018,88,Northwest Harris Co. C26/A110/X154
+231,18,September 2018,93,UH WG Jones Forest C698
+232,19,September 2018,77,Danciger C618 
+233,20,September 2018,43,Houston Bayland Park C53/A146 
+234,21,September 2018,24,Houston Bayland Park C53/A146 
+235,22,September 2018,22,Houston Westhollow C410/C3003
+236,23,September 2018,53,Houston Westhollow C410/C3003
+237,24,September 2018,60,Houston Westhollow C410/C3003
+238,25,September 2018,42,Houston Bayland Park C53/A146 
+239,26,September 2018,29,Houston Texas Avenue C411
+240,27,September 2018,34,UH Moody Tower C695
+241,28,September 2018,40,Lang C408
+242,29,September 2018,28,U of H-Sugarland C696
+243,30,September 2018,35,Channelview C15/AH115 
+244,1,June 2019,81,Houston East C1/G316
+245,2,June 2019,57,Danciger C618 
+246,3,June 2019,72,Houston East C1/G316
+247,4,June 2019,55,Wallisville Road C617 
+248,5,June 2019,25,UH Moody Tower C695
+249,6,June 2019,68,U of H-Sugarland C696
+250,7,June 2019,59,Houston East C1/G316
+251,8,June 2019,81,U of H-Sugarland C696
+252,9,June 2019,93,HRM-3 Haden Road C603/A114 
+253,10,June 2019,63,UH Moody Tower C695
+254,11,June 2019,83,Houston Monroe C406
+255,12,June 2019,91,Seabrook Friendship Park C45
+256,13,June 2019,81,UH Coastal Center C697
+257,14,June 2019,83,Houston Bayland Park C53/A146 
+258,15,June 2019,28,Houston Bayland Park C53/A146 
+259,16,June 2019,45,Texas City 34th St. C620 
+260,17,June 2019,81,Houston East C1/G316
+261,18,June 2019,63,Mustang Bayou C619 
+262,19,June 2019,37,Wallisville Road C617 
+263,20,June 2019,27,Houston Bayland Park C53/A146 
+264,21,June 2019,32,Houston Bayland Park C53/A146 
+265,22,June 2019,29,Houston Bayland Park C53/A146 
+266,23,June 2019,31,Houston Bayland Park C53/A146 
+267,24,June 2019,59,Danciger C618 
+268,25,June 2019,33,Houston Bayland Park C53/A146 
+269,26,June 2019,27,HRM-3 Haden Road C603/A114 
+270,27,June 2019,32,Houston Bayland Park C53/A146 
+271,28,June 2019,55,Houston East C1/G316
+272,29,June 2019,40,UH Coastal Center C697
+273,30,June 2019,59,Texas City 34th St. C620 
+274,1,July 2019,57,Wallisville Road C617 
+275,2,July 2019,40,Wallisville Road C617 
+276,3,July 2019,43,Seabrook Friendship Park C45
+277,4,July 2019,31,Houston Bayland Park C53/A146 
+278,5,July 2019,47,Houston Bayland Park C53/A146 
+279,6,July 2019,61,Houston Aldine C8/AF108/X150 
+280,7,July 2019,52,UH Moody Tower C695
+281,8,July 2019,39,Houston Bayland Park C53/A146 
+282,9,July 2019,49,Danciger C618 
+283,10,July 2019,66,Houston East C1/G316
+284,11,July 2019,66,U of H-Sugarland C696
+285,12,July 2019,60,Mustang Bayou C619 
+286,13,July 2019,46,HRM-3 Haden Road C603/A114 
+287,14,July 2019,41,Houston Aldine C8/AF108/X150 
+288,15,July 2019,31,Danciger C618 
+289,16,July 2019,35,Houston Bayland Park C53/A146 
+290,17,July 2019,38,Wallisville Road C617 
+291,18,July 2019,43,Houston Bayland Park C53/A146 
+292,19,July 2019,44,Houston Bayland Park C53/A146 
+293,20,July 2019,43,Houston Bayland Park C53/A146 
+294,21,July 2019,33,Houston East C1/G316
+295,22,July 2019,36,Houston East C1/G316
+296,23,July 2019,47,UH Moody Tower C695
+297,24,July 2019,66,Park Place C416
+298,25,July 2019,79,Houston Bayland Park C53/A146 
+299,26,July 2019,76,Houston Monroe C406
+300,27,July 2019,64,Lang C408
+301,28,July 2019,29,Houston Bayland Park C53/A146 
+302,29,July 2019,30,Mustang Bayou C619 
+303,30,July 2019,36,Houston Croquet C409
+304,31,July 2019,56,Houston North Wayside C405/C1033
+305,1,August 2019,73,Seabrook Friendship Park C45
+306,2,August 2019,70,Houston Croquet C409
+307,3,August 2019,64,Northwest Harris Co. C26/A110/X154
+308,4,August 2019,50,Houston East C1/G316
+309,5,August 2019,60,Houston East C1/G316
+310,6,August 2019,47,Houston Bayland Park C53/A146 
+311,7,August 2019,39,Houston Bayland Park C53/A146 
+312,8,August 2019,38,Houston East C1/G316
+313,9,August 2019,44,Houston Bayland Park C53/A146 
+314,10,August 2019,39,Houston Bayland Park C53/A146 
+315,11,August 2019,39,HRM-3 Haden Road C603/A114 
+316,12,August 2019,47,Houston Bayland Park C53/A146 
+317,13,August 2019,51,Houston East C1/G316
+318,14,August 2019,59,Northwest Harris Co. C26/A110/X154
+319,15,August 2019,107,Northwest Harris Co. C26/A110/X154
+320,16,August 2019,68,Monitoring_Site
+321,17,August 2019,34,Seabrook Friendship Park C45
+322,18,August 2019,29,Seabrook Friendship Park C45
+323,19,August 2019,45,Seabrook Friendship Park C45
+324,20,August 2019,35,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+325,21,August 2019,41,Danciger C618 
+326,22,August 2019,50,Channelview C15/AH115 
+327,23,August 2019,33,Danciger C618 
+328,24,August 2019,49,Seabrook Friendship Park C45
+329,25,August 2019,32,Houston Texas Avenue C411
+330,26,August 2019,37,Seabrook Friendship Park C45
+331,27,August 2019,48,Houston Bayland Park C53/A146 
+332,28,August 2019,54,Wallisville Road C617 
+333,29,August 2019,70,Channelview C15/AH115 
+334,30,August 2019,54,Channelview C15/AH115 
