@@ -1,0 +1,305 @@
+,date,month,ozone,site
+0,1,June 2010,82,U of H-Sugarland C696
+1,2,June 2010,48,U of H-Sugarland C696
+2,3,June 2010,47,HRM-3 Haden Road C603/A114 
+3,4,June 2010,59,Hou.DeerPrk2 C35/235/1001/AFH139FP239
+4,5,June 2010,63,U of H-Sugarland C696
+5,6,June 2010,60,U of H-Sugarland C696
+6,7,June 2010,36,Channelview C15/AH115 
+7,8,June 2010,39,Northwest Harris Co. C26/A110/X154
+8,9,June 2010,32,U of H-Sugarland C696
+9,10,June 2010,36,UH Moody Tower C695
+10,11,June 2010,33,UH Moody Tower C695
+11,12,June 2010,33,U of H-Sugarland C696
+12,13,June 2010,31,U of H-Sugarland C696
+13,14,June 2010,43,U of H-Sugarland C696
+14,15,June 2010,43,Seabrook Friendship Park C45
+15,16,June 2010,49,Seabrook Friendship Park C45
+16,17,June 2010,41,U of H-Sugarland C696
+17,18,June 2010,47,UH Moody Tower C695
+18,19,June 2010,58,U of H-Sugarland C696
+19,20,June 2010,58,U of H-Sugarland C696
+20,21,June 2010,80,U of H-Sugarland C696
+21,22,June 2010,80,U of H-Sugarland C696
+22,23,June 2010,60,UH Moody Tower C695
+23,24,June 2010,60,Houston Texas Avenue C411
+24,25,June 2010,62,UH Moody Tower C695
+25,26,June 2010,54,U of H-Sugarland C696
+26,27,June 2010,60,U of H-Sugarland C696
+27,28,June 2010,41,Danciger C618 
+28,29,June 2010,44,Mustang Bayou C619 
+29,30,June 2010,26,HRM-3 Haden Road C603/A114 
+30,1,July 2010,22,UH Moody Tower C695
+31,2,July 2010,20,Park Place C416
+32,3,July 2010,28,Northwest Harris Co. C26/A110/X154
+33,4,July 2010,48,Texas City 34th St. C620 
+34,5,July 2010,51,Wallisville Road C617 
+35,6,July 2010,60,Danciger C618 
+36,7,July 2010,25,Park Place C416
+37,8,July 2010,23,Houston Texas Avenue C411
+38,9,July 2010,66,Houston Aldine C8/AF108/X150 
+39,10,July 2010,71,UH WG Jones Forest C698
+40,11,July 2010,34,UH Coastal Center C697
+41,12,July 2010,26,U of H-Sugarland C696
+42,13,July 2010,29,U of H-Sugarland C696
+43,14,July 2010,44,UH Moody Tower C695
+44,15,July 2010,53,Park Place C416
+45,16,July 2010,92,Houston East C1/G316
+46,17,July 2010,68,Houston East C1/G316
+47,18,July 2010,43,UH Moody Tower C695
+48,19,July 2010,28,U of H-Sugarland C696
+49,20,July 2010,35,Channelview C15/AH115 
+50,21,July 2010,35,Channelview C15/AH115 
+51,22,July 2010,30,Channelview C15/AH115 
+52,23,July 2010,47,UH Coastal Center C697
+53,24,July 2010,84,Mustang Bayou C619 
+54,25,July 2010,66,Houston Regional Office C81
+55,26,July 2010,55,Channelview C15/AH115 
+56,27,July 2010,32,UH Coastal Center C697
+57,28,July 2010,32,UH Coastal Center C697
+58,29,July 2010,46,UH Coastal Center C697
+59,30,July 2010,53,UH WG Jones Forest C698
+60,31,July 2010,58,HRM-3 Haden Road C603/A114 
+61,1,August 2010,69,HRM-3 Haden Road C603/A114 
+62,2,August 2010,92,UH Coastal Center C697
+63,3,August 2010,83,Houston East C1/G316
+64,4,August 2010,76,HRM-3 Haden Road C603/A114 
+65,5,August 2010,62,UH WG Jones Forest C698
+66,6,August 2010,53,UH Coastal Center C697
+67,7,August 2010,48,UH WG Jones Forest C698
+68,8,August 2010,44,UH WG Jones Forest C698
+69,9,August 2010,66,UH Coastal Center C697
+70,10,August 2010,92,Texas City 34th St. C620 
+71,11,August 2010,102,Texas City 34th St. C620 
+72,12,August 2010,79,UH Coastal Center C697
+73,13,August 2010,53,HRM-3 Haden Road C603/A114 
+74,14,August 2010,37,U of H-Sugarland C696
+75,15,August 2010,48,HRM-3 Haden Road C603/A114 
+76,16,August 2010,50,Northwest Harris Co. C26/A110/X154
+77,17,August 2010,84,Mustang Bayou C619 
+78,18,August 2010,60,U of H-Sugarland C696
+79,19,August 2010,35,UH WG Jones Forest C698
+80,20,August 2010,36,U of H-Sugarland C696
+81,21,August 2010,41,UH WG Jones Forest C698
+82,22,August 2010,50,HRM-3 Haden Road C603/A114 
+83,23,August 2010,69,Houston Texas Avenue C411
+84,24,August 2010,75,Houston Regional Office C81
+85,25,August 2010,81,Houston Regional Office C81
+86,26,August 2010,76,Park Place C416
+87,27,August 2010,88,Houston Regional Office C81
+88,28,August 2010,68,Wallisville Road C617 
+89,29,August 2010,54,Channelview C15/AH115 
+90,30,August 2010,25,U of H-Sugarland C696
+91,31,August 2010,31,UH Coastal Center C697
+92,1,September 2010,53,Channelview C15/AH115 
+93,2,September 2010,59,UH Coastal Center C697
+94,3,September 2010,52,Danciger C618 
+95,4,September 2010,68,Houston Regional Office C81
+96,5,September 2010,70,Texas City 34th St. C620 
+97,6,September 2010,26,Texas City 34th St. C620 
+98,7,September 2010,21,Wallisville Road C617 
+99,8,September 2010,27,U of H-Sugarland C696
+100,9,September 2010,36,UH WG Jones Forest C698
+101,10,September 2010,36,UH WG Jones Forest C698
+102,11,September 2010,41,UH WG Jones Forest C698
+103,12,September 2010,57,Texas City 34th St. C620 
+104,13,September 2010,80,Mustang Bayou C619 
+105,14,September 2010,96,UH Coastal Center C697
+106,15,September 2010,94,Channelview C15/AH115 
+107,16,September 2010,62,Channelview C15/AH115 
+108,17,September 2010,54,UH WG Jones Forest C698
+109,18,September 2010,46,UH WG Jones Forest C698
+110,19,September 2010,46,UH WG Jones Forest C698
+111,20,September 2010,43,UH Moody Tower C695
+112,21,September 2010,46,Monitoring_Site
+113,22,September 2010,46,UH Moody Tower C695
+114,23,September 2010,49,U of H-Sugarland C696
+115,24,September 2010,43,Houston Aldine C8/AF108/X150 
+116,25,September 2010,65,Texas City 34th St. C620 
+117,26,September 2010,56,Wallisville Road C617 
+118,27,September 2010,60,Wallisville Road C617 
+119,28,September 2010,83,Wallisville Road C617 
+120,29,September 2010,88,Danciger C618 
+121,30,September 2010,88,Houston Regional Office C81
+122,1,June 2011,78,Channelview C15/AH115 
+123,2,June 2011,97,U of H-Sugarland C696
+124,3,June 2011,79,Houston Aldine C8/AF108/X150 
+125,4,June 2011,70,Houston Aldine C8/AF108/X150 
+126,5,June 2011,78,Houston Regional Office C81
+127,6,June 2011,104,Wallisville Road C617 
+128,7,June 2011,96,UH Coastal Center C697
+129,8,June 2011,64,Seabrook Friendship Park C45
+130,9,June 2011,67,UH Moody Tower C695
+131,10,June 2011,58,Seabrook Friendship Park C45
+132,11,June 2011,74,UH Coastal Center C697
+133,12,June 2011,69,Channelview C15/AH115 
+134,13,June 2011,63,Houston Bayland Park C53/A146 
+135,14,June 2011,43,UH Coastal Center C697
+136,15,June 2011,44,UH Coastal Center C697
+137,16,June 2011,32,UH Coastal Center C697
+138,17,June 2011,31,UH Coastal Center C697
+139,18,June 2011,32,U of H-Sugarland C696
+140,19,June 2011,29,UH Coastal Center C697
+141,20,June 2011,33,Houston Bayland Park C53/A146 
+142,21,June 2011,31,U of H-Sugarland C696
+143,22,June 2011,44,Houston Regional Office C81
+144,23,June 2011,55,Houston Bayland Park C53/A146 
+145,24,June 2011,45,UH Moody Tower C695
+146,25,June 2011,41,Houston Bayland Park C53/A146 
+147,26,June 2011,39,U of H-Sugarland C696
+148,27,June 2011,51,UH Moody Tower C695
+149,28,June 2011,59,Channelview C15/AH115 
+150,29,June 2011,68,Channelview C15/AH115 
+151,30,June 2011,74,Channelview C15/AH115 
+152,1,July 2011,61,UH Moody Tower C695
+153,2,July 2011,58,Park Place C416
+154,3,July 2011,57,Park Place C416
+155,4,July 2011,62,UH Coastal Center C697
+156,5,July 2011,82,Houston East C1/G316
+157,6,July 2011,62,Mustang Bayou C619 
+158,7,July 2011,62,U of H-Sugarland C696
+159,8,July 2011,57,UH Moody Tower C695
+160,9,July 2011,50,UH Moody Tower C695
+161,10,July 2011,44,UH Moody Tower C695
+162,11,July 2011,65,U of H-Sugarland C696
+163,12,July 2011,40,UH Coastal Center C697
+164,13,July 2011,49,Mustang Bayou C619 
+165,14,July 2011,47,U of H-Sugarland C696
+166,15,July 2011,31,Texas City 34th St. C620 
+167,16,July 2011,39,Park Place C416
+168,17,July 2011,55,U of H-Sugarland C696
+169,18,July 2011,52,Park Place C416
+170,19,July 2011,41,Houston Westhollow C410/C3003
+171,20,July 2011,47,U of H-Sugarland C696
+172,21,July 2011,52,U of H-Sugarland C696
+173,22,July 2011,35,U of H-Sugarland C696
+174,23,July 2011,41,U of H-Sugarland C696
+175,24,July 2011,39,UH Coastal Center C697
+176,25,July 2011,43,UH Coastal Center C697
+177,26,July 2011,47,UH WG Jones Forest C698
+178,27,July 2011,45,UH Coastal Center C697
+179,28,July 2011,46,UH Coastal Center C697
+180,29,July 2011,32,Channelview C15/AH115 
+181,30,July 2011,52,U of H-Sugarland C696
+182,31,July 2011,70,Monitoring_Site
+183,1,August 2011,77,U of H-Sugarland C696
+184,2,August 2011,73,UH Coastal Center C697
+185,3,August 2011,60,UH Coastal Center C697
+186,4,August 2011,56,U of H-Sugarland C696
+187,5,August 2011,51,U of H-Sugarland C696
+188,6,August 2011,52,UH Coastal Center C697
+189,7,August 2011,36,UH Coastal Center C697
+190,8,August 2011,38,U of H-Sugarland C696
+191,9,August 2011,35,U of H-Sugarland C696
+192,10,August 2011,45,U of H-Sugarland C696
+193,11,August 2011,48,U of H-Sugarland C696
+194,12,August 2011,49,Houston Bayland Park C53/A146 
+195,13,August 2011,37,UH Coastal Center C697
+196,14,August 2011,49,HRM-3 Haden Road C603/A114 
+197,15,August 2011,60,Houston Bayland Park C53/A146 
+198,16,August 2011,64,U of H-Sugarland C696
+199,17,August 2011,73,UH Coastal Center C697
+200,18,August 2011,75,UH Coastal Center C697
+201,19,August 2011,89,HRM-3 Haden Road C603/A114 
+202,20,August 2011,71,Channelview C15/AH115 
+203,21,August 2011,53,UH Coastal Center C697
+204,22,August 2011,81,U of H-Sugarland C696
+205,23,August 2011,74,UH Moody Tower C695
+206,24,August 2011,66,UH Moody Tower C695
+207,25,August 2011,73,U of H-Sugarland C696
+208,26,August 2011,100,Houston East C1/G316
+209,27,August 2011,88,Houston Regional Office C81
+210,28,August 2011,101,Lang C408
+211,29,August 2011,99,Seabrook Friendship Park C45
+212,30,August 2011,100,Channelview C15/AH115 
+213,31,August 2011,83,Channelview C15/AH115 
+214,1,September 2011,58,Houston Monroe C406
+215,2,September 2011,48,Houston Regional Office C81
+216,3,September 2011,47,HRM-3 Haden Road C603/A114 
+217,4,September 2011,47,Channelview C15/AH115 
+218,5,September 2011,63,Houston Regional Office C81
+219,6,September 2011,89,Houston Regional Office C81
+220,7,September 2011,80,Houston Regional Office C81
+221,8,September 2011,108,Houston Regional Office C81
+222,9,September 2011,91,HRM-3 Haden Road C603/A114 
+223,10,September 2011,84,HRM-3 Haden Road C603/A114 
+224,11,September 2011,83,HRM-3 Haden Road C603/A114 
+225,12,September 2011,82,HRM-3 Haden Road C603/A114 
+226,13,September 2011,70,U of H-Sugarland C696
+227,14,September 2011,80,U of H-Sugarland C696
+228,15,September 2011,85,Houston East C1/G316
+229,16,September 2011,78,UH Coastal Center C697
+230,17,September 2011,56,HRM-3 Haden Road C603/A114 
+231,18,September 2011,41,Houston Bayland Park C53/A146 
+232,19,September 2011,77,UH WG Jones Forest C698
+233,20,September 2011,82,Texas City 34th St. C620 
+234,21,September 2011,84,Conroe Relocated C78/A321
+235,22,September 2011,85,Conroe Relocated C78/A321
+236,23,September 2011,93,Wallisville Road C617 
+237,24,September 2011,92,HRM-3 Haden Road C603/A114 
+238,25,September 2011,55,UH WG Jones Forest C698
+239,26,September 2011,52,UH Coastal Center C697
+240,27,September 2011,43,U of H-Sugarland C696
+241,28,September 2011,49,U of H-Sugarland C696
+242,29,September 2011,51,Park Place C416
+243,30,September 2011,78,HRM-3 Haden Road C603/A114 
+244,1,June 2012,114,Mustang Bayou C619 
+245,2,June 2012,59,UH Coastal Center C697
+246,3,June 2012,42,U of H-Sugarland C696
+247,4,June 2012,54,U of H-Sugarland C696
+248,5,June 2012,79,Mustang Bayou C619 
+249,6,June 2012,75,Channelview C15/AH115 
+250,7,June 2012,85,Manvel Croix Park C84
+251,8,June 2012,67,Wallisville Road C617 
+252,9,June 2012,76,Houston Monroe C406
+253,10,June 2012,51,Houston Bayland Park C53/A146 
+254,11,June 2012,40,Houston Bayland Park C53/A146 
+255,12,June 2012,38,Houston Bayland Park C53/A146 
+256,13,June 2012,50,Houston Bayland Park C53/A146 
+257,14,June 2012,47,U of H-Sugarland C696
+258,15,June 2012,47,Houston Bayland Park C53/A146 
+259,16,June 2012,60,Danciger C618 
+260,17,June 2012,74,Texas City 34th St. C620 
+261,18,June 2012,54,Channelview C15/AH115 
+262,19,June 2012,36,Danciger C618 
+263,20,June 2012,46,Mustang Bayou C619 
+264,21,June 2012,66,UH Moody Tower C695
+265,22,June 2012,68,Conroe Relocated C78/A321
+266,23,June 2012,67,Conroe Relocated C78/A321
+267,24,June 2012,71,Conroe Relocated C78/A321
+268,25,June 2012,94,Conroe Relocated C78/A321
+269,26,June 2012,136,Conroe Relocated C78/A321
+270,27,June 2012,99,Channelview C15/AH115 
+271,28,June 2012,75,UH Moody Tower C695
+272,29,June 2012,64,UH Moody Tower C695
+273,30,June 2012,35,Danciger C618 
+274,1,July 2012,29,Houston Bayland Park C53/A146 
+275,2,July 2012,46,Houston Bayland Park C53/A146 
+276,3,July 2012,36,Houston Bayland Park C53/A146 
+277,4,July 2012,45,U of H-Sugarland C696
+278,5,July 2012,49,Houston Bayland Park C53/A146 
+279,6,July 2012,55,Park Place C416
+280,7,July 2012,59,Danciger C618 
+281,8,July 2012,56,Houston Texas Avenue C411
+282,9,July 2012,67,Houston Texas Avenue C411
+283,10,July 2012,63,Houston Westhollow C410/C3003
+284,11,July 2012,65,UH Moody Tower C695
+285,12,July 2012,46,UH Moody Tower C695
+286,13,July 2012,42,Texas City 34th St. C620 
+287,14,July 2012,49,Houston East C1/G316
+288,15,July 2012,56,Mustang Bayou C619 
+289,16,July 2012,65,Wallisville Road C617 
+290,17,July 2012,52,Wallisville Road C617 
+291,18,July 2012,53,Wallisville Road C617 
+292,19,July 2012,65,Danciger C618 
+293,20,July 2012,76,Danciger C618 
+294,21,July 2012,69,Danciger C618 
+295,22,July 2012,82,Wallisville Road C617 
+296,23,July 2012,70,Danciger C618 
+297,24,July 2012,72,UH Moody Tower C695
+298,25,July 2012,59,HRM-3 Haden Road C603/A114 
+299,26,July 2012,67,Texas City 34th St. C620 
+300,27,July 2012,52,Mustang Bayou C619 
+301,28,July 2012,59,Monitoring_Site
+302,29,July 2012,50,Monitoring_Site
+303,30,July 2012,41,Houston East C1/G316

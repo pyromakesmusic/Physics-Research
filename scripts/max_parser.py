@@ -59,7 +59,8 @@ def rowtype(rownum):
 
 def cell_parser():
 # Have to start the function at 1 because I stupidly used the word null in the file which has a programming meaning
-    endpoint = 500
+    endpoint = 305
+    output = pd.DataFrame()
     i = 1 # Have to start at 1 because the file contains string "Null"
 
     while i < endpoint:
@@ -69,9 +70,11 @@ def cell_parser():
         month = holder_parsed[1]
         ozone = holder_parsed[2]
         site = holder_parsed[3]
-        output_columns_array.append({'date': date,'month' : month,'ozone': ozone, 'site':site}, ignore_index = True)
-        print(output_columns_array)
+        output_placeholder = pd.DataFrame({'date': [date],'month' : [month],'ozone': [ozone], 'site':[site]})
+        output = pd.concat([output, output_placeholder], ignore_index = True, axis = 0)
         i = i + 1
+    print(output)
+    return(output)
 
 
 os.chdir(filepath)
@@ -86,8 +89,8 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 #    print(len(ozone_list))
 # The ozone_list is 1191 rows long
 
-cell_parser()
-
+first_305 = cell_parser()
+first_305.to_csv('first_305.csv')
 
 
 """        
