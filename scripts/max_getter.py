@@ -272,7 +272,7 @@ def month_looper(month, length, month_count, return_array):
 #        print(date, month_name, max_ozone, site_name)
         return_array.append([date, month_name, max_ozone, site_name])
         i = i + 1
-    print(return_array)
+#    print(return_array)
     return(return_array)
  
 def column_creator(output_filename):
@@ -305,13 +305,14 @@ def column_creator(output_filename):
 #                print(i)
                 i = i + 1
             finally:
-                print(new_columns)
+#                print(new_columns)
                 new_columnsarray = np.array(new_columns)
         else:
             i = i + 1
         new_columnsdf = pd.DataFrame(data = new_columnsarray)
-        print(new_columnsdf)
+#        print(new_columnsdf)
         new_columnsdf.to_csv(output_filename)
+    print(new_columnsdf)
     return(new_columnsdf)
 
        
