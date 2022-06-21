@@ -59,9 +59,9 @@ def rowtype(rownum):
 
 def cell_parser():
 # Have to start the function at 1 because I stupidly used the word null in the file which has a programming meaning
-    endpoint = 305
+    endpoint = 823
     output = pd.DataFrame()
-    i = 1 # Have to start at 1 because the file contains string "Null"
+    i = 306 # Have to start at 1 because the file contains string "Null"
 
     while i < endpoint:
         holder = getrow_cell(i)
@@ -90,7 +90,7 @@ with open('onecolumn_md8ho.csv') as ozone_column:
 # The ozone_list is 1191 rows long
 
 first_305 = cell_parser()
-first_305.to_csv('first_305.csv')
+first_305.to_csv('to_823.csv')
 
 
 """        
