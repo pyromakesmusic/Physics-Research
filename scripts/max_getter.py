@@ -272,14 +272,17 @@ def month_looper(month, length, month_count, return_array):
 #        print(df_maxer(month, i, i, month_count))
         date, month_name, max_ozone, site_name = (df_maxer(month, i , i, month_count))
 #        print(date, month_name, max_ozone, site_name)
-        return_array.append([date, month_name, max_ozone, site_name])
+        new_items = pd.DataFrame(data = [date, month_name, max_ozone, site_name])
+        print(new_items)
+        built_df = [return_array, new_items]
+        pd.concat(built_df)
         i = i + 1
     print(return_array)
     return(return_array)
  
 def column_creator(output_filename, input_df):
     i = 0
-    new_columns = []
+    new_columns = pd.DataFrame()
     date = 0
     month_name = 0
     max_ozone = 0
