@@ -266,6 +266,7 @@ def daily_function():
 # Here is our function to get the list of maxes for the whole moonth using 
 # daily_max function and return them as a list or something.
 def month_looper(month, length, month_count, return_array):
+# I think I need to dig into this function and get the program using DataFrames at a more core level
     i = 4
     while i < length:
 #        print(df_maxer(month, i, i, month_count))
