@@ -66,7 +66,7 @@ month_year = ['June 2010', 'July 2010', 'August 2010', 'September 2010',
               'June 2019', 'July 2019', 'August 2019', 'September 2019']
 
 threedee_df = []
-use_me = pd.DataFrame(columns = "day", "month", "ozone", "site")
+use_me = pd.DataFrame(columns = ["day", "month", "ozone", "site"])
 
 
 """
@@ -276,13 +276,14 @@ def month_looper(month, length, month_count, return_array):
 #    print(return_array)
     return(return_array)
  
-def column_creator(output_filename):
+def column_creator(output_filename, input_df):
     i = 0
     new_columns = []
     date = 0
     month_name = 0
     max_ozone = 0
     site = 0
+    null_row = ['NA', 'NA', 'NA', 'NA']
     while i < 113: # at this point in time, i seems to function properly up to 
         if i in (0,1,2,3,
                  12,13,14,15,
@@ -298,23 +299,25 @@ def column_creator(output_filename):
                 date, month_name, max_ozone, site = (month_looper(i, 35, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
                 columns_list = [date, month_name, max_ozone, site]
-                new_columns.append(date, month_name, max_ozone, site)
+                columns_df = pd.DataFrame(columns_list)
+                new_columnsdf = pd.concat([input_df, columns_df])
                 i = i + 1
             except:
-                new_columns.append('NA')
+                new_columnsdf = pd.concat([input_df, null_row])
 #                print(month_looper(i, 34, i))
 #                print(i)
                 i = i + 1
             finally:
 #                print(new_columns)
-                new_columnsarray = np.array(new_columns)
+                print(input_df)
+                print(new_columnsdf)
         else:
             i = i + 1
-        new_columnsdf = pd.DataFrame(data = new_columnsarray)
+#        new_columnsdf = pd.DataFrame(data = new_columnsarray)
 #        print(new_columnsdf)
-        new_columnsdf.to_csv(output_filename)
-    print(new_columnsdf)
-    return(new_columnsdf)
+        input_df.to_csv(output_filename)
+    print(input_df)
+    return(input_df)
 
        
 """
@@ -343,7 +346,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
-column_creator('4column_fullDF.csv')
+column_creator('4column_fullDF.csv', use_me)
 
 """
 The stuff below this message needs to be sorted, labeled and commented.
