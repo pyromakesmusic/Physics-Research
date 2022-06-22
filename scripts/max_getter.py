@@ -283,7 +283,7 @@ def column_creator(output_filename, input_df):
     month_name = 0
     max_ozone = 0
     site = 0
-    null_row = ['NA', 'NA', 'NA', 'NA']
+    null_row = pd.DataFrame(data = ['NA', 'NA', 'NA', 'NA'])
     while i < 113: # at this point in time, i seems to function properly up to 
         if i in (0,1,2,3,
                  12,13,14,15,
@@ -310,7 +310,6 @@ def column_creator(output_filename, input_df):
             finally:
 #                print(new_columns)
                 print(input_df)
-                print(new_columnsdf)
         else:
             i = i + 1
 #        new_columnsdf = pd.DataFrame(data = new_columnsarray)
