@@ -273,7 +273,7 @@ def month_looper(month, length, month_count, return_array):
 #        print(date, month_name, max_ozone, site_name)
         return_array.append([date, month_name, max_ozone, site_name])
         i = i + 1
-#    print(return_array)
+    print(return_array)
     return(return_array)
  
 def column_creator(output_filename, input_df):
@@ -299,7 +299,8 @@ def column_creator(output_filename, input_df):
                 date, month_name, max_ozone, site = (month_looper(i, 35, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
                 columns_list = [date, month_name, max_ozone, site]
-                columns_df = pd.DataFrame(columns_list)
+                print(columns_list)
+                columns_df = pd.DataFrame(data = columns_list)
                 new_columnsdf = pd.concat([input_df, columns_df])
                 i = i + 1
             except:
