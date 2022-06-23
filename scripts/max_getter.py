@@ -314,7 +314,7 @@ def column_creator(output_filename, input_df):
                  print(new_columnsdf)
 #                print(month_looper(i, 34, i))
 #                print(i)
-                i = i + 1
+                 i = i + 1
             finally:
 #                print(new_columns)
                 print(input_df)
