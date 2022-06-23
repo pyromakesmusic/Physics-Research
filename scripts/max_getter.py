@@ -277,8 +277,8 @@ def month_looper(month, length, month_count, return_array):
         built_df = [return_array, new_items]
         pd.concat(built_df)
         i = i + 1
-    print(return_array)
-    return(return_array)
+#    print(built_df)
+    return(built_df)
  
 def column_creator(output_filename, input_df):
     i = 0
