@@ -305,16 +305,16 @@ def column_creator(output_filename, input_df):
                 columns_list = [date, month_name, max_ozone, site]
                 print(columns_list)
                 columns_df = pd.DataFrame(data = columns_list)
-                new_columnsdf = pd.concat([input_df, columns_df])
-                print(new_columnsdf)
+                input_df = pd.concat([input_df, columns_df])
+                print(input_df)
         
                 i = i + 1
             except:
                  columns_list = [date, month_name, max_ozone, site]
                  print(columns_list)
                  columns_df = pd.DataFrame(data = columns_list)
-                 new_columnsdf = pd.concat([input_df, columns_df])
-                 print(new_columnsdf)
+                 input_df = pd.concat([input_df, columns_df])
+                 print(input_df)
 #                print(month_looper(i, 34, i))
 #                print(i)
                  i = i + 1
