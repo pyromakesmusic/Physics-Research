@@ -275,14 +275,15 @@ def month_looper(month, length, month_count, return_array):
         new_items = pd.DataFrame(data = [date, month_name, max_ozone, site_name])
         print(new_items)
         built_df = [return_array, new_items]
-        pd.concat(built_df)
+        built_df = pd.concat(built_df)
+        print("This is an example of " + built_df)
         i = i + 1
-#    print(built_df)
+    print("This is an example of " + built_df)
     return(built_df)
  
 def column_creator(output_filename, input_df):
     i = 0
-    new_columns = pd.DataFrame()
+    new_columns = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
     date = 0
     month_name = 0
     max_ozone = 0
@@ -310,23 +311,21 @@ def column_creator(output_filename, input_df):
         
                 i = i + 1
             except:
-                 columns_list = [date, month_name, max_ozone, site]
-                 print(columns_list)
-                 columns_df = pd.DataFrame(data = columns_list)
-                 input_df = pd.concat([input_df, columns_df])
+                 input_df = pd.concat([input_df, null_row])
 #                print(input_df)
 #                print(month_looper(i, 34, i))
 #                print(i)
                  i = i + 1
-            finally:
+#            finally:
 #                print(input_df)
-                print("Finally!")
+#                print("Finally!")
         else:
             i = i + 1
 #        new_columnsdf = pd.DataFrame(data = new_columnsarray)
 #        print(new_columnsdf)
-        input_df.to_csv(output_filename)
+        
 #    print(input_df)
+    input_df.to_csv(output_filename)
     return(input_df)
 
        
