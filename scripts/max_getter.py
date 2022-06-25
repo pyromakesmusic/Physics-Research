@@ -306,7 +306,7 @@ def column_creator(output_filename, input_df):
                 print(columns_list)
                 columns_df = pd.DataFrame(data = columns_list)
                 input_df = pd.concat([input_df, columns_df])
-                print(input_df)
+#                print(input_df)
         
                 i = i + 1
             except:
@@ -314,19 +314,19 @@ def column_creator(output_filename, input_df):
                  print(columns_list)
                  columns_df = pd.DataFrame(data = columns_list)
                  input_df = pd.concat([input_df, columns_df])
-                 print(input_df)
+#                print(input_df)
 #                print(month_looper(i, 34, i))
 #                print(i)
                  i = i + 1
             finally:
-#                print(new_columns)
-                print(input_df)
+#                print(input_df)
+                print("Finally!")
         else:
             i = i + 1
 #        new_columnsdf = pd.DataFrame(data = new_columnsarray)
 #        print(new_columnsdf)
         input_df.to_csv(output_filename)
-    print(input_df)
+#    print(input_df)
     return(input_df)
 
        
