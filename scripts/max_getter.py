@@ -310,6 +310,9 @@ def column_creator(output_filename, input_df):
         
                 i = i + 1
             except:
+                 columns_list = [date, month_name, max_ozone, site]
+                 print(columns_list)
+                 columns_df = pd.DataFrame(data = columns_list)
                  new_columnsdf = pd.concat([input_df, columns_df])
                  print(new_columnsdf)
 #                print(month_looper(i, 34, i))
