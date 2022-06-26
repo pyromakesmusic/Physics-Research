@@ -276,9 +276,9 @@ def month_looper(month, length, month_count, return_array):
         print(new_items)
         built_df = [return_array, new_items]
         built_df = pd.concat(built_df)
-        print("This is an example of " + built_df)
+        print(str(built_df))
         i = i + 1
-    print("This is an example of " + built_df)
+    print("BEEP BEEP" + str(built_df))
     return(built_df)
  
 def column_creator(output_filename, input_df):
@@ -304,16 +304,16 @@ def column_creator(output_filename, input_df):
                 date, month_name, max_ozone, site = (month_looper(i, 35, i, new_columns))
                 # 34 is the highest list index that is in range for middle term of month_looper
                 columns_list = [date, month_name, max_ozone, site]
-                print(columns_list)
+
                 columns_df = pd.DataFrame(data = columns_list)
-                input_df = pd.concat([input_df, columns_df])
-#                print(input_df)
+                concat_df = pd.concat([input_df, columns_df])
+                print(concat_df)
         
                 i = i + 1
             except:
-                 input_df = pd.concat([input_df, null_row])
+                 concat_df = pd.concat([concat_df, null_row])
 #                print(input_df)
-#                print(month_looper(i, 34, i))
+                 print(month_looper(i, 34, i, new_columns))
 #                print(i)
                  i = i + 1
 #            finally:
@@ -326,7 +326,9 @@ def column_creator(output_filename, input_df):
         
 #    print(input_df)
     input_df.to_csv(output_filename)
-    return(input_df)
+    print(null_row)
+    print(null_row)
+    return(concat_df)
 
        
 """
