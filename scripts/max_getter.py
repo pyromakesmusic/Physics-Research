@@ -32,7 +32,8 @@ import ast
 """
 2. Variable Declaration
 """
-daily_somdf = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
+daily_somdf_headers = ["date", "month", "ozone", "site"]
+daily_somdf = pd.DataFrame(columns = daily_somdf_headers)
 some_fileread = False
 daily_som_deprecated = False
 
@@ -275,7 +276,7 @@ def daily_function():
     
 # Here is our function to get the list of maxes for the whole moonth using 
 # daily_max function and return them as a list or something.
-def month_looper(month, length, month_count, return_array, input_df):
+def month_looper(month, length, month_count, input_df):
 # I think I need to dig into this function and get the program using DataFrames at a more core level
     i = 4
     while i < length:
@@ -285,23 +286,23 @@ def month_looper(month, length, month_count, return_array, input_df):
         item_dict = {'day': [date], 'month': [month_name], 'ozone': [max_ozone], 'site': [site_name]}
         new_items = pd.DataFrame(item_dict)
         input_df = pd.concat([input_df, new_items])
-#        print(input_df)
+        print(input_df)
 #        print(str(built_df))
         i = i + 1
 #    print("BEEP BEEP" + str(built_df))
     return(input_df)
  
 def column_tryloop(row, input_data, output_data):
-    null_row = pd.DataFrame(data = ['NA', 'NA', 'NA', 'NA'])
+    null_items = {'day': ['NA'], 'month' : ['NA'], 'ozone': ['NA'], 'site': ['NA']}
+    null_row = pd.DataFrame(null_items)
     try:
-        month_df = (month_looper(row, 35, row, input_data, finalspreadsheet_df))
+        output_data = (month_looper(row, 35, row, output_data))
         # 34 is the highest list index that is in range for middle term of month_looper
 
-        print(month_df)
         
 
     except:
-        output_df = pd.concat([input_data, null_row])
+        output_data = pd.concat([input_data, null_row])
         #                print(input_df)
 #        print(month_looper(row, 34, row, input_data))
         #                print(i)
@@ -315,7 +316,7 @@ def column_creator(output_filename, input_df):
     null_row = pd.DataFrame(data = ['NA', 'NA', 'NA', 'NA'])
     while i < 113: # at this point in time, i seems to function properly up to 
         if i in (months_numbers):
-            column_tryloop(i, new_columns, daily_somdf)
+            column_tryloop(i, new_columns, input_df)
             i = i + 1
         else:
             i = i + 1
@@ -357,7 +358,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 column_creator('4column_fullDF.csv', finalspreadsheet_df)
 
-print(finalspreadsheet_df)
+
 
 """
 The stuff below this message needs to be sorted, labeled and commented.
