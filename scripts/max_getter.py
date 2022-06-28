@@ -77,7 +77,7 @@ months_numbers = [0,1,2,3,
          108,109,110,111,112]
 
 threedee_df = []
-finalspreadsheet_df = pd.DataFrame(columns = ["day", "month", "ozone", "site"])
+finalspreadsheet_df = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
 
 
 """
@@ -283,7 +283,7 @@ def month_looper(month, length, month_count, input_df):
 #        print(df_maxer(month, i, i, month_count))
         date, month_name, max_ozone, site_name = (df_maxer(month, i , i, month_count))
 #        print(date, month_name, max_ozone, site_name)
-        item_dict = {'day': [date], 'month': [month_name], 'ozone': [max_ozone], 'site': [site_name]}
+        item_dict = {'date': [date], 'month': [month_name], 'ozone': [max_ozone], 'site': [site_name]}
         new_items = pd.DataFrame(item_dict)
         input_df = pd.concat([input_df, new_items])
         print(input_df)
@@ -293,7 +293,7 @@ def month_looper(month, length, month_count, input_df):
     return(input_df)
  
 def column_tryloop(row, input_data, output_data):
-    null_items = {'day': ['NA'], 'month' : ['NA'], 'ozone': ['NA'], 'site': ['NA']}
+    null_items = {'date': ['NA'], 'month' : ['NA'], 'ozone': ['NA'], 'site': ['NA']}
     null_row = pd.DataFrame(null_items)
     try:
         output_data = (month_looper(row, 35, row, output_data))
@@ -306,28 +306,33 @@ def column_tryloop(row, input_data, output_data):
         #                print(input_df)
 #        print(month_looper(row, 34, row, input_data))
         #                print(i)
-#  finally:
-#    print(input_df)
+    finally:
+        return(output_data)
 #    print("Finally!")    
  
 def column_creator(output_filename, input_df):
     i = 0
     new_columns = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
     null_row = pd.DataFrame(data = ['NA', 'NA', 'NA', 'NA'])
+    rows_list = [new_columns]
     while i < 113: # at this point in time, i seems to function properly up to 
         if i in (months_numbers):
-            column_tryloop(i, new_columns, input_df)
+            x = column_tryloop(i, new_columns, input_df)
+            rows_list.append(x)
+            new_columns = pd.concat(rows_list)
             i = i + 1
         else:
             i = i + 1
 #        new_columnsdf = pd.DataFrame(data = new_columnsarray)
 #        print(new_columnsdf)
         
-#    print(input_df)
-    input_df.to_csv(output_filename)
+
+    new_columns.to_csv(output_filename)
+    print(len(new_columns))
+    print(type(new_columns))
 #    print(null_row)
 #    print(null_row)
-    return("Nothing!")
+    return(new_columns)
 
        
 """
