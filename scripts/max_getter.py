@@ -282,7 +282,7 @@ def month_looper(month, length, month_count, return_array, input_df):
 #        print(df_maxer(month, i, i, month_count))
         date, month_name, max_ozone, site_name = (df_maxer(month, i , i, month_count))
 #        print(date, month_name, max_ozone, site_name)
-        item_dict = {'day': [date], 'month': [month_name], ',ozone': [max_ozone], 'site': [site_name]}
+        item_dict = {'day': [date], 'month': [month_name], 'ozone': [max_ozone], 'site': [site_name]}
         new_items = pd.DataFrame(item_dict)
         input_df = pd.concat([input_df, new_items])
 #        print(input_df)
@@ -297,7 +297,7 @@ def column_tryloop(row, input_data, output_data):
         month_df = (month_looper(row, 35, row, input_data, finalspreadsheet_df))
         # 34 is the highest list index that is in range for middle term of month_looper
 
-#        print(output_df)
+        print(month_df)
         
 
     except:
