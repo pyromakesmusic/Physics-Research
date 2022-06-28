@@ -287,9 +287,7 @@ def month_looper(month, length, month_count, input_df):
         new_items = pd.DataFrame(item_dict)
         input_df = pd.concat([input_df, new_items])
         print(input_df)
-#        print(str(built_df))
         i = i + 1
-#    print("BEEP BEEP" + str(built_df))
     return(input_df)
  
 def column_tryloop(row, input_data, output_data):
@@ -313,7 +311,6 @@ def column_tryloop(row, input_data, output_data):
 def column_creator(output_filename, input_df):
     i = 0
     new_columns = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
-    null_row = pd.DataFrame(data = ['NA', 'NA', 'NA', 'NA'])
     rows_list = [new_columns]
     while i < 113: # at this point in time, i seems to function properly up to 
         if i in (months_numbers):
@@ -323,15 +320,11 @@ def column_creator(output_filename, input_df):
             i = i + 1
         else:
             i = i + 1
-#        new_columnsdf = pd.DataFrame(data = new_columnsarray)
-#        print(new_columnsdf)
         
 
     new_columns.to_csv(output_filename)
     print(len(new_columns))
     print(type(new_columns))
-#    print(null_row)
-#    print(null_row)
     return(new_columns)
 
        
@@ -361,7 +354,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
-column_creator('4column_fullDF.csv', finalspreadsheet_df)
+print(column_creator('4column_fullDF.csv', finalspreadsheet_df))
 
 
 
