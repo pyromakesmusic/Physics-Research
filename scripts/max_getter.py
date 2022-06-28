@@ -76,7 +76,7 @@ months_numbers = [0,1,2,3,
          108,109,110,111,112]
 
 threedee_df = []
-output_df = pd.DataFrame(columns = ["day", "month", "ozone", "site"])
+finalspreadsheet_df = pd.DataFrame(columns = ["day", "month", "ozone", "site"])
 
 
 """
@@ -275,26 +275,26 @@ def daily_function():
     
 # Here is our function to get the list of maxes for the whole moonth using 
 # daily_max function and return them as a list or something.
-def month_looper(month, length, month_count, return_array):
+def month_looper(month, length, month_count, return_array, input_df):
 # I think I need to dig into this function and get the program using DataFrames at a more core level
     i = 4
     while i < length:
 #        print(df_maxer(month, i, i, month_count))
         date, month_name, max_ozone, site_name = (df_maxer(month, i , i, month_count))
 #        print(date, month_name, max_ozone, site_name)
-        new_items = pd.DataFrame(data = [date, month_name, max_ozone, site_name])
-#        print(new_items)
-        built_df = [return_array, new_items]
-        built_df = pd.concat(built_df)
+        item_dict = {'day': [date], 'month': [month_name], ',ozone': [max_ozone], 'site': [site_name]}
+        new_items = pd.DataFrame(item_dict)
+        input_df = pd.concat([input_df, new_items])
+        print(input_df)
 #        print(str(built_df))
         i = i + 1
 #    print("BEEP BEEP" + str(built_df))
-    return(built_df)
+    return(input_df)
  
 def column_tryloop(row, input_data, output_data):
     null_row = pd.DataFrame(data = ['NA', 'NA', 'NA', 'NA'])
     try:
-        date, month_name, max_ozone, site = (month_looper(row, 35, row, input_data))
+        date, month_name, max_ozone, site = (month_looper(row, 35, row, input_data, finalspreadsheet_df))
         # 34 is the highest list index that is in range for middle term of month_looper
         columns_list = [date, month_name, max_ozone, site]
         
@@ -358,9 +358,9 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
-column_creator('4column_fullDF.csv', output_df)
+column_creator('4column_fullDF.csv', finalspreadsheet_df)
 
-print(output_df)
+print(finalspreadsheet_df)
 
 """
 The stuff below this message needs to be sorted, labeled and commented.
