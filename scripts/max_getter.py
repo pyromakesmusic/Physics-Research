@@ -74,7 +74,7 @@ months_numbers = [0,1,2,3,
          72,73,74,75, # commented out 73, list index out of range
          84,85,86,87,
          96,97,98,99,
-         108,109,110,111,112]
+         108,109,110,111,112, 113]
 
 threedee_df = []
 finalspreadsheet_df = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
@@ -165,7 +165,7 @@ def month_days(i):
 
 def month_lengthtest():
     i = 0
-    while i < 112:
+    while i < 113:
         print(month_days(i))
         i = i + 1
 
@@ -294,25 +294,21 @@ def column_tryloop(row, input_data, output_data):
     null_items = {'date': ['NA'], 'month' : ['NA'], 'ozone': ['NA'], 'site': ['NA']}
     null_row = pd.DataFrame(null_items)
     try:
-        output_data = (month_looper(row, 35, row, output_data))
-        # 34 is the highest list index that is in range for middle term of month_looper
-
-        
-
+        output_data_buffer = (month_looper(row, 35, row, output_data))
+        output_data = pd.concat([output_data, output_data_buffer])
+        # 34 is the highest list index that is in range for middle term of month_looper        
+        print(output_data)
     except:
-        output_data = pd.concat([input_data, null_row])
-        #                print(input_df)
-#        print(month_looper(row, 34, row, input_data))
-        #                print(i)
+        output_data = pd.concat([output_data, null_row])
+        print(row)
     finally:
         return(output_data)
-#    print("Finally!")    
  
 def column_creator(output_filename, input_df):
     i = 0
     new_columns = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
     rows_list = [new_columns]
-    while i < 113: # at this point in time, i seems to function properly up to 
+    while i < 114: # at this point in time, i seems to function properly up to 
         if i in (months_numbers):
             x = column_tryloop(i, new_columns, input_df)
             rows_list.append(x)
