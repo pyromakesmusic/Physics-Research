@@ -277,7 +277,6 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
               
     som_fileread = csv.reader(som_file)
     daily_som_deprecated = list(som_fileread)
-#    print(daily_som[0])
     daily_somdf = pd.DataFrame(data = daily_som_deprecated)
     
     ozone_fileread = csv.reader(ozone_file)

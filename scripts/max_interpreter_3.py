@@ -24,6 +24,7 @@ CONFIG
 """
 
 filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research"
+june_2010filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\june_2010csv.csv"
 
 """
 GLOBAL VARIABLES
@@ -33,4 +34,19 @@ GLOBAL VARIABLES
 """
 FUNCTION DEFINITIONS
 """
+def row_operator(list):
+    i = 0
+    length = len(list)
+    while i < length:
+        print(list[i])
+        i = i + 1
+    else:
+        print("Success")
 
+"""
+MAIN
+"""
+with open(june_2010filepath) as june_file:
+    june_list = list(csv.reader(june_file))
+    
+    row_operator(june_list)
