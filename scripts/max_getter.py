@@ -221,13 +221,13 @@ def df_maxer(x, c, t, m):
 #    print('The daily max is ' + str(max(daily_max)))
     try:
         max_ozone = (max(daily_max))
-        max_index = daily_max.index(max_ozone)
+        max_index = daily_max.index(max_ozone) - 1
 #    print(max_ozone)
 #    print(max_index)
 #        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
 #        site = str(evidence[1])
         month_name = str(month_year[m]) 
-        max_name = daily_ozonedf[max_index-1][1]
+        max_name = daily_ozonedf[max_index][1]
         evidence = ast.literal_eval(max_name)
     except:
         print("hooty hoo")
@@ -350,7 +350,7 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 """
 5. Unit Tests
 """
-print(column_creator('4column_fullDF.csv', finalspreadsheet_df))
+print(column_creator('4column_fullDFtrialerror.csv', finalspreadsheet_df))
 
 
 
