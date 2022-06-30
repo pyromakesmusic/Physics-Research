@@ -227,7 +227,7 @@ def df_maxer(x, c, t, m):
 #        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
 #        site = str(evidence[1])
         month_name = str(month_year[m]) 
-        max_name = daily_ozonedf[max_index][1]
+        max_name = daily_ozonedf[max_index-1][1]
         evidence = ast.literal_eval(max_name)
     except:
         print("hooty hoo")
