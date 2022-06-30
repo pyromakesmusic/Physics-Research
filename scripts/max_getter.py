@@ -71,29 +71,13 @@ months_numbers = [0,1,2,3,
          36,37,38,39,
          48,49,50,51,
          60,61,62,63,
-         72,73,74,75, # commented out 73, list index out of range
+         72,73,74,75, 
          84,85,86,87,
          96,97,98,99,
          108,109,110,111,112, 113]
 
 threedee_df = []
 finalspreadsheet_df = pd.DataFrame(columns = ["date", "month", "ozone", "site"])
-
-
-"""
-months_choices = []
-for i in range(1,13):
-    months_choices.append((datetime.date(2009, i, i).strftime('%B')))
-
-years_choices = []
-for i in range(0,11):
-    years_choices.append(i)
-        
-month_date = []
-for i in range(5,117):
-    month_date.append(str(months_choices[i % 12] + ' ' + str(2010 + years_choices[math.floor(i * 1/12)])))
-
-"""
 
 """
 3. Function Definition
@@ -131,14 +115,6 @@ def column_tryer(x):
     while i < len(month_aslist):
         threedee_df.append(month_aslist[i])
         i = i + 1
-        
-#column_tryer(0)
-#print(threedee_df)
-
-# print(threedee_df[4])
-# Index 4 is the location of the first date
-# First, let's call a date for each date in the SOM file.
-
 
 """
 Here we make a function that returns the number of days in each month, and the 
@@ -153,13 +129,7 @@ def month_days(i):
     month = ((5 + i) % 12) + 1
     dayrange = monthrange(year, month)[1]
     return_list = [dayrange, i, year, month]
-    
-# don't need this print statement for now        
-#        print("The number of days in " + str(month_year[i]) + " is " + str(monthrange(year, month)[1]))
-#        i = i + 1
-# also don't need the iterator math since that will be happening in the parent loop
-#    month = (((month + 1) % 12) + 1)
-#    year = year + (i % 12)
+
     return (return_list)
 
 
@@ -205,10 +175,9 @@ def df_maxer(x, c, t, m):
     month_name = str(month_year[m])
     i = 1    
     while i < 34:
-        # Need to partition this into a list of strings
+
         try:
             evidence = ast.literal_eval(daily_ozonedf[i][x])
-#            print(int(evidence[c]))
             daily_max.append(int(evidence[c]))
             i = i + 1
         except ValueError:
@@ -218,51 +187,23 @@ def df_maxer(x, c, t, m):
 #            print("SyntaxError")
             i = i + 1
 
-#    print('The daily max is ' + str(max(daily_max)))
     try:
         max_ozone = (max(daily_max))
         max_index = daily_max.index(max_ozone) - 1
-#    print(max_ozone)
-#    print(max_index)
-#        evidence = ast.literal_eval(daily_ozonedf[max_index][1])
-#        site = str(evidence[1])
         month_name = str(month_year[m]) 
         max_name = daily_ozonedf[max_index][1]
         evidence = ast.literal_eval(max_name)
     except:
         print("hooty hoo")
-#        print(evidence[1])
-#        print(len(evidence))
+
     finally:
         site_name = str(evidence[1])
-#    print("Max O3 on: " + str(date) + " " + month_name + ": " 
-#                   + str(max_ozone) + " ppb; site: " + site)
-    # all of these should be named variables in the function
+
     
     return(date, month_name, max_ozone, site_name)
         
 # Good, now this correctly prints the same column in each row meaning month
     
-"""
-now we need to write a function that calls df_maxer with the correct arguments for each date in the excel file.
-think we need to look at the daily_function() function. probably add some args.
-"""
-# print(len(daily_somdf))
-# This returns 1221, so 1221 rows in the file to match to something or N/A
-
-
-"""
-Note - the second argument, the date, should be 3 more than the actual numeric day of the month. We will use this to loop it somehow.
-
-""" 
-# 4 here gives me the first day of every month
-# 31 gives me the 28th, what happens at out of bounds error?
-# I currently have 0 as x, what does that do?
-
-"""
-Okay, now we know the dates for the SOM excel file appear in column index 1 and start at row 1.
-Going to try to turn this in to a primary function body with recursive calls inside.
-"""
 
 def daily_function():
     i = 1
@@ -351,45 +292,3 @@ with open('som_cluster_10yr_700hpa_00utc.csv') as som_file, open('D:\\#PERSONAL\
 5. Unit Tests
 """
 print(column_creator('4column_fullDFtrialerror.csv', finalspreadsheet_df))
-
-
-
-"""
-The stuff below this message needs to be sorted, labeled and commented.
-"""
-# newlist = month_lengthtest()
-# print(daily_somdf)
-#daily_function()
-#month_looper(0, 34)
-
-"""
-output_somdf = column_creator()
-output_df = pd.DataFrame(columns = output_somdf)
-output_df.to_csv('output_columns_2010-2016.csv')
-"""
-
-# Think I wanna do something so the function appends to a list given as an arg
-# at a particular index.
-
-# Also need to check if the month and year match the month and year in the 
-# daily_som file.
-# print(len(daily_ozone[1]))
-
-"""
-daily_function()
-
-print(len(daily_ozone[110]))
-print(daily_ozone[0][1])
-print(len(daily_ozone[0][1][1]))
-print(len(daily_ozone[0][2]))
-
-
-print(daily_ozone[0][2])
-print(len(daily_ozone[0][2]))
-"""
-
-# daily_function()
-# something about the number of NAs in the data is making this inconsistent.
-# Need to append something to the list even when it is NA.
-# print(df_maxer(0, 6, 0, 6))
-
