@@ -29,19 +29,23 @@ june_2010filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_d
 """
 GLOBAL VARIABLES
 """
-
+june2010_df = pd.DataFrame()
 
 """
 FUNCTION DEFINITIONS
 """
-def row_operator(list):
+def row_operator(list_item, dataframe):
     i = 0
-    length = len(list)
+    length = len(list_item)
     while i < length:
-        print(list[i])
+        print(list_item[i])
+        row = pd.Series(data = list_item[i])
+        print(row)
+        dataframe = pd.concat([dataframe, row])
         i = i + 1
     else:
-        print("Success")
+#        print(dataframe)
+        return("Complete")
 
 """
 MAIN
@@ -49,4 +53,9 @@ MAIN
 with open(june_2010filepath) as june_file:
     june_list = list(csv.reader(june_file))
     
-    row_operator(june_list)
+    row_operator(june_list, june2010_df)
+    
+    june_series = pd.Series(data = june_list)
+    print(june_series)
+    print(len(june_series))
+    print(june_series[0])
