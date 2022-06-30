@@ -25,7 +25,7 @@ CONFIG
 
 filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research"
 june_2010filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\june_2010csv.csv"
-
+# This file is 23 rows long.
 """
 GLOBAL VARIABLES
 """
@@ -34,18 +34,21 @@ june2010_df = pd.DataFrame()
 """
 FUNCTION DEFINITIONS
 """
-def row_operator(list_item, dataframe):
+def row_operator(list_item, output_dataframe):
     i = 0
     length = len(list_item)
+    list_series = pd.Series(data = list_item)
+    list_of_rows = []
+    print(list_series)
     while i < length:
-        print(list_item[i])
-        row = pd.Series(data = list_item[i])
-        print(row)
-        dataframe = pd.concat([dataframe, row])
+        row_item = pd.Series(data = list_series[i])
+        list_of_rows.append(row_item)
         i = i + 1
     else:
-#        print(dataframe)
-        return("Complete")
+        output_dataframe = pd.concat(list_of_rows, axis = 1)
+        output_dataframe = output_dataframe.T
+        print(output_dataframe)
+        return(output_dataframe)
 
 """
 MAIN
@@ -53,9 +56,5 @@ MAIN
 with open(june_2010filepath) as june_file:
     june_list = list(csv.reader(june_file))
     
-    row_operator(june_list, june2010_df)
-    
-    june_series = pd.Series(data = june_list)
-    print(june_series)
-    print(len(june_series))
-    print(june_series[0])
+    test_dataframe = row_operator(june_list, june2010_df)
+    test_dataframe.to_csv('june_2010.csv')
