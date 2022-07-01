@@ -24,7 +24,7 @@ CONFIG
 """
 list_of_filepaths = []
 output_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
-source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\\2010_june.csv"
+source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data"
 # This file is 23 rows long.
 """
 GLOBAL VARIABLES
@@ -58,10 +58,21 @@ def file_dflooper(source_path, output_path):
         test_dataframe.to_csv(output_path)
     return(test_dataframe)
 
+def input_pathbuilder(iterable, base_path):
+    length = len(iterable)
+    i = 0
+    while i < length:
+        print(base_path + iterable[i])
+        i = i + 1
+    else:
+        return("done")
+
+def output_pathbuilder():
+    return("string")
 
 """
 MAIN
 """
 
 
-file_dflooper(source_filepath, 'D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs\\2010june_python.csv')
+input_pathbuilder(directory_list, source_filepath)
