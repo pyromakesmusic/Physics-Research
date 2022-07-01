@@ -222,16 +222,22 @@ def ozone_parser(df_list, month_set):
             
             rowname = good_sites[x]
             site_list = df['Monitoring_Site']
-            print(site_list)
             d = 0
             while d < site_list.shape[0]:
-                print(site_list[d])
+                site_name = site_list[str(d)]
+                if (site_name in good_sites):
+                    continue
+                else:
+                    df.drop(index = site_name)
                 d = d + 1
                 
             x = x + 1
+        else:
+            print(df)
         i = i + 1
         
-        
+        specials = df["Monitoring_Site"].unique()
+        print(specials)
 
         
         
