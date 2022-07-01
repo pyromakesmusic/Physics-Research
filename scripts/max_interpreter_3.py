@@ -145,7 +145,10 @@ def max_finder(df, date_indices):
             else:
                 a = a + 1
         else: 
-            maximum = max(numeric_entries)
+            try:
+                maximum = max(numeric_entries)
+            except ValueError:
+                maximum = "NaN"
         max_list.append(maximum)
         i = i + 1
     print(max_list)
@@ -206,12 +209,32 @@ def ozone_parser(df_list, month_set):
     i = 0
     monthly_series = []
     output_df = pd.DataFrame(columns = ["year", "month", "day", "max_ozone"])
+    
+    # This is saying the program will loop through once for each DataFrame in
+    # the set and perform the "else" logic when it is done.
     while i < len(df_list):
         df = df_list[i]
+        
+        # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
-        print(badrows)
-        frame_badrows = df.iloc[badrows]
-        print(frame_badrows)
+        x = 0
+        while x < len(good_sites):
+            
+            rowname = good_sites[x]
+            site_list = df['Monitoring_Site']
+            print(site_list)
+            d = 0
+            while d < site_list.shape[0]:
+                print(site_list[d])
+                d = d + 1
+                
+            x = x + 1
+        i = i + 1
+        
+        
+
+        
+        
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
@@ -219,11 +242,10 @@ def ozone_parser(df_list, month_set):
         output_df = pd.concat([output_df, maxes_series])
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
+        
     else:
-        ozone_maxdf = pd.concat(monthly_series, axis = 1)
-
+        ozone_maxdf = pd.concat(monthly_series, axis = 0)
         month_set = month_set.T
-
         return(ozone_maxdf)
 
 """
