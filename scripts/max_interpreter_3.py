@@ -68,7 +68,7 @@ def file_dflooper(source_path):
         test_dataframe = row_operator(month_list)
     return(test_dataframe)
 
-def input_pathbuilder(iterable, base_path, output_df):
+def input_pathbuilder(iterable, base_path):
     length = len(iterable)
     filepath_list = []
     i = 0
@@ -77,15 +77,30 @@ def input_pathbuilder(iterable, base_path, output_df):
         print(iterable[i])
         stringname = str(iterable[i])
         string_sep = stringname.split("_")
-        date_series = pd.Series(string_sep)
+        date_series = pd.Series(string_sep, index = ["year", "month", "filename"])
         print(date_series)
-        output_df = pd.concat([output_df, date_series])
+
         filepath_list.append(full_path)
         i = i + 1
     else:
         print("Hooray!")
-        print(output_df)
     return(filepath_list)
+
+def month_dfbuilder(iterable, base_path, output_df):
+    length = len(iterable)
+    i = 0
+    while i < length:
+        print(iterable[i])
+        stringname = str(iterable[i])
+        string_sep = stringname.split("_")
+        date_series = pd.Series(string_sep, index = ["year", "month", "filename"])
+        print(date_series)
+        output_df = pd.concat([output_df, date_series], axis = 1, )
+        i = i + 1
+    else:
+        print("Hooray!")
+        print(output_df)
+    return(output_df)
 
 def output_pathbuilder(name, base_path):
     return(name + base_path)
@@ -104,10 +119,28 @@ def directory_looper(input_list):
         return(list_of_dataframes)
 
 
-def max_finder(df, column):
-    day = df[column]
-    maximum = day.max()
-    return(maximum)
+def max_finder(df, date_indices):
+    i = 0
+    max_list = []
+    while i < len(date_indices):
+        x = date_indices[i]
+        column = (df[x])
+        numeric_entries = []
+        a = 1
+        length = len(column)
+        while a < length:
+            z = str(column[a])
+            if z.isdigit():
+               numeric_entries.append(column[a])
+               a = a + 1
+            else:
+                a = a + 1
+        else: 
+            maximum = max(numeric_entries)
+        max_list.append(maximum)
+        i = i + 1
+    print(max_list)
+    return(max_list)
 
 def column_headers(framelist):
     i = 0
@@ -156,30 +189,33 @@ def badrow_getter(df_column, frame):
 #    frame.drop(labels = drop_rows, axis = 0)
     return(drop_rows)
 
-
+def column_looper(str_list, input_df):
+    max_list = max_finder(input_df, str_list)
+    max_series = pd.Series(max_list)
+    print(max_series)
 
 """
 MAIN
 """
-name_list = []
-date_month = pd.DataFrame(columns = ["Year", "Month"])
-list_of_filepaths = input_pathbuilder(directory_list, source_filepath, date_month) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
-# test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
-df_set = directory_looper(list_of_filepaths)
-print(name_list)
+month_df = pd.DataFrame()
+filepath_list= input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
+month_df = month_dfbuilder(directory_list, source_filepath, month_df)
+df_set = directory_looper(filepath_list)
+multidex = pd.concat(df_set)
+
 
 column_headers(df_set)
 row_headers(df_set)
 
-df = df_set[0]
+junedf = df_set[0]
 
-columns = df.columns
+columns = junedf.columns
 
-day_return(df, 25)
+day_return(junedf, 25)
 
-date_indices = month_looper(df)
+date_strings = month_looper(junedf)
 
-bad_rows = badrow_getter(df['Monitoring_Site'], df)
+bad_rows = badrow_getter(junedf['Monitoring_Site'], junedf)
 
 
 """
@@ -195,27 +231,14 @@ while i < length:
 i = 0
 while i < len(bad_rows):
     row = int(bad_rows[i])
-    frame_row = df[:row]
+    frame_row = junedf[:row]
     i = i + 1
     
+max_list = max_finder(junedf, date_strings)
 
-i = 0
-max_list = []
-while i < len(date_indices):
-    x = date_indices[i]
-    column = (df[x])
-    numeric_entries = []
-    a = 1
-    length = len(column)
-    while a < length:
-        z = str(column[a])
-        if z.isdigit():
-           numeric_entries.append(column[a])
-           a = a + 1
-        else:
-            a = a + 1
-    else: 
-        maximum = max(numeric_entries)
-    max_list.append(maximum)
-    i = i + 1
-print(max_list)
+
+month_df.set_index(0)
+
+max_series = pd.Series(max_list)
+
+column_looper(date_strings, junedf)
