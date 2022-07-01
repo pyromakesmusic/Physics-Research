@@ -191,7 +191,6 @@ def badrow_getter(df_column, frame):
             i = i + 1
         else:
             i = i + 1
-    print(drop_rows)
 #    frame.drop(labels = drop_rows, axis = 0)
     return(drop_rows)
 
@@ -202,19 +201,29 @@ def column_looper(str_list, input_df):
     return(max_series)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
-def ozone_parser(df_list):
+# The month_set argument is expecting the dataframe with the month data in it
+def ozone_parser(df_list, month_set):
     i = 0
     monthly_series = []
+    output_df = pd.DataFrame(columns = ["year", "month", "day", "max_ozone"])
     while i < len(df_list):
         df = df_list[i]
-        print(df)
+        badrows = badrow_getter(df['Monitoring_Site'], df)
+        print(badrows)
+        frame_badrows = df.iloc[badrows]
+        print(frame_badrows)
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
         monthly_series.append(maxes_series)
+        output_df = pd.concat([output_df, maxes_series])
+        new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
     else:
         ozone_maxdf = pd.concat(monthly_series, axis = 1)
+
+        month_set = month_set.T
+
         return(ozone_maxdf)
 
 """
@@ -224,23 +233,26 @@ MAIN
 month_df = pd.DataFrame()
 # List of all the filepaths that will be parsed.
 filepath_list= input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
-# This is a Dataframe that contains stuff about the month all the data came from. It isn't stored anywhere else.
+# This is a Dataframe that contains time data derived from the file all the data came from. It isn't stored anywhere else.
 month_df = month_dfbuilder(directory_list, source_filepath, month_df)
+
 # This is the list of all the DataFrames for every month
 df_set = directory_looper(filepath_list)
+
 # An experimental multidex
 multidex = pd.concat(df_set)
+
 # Correcting the column headers
 column_headers(df_set)
+
 # Correcting the row headers
 row_headers(df_set)
-
 
 
 month_df.set_index(0)
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
-ozone_parser(df_set)
+ozone_parser(df_set, month_df)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
 """
