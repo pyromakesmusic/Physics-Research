@@ -108,6 +108,18 @@ def max_finder(df, column):
     maximum = day.max()
     return(maximum)
 
+def column_headers(framelist):
+    i = 0
+    length = len(framelist)
+    while i < length:
+        df = framelist[i]
+        df.columns = df.iloc[0]
+        i = i + 1
+
+def day_return(df, day):
+    print(df.columns[day + 2])
+    return(df.columns[day + 2])
+
 """
 MAIN
 """
@@ -117,7 +129,15 @@ list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is
 # test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
 df_set = directory_looper(list_of_filepaths)
 
+column_headers(df_set)
+print(df_set)
 
+df = df_set[0]
+columns = df.columns
+
+day_return(df, 31)
+
+print(df['Monitoring_Site'])
 
 """
 i = 0
