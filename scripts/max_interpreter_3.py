@@ -160,7 +160,7 @@ def max_finder(df, date_indices):
         column = (df[x])
         numeric_entries = []
         max_list = except_logic(numeric_entries, column)
-        
+        print(max_list)
         i = i + 1
     print(max_list)
     return(max_list)
@@ -233,14 +233,16 @@ def ozone_parser(df_list, month_set):
             
             rowname = good_sites[x]
             site_list = df['Monitoring_Site']
-            d = 0
+            d = 1
             while d < site_list.shape[0]:
-                site_name = site_list[str(d)]
+                site_name = str(site_list[d])
                 if (site_name in good_sites):
+                    print(site_name)
+                    d = d + 1
                     continue
                 else:
                     df.drop(index = site_name)
-                d = d + 1
+                    d = d + 1
                 
             x = x + 1
         else:
