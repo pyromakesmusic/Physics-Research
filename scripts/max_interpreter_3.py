@@ -107,5 +107,18 @@ MAIN
 
 list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
 # test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
-directory_looper(list_of_filepaths)
-
+df_set = directory_looper(list_of_filepaths)
+i = 0
+length = len(df_set)
+while i <= length:
+    df = df_set[i]
+    t = 3
+    while t <= len(df):
+        day = df[t]
+        daily_max = max_finder(df, t)
+        print(daily_max)
+        t = t + 1
+    else:
+        i = i + 1
+else:
+    print("Hooty hoo")
