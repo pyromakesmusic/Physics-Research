@@ -23,12 +23,13 @@ from calendar import monthrange # Probably don't need this
 CONFIG
 """
 list_of_filepaths = []
-filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
-june_2010filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\\2010_june.csv"
+output_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
+source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\\"
 # This file is 23 rows long.
 """
 GLOBAL VARIABLES
 """
+directory_list = os.listdir(r'D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data')
 june2010_df = pd.DataFrame()
 
 """
@@ -50,11 +51,16 @@ def row_operator(list_item, output_dataframe):
         print(output_dataframe)
         return(output_dataframe)
 
+def file_dflooper(source_filepath, file_name, output_path, output_name):
+    with open(source_filepath) as source_file:
+        month_list = list(csv.reader(source_file))
+        test_dataframe = row_operator(month_list, output_path)
+        test_dataframe.to_csv('D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs\\june_2010.csv')
+    return(True)
+
 """
 MAIN
 """
-with open(june_2010filepath) as june_file:
-    june_list = list(csv.reader(june_file))
-    
-    test_dataframe = row_operator(june_list, june2010_df)
-    test_dataframe.to_csv('D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs\\june_2010.csv')
+
+
+print(directory_list)
