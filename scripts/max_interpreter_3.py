@@ -25,6 +25,12 @@ CONFIG
 output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
 source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
+pd.options.display.width = 0
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', -1)
+
 """
 GLOBAL VARIABLES
 """
@@ -89,19 +95,6 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-def badrow_remover(dirty_df, clean_list):
-    i = 0
-    length = len(dirty_df)
-    clean_df = pd.DataFrame()
-    list_of_good_rows = []
-    while i < length:
-        if dirty_df[0:i] in clean_list:
-            list_of_good_rows.append(dirty_df[:i])
-            i = i + 1
-        else:
-            i = i + 1
-    clean_df = pd.concat(list_of_good_rows)
-    return(clean_df)
 
 def max_finder(df, column):
     day = df[column]
@@ -116,9 +109,45 @@ def column_headers(framelist):
         df.columns = df.iloc[0]
         i = i + 1
 
+def row_headers(framelist):
+    i = 0
+    length = len(framelist)
+    while i < length:
+        df = framelist[i]
+        df.index = df.iloc[:,0]
+        df.style.hide(axis = 0)
+        df.style.hide(axis = 1)
+        i = i + 1
+
+# Doesn't work atm
 def day_return(df, day):
-    print(df.columns[day + 2])
-    return(df.columns[day + 2])
+    index = day + 2
+    print(df.columns[index])
+    return(df[str(index)])
+
+def month_looper(frame):
+    i = 1
+    days_list = []
+    length = frame.shape[1] - 3
+    while i < length:
+        days_list.append(str(i))
+        i = i + 1
+    print(days_list)
+
+def badrow_getter(df_column, frame):
+    i = 1
+    drop_rows = []
+    while i < len(df_column):
+        if df_column[i] not in good_sites:
+            drop_rows.append(i)
+            i = i + 1
+        else:
+            i = i + 1
+    print(drop_rows)
+#    frame.drop(labels = drop_rows, axis = 0)
+    return(drop_rows)
+
+
 
 """
 MAIN
@@ -130,40 +159,34 @@ list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is
 df_set = directory_looper(list_of_filepaths)
 
 column_headers(df_set)
-print(df_set)
+row_headers(df_set)
 
 df = df_set[0]
 columns = df.columns
+day_return(df, 25)
 
-day_return(df, 31)
 
-print(df['Monitoring_Site'])
+bad_rows = badrow_getter(df['Monitoring_Site'], df)
+
 
 """
+print(bad_rows)
 i = 0
-while i < len(df_set):
-    x = badrow_remover(df_set[i], good_sites)
-    print(x)
-    x = x + 1
+length = len(bad_rows)
+while i < length:
+    row = bad_rows[i]
+    print(df[:row])
+    i = i + 1
 """
 
-
-
-"""
-
-This is supposed to be the beginnings of a function to create a DataFrame of the maxes. Commenting it out for now.
+print(bad_rows)
+print(df)
 i = 0
-length = len(df_set)
-while i <= length:
-    df = df_set[i]
-    t = 3
-    while t <= len(df):
-        day = df[t]
-        daily_max = max_finder(df, t)
-        print(daily_max)
-        t = t + 1
-    else:
-        i = i + 1
-else:
-    print("Hooty hoo")
-"""
+while i < len(bad_rows):
+    row = int(bad_rows[i])
+    frame_row = df[:row]
+    print(row)
+    i = i + 1
+    
+
+month_looper(df)
