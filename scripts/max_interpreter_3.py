@@ -29,7 +29,8 @@ source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone
 GLOBAL VARIABLES
 """
 directory_list = os.listdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\')
-june2010_df = pd.DataFrame()
+good_sites = []
+
 
 """
 FUNCTION DEFINITIONS
@@ -39,7 +40,6 @@ def row_operator(list_item):
     length = len(list_item)
     list_series = pd.Series(data = list_item)
     list_of_rows = []
-    print(list_series)
     while i < length:
         row_item = pd.Series(data = list_series[i])
         list_of_rows.append(row_item)
@@ -47,7 +47,6 @@ def row_operator(list_item):
     else:
         output_dataframe = pd.concat(list_of_rows, axis = 1)
         output_dataframe = output_dataframe.T
-        print(output_dataframe)
         return(output_dataframe)
 
 def file_dflooper(source_path):
@@ -76,11 +75,30 @@ def directory_looper(input_list):
     list_of_dataframes = []
     while i < length:
         month_df = file_dflooper(input_list[i]) # Given the filepath, this should return the corresponding DataFrame
-        print(month_df)
+#        test_element = month_df[0]
+#        print(test_element)
         list_of_dataframes.append(month_df)
         i = i + 1
     else:
         return(list_of_dataframes)
+
+def badrow_remover(dirty_df, clean_list):
+    i = 0
+    length = len(dirty_df)
+    clean_df = pd.DataFrame()
+    list_of_good_rows = []
+    while i < length:
+        if dirty_df[0:i] in clean_list:
+            list_of_good_rows.append(dirty_df[:i])
+            i = i + 1
+        else:
+            i = i + 1
+    return(clean_df)
+
+def max_finder(df, column):
+    day = df[column]
+    maximum = day.max()
+    return(maximum)
 
 """
 MAIN
@@ -88,6 +106,6 @@ MAIN
 
 
 list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
-test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
-print(test_multidex)
-test_multidex.to_csv('test_multidex.csv')
+# test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
+directory_looper(list_of_filepaths)
+
