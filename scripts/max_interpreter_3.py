@@ -34,7 +34,7 @@ june2010_df = pd.DataFrame()
 """
 FUNCTION DEFINITIONS
 """
-def row_operator(list_item, output_dataframe):
+def row_operator(list_item):
     i = 0
     length = len(list_item)
     list_series = pd.Series(data = list_item)
@@ -50,11 +50,10 @@ def row_operator(list_item, output_dataframe):
         print(output_dataframe)
         return(output_dataframe)
 
-def file_dflooper(source_path, output_path):
+def file_dflooper(source_path):
     with open(source_path) as source_file:
         month_list = list(csv.reader(source_file))
-        test_dataframe = row_operator(month_list, output_path)
-        test_dataframe.to_csv(output_path)
+        test_dataframe = row_operator(month_list)
     return(test_dataframe)
 
 def input_pathbuilder(iterable, base_path):
@@ -76,4 +75,4 @@ MAIN
 """
 
 
-list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want but it needs to go after the function definitions.
+list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
