@@ -29,7 +29,7 @@ pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
-pd.set_option('display.max_colwidth', -1)
+pd.set_option('display.max_colwidth', None)
 
 """
 GLOBAL VARIABLES
@@ -68,16 +68,26 @@ def file_dflooper(source_path):
         test_dataframe = row_operator(month_list)
     return(test_dataframe)
 
-def input_pathbuilder(iterable, base_path):
+def input_pathbuilder(iterable, base_path, output_df):
     length = len(iterable)
     filepath_list = []
+    name_list = []
     i = 0
     while i < length:
         full_path = base_path + iterable[i]
+        print(iterable[i])
+        stringname = str(iterable[i])
+        string_sep = stringname.split("_")
+        date_series = pd.Series(string_sep)
+        print(date_series)
+        name_list.append(date_series)
+        output_df = pd.concat([output_df, name_list])
         filepath_list.append(full_path)
         i = i + 1
     else:
-        return(filepath_list)
+        print("Hooray!")
+        print(output_df)
+    return(filepath_list)
 
 def output_pathbuilder(name, base_path):
     return(name + base_path)
@@ -133,6 +143,7 @@ def month_looper(frame):
         days_list.append(str(i))
         i = i + 1
     print(days_list)
+    return(days_list)
 
 def badrow_getter(df_column, frame):
     i = 1
@@ -152,19 +163,23 @@ def badrow_getter(df_column, frame):
 """
 MAIN
 """
-
-
-list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
+name_list = []
+date_month = pd.DataFrame(columns = ["Year", "Month"])
+list_of_filepaths = input_pathbuilder(directory_list, source_filepath, date_month) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
 # test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
 df_set = directory_looper(list_of_filepaths)
+print(name_list)
 
 column_headers(df_set)
 row_headers(df_set)
 
 df = df_set[0]
+
 columns = df.columns
+
 day_return(df, 25)
 
+date_indices = month_looper(df)
 
 bad_rows = badrow_getter(df['Monitoring_Site'], df)
 
@@ -179,14 +194,30 @@ while i < length:
     i = i + 1
 """
 
-print(bad_rows)
-print(df)
 i = 0
 while i < len(bad_rows):
     row = int(bad_rows[i])
     frame_row = df[:row]
-    print(row)
     i = i + 1
     
 
-month_looper(df)
+i = 0
+max_list = []
+while i < len(date_indices):
+    x = date_indices[i]
+    column = (df[x])
+    numeric_entries = []
+    a = 1
+    length = len(column)
+    while a < length:
+        z = str(column[a])
+        if z.isdigit():
+           numeric_entries.append(column[a])
+           a = a + 1
+        else:
+            a = a + 1
+    else: 
+        maximum = max(numeric_entries)
+    max_list.append(maximum)
+    i = i + 1
+print(max_list)
