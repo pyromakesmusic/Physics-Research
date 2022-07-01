@@ -211,6 +211,8 @@ def column_looper(str_list, input_df):
     max_series = pd.Series(max_list)
     return(max_series)
 
+def badrow_remover(clean_sitelist, bad_rowlist, df):
+    return(True)
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
