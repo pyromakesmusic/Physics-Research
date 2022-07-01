@@ -100,6 +100,7 @@ def badrow_remover(dirty_df, clean_list):
             i = i + 1
         else:
             i = i + 1
+    clean_df = pd.concat(list_of_good_rows)
     return(clean_df)
 
 def max_finder(df, column):
@@ -116,11 +117,17 @@ list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is
 # test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
 df_set = directory_looper(list_of_filepaths)
 
+
+
+"""
 i = 0
 while i < len(df_set):
     x = badrow_remover(df_set[i], good_sites)
     print(x)
     x = x + 1
+"""
+
+
 
 """
 
