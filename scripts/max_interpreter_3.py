@@ -22,7 +22,6 @@ from calendar import monthrange # Probably don't need this
 """
 CONFIG
 """
-list_of_filepaths = []
 output_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
 source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data"
 # This file is 23 rows long.
@@ -60,19 +59,21 @@ def file_dflooper(source_path, output_path):
 
 def input_pathbuilder(iterable, base_path):
     length = len(iterable)
+    filepath_list = []
     i = 0
     while i < length:
-        print(base_path + iterable[i])
+        full_path = base_path + iterable[i]
+        filepath_list.append(full_path)
         i = i + 1
     else:
-        return("done")
+        return(filepath_list)
 
-def output_pathbuilder():
-    return("string")
+def output_pathbuilder(name, base_path):
+    return(name + base_path)
 
 """
 MAIN
 """
 
 
-input_pathbuilder(directory_list, source_filepath)
+list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want but it needs to go after the function definitions.
