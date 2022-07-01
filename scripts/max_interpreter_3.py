@@ -24,7 +24,7 @@ CONFIG
 """
 list_of_filepaths = []
 output_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
-source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\\"
+source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\\2010_june.csv"
 # This file is 23 rows long.
 """
 GLOBAL VARIABLES
@@ -51,16 +51,17 @@ def row_operator(list_item, output_dataframe):
         print(output_dataframe)
         return(output_dataframe)
 
-def file_dflooper(source_filepath, file_name, output_path, output_name):
-    with open(source_filepath) as source_file:
+def file_dflooper(source_path, output_path):
+    with open(source_path) as source_file:
         month_list = list(csv.reader(source_file))
         test_dataframe = row_operator(month_list, output_path)
-        test_dataframe.to_csv('D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs\\june_2010.csv')
-    return(True)
+        test_dataframe.to_csv(output_path)
+    return(test_dataframe)
+
 
 """
 MAIN
 """
 
 
-print(directory_list)
+file_dflooper(source_filepath, 'D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs\\2010june_python.csv')
