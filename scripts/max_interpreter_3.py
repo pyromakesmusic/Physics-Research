@@ -204,59 +204,42 @@ def column_looper(str_list, input_df):
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 def ozone_parser(df_list):
     i = 0
+    monthly_series = []
     while i < len(df_list):
         df = df_list[i]
+        print(df)
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
-        print(month_maxes)
-        maxes_series = pd.DataFrame(month_maxes, columns = df[:,0])
-        print(maxes_series)
+        maxes_series = pd.DataFrame(month_maxes)
+        monthly_series.append(maxes_series)
         i = i + 1
+    else:
+        ozone_maxdf = pd.concat(monthly_series, axis = 1)
+        return(ozone_maxdf)
 
 """
 MAIN
 """
+# A placeholder DataFrame
 month_df = pd.DataFrame()
+# List of all the filepaths that will be parsed.
 filepath_list= input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
+# This is a Dataframe that contains stuff about the month all the data came from. It isn't stored anywhere else.
 month_df = month_dfbuilder(directory_list, source_filepath, month_df)
+# This is the list of all the DataFrames for every month
 df_set = directory_looper(filepath_list)
+# An experimental multidex
 multidex = pd.concat(df_set)
-
-
+# Correcting the column headers
 column_headers(df_set)
+# Correcting the row headers
 row_headers(df_set)
 
-junedf = df_set[0]
 
-columns = junedf.columns
-
-date_strings = month_looper(junedf)
-
-bad_rows = badrow_getter(junedf['Monitoring_Site'], junedf)
-
-
-"""
-print(bad_rows)
-i = 0
-length = len(bad_rows)
-while i < length:
-    row = bad_rows[i]
-    print(df[:row])
-    i = i + 1
-"""
-
-i = 0
-while i < len(bad_rows):
-    row = int(bad_rows[i])
-    frame_row = junedf[:row]
-    i = i + 1
-    
-max_list = max_finder(junedf, date_strings)
 
 month_df.set_index(0)
-
-max_series = pd.Series(max_list)
-
+# This is going to get the max for every month and make a file out of it.
+# It should probably also remove the bad rows first
 ozone_parser(df_set)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
