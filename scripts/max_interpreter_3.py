@@ -22,9 +22,9 @@ from calendar import monthrange # Probably don't need this
 """
 CONFIG
 """
-
-filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research"
-june_2010filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\june_2010csv.csv"
+list_of_filepaths = []
+filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
+june_2010filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data\\2010_june.csv"
 # This file is 23 rows long.
 """
 GLOBAL VARIABLES
@@ -57,4 +57,4 @@ with open(june_2010filepath) as june_file:
     june_list = list(csv.reader(june_file))
     
     test_dataframe = row_operator(june_list, june2010_df)
-    test_dataframe.to_csv('june_2010.csv')
+    test_dataframe.to_csv('D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs\\june_2010.csv')
