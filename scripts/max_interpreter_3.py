@@ -49,8 +49,8 @@ good_sites = ["Houston East C1/G316", "Houston Aldine C8/AF108/X150", "Channelvi
 FUNCTION DEFINITIONS
 """
 
-# This is the core DataFrame constructor for this dataset
 def row_operator(list_item):
+    '''This is the core DataFrame constructor for this dataset'''
     i = 0
     length = len(list_item)
     list_series = pd.Series(data = list_item)
@@ -65,8 +65,8 @@ def row_operator(list_item):
         return(output_dataframe)
 
 
-# This opens a given csv file and makes a dataframe from that sample
 def file_dflooper(source_path):
+    '''This opens a given csv file and makes a dataframe from that sample'''
     with open(source_path) as source_file:
         month_list = list(csv.reader(source_file))
         test_dataframe = row_operator(month_list)
@@ -141,12 +141,9 @@ def except_logic(numeric_list, pdseries):
     else: 
         try:
             maximum = max(numeric_list)
-            print(maximum)
             maximum_list.append(maximum)
         except ValueError:
-            maximum = "NaN"
-            print(maximum)
-            maximum_list.append(maximum)
+            maximum = ("NaN")
             a = a + 1
     print(maximum_list)
     return(maximum_list)
@@ -247,10 +244,9 @@ def ozone_parser(df_list, month_set):
             x = x + 1
         else:
             print(df)
-        i = i + 1
+            i = i + 1
         
         specials = df["Monitoring_Site"].unique()
-        print(specials)
 
         
         
@@ -263,7 +259,7 @@ def ozone_parser(df_list, month_set):
         i = i + 1
         
     else:
-        ozone_maxdf = pd.concat(monthly_series, axis = 0)
+        ozone_maxdf = pd.concat(monthly_series, axis = 1)
         month_set = month_set.T
         return(ozone_maxdf)
 
