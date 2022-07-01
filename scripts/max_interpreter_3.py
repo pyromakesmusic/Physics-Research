@@ -127,6 +127,30 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
+def except_logic(numeric_list, pdseries):
+    a = 1
+    length = len(pdseries)
+    maximum_list = []
+    while a < length:
+        z = str(pdseries[a])
+        if z.isdigit():
+           numeric_list.append(pdseries[a])
+           a = a + 1
+        else:
+            a = a + 1
+    else: 
+        try:
+            maximum = max(numeric_list)
+            print(maximum)
+            maximum_list.append(maximum)
+        except ValueError:
+            maximum = "NaN"
+            print(maximum)
+            maximum_list.append(maximum)
+            a = a + 1
+    print(maximum_list)
+    return(maximum_list)
+
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
     i = 0
@@ -135,21 +159,8 @@ def max_finder(df, date_indices):
         x = date_indices[i]
         column = (df[x])
         numeric_entries = []
-        a = 1
-        length = len(column)
-        while a < length:
-            z = str(column[a])
-            if z.isdigit():
-               numeric_entries.append(column[a])
-               a = a + 1
-            else:
-                a = a + 1
-        else: 
-            try:
-                maximum = max(numeric_entries)
-            except ValueError:
-                maximum = "NaN"
-        max_list.append(maximum)
+        max_list = except_logic(numeric_entries, column)
+        
         i = i + 1
     print(max_list)
     return(max_list)
