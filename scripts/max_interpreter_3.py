@@ -116,6 +116,12 @@ list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is
 # test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
 df_set = directory_looper(list_of_filepaths)
 
+i = 0
+while i < len(df_set):
+    x = badrow_remover(df_set[i], good_sites)
+    print(x)
+    x = x + 1
+
 """
 
 This is supposed to be the beginnings of a function to create a DataFrame of the maxes. Commenting it out for now.
