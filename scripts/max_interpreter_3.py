@@ -29,7 +29,14 @@ source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone
 GLOBAL VARIABLES
 """
 directory_list = os.listdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\')
-good_sites = []
+
+good_sites = ["Houston East C1/G316", "Houston Aldine C8/AF108/X150", "Channelview C15/AH115",
+              "Northwest Harris Co. C26/A110/X154", "Hou.DeerPrk2 C35/235/1001/AFH139FP239",
+              "Seabrook Friendship Park C45", "Houston Bayland Park C53/A146", "Conroe Relocated C78/A321",
+              "Manvel Croix Park C84", "Clinton C403/C304/AH113", "Houston North Wayside C405/C1033", 
+              "Houston Monroe C406", "Lang C408", "Houston Croquet C409", "Houston Westhollow C410/C3003",
+              "Park Place C416", "HRM-3 Haden Road C603/A114", "Wallisville Road C617", "Texas City 34th St. C620"
+              "Lynchburg Ferry C1015/A165", "Lake Jackson C1016", "Galveston 99th St. C1034/A320/X183"]
 
 
 """
@@ -108,6 +115,10 @@ MAIN
 list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
 # test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
 df_set = directory_looper(list_of_filepaths)
+
+"""
+
+This is supposed to be the beginnings of a function to create a DataFrame of the maxes. Commenting it out for now.
 i = 0
 length = len(df_set)
 while i <= length:
@@ -122,3 +133,4 @@ while i <= length:
         i = i + 1
 else:
     print("Hooty hoo")
+"""
