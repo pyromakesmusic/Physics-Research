@@ -71,7 +71,6 @@ def file_dflooper(source_path):
 def input_pathbuilder(iterable, base_path, output_df):
     length = len(iterable)
     filepath_list = []
-    name_list = []
     i = 0
     while i < length:
         full_path = base_path + iterable[i]
@@ -80,8 +79,7 @@ def input_pathbuilder(iterable, base_path, output_df):
         string_sep = stringname.split("_")
         date_series = pd.Series(string_sep)
         print(date_series)
-        name_list.append(date_series)
-        output_df = pd.concat([output_df, name_list])
+        output_df = pd.concat([output_df, date_series])
         filepath_list.append(full_path)
         i = i + 1
     else:
