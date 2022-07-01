@@ -48,6 +48,8 @@ good_sites = ["Houston East C1/G316", "Houston Aldine C8/AF108/X150", "Channelvi
 """
 FUNCTION DEFINITIONS
 """
+
+# This is the core DataFrame constructor for this dataset
 def row_operator(list_item):
     i = 0
     length = len(list_item)
@@ -62,12 +64,15 @@ def row_operator(list_item):
         output_dataframe = output_dataframe.T
         return(output_dataframe)
 
+
+# This opens a given csv file and makes a dataframe from that sample
 def file_dflooper(source_path):
     with open(source_path) as source_file:
         month_list = list(csv.reader(source_file))
         test_dataframe = row_operator(month_list)
     return(test_dataframe)
 
+# Builds up the input file paths
 def input_pathbuilder(iterable, base_path):
     length = len(iterable)
     filepath_list = []
@@ -86,6 +91,7 @@ def input_pathbuilder(iterable, base_path):
         print("Hooray!")
     return(filepath_list)
 
+# Creates a dataframe of labels based on the filenames
 def month_dfbuilder(iterable, base_path, output_df):
     length = len(iterable)
     i = 0
@@ -102,9 +108,12 @@ def month_dfbuilder(iterable, base_path, output_df):
         print(output_df)
     return(output_df)
 
+
+# Builds a location to send a file to
 def output_pathbuilder(name, base_path):
     return(name + base_path)
 
+# Returns a list of dataframes from the files in a folder
 def directory_looper(input_list):
     i = 0
     length = len(input_list)
@@ -118,7 +127,7 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-
+# Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
     i = 0
     max_list = []
@@ -142,6 +151,7 @@ def max_finder(df, date_indices):
     print(max_list)
     return(max_list)
 
+# This makes sure the column headers are correct in the DataFrames
 def column_headers(framelist):
     i = 0
     length = len(framelist)
@@ -150,6 +160,7 @@ def column_headers(framelist):
         df.columns = df.iloc[0]
         i = i + 1
 
+# This makes sure the row headers are correct in the DataFrames
 def row_headers(framelist):
     i = 0
     length = len(framelist)
@@ -160,22 +171,17 @@ def row_headers(framelist):
         df.style.hide(axis = 1)
         i = i + 1
 
-# Doesn't work atm
-def day_return(df, day):
-    index = day + 2
-    print(df.columns[index])
-    return(df[str(index)])
-
+# This goes through a DataFrame to dynamically determine the number of days in the month
 def month_looper(frame):
     i = 1
     days_list = []
-    length = frame.shape[1] - 3
+    length = frame.shape[1] - 2
     while i < length:
         days_list.append(str(i))
         i = i + 1
-    print(days_list)
     return(days_list)
 
+# This function is supposed to remove the rows which correspond to sites that are not reliable. It is not yet ready.
 def badrow_getter(df_column, frame):
     i = 1
     drop_rows = []
@@ -189,19 +195,22 @@ def badrow_getter(df_column, frame):
 #    frame.drop(labels = drop_rows, axis = 0)
     return(drop_rows)
 
+# This gets the maxes for a month and gives back a pandas Series
 def column_looper(str_list, input_df):
     max_list = max_finder(input_df, str_list)
     max_series = pd.Series(max_list)
-    print(max_series)
+    return(max_series)
 
+# This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 def ozone_parser(df_list):
     i = 0
     while i < len(df_list):
         df = df_list[i]
-        shape = df.shape
-        cols = shape[1]
-        days = cols - 3
-        print(shape)
+        cols = month_looper(df)
+        month_maxes = max_finder(df, cols)
+        print(month_maxes)
+        maxes_series = pd.DataFrame(month_maxes, columns = df[:,0])
+        print(maxes_series)
         i = i + 1
 
 """
@@ -220,8 +229,6 @@ row_headers(df_set)
 junedf = df_set[0]
 
 columns = junedf.columns
-
-day_return(junedf, 25)
 
 date_strings = month_looper(junedf)
 
