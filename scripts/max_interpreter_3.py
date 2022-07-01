@@ -194,6 +194,16 @@ def column_looper(str_list, input_df):
     max_series = pd.Series(max_list)
     print(max_series)
 
+def ozone_parser(df_list):
+    i = 0
+    while i < len(df_list):
+        df = df_list[i]
+        shape = df.shape
+        cols = shape[1]
+        days = cols - 3
+        print(shape)
+        i = i + 1
+
 """
 MAIN
 """
@@ -236,9 +246,11 @@ while i < len(bad_rows):
     
 max_list = max_finder(junedf, date_strings)
 
-
 month_df.set_index(0)
 
 max_series = pd.Series(max_list)
 
-column_looper(date_strings, junedf)
+ozone_parser(df_set)
+"""
+Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
+"""
