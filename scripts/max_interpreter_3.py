@@ -22,13 +22,13 @@ from calendar import monthrange # Probably don't need this
 """
 CONFIG
 """
-output_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
-source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data"
+output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
+source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
 """
 GLOBAL VARIABLES
 """
-directory_list = os.listdir(r'D:\#PERSONAL\#STEDWARDS\#Summer2022Research\monthly_ozone_data')
+directory_list = os.listdir('D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\')
 june2010_df = pd.DataFrame()
 
 """
@@ -70,9 +70,24 @@ def input_pathbuilder(iterable, base_path):
 def output_pathbuilder(name, base_path):
     return(name + base_path)
 
+def directory_looper(input_list):
+    i = 0
+    length = len(input_list)
+    list_of_dataframes = []
+    while i < length:
+        month_df = file_dflooper(input_list[i]) # Given the filepath, this should return the corresponding DataFrame
+        print(month_df)
+        list_of_dataframes.append(month_df)
+        i = i + 1
+    else:
+        return(list_of_dataframes)
+
 """
 MAIN
 """
 
 
 list_of_filepaths = input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
+test_multidex = pd.concat(directory_looper(list_of_filepaths)) # I don't think I want to concat them. I want to manipulate them separately and then create a dataframe at the end that is concatenated.
+print(test_multidex)
+test_multidex.to_csv('test_multidex.csv')
