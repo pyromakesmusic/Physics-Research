@@ -145,7 +145,6 @@ def except_logic(numeric_list, pdseries):
         except ValueError:
             maximum = ("NaN")
             a = a + 1
-    print(maximum_list)
     return(maximum_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
@@ -157,9 +156,7 @@ def max_finder(df, date_indices):
         column = (df[x])
         numeric_entries = []
         max_list = except_logic(numeric_entries, column)
-        print(max_list)
         i = i + 1
-    print(max_list)
     return(max_list)
 
 # This makes sure the column headers are correct in the DataFrames
@@ -248,9 +245,10 @@ def ozone_parser(df_list, month_set):
         while x < len(good_sites):
             rowname = good_sites[x]
             site_list = df['Monitoring_Site']
+            badrow_remover(good_sites, badrows, site_list)
             cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
             print(cleaned_rows)
-            badrow_remover(good_sites, badrows, site_list)
+            print(type(cleaned_rows))
             x = x + 1
         else:
             i = i + 1
@@ -270,7 +268,7 @@ def ozone_parser(df_list, month_set):
     else:
         ozone_maxdf = pd.concat(monthly_series, axis = 1)
         month_set = month_set.T
-        return(ozone_maxdf)
+        return("ozone_maxdf") # Made string to simplify reading for testing
 
 """
 MAIN
