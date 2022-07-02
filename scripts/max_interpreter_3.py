@@ -212,7 +212,24 @@ def column_looper(str_list, input_df):
     return(max_series)
 
 def badrow_remover(clean_sitelist, bad_rowlist, df):
-    return(True)
+    '''
+    Takes a list of good sites, a list of indexes of bad rows, and a dataframe
+    and drops the bad rows from the dataframe, returning the good one.
+    '''
+    site_list = df['Monitoring_Site']
+    d = 1
+    while d < len(df.shape):
+        site_name = str(df[d])
+        if (site_name in clean_sitelist):
+            print(site_name)
+            d = d + 1
+        else:
+            df.drop(index = site_name)
+            d = d + 1   
+    else:
+        output_df = df
+    return(output_df)
+
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
@@ -229,23 +246,13 @@ def ozone_parser(df_list, month_set):
         badrows = badrow_getter(df['Monitoring_Site'], df)
         x = 0
         while x < len(good_sites):
-            
             rowname = good_sites[x]
             site_list = df['Monitoring_Site']
-            d = 1
-            while d < site_list.shape[0]:
-                site_name = str(site_list[d])
-                if (site_name in good_sites):
-                    print(site_name)
-                    d = d + 1
-                    continue
-                else:
-                    df.drop(index = site_name)
-                    d = d + 1
-                
+            cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
+            print(cleaned_rows)
+            badrow_remover(good_sites, badrows, site_list)
             x = x + 1
         else:
-            print(df)
             i = i + 1
         
         specials = df["Monitoring_Site"].unique()
