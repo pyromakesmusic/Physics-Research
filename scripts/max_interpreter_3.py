@@ -244,11 +244,14 @@ def ozone_parser(df_list, month_set):
         x = 0
         while x < len(good_sites):
             rowname = good_sites[x]
+            print(rowname)
             site_list = df['Monitoring_Site']
             badrow_remover(good_sites, badrows, site_list)
             cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
             print(cleaned_rows)
             print(type(cleaned_rows))
+            print(good_sites)
+            print(type(good_sites))
             x = x + 1
         else:
             i = i + 1
@@ -261,13 +264,17 @@ def ozone_parser(df_list, month_set):
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
         monthly_series.append(maxes_series)
-        output_df = pd.concat([output_df, maxes_series])
+        print(output_df)
+        print(maxes_series)
+        output_df = pd.concat([output_df, maxes_series], axis = 1)
+        print(output_df)
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
         
     else:
         ozone_maxdf = pd.concat(monthly_series, axis = 1)
         month_set = month_set.T
+        print(ozone_maxdf)
         return("ozone_maxdf") # Made string to simplify reading for testing
 
 """
@@ -294,9 +301,10 @@ row_headers(df_set)
 
 
 month_df.set_index(0)
+print(month_df)
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
-ozone_parser(df_set, month_df)
+#ozone_parser(df_set, month_df)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
 """
