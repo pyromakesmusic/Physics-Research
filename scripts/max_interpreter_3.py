@@ -326,12 +326,19 @@ month_df.set_index(0)
 years = month_df[0:1]
 months = month_df[1:2]
 filenames = month_df[2:3]
-print(years)
-print(months)
-print(filenames)
+x = (years.iloc[0])
+y = (months.iloc[0])
+z = (filenames.iloc[0])
 print(type(years))
 print(type(months))
 print(type(filenames))
+print(years.iloc[0])
+print(type(x))
+print(type(y))
+print(type(z))
+print(x)
+print(x.iloc[0])
+print(x.iloc[1])
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
 #ozone_parser(df_set, month_df)
