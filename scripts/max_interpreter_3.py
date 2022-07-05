@@ -232,12 +232,28 @@ def badrow_remover(clean_sitelist, bad_rowlist, df):
 def ozone_parser(df_list, month_set):
     i = 0
     monthly_series = []
+    month_set = month_set.T
+    years = month_set['year']
+    months = month_set['month']
+    filenames = month_set['filename']
     output_df = pd.DataFrame(columns = ["year", "month", "day", "max_ozone"])
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
     while i < len(df_list):
         df = df_list[i]
+        print(month_set)
+        print(years)
+        print(months)
+        print(filenames)
+        """
+        year = years[i]
+        month = months[i]
+        filename = filenames[i]
+        """
+        
+#        label_list = [year, month, filename]
+#        print(label_list)
         
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -248,10 +264,12 @@ def ozone_parser(df_list, month_set):
             site_list = df['Monitoring_Site']
             badrow_remover(good_sites, badrows, site_list)
             cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
+            """
             print(cleaned_rows)
             print(type(cleaned_rows))
             print(good_sites)
             print(type(good_sites))
+            """
             x = x + 1
         else:
             i = i + 1
@@ -264,17 +282,17 @@ def ozone_parser(df_list, month_set):
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
         monthly_series.append(maxes_series)
-        print(output_df)
-        print(maxes_series)
+#        print(output_df)
+#        print(maxes_series)
         output_df = pd.concat([output_df, maxes_series], axis = 1)
-        print(output_df)
+#        print(output_df)
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
         
     else:
         ozone_maxdf = pd.concat(monthly_series, axis = 1)
-        month_set = month_set.T
-        print(ozone_maxdf)
+
+#        print(ozone_maxdf)
         return("ozone_maxdf") # Made string to simplify reading for testing
 
 """
@@ -282,8 +300,12 @@ MAIN
 """
 # A placeholder DataFrame
 month_df = pd.DataFrame()
+
 # List of all the filepaths that will be parsed.
-filepath_list= input_pathbuilder(directory_list, source_filepath) # This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
+filepath_list= input_pathbuilder(directory_list, source_filepath) 
+# This is a global variable declaration, which I normally wouldn't want to put here but it needs to go after the function definitions.
+
+
 # This is a Dataframe that contains time data derived from the file all the data came from. It isn't stored anywhere else.
 month_df = month_dfbuilder(directory_list, source_filepath, month_df)
 
@@ -302,6 +324,9 @@ row_headers(df_set)
 
 month_df.set_index(0)
 print(month_df)
+print(month_df[0])
+year = month_df[0]
+print(type(year))
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
 #ozone_parser(df_set, month_df)
