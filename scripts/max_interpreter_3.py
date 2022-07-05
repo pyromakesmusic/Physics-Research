@@ -227,6 +227,18 @@ def badrow_remover(clean_sitelist, bad_rowlist, df):
         output_df = df
     return(output_df)
 
+def label_sep(df, i):
+    x = df[0:1]
+    y = df[1:2]
+    z = df[2:3]
+    
+    year = x[i]
+    month = y[i]
+    filename = z[i]
+    
+    output = [year, month, filename]
+    return(output)
+
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
@@ -242,10 +254,13 @@ def ozone_parser(df_list, month_set):
     # the set and perform the "else" logic when it is done.
     while i < len(df_list):
         df = df_list[i]
+        """
         print(month_set)
         print(years)
         print(months)
         print(filenames)
+        """
+        
         """
         year = years[i]
         month = months[i]
@@ -329,6 +344,9 @@ filenames = month_df[2:3]
 x = (years.iloc[0])
 y = (months.iloc[0])
 z = (filenames.iloc[0])
+
+"""
+Test Statements
 print(type(years))
 print(type(months))
 print(type(filenames))
@@ -339,6 +357,8 @@ print(type(z))
 print(x)
 print(x.iloc[0])
 print(x.iloc[1])
+"""
+
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
 #ozone_parser(df_set, month_df)
