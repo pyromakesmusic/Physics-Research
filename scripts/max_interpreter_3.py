@@ -229,15 +229,22 @@ def badrow_remover(clean_sitelist, bad_rowlist, df):
 
 def label_sep(df, i):
     x = df[0:1]
+#    print(type(x))
     y = df[1:2]
+#    print(type(y))
     z = df[2:3]
+#    print(type(z))
     
     year = x.iloc[i]
+#    print(type(year))
     month = y.iloc[i]
+#    print(type(month))
     filename = z.iloc[i]
-    
+#    print(type(filename))    
     output = [year, month, filename]
-    return(output)
+    output_df = pd.Series(output)
+    print(output_df)
+    return(output_df)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
