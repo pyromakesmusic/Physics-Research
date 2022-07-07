@@ -239,9 +239,9 @@ def label_sep(df, i):
     z = df[2:3]
 #    print(type(z))
     
-    print(x)
-    print(y)
-    print(z)
+    print(x[i: (i + 1)])
+    print(y[i: (i + 1)])
+    print(z[i: ( i + 1)])
     return("Empty")
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
