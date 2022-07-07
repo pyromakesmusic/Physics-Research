@@ -79,11 +79,11 @@ def input_pathbuilder(iterable, base_path):
     i = 0
     while i < length:
         full_path = base_path + iterable[i]
-        print(iterable[i])
+#        print(iterable[i])
         stringname = str(iterable[i])
         string_sep = stringname.split("_")
         date_series = pd.Series(string_sep, index = ["year", "month", "filename"])
-        print(date_series)
+#        print(date_series)
 
         filepath_list.append(full_path)
         i = i + 1
@@ -96,16 +96,16 @@ def month_dfbuilder(iterable, base_path, output_df):
     length = len(iterable)
     i = 0
     while i < length:
-        print(iterable[i])
+#        print(iterable[i])
         stringname = str(iterable[i])
         string_sep = stringname.split("_")
         date_series = pd.Series(string_sep, index = ["year", "month", "filename"])
-        print(date_series)
+#        print(date_series)
         output_df = pd.concat([output_df, date_series], axis = 1, )
         i = i + 1
     else:
         print("Hooray!")
-        print(output_df)
+#        print(output_df)
     return(output_df)
 
 
@@ -239,10 +239,10 @@ def label_sep(df, i):
     z = df[2:3]
 #    print(type(z))
     
-#    print(x.iloc[0:1])
-#    print(y)
-#    print(z)
-    return(x,y,z)
+    print(x)
+    print(y)
+    print(z)
+    return("Empty")
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
