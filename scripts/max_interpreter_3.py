@@ -228,6 +228,10 @@ def badrow_remover(clean_sitelist, bad_rowlist, df):
     return(output_df)
 
 def label_sep(df, i):
+    """
+    Should take a dataframe and an index and return the row sliced at that
+    index as a series.
+    """
     x = df[0:1]
 #    print(type(x))
     y = df[1:2]
@@ -235,16 +239,10 @@ def label_sep(df, i):
     z = df[2:3]
 #    print(type(z))
     
-    year = x.iloc[i]
-#    print(type(year))
-    month = y.iloc[i]
-#    print(type(month))
-    filename = z.iloc[i]
-#    print(type(filename))    
-    output = [year, month, filename]
-    output_df = pd.Series(output)
-    print(output_df)
-    return(output_df)
+#    print(x.iloc[0:1])
+#    print(y)
+#    print(z)
+    return(x,y,z)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
@@ -361,7 +359,6 @@ print(x.iloc[1])
 """
 
 labels = label_sep(month_df, 0)
-print(type(labels))
 
 
 # This is going to get the max for every month and make a file out of it.
