@@ -256,17 +256,13 @@ def label_sep(df, i):
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
     i = 0
-    monthly_series = pd.DataFrame(index = ["year", "month", "day", "MD8HO"])
+    monthly_series = pd.DataFrame(index = ["year", "month", "day", "max D8HO"])
     month_set = month_set.T
-    years = month_set['year']
-    months = month_set['month']
-    filenames = month_set['filename']
-    output_df = pd.DataFrame(columns = ["year", "month", "day", "MD8HO"])
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
-    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
-#    while i < 1:
+#    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
+    while i < 2:
         df = df_list[i]
         """
         print(month_set)
@@ -318,17 +314,10 @@ def ozone_parser(df_list, month_set):
         month_maxes.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
         month_maxes.reset_index(drop = True)
         
-        monthly_series = pd.concat([monthly_series, month_maxes], axis = 1, ignore_index = True)
+#        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
+        monthly_series = pd.concat([monthly_series, month_maxes])
         print(monthly_series)
 #        print(month_maxes)
-        """
-        These print statements are currently important.
-        """        
-
-
-#        print(output_df)
-#        print(maxes_series)
-#        output_df = pd.concat([output_df, maxes_series])
         
         i = i + 1
         
@@ -363,20 +352,6 @@ row_headers(df_set)
 
 
 
-"""
-Test Statements
-print(type(years))
-print(type(months))
-print(type(filenames))
-print(years.iloc[0])
-print(type(x))
-print(type(y))
-print(type(z))
-print(x)
-print(x.iloc[0])
-print(x.iloc[1])
-"""
-
 #labels = label_sep(month_df, 0)
 #print(labels)
 
@@ -388,7 +363,6 @@ final = ozone_parser(df_set, month_df)
 
 #final.reset_index(drop = True) # This wants final to be a dataframe
 
-print(final)
 """
-Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
+Need to clean out the bad rows. Then error check, then start getting the histograms going.
 """
