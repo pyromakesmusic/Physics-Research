@@ -232,8 +232,9 @@ def label_sep(df, i):
     Should take a dataframe and an index and return the row sliced at that
     index as a series.
     """
-    label_df = "boop"
-#    year = df.loc['year'].iloc[i]
+    df['row_num'] = np.arange(len(df))
+    print(df)
+    print(df['year'])
 #    print(type(x))
 #    month = df.loc['month'].iloc[i]
 #    print(type(y))
@@ -241,7 +242,7 @@ def label_sep(df, i):
 #    print(type(z))
 #    label_df = pd.DataFrame(data = [year, month, filename]).T
     
-    return(label_df)
+    return(df)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
@@ -271,8 +272,8 @@ def ozone_parser(df_list, month_set):
         filename = filenames[i]
         """
         
-        label_list = label_sep(month_set, i)
-        print(label_list)
+        label_row = label_sep(month_set, i)
+#        print(label_row)
         
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -283,6 +284,7 @@ def ozone_parser(df_list, month_set):
             site_list = df['Monitoring_Site']
             badrow_remover(good_sites, badrows, site_list)
             cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
+            
             """
             print(cleaned_rows)
             print(type(cleaned_rows))
@@ -300,12 +302,12 @@ def ozone_parser(df_list, month_set):
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
-#        print(maxes_series)
+
         monthly_series.append(maxes_series)
 #        print(output_df)
-#        print(maxes_series)
+        print(maxes_series)
         output_df = pd.concat([output_df, maxes_series], axis = 1)
-#        print(output_df)
+        print(output_df)
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
         
@@ -342,7 +344,6 @@ column_headers(df_set)
 row_headers(df_set)
 
 
-month_df.set_index(0)
 
 """
 Test Statements
@@ -363,7 +364,7 @@ print(x.iloc[1])
 
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
-
+print(month_df)
 print(label_sep(month_df, 0))
 ozone_parser(df_set, month_df)
 """
