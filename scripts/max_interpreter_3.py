@@ -146,6 +146,8 @@ def except_logic(numeric_list, pdseries, indices):
             maximum = ("NaN")
             a = a + 1
     print(maximum_list)
+    print(type(maximum_list))
+    print(len(maximum_list))
     return(maximum_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
@@ -190,7 +192,7 @@ def month_looper(frame):
     while i < length:
         days_list.append(str(i))
         i = i + 1
-    print(days_list)
+#    print(days_list)
     return(days_list)
 
 # This function is supposed to remove the rows which correspond to sites that are not reliable. It is not yet ready.
@@ -262,7 +264,8 @@ def ozone_parser(df_list, month_set):
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
-    while i < len(df_list):
+#    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
+    while i < 1:
         df = df_list[i]
         """
         print(month_set)
