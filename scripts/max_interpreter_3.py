@@ -127,16 +127,24 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-def except_logic(numeric_list, pdseries, indices):
+def except_logic(pdseries, indices):
+    numeric_list = []
+    print(pdseries)
     a = 1
     length = len(indices)
+    print(numeric_list)
     maximum_list = []
-    while a < length:
+    while a < length: # a here is a shorthand variable for the sit
+        print("The day of the month is " + str(a))
         z = str(pdseries[a])
         if z.isdigit():
+           print(pdseries[a])
            numeric_list.append(pdseries[a])
+           print(numeric_list)
            a = a + 1
         else:
+            print(str(z) + " did not have a numeric this day at this site")
+            print(numeric_list)
             a = a + 1
     else: 
         try:
@@ -155,11 +163,12 @@ def max_finder(df, date_indices):
     i = 0
     max_list = []
     print(len(date_indices))
-    while i < len(date_indices):
-        x = date_indices[i]
-        column = (df[x])
-        numeric_entries = []
-        max_list = except_logic(numeric_entries, column, date_indices)
+    print(date_indices)
+#    while i < len(date_indices): # For the sake of debugging, we are going to change this
+    while i < 1:
+        x = date_indices[i] # This gives us the day of the month as a string.
+        column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
+        max_list = except_logic(column, date_indices)
         i = i + 1
     print(max_list)
     return(max_list)
