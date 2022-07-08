@@ -221,12 +221,11 @@ def badrow_remover(clean_sitelist, bad_rowlist, df):
     Takes a list of good sites, a list of indexes of bad rows, and a dataframe
     and drops the bad rows from the dataframe, returning the good one.
     '''
-    site_list = df['Monitoring_Site']
     d = 1
     while d < len(df.shape):
         site_name = str(df[d])
         if (site_name in clean_sitelist):
-            print(site_name)
+#            print(site_name)
             d = d + 1
         else:
             df.drop(index = site_name)
@@ -257,12 +256,12 @@ def label_sep(df, i):
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
     i = 0
-    monthly_series = []
+    monthly_series = pd.DataFrame(index = ["year", "month", "day", "MD8HO"])
     month_set = month_set.T
     years = month_set['year']
     months = month_set['month']
     filenames = month_set['filename']
-    output_df = pd.DataFrame(columns = ["year", "month", "day", "max_ozone"])
+    output_df = pd.DataFrame(columns = ["year", "month", "day", "MD8HO"])
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
@@ -304,7 +303,7 @@ def ozone_parser(df_list, month_set):
         else:
             x = x + 1
         
-        specials = df["Monitoring_Site"].unique()
+
 
         
         
@@ -317,9 +316,11 @@ def ozone_parser(df_list, month_set):
         month_maxes.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
         
         month_maxes.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
+        month_maxes.reset_index(drop = True)
         
-        monthly_series.append(month_maxes)
-        print(month_maxes)
+        monthly_series = pd.concat([monthly_series, month_maxes], axis = 1, ignore_index = True)
+        print(monthly_series)
+#        print(month_maxes)
         """
         These print statements are currently important.
         """        
@@ -328,14 +329,11 @@ def ozone_parser(df_list, month_set):
 #        print(output_df)
 #        print(maxes_series)
 #        output_df = pd.concat([output_df, maxes_series])
-
-        new_row = ["This string should be replaced by the time columns", output_df]
+        
         i = i + 1
         
     else:
-        output_df = output_df.join(monthly_series)
-        print(output_df)
-        return(output_df) # Made string to simplify reading for testing
+        return(monthly_series) # Made string to simplify reading for testing
 
 """
 MAIN
@@ -388,9 +386,9 @@ print(x.iloc[1])
 #print(label_sep(month_df, 0))
 final = ozone_parser(df_set, month_df)
 
-final.reset_index(drop = True)
+#final.reset_index(drop = True) # This wants final to be a dataframe
 
-final.to_csv(output_filename)
+print(final)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
 """
