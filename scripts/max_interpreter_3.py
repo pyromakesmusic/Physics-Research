@@ -128,13 +128,16 @@ def directory_looper(input_list):
         return(list_of_dataframes)
 
 def except_logic(pdseries, indices):
+    """
+    Takes a single day of measurements HERE IS THE MISTAKE and the indices for a month and does what with them? Why?
+    """
     numeric_list = []
     print(pdseries)
     a = 1
     length = len(indices)
     print(numeric_list)
     maximum_list = []
-    while a < length: # a here is a shorthand variable for the sit
+    while a < length: # a here is a shorthand variable for the site
         print("The day of the month is " + str(a))
         z = str(pdseries[a])
         if z.isdigit():
@@ -150,12 +153,11 @@ def except_logic(pdseries, indices):
         try:
             maximum = max(numeric_list)
             maximum_list.append(maximum)
+            
         except ValueError:
             maximum = ("NaN")
-            a = a + 1
     print(maximum_list)
-    print(type(maximum_list))
-    print(len(maximum_list))
+    print("The length of the maximum list is: " + str(len(maximum_list)))
     return(maximum_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
