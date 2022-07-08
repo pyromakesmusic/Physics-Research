@@ -264,8 +264,8 @@ def ozone_parser(df_list, month_set):
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
-#    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
-    while i < 7:
+    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
+#    while i < 7:
         df = df_list[i]
         label_row = label_sep(month_set, i)
 #        print("The label for the row is " + str(label_row))
@@ -342,7 +342,12 @@ row_headers(df_set)
 #print(label_sep(month_df, 0))
 final = ozone_parser(df_set, month_df)
 
-#final.reset_index(drop = True) # This wants final to be a dataframe
+
+
+final.reset_index(drop = True) # This wants final to be a dataframe
+print(final)
+
+final.to_csv(output_filename)
 
 """
 Need to clean out the bad rows. Then error check, then start getting the histograms going.
