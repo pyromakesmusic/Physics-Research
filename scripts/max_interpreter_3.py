@@ -233,8 +233,9 @@ def label_sep(df, i):
     index as a series.
     """
     df['row_num'] = np.arange(len(df))
-    print(df)
-    print(df['year'])
+    
+    output = df.loc[df['row_num'] == i]
+#    print(output)
 #    print(type(x))
 #    month = df.loc['month'].iloc[i]
 #    print(type(y))
@@ -242,7 +243,7 @@ def label_sep(df, i):
 #    print(type(z))
 #    label_df = pd.DataFrame(data = [year, month, filename]).T
     
-    return(df)
+    return(output)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
@@ -273,7 +274,7 @@ def ozone_parser(df_list, month_set):
         """
         
         label_row = label_sep(month_set, i)
-#        print(label_row)
+        print(label_row)
         
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -293,7 +294,7 @@ def ozone_parser(df_list, month_set):
             """
             x = x + 1
         else:
-            i = i + 1
+            x = x + 1
         
         specials = df["Monitoring_Site"].unique()
 
@@ -304,9 +305,14 @@ def ozone_parser(df_list, month_set):
         maxes_series = pd.DataFrame(month_maxes)
 
         monthly_series.append(maxes_series)
+        """
+        These print statements are currently important.
+        """        
+
+
 #        print(output_df)
-        print(maxes_series)
-        output_df = pd.concat([output_df, maxes_series], axis = 1)
+#        print(maxes_series)
+        output_df = pd.concat([label_row, output_df, maxes_series], axis = 1)
         print(output_df)
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
@@ -364,8 +370,8 @@ print(x.iloc[1])
 
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
-print(month_df)
-print(label_sep(month_df, 0))
+#print(month_df)
+#print(label_sep(month_df, 0))
 ozone_parser(df_set, month_df)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
