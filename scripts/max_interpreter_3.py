@@ -299,6 +299,7 @@ def ozone_parser(df_list, month_set):
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
+        print(maxes_series)
         monthly_series.append(maxes_series)
 #        print(output_df)
 #        print(maxes_series)
@@ -361,9 +362,9 @@ print(x.iloc[1])
 
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
-print(month_df)
+
 print(label_sep(month_df, 0))
-#ozone_parser(df_set, month_df)
+ozone_parser(df_set, month_df)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
 """
