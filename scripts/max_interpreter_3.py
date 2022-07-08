@@ -127,9 +127,9 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-def except_logic(numeric_list, pdseries):
+def except_logic(numeric_list, pdseries, indices):
     a = 1
-    length = len(pdseries)
+    length = len(indices)
     maximum_list = []
     while a < length:
         z = str(pdseries[a])
@@ -145,17 +145,19 @@ def except_logic(numeric_list, pdseries):
         except ValueError:
             maximum = ("NaN")
             a = a + 1
+    print(maximum_list)
     return(maximum_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
     i = 0
     max_list = []
+    print(len(date_indices))
     while i < len(date_indices):
         x = date_indices[i]
         column = (df[x])
         numeric_entries = []
-        max_list = except_logic(numeric_entries, column)
+        max_list = except_logic(numeric_entries, column, date_indices)
         i = i + 1
     print(max_list)
     return(max_list)
@@ -303,6 +305,8 @@ def ozone_parser(df_list, month_set):
         
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
+        print(month_maxes)
+        print(type(month_maxes))
         maxes_series = pd.DataFrame(month_maxes)
         print(maxes_series)
         maxes_series.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
