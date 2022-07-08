@@ -157,12 +157,12 @@ def except_logic(pdseries):
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
     i = 0
-    max_df = pd.DataFrame(index = ["date", "max D8HO"])
+    max_df = pd.DataFrame(index = ["day", "max D8HO"])
     while i < len(date_indices): # For the sake of debugging, we are going to change this
         x = date_indices[i] # This gives us the day of the month as a string.
         column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
-        max_df = pd.concat([max_df, pd.Series(data = [x, except_logic(column)], index = ["date", "max D8HO"])], axis = 1)
+        max_df = pd.concat([max_df, pd.Series(data = [x, except_logic(column)], index = ["day", "max D8HO"])], axis = 1)
         i = i + 1
     return(max_df)
 
@@ -257,44 +257,27 @@ def label_sep(df, i):
 def ozone_parser(df_list, month_set):
     i = 0
     monthly_series = pd.DataFrame(index = ["year", "month", "day", "max D8HO"])
+    print(monthly_series.shape)
+    print(monthly_series)
+    monthly_series = monthly_series.T
     month_set = month_set.T
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
 #    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
-    while i < 2:
+    while i < 7:
         df = df_list[i]
-        """
-        print(month_set)
-        print(years)
-        print(months)
-        print(filenames)
-        """
-        
-        """
-        year = years[i]
-        month = months[i]
-        filename = filenames[i]
-        """
-        
         label_row = label_sep(month_set, i)
-        
+#        print("The label for the row is " + str(label_row))
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
         x = 0
         while x < len(good_sites):
             rowname = good_sites[x]
-#            print(rowname)
             site_list = df['Monitoring_Site']
             badrow_remover(good_sites, badrows, site_list)
             cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
             
-            """
-            print(cleaned_rows)
-            print(type(cleaned_rows))
-            print(good_sites)
-            print(type(good_sites))
-            """
             x = x + 1
         else:
             x = x + 1
@@ -305,19 +288,17 @@ def ozone_parser(df_list, month_set):
         
         cols = month_looper(df)
         month_maxes = max_finder(df, cols).T
-#        print(month_maxes)
+        print(month_maxes)
 
-        month_maxes.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
+        month_maxes.insert(0, 'year', label_row['year'], allow_duplicates=True)
         
-        month_maxes.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
+        month_maxes.insert(1, 'month', label_row['month'], allow_duplicates=True)
         
-        month_maxes.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
-        month_maxes.reset_index(drop = True)
-        
-#        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
+        month_maxes.insert(2, 'month_string', label_row['filename'], allow_duplicates=True)
+        print(month_maxes.shape)
+        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
         monthly_series = pd.concat([monthly_series, month_maxes])
         print(monthly_series)
-#        print(month_maxes)
         
         i = i + 1
         
