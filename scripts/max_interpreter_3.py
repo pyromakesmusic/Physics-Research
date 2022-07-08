@@ -141,12 +141,12 @@ def except_logic(pdseries):
         measured_ozone = pdseries[a]
         str_ozone = str(measured_ozone)
         if str_ozone.isdigit():
-           print("The site is " + "and the measurement is " + str_ozone)
+#           print("The site is " + "and the measurement is " + str_ozone)
            numeric_list.append(pdseries[a])
            a = a + 1
         else:
-            print(str(measured_ozone.index) + " did not have a numeric this day at this site") # I think this line is gonna be buggy later
-            print(numeric_list)
+#            print(str(measured_ozone.index) + " did not have a numeric this day at this site") # I think this line is gonna be buggy later
+#            print(numeric_list)
             a = a + 1
     else: 
         try:
@@ -157,8 +157,8 @@ def except_logic(pdseries):
         except ValueError:
             maximum = ("NaN")
     print(maximum_list)
-    print("The max of this day is " + str(maximum_list))
-    return(maximum_list)
+    print("The max of this day is " + str(maximum))
+    return(maximum)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
