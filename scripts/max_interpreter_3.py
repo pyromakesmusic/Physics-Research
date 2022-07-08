@@ -127,37 +127,37 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-def except_logic(pdseries, indices):
+def except_logic(pdseries):
     """
-    Takes a single day of measurements HERE IS THE MISTAKE and the indices for a month and does what with them? Why?
+    This is the function to look at later when I want to add the site names.
     """
     numeric_list = []
     print(pdseries)
     a = 1
-    length = len(indices)
+    length = len(pdseries)
     print(numeric_list)
     maximum_list = []
-    while a < length: # a here is a shorthand variable for the site
-        print("The day of the month is " + str(a))
-        z = str(pdseries[a])
-        if z.isdigit():
-           print(pdseries[a])
+    while a < length: # a here is a shorthand variable for the site number positionally along the index
+        measured_ozone = pdseries[a]
+        str_ozone = str(measured_ozone)
+        if str_ozone.isdigit():
+           print("The site is " + "and the measurement is " + str_ozone)
            numeric_list.append(pdseries[a])
-           print(numeric_list)
            a = a + 1
         else:
-            print(str(z) + " did not have a numeric this day at this site")
+            print(str(measured_ozone.index) + " did not have a numeric this day at this site") # I think this line is gonna be buggy later
             print(numeric_list)
             a = a + 1
     else: 
         try:
+            print(numeric_list)
             maximum = max(numeric_list)
             maximum_list.append(maximum)
             
         except ValueError:
             maximum = ("NaN")
     print(maximum_list)
-    print("The length of the maximum list is: " + str(len(maximum_list)))
+    print("The max of this day is " + str(maximum_list))
     return(maximum_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
@@ -170,7 +170,7 @@ def max_finder(df, date_indices):
     while i < 1:
         x = date_indices[i] # This gives us the day of the month as a string.
         column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
-        max_list = except_logic(column, date_indices)
+        max_list = except_logic(column)
         i = i + 1
     print(max_list)
     return(max_list)
