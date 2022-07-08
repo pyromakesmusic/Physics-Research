@@ -232,13 +232,14 @@ def label_sep(df, i):
     Should take a dataframe and an index and return the row sliced at that
     index as a series.
     """
-    year = df.loc['year'].iloc[i]
+    label_df = "boop"
+#    year = df.loc['year'].iloc[i]
 #    print(type(x))
-    month = df.loc['month'].iloc[i]
+#    month = df.loc['month'].iloc[i]
 #    print(type(y))
-    filename = df.loc['filename'].iloc[i]
+#    filename = df.loc['filename'].iloc[i]
 #    print(type(z))
-    label_df = pd.DataFrame(data = [year, month, filename]).T
+#    label_df = pd.DataFrame(data = [year, month, filename]).T
     
     return(label_df)
 
