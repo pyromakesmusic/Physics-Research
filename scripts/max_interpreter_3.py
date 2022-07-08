@@ -188,6 +188,7 @@ def month_looper(frame):
     while i < length:
         days_list.append(str(i))
         i = i + 1
+    print(days_list)
     return(days_list)
 
 # This function is supposed to remove the rows which correspond to sites that are not reliable. It is not yet ready.
