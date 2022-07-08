@@ -132,48 +132,36 @@ def except_logic(pdseries):
     This is the function to look at later when I want to add the site names.
     """
     numeric_list = []
-    print(pdseries)
     a = 1
     length = len(pdseries)
-    print(numeric_list)
-    maximum_list = []
     while a < length: # a here is a shorthand variable for the site number positionally along the index
         measured_ozone = pdseries[a]
         str_ozone = str(measured_ozone)
         if str_ozone.isdigit():
-#           print("The site is " + "and the measurement is " + str_ozone)
            numeric_list.append(pdseries[a])
            a = a + 1
         else:
-#            print(str(measured_ozone.index) + " did not have a numeric this day at this site") # I think this line is gonna be buggy later
-#            print(numeric_list)
             a = a + 1
     else: 
         try:
-            print(numeric_list)
             maximum = max(numeric_list)
-            maximum_list.append(maximum)
             
         except ValueError:
             maximum = ("NaN")
-    print(maximum_list)
-    print("The max of this day is " + str(maximum))
+#    print("The max of this day is " + str(maximum))
     return(maximum)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
     i = 0
-    max_list = []
-    print(len(date_indices))
-    print(date_indices)
-#    while i < len(date_indices): # For the sake of debugging, we are going to change this
-    while i < 1:
+    max_df = pd.DataFrame(index = ["date", "max D8HO"])
+    while i < len(date_indices): # For the sake of debugging, we are going to change this
         x = date_indices[i] # This gives us the day of the month as a string.
         column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
-        max_list = except_logic(column)
+        #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
+        max_df = pd.concat([max_df, pd.Series(data = [x, except_logic(column)], index = ["date", "max D8HO"])], axis = 1)
         i = i + 1
-    print(max_list)
-    return(max_list)
+    return(max_df)
 
 # This makes sure the column headers are correct in the DataFrames
 def column_headers(framelist):
@@ -321,29 +309,33 @@ def ozone_parser(df_list, month_set):
         month_maxes = max_finder(df, cols)
         print(month_maxes)
         print(type(month_maxes))
-        maxes_series = pd.DataFrame(month_maxes)
-        print(maxes_series)
-        maxes_series.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
+        maxes_series = pd.DataFrame(month_maxes) # Commenting out all the maxes_series things, seems to be important but need to fix it
+        """
+        Sorry. Hold on. Why not just return a DataFrame from max_finder?
+        """
+
+#        print(maxes_series)
+#        maxes_series.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
         
-        maxes_series.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
+#        maxes_series.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
         
-        maxes_series.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
+#        maxes_series.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
         
-        monthly_series.append(maxes_series)
+#        monthly_series.append(maxes_series)
         """
         These print statements are currently important.
         """        
 
 
 #        print(output_df)
-        print(maxes_series)
-        output_df = pd.concat([output_df, maxes_series])
+#        print(maxes_series)
+#        output_df = pd.concat([output_df, maxes_series])
 
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
         
     else:
-        ozone_maxdf = pd.concat(monthly_series, axis = 1)
+#        ozone_maxdf = pd.concat(monthly_series, axis = 1)
 
 #        print(ozone_maxdf)
         return("ozone_maxdf") # Made string to simplify reading for testing
