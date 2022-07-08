@@ -279,7 +279,7 @@ def ozone_parser(df_list, month_set):
         x = 0
         while x < len(good_sites):
             rowname = good_sites[x]
-            print(rowname)
+#            print(rowname)
             site_list = df['Monitoring_Site']
             badrow_remover(good_sites, badrows, site_list)
             cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
@@ -300,7 +300,7 @@ def ozone_parser(df_list, month_set):
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
-        print(maxes_series)
+#        print(maxes_series)
         monthly_series.append(maxes_series)
 #        print(output_df)
 #        print(maxes_series)
