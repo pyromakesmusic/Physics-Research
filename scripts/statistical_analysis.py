@@ -38,6 +38,14 @@ FUNCTION DEFINITIONS
 def histo_builder(df):
     return(True)
 
+def cluster_plotter(df):
+    return(True)
+
+def year_overyearplotter(df:):
+    return(True)
+
+def month_bymonthplotter(df):
+    return(True)
 
 """
 MAIN FUNCTION CALLS
@@ -53,9 +61,8 @@ with open(source_filepath) as source:
     
     print(data.describe())
     
-    plt.hist(data['max D8HO'])
-
-
+#    plt.hist(data['max D8HO'], bins = 30)
+    data.hist(column = 'datestring', by = 'cluster')
 """
 FILE OUTPUT
 """
