@@ -157,6 +157,7 @@ def max_finder(df, date_indices):
         numeric_entries = []
         max_list = except_logic(numeric_entries, column)
         i = i + 1
+    print(max_list)
     return(max_list)
 
 # This makes sure the column headers are correct in the DataFrames
@@ -302,6 +303,7 @@ def ozone_parser(df_list, month_set):
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
+        print(maxes_series)
         maxes_series.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
         
         maxes_series.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
@@ -315,8 +317,8 @@ def ozone_parser(df_list, month_set):
 
 
 #        print(output_df)
-#        print(maxes_series)
-        output_df = pd.concat([label_row, output_df, maxes_series], axis = 1)
+        print(maxes_series)
+        output_df = pd.concat([output_df, maxes_series])
 
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
