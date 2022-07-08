@@ -232,17 +232,15 @@ def label_sep(df, i):
     Should take a dataframe and an index and return the row sliced at that
     index as a series.
     """
-    x = df[0:1]
+    year = df.loc['year'].iloc[i]
 #    print(type(x))
-    y = df[1:2]
+    month = df.loc['month'].iloc[i]
 #    print(type(y))
-    z = df[2:3]
+    filename = df.loc['filename'].iloc[i]
 #    print(type(z))
+    label_df = pd.DataFrame(data = [year, month, filename]).T
     
-    print(df.loc['year'].iloc[i])
-    print(df.loc['month'].iloc[i])
-    print(df.loc['filename'].iloc[i])
-    return("Empty")
+    return(label_df)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
@@ -272,8 +270,8 @@ def ozone_parser(df_list, month_set):
         filename = filenames[i]
         """
         
-#        label_list = [year, month, filename]
-#        print(label_list)
+        label_list = label_sep(month_set, i)
+        print(label_list)
         
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -358,11 +356,13 @@ print(x.iloc[0])
 print(x.iloc[1])
 """
 
-labels = label_sep(month_df, 0)
-
+#labels = label_sep(month_df, 0)
+#print(labels)
 
 # This is going to get the max for every month and make a file out of it.
 # It should probably also remove the bad rows first
+print(month_df)
+print(label_sep(month_df, 0))
 #ozone_parser(df_set, month_df)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
