@@ -263,8 +263,8 @@ def ozone_parser(df_list, month_set):
     
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
-#    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
-    while i < 1:
+    while i < len(df_list): # For the sake of debugging we're going to write this a different way:
+#    while i < 1:
         df = df_list[i]
         """
         print(month_set)
@@ -306,22 +306,17 @@ def ozone_parser(df_list, month_set):
         
         
         cols = month_looper(df)
-        month_maxes = max_finder(df, cols)
+        month_maxes = max_finder(df, cols).T
         print(month_maxes)
-        print(type(month_maxes))
-        maxes_series = pd.DataFrame(month_maxes) # Commenting out all the maxes_series things, seems to be important but need to fix it
-        """
-        Sorry. Hold on. Why not just return a DataFrame from max_finder?
-        """
 
-#        print(maxes_series)
-#        maxes_series.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
+        month_maxes.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
         
-#        maxes_series.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
+        month_maxes.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
         
-#        maxes_series.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
+        month_maxes.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
         
-#        monthly_series.append(maxes_series)
+        monthly_series.append(month_maxes)
+        print(month_maxes)
         """
         These print statements are currently important.
         """        
@@ -335,10 +330,10 @@ def ozone_parser(df_list, month_set):
         i = i + 1
         
     else:
-#        ozone_maxdf = pd.concat(monthly_series, axis = 1)
-
-#        print(ozone_maxdf)
-        return("ozone_maxdf") # Made string to simplify reading for testing
+        print(monthly_series)
+        output_df = pd.concat(monthly_series, axis = 1)
+        print(output_df)
+        return(monthly_series) # Made string to simplify reading for testing
 
 """
 MAIN
