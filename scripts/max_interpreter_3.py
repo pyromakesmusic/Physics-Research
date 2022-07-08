@@ -25,6 +25,9 @@ CONFIG
 output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_outputs"
 source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
+
+output_filename = "july_8_test.csv"
+
 pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
@@ -307,7 +310,7 @@ def ozone_parser(df_list, month_set):
         
         cols = month_looper(df)
         month_maxes = max_finder(df, cols).T
-        print(month_maxes)
+#        print(month_maxes)
 
         month_maxes.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
         
@@ -330,10 +333,9 @@ def ozone_parser(df_list, month_set):
         i = i + 1
         
     else:
-        print(monthly_series)
-        output_df = pd.concat(monthly_series, axis = 1)
+        output_df = output_df.join(monthly_series)
         print(output_df)
-        return(monthly_series) # Made string to simplify reading for testing
+        return(output_df) # Made string to simplify reading for testing
 
 """
 MAIN
@@ -384,7 +386,11 @@ print(x.iloc[1])
 # It should probably also remove the bad rows first
 #print(month_df)
 #print(label_sep(month_df, 0))
-ozone_parser(df_set, month_df)
+final = ozone_parser(df_set, month_df)
+
+final.reset_index(drop = True)
+
+final.to_csv(output_filename)
 """
 Need to clean out the bad rows and get the max for the whole dataset. Then error check, then start getting the histograms going.
 """
