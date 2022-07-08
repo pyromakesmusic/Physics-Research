@@ -274,7 +274,6 @@ def ozone_parser(df_list, month_set):
         """
         
         label_row = label_sep(month_set, i)
-        print(label_row)
         
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -303,7 +302,12 @@ def ozone_parser(df_list, month_set):
         cols = month_looper(df)
         month_maxes = max_finder(df, cols)
         maxes_series = pd.DataFrame(month_maxes)
-
+        maxes_series.insert(0, label_row['year'], label_row['year'], allow_duplicates=True)
+        
+        maxes_series.insert(1, label_row['month'], label_row['month'], allow_duplicates=True)
+        
+        maxes_series.insert(2, label_row['filename'], label_row['filename'], allow_duplicates=True)
+        
         monthly_series.append(maxes_series)
         """
         These print statements are currently important.
@@ -313,7 +317,7 @@ def ozone_parser(df_list, month_set):
 #        print(output_df)
 #        print(maxes_series)
         output_df = pd.concat([label_row, output_df, maxes_series], axis = 1)
-        print(output_df)
+
         new_row = ["This string should be replaced by the time columns", output_df]
         i = i + 1
         
