@@ -136,9 +136,10 @@ def except_logic(pdseries):
     Takes a column of information about one site and WANTS TO return the maximum daily 8 hour ozone, plus the site location at which it was measured.
     HERE BE BUGS
     """
-    print(pdseries.dtype)
+    number_series = pdseries.max(skipna=True)
+    print(number_series)
 #    print("The max of this day is " + str(maximum))
-    return(None)
+    return(number_series)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
