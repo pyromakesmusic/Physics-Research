@@ -26,7 +26,7 @@ output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_ou
 source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
 
-output_filename = "july_8_test.csv"
+output_filename = "july_8_test_version2.csv"
 
 pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
@@ -133,26 +133,12 @@ def directory_looper(input_list):
 def except_logic(pdseries):
     """
     This is the function to look at later when I want to add the site names.
+    Takes a column of information about one site and WANTS TO return the maximum daily 8 hour ozone, plus the site location at which it was measured.
+    HERE BE BUGS
     """
-    numeric_list = []
-    a = 1
-    length = len(pdseries)
-    while a < length: # a here is a shorthand variable for the site number positionally along the index
-        measured_ozone = pdseries[a]
-        str_ozone = str(measured_ozone)
-        if str_ozone.isdigit():
-           numeric_list.append(pdseries[a])
-           a = a + 1
-        else:
-            a = a + 1
-    else: 
-        try:
-            maximum = max(numeric_list)
-            
-        except ValueError:
-            maximum = ("NaN")
+    print(pdseries.dtype)
 #    print("The max of this day is " + str(maximum))
-    return(maximum)
+    return(None)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
@@ -257,8 +243,8 @@ def label_sep(df, i):
 def ozone_parser(df_list, month_set):
     i = 0
     monthly_series = pd.DataFrame(index = ["year", "month", "day", "max D8HO"])
-    print(monthly_series.shape)
-    print(monthly_series)
+#    print(monthly_series.shape)
+#    print(monthly_series)
     monthly_series = monthly_series.T
     month_set = month_set.T
     
@@ -288,17 +274,17 @@ def ozone_parser(df_list, month_set):
         
         cols = month_looper(df)
         month_maxes = max_finder(df, cols).T
-        print(month_maxes)
+#        print(month_maxes)
 
         month_maxes.insert(0, 'year', label_row['year'], allow_duplicates=True)
         
         month_maxes.insert(1, 'month', label_row['month'], allow_duplicates=True)
         
         month_maxes.insert(2, 'month_string', label_row['filename'], allow_duplicates=True)
-        print(month_maxes.shape)
-        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
+#        print(month_maxes.shape)
+#        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
         monthly_series = pd.concat([monthly_series, month_maxes])
-        print(monthly_series)
+#        print(monthly_series)
         
         i = i + 1
         
