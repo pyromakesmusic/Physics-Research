@@ -136,10 +136,13 @@ def except_logic(pdseries):
     Takes a column of information about one site and WANTS TO return the maximum daily 8 hour ozone, plus the site location at which it was measured.
     HERE BE BUGS
     """
-    number_series = pdseries.max(skipna=True)
-    print(number_series)
+    number_series = pd.to_numeric(pdseries, errors = 'coerce')
+#    print(number_series)
+    maximum = number_series.max()
+    max_index = number_series.idxmax()
+#    print(maximum, max_index)
 #    print("The max of this day is " + str(maximum))
-    return(number_series)
+    return(maximum, max_index)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
@@ -151,6 +154,7 @@ def max_finder(df, date_indices):
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
         max_df = pd.concat([max_df, pd.Series(data = [x, except_logic(column)], index = ["day", "max D8HO"])], axis = 1)
         i = i + 1
+    print(max_df)
     return(max_df)
 
 # This makes sure the column headers are correct in the DataFrames
@@ -255,6 +259,7 @@ def ozone_parser(df_list, month_set):
 #    while i < 7:
         df = df_list[i]
         label_row = label_sep(month_set, i)
+        print(label_row)
 #        print("The label for the row is " + str(label_row))
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -332,7 +337,7 @@ final = ozone_parser(df_set, month_df)
 
 
 final.reset_index(drop = True) # This wants final to be a dataframe
-print(final)
+
 
 final.to_csv(output_filename)
 
