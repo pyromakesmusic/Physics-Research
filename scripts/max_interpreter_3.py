@@ -142,7 +142,8 @@ def except_logic(pdseries):
     max_index = number_series.idxmax()
 #    print(maximum, max_index)
 #    print("The max of this day is " + str(maximum))
-    return(maximum, max_index)
+    return_list = [maximum, max_index]
+    return(return_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices):
@@ -152,9 +153,10 @@ def max_finder(df, date_indices):
         x = date_indices[i] # This gives us the day of the month as a string.
         column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
-        max_df = pd.concat([max_df, pd.Series(data = [x, except_logic(column)], index = ["day", "max D8HO"])], axis = 1)
+        max_df = max_df.join(x)
+        max_df = max_df.join(except_logic(column))
         i = i + 1
-    print(max_df)
+    print(max_df.T)
     return(max_df)
 
 # This makes sure the column headers are correct in the DataFrames
@@ -279,6 +281,7 @@ def ozone_parser(df_list, month_set):
         
         
         cols = month_looper(df)
+        print(cols)
         month_maxes = max_finder(df, cols).T
 #        print(month_maxes)
 
@@ -289,12 +292,13 @@ def ozone_parser(df_list, month_set):
         month_maxes.insert(2, 'month_string', label_row['filename'], allow_duplicates=True)
 #        print(month_maxes.shape)
 #        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
-        monthly_series = pd.concat([monthly_series, month_maxes])
+        monthly_series = monthly_series.join(month_maxes, how ='outer', rsuffix="_r")
 #        print(monthly_series)
         
         i = i + 1
         
     else:
+        print(monthly_series)
         return(monthly_series) # Made string to simplify reading for testing
 
 """
