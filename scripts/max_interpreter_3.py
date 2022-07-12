@@ -27,7 +27,7 @@ output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_ou
 source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
 
-output_filename = "july_8_test_version2.csv"
+output_filename = "july_8_test_version4.csv"
 
 pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
@@ -257,7 +257,7 @@ def label_sep(df, i):
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
     i = 0
-    monthly_series = pd.DataFrame(index = ["year", "month", "day", "max D8HO"])
+    monthly_series = pd.DataFrame(index = ["maximum", "site", "date"])
 #    print(monthly_series.shape)
 #    print(monthly_series)
     monthly_series = monthly_series.T
@@ -291,12 +291,6 @@ def ozone_parser(df_list, month_set):
         month_maxes = max_finder(df, cols, label_row).T
         print(month_maxes.shape)
 #        print(month_maxes)
-
-        month_maxes.insert(0, 'year', label_row['year'], allow_duplicates=True)
-        
-        month_maxes.insert(1, 'month', label_row['month'], allow_duplicates=True)
-        
-        month_maxes.insert(2, 'month_string', label_row['filename'], allow_duplicates=True)
 #        print(month_maxes.shape)
 #        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
         monthly_series = month_list.append(month_maxes)
@@ -306,7 +300,6 @@ def ozone_parser(df_list, month_set):
         
     else:
         print(month_list)
-        print(len(month_list))
         final_df=pd.concat(month_list, axis=1)
         print(final_df)
         return(final_df) # Made string to simplify reading for testing
