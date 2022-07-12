@@ -153,14 +153,17 @@ def max_finder(df, date_indices, date_df):
     i = 0
     max_df = pd.DataFrame(index = ["day", "max D8HO"])
     while i < len(date_indices): # For the sake of debugging, we are going to change this
-        x = date_indices[i] # This gives us the day of the month as a string.
-        column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
+        day = date_indices[i] # This gives us the day of the month as a string.
+        year = date_df['year']
+        month = date_df['month']
+        date_index = pd.Timestamp(year=int(year), month=int(month), day=int(day))
+        print(date_index)
+        column = df[day] # This gives us the column of ozone measurements corresponding to that day.
         print(except_logic(column))
         daily_max = except_logic(column)
-        daily_max.apply(lambda x: datetime.date(date_df['year'], date_df['month'], date_indices[i]), axis = 1)
         print(daily_max)
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
-        max_df = max_df.join(x)
+        max_df = max_df.join(day)
         max_df = max_df.join(except_logic(column))
         print(max_df)
         i = i + 1
