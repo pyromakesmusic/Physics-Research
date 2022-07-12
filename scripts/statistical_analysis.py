@@ -17,7 +17,7 @@ import ast
 """
 CONFIG
 """
-source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\scripts\\july_8_test_version6.csv"
+source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\july_8_test_version6.xlsx"
 
 
 pd.options.display.width = 0
@@ -51,15 +51,17 @@ def month_bymonthplotter(df):
 MAIN FUNCTION CALLS
 """
 with open(source_filepath) as source:
-    data = pd.read_csv(source_filepath)
+    data = pd.read_excel(source_filepath)
     print("Hello World")
     print(data)
-    data = data.iloc[: , :-1]
-    print(data)
-    data.drop(data.tail(1).index, inplace = True)
-    print(data)
-    
+    print(data.keys())
     print(data.describe())
+    data.groupby(by="cluster")
+    print(data)
+    print(data.describe())
+    
+    print(data.index)
+    print(data.columns)
     
     plt.hist(data['maximum'], bins = 30)
 #    data.hist(column = 'datestring', by = 'cluster')
