@@ -18,6 +18,7 @@ import csv
 from mpl_toolkits import mplot3d
 import ast
 from calendar import monthrange # Probably don't need this
+import datetime
 
 """
 CONFIG
@@ -143,18 +144,25 @@ def except_logic(pdseries):
 #    print(maximum, max_index)
 #    print("The max of this day is " + str(maximum))
     return_list = [maximum, max_index]
-    return(return_list)
+    return_df = pd.DataFrame(data=return_list)
+    return(return_df)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
-def max_finder(df, date_indices):
+def max_finder(df, date_indices, date_df):
+    print(date_df)
     i = 0
     max_df = pd.DataFrame(index = ["day", "max D8HO"])
     while i < len(date_indices): # For the sake of debugging, we are going to change this
         x = date_indices[i] # This gives us the day of the month as a string.
         column = (df[x]) # This gives us the column of ozone measurements corresponding to that day.
+        print(except_logic(column))
+        daily_max = except_logic(column)
+        daily_max.apply(lambda x: datetime.date(date_df['year'], date_df['month'], date_indices[i]), axis = 1)
+        print(daily_max)
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
         max_df = max_df.join(x)
         max_df = max_df.join(except_logic(column))
+        print(max_df)
         i = i + 1
     print(max_df.T)
     return(max_df)
@@ -282,7 +290,8 @@ def ozone_parser(df_list, month_set):
         
         cols = month_looper(df)
         print(cols)
-        month_maxes = max_finder(df, cols).T
+        print(type(cols))
+        month_maxes = max_finder(df, cols, label_row).T
 #        print(month_maxes)
 
         month_maxes.insert(0, 'year', label_row['year'], allow_duplicates=True)
