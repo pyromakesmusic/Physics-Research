@@ -131,7 +131,7 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-def except_logic(pdseries, datelabel):
+def dailymax_logic(pdseries, datelabel):
     """
     This is the function to look at later when I want to add the site names.
     Takes a column of information about one site and WANTS TO return the maximum daily 8 hour ozone, plus the site location at which it was measured.
@@ -144,32 +144,27 @@ def except_logic(pdseries, datelabel):
 #    print(maximum, max_index)
 #    print("The max of this day is " + str(maximum))
     return_list = [maximum, max_index, datelabel]
-    return_df = pd.DataFrame(data=return_list,index=["maximum", "site", "datetime"])
+    return_df = pd.DataFrame(data=return_list,index=["maximum", "site", "date"])
     return(return_df)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
 def max_finder(df, date_indices, date_df):
-    print(date_df)
     i = 0
-    max_df = pd.DataFrame(index = ["day", "max D8HO"])
+    max_list = []
     while i < len(date_indices): # For the sake of debugging, we are going to change this
         day = date_indices[i] # This gives us the day of the month as a string.
         year = date_df['year']
         month = date_df['month']
         date_index = pd.Timestamp(year=int(year), month=int(month), day=int(day))
-        print(date_index)
         column = df[day] # This gives us the column of ozone measurements corresponding to that day.
-        print(except_logic(column, date_index))
-        daily_max = except_logic(column, date_index)
-        print(daily_max.index)
-        
-        daily_max['datetime'] = date_index
-        print(daily_max)
+        daily_max = dailymax_logic(column, date_index)
+        print(type(max_list))
+        max_list.append(daily_max)
+        print(type(max_list))
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
-        max_df = max_df.merge(except_logic(column, date_df), how="outer")
-        print(max_df)
+#        max_df = max_df.merge(except_logic(column, date_df), how="outer", on="date")
         i = i + 1
-    print(max_df.T)
+    max_df = pd.concat(max_list)
     return(max_df)
 
 # This makes sure the column headers are correct in the DataFrames
@@ -267,14 +262,13 @@ def ozone_parser(df_list, month_set):
 #    print(monthly_series)
     monthly_series = monthly_series.T
     month_set = month_set.T
-    
+    month_list=[monthly_series]
     # This is saying the program will loop through once for each DataFrame in
     # the set and perform the "else" logic when it is done.
     while i < len(df_list): # For the sake of debugging we're going to write this a different way:
 #    while i < 7:
         df = df_list[i]
         label_row = label_sep(month_set, i)
-        print(label_row)
 #        print("The label for the row is " + str(label_row))
         # This gets me a list of the rows I don't want.
         badrows = badrow_getter(df['Monitoring_Site'], df)
@@ -294,9 +288,8 @@ def ozone_parser(df_list, month_set):
         
         
         cols = month_looper(df)
-        print(cols)
-        print(type(cols))
         month_maxes = max_finder(df, cols, label_row).T
+        print(month_maxes.shape)
 #        print(month_maxes)
 
         month_maxes.insert(0, 'year', label_row['year'], allow_duplicates=True)
@@ -306,14 +299,17 @@ def ozone_parser(df_list, month_set):
         month_maxes.insert(2, 'month_string', label_row['filename'], allow_duplicates=True)
 #        print(month_maxes.shape)
 #        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
-        monthly_series = monthly_series.join(month_maxes, how ='outer', rsuffix="_r")
+        monthly_series = month_list.append(month_maxes)
 #        print(monthly_series)
         
         i = i + 1
         
     else:
-        print(monthly_series)
-        return(monthly_series) # Made string to simplify reading for testing
+        print(month_list)
+        print(len(month_list))
+        final_df=pd.concat(month_list, axis=1)
+        print(final_df)
+        return(final_df) # Made string to simplify reading for testing
 
 """
 MAIN
@@ -354,7 +350,6 @@ final = ozone_parser(df_set, month_df)
 
 
 
-final.reset_index(drop = True) # This wants final to be a dataframe
 
 
 final.to_csv(output_filename)
