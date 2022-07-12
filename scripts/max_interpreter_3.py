@@ -131,7 +131,7 @@ def directory_looper(input_list):
     else:
         return(list_of_dataframes)
 
-def except_logic(pdseries):
+def except_logic(pdseries, datelabel):
     """
     This is the function to look at later when I want to add the site names.
     Takes a column of information about one site and WANTS TO return the maximum daily 8 hour ozone, plus the site location at which it was measured.
@@ -143,8 +143,8 @@ def except_logic(pdseries):
     max_index = number_series.idxmax()
 #    print(maximum, max_index)
 #    print("The max of this day is " + str(maximum))
-    return_list = [maximum, max_index]
-    return_df = pd.DataFrame(data=return_list)
+    return_list = [maximum, max_index, datelabel]
+    return_df = pd.DataFrame(data=return_list,index=["maximum", "site", "datetime"])
     return(return_df)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
@@ -159,12 +159,14 @@ def max_finder(df, date_indices, date_df):
         date_index = pd.Timestamp(year=int(year), month=int(month), day=int(day))
         print(date_index)
         column = df[day] # This gives us the column of ozone measurements corresponding to that day.
-        print(except_logic(column))
-        daily_max = except_logic(column)
+        print(except_logic(column, date_index))
+        daily_max = except_logic(column, date_index)
+        print(daily_max.index)
+        
+        daily_max['datetime'] = date_index
         print(daily_max)
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
-        max_df = max_df.join(day)
-        max_df = max_df.join(except_logic(column))
+        max_df = max_df.merge(except_logic(column, date_df), how="outer")
         print(max_df)
         i = i + 1
     print(max_df.T)
