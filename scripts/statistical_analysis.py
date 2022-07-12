@@ -17,7 +17,7 @@ import ast
 """
 CONFIG
 """
-source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\SOM_cluster_augmented_2.csv"
+source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\scripts\\july_8_test_version6.csv"
 
 
 pd.options.display.width = 0
@@ -41,7 +41,7 @@ def histo_builder(df):
 def cluster_plotter(df):
     return(True)
 
-def year_overyearplotter(df:):
+def year_overyearplotter(df):
     return(True)
 
 def month_bymonthplotter(df):
@@ -61,8 +61,8 @@ with open(source_filepath) as source:
     
     print(data.describe())
     
-#    plt.hist(data['max D8HO'], bins = 30)
-    data.hist(column = 'datestring', by = 'cluster')
+    plt.hist(data['maximum'], bins = 30)
+#    data.hist(column = 'datestring', by = 'cluster')
 """
 FILE OUTPUT
 """

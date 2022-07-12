@@ -27,7 +27,7 @@ output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_ou
 source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
 
-output_filename = "july_8_test_version4.csv"
+output_filename = "july_8_test_version6.csv"
 
 pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
@@ -143,14 +143,14 @@ def dailymax_logic(pdseries, datelabel):
     max_index = number_series.idxmax()
 #    print(maximum, max_index)
 #    print("The max of this day is " + str(maximum))
-    return_list = [maximum, max_index, datelabel]
-    return_df = pd.DataFrame(data=return_list,index=["maximum", "site", "date"])
-    return(return_df)
+    return_list = [datelabel, maximum, max_index]
+    return(return_list)
 
 # Returns a list of the max daily 8 hour ozone measurements for a month
-def max_finder(df, date_indices, date_df):
+def monthmax_finder(df, date_indices, date_df):
     i = 0
     max_list = []
+    max_df = pd.DataFrame()
     while i < len(date_indices): # For the sake of debugging, we are going to change this
         day = date_indices[i] # This gives us the day of the month as a string.
         year = date_df['year']
@@ -158,13 +158,12 @@ def max_finder(df, date_indices, date_df):
         date_index = pd.Timestamp(year=int(year), month=int(month), day=int(day))
         column = df[day] # This gives us the column of ozone measurements corresponding to that day.
         daily_max = dailymax_logic(column, date_index)
-        print(type(max_list))
-        max_list.append(daily_max)
-        print(type(max_list))
         #max_list.append(except_logic(column)) # I need to change this into the dataframe equivalent of the same thing: max_list.append(except_logic(column))
-#        max_df = max_df.merge(except_logic(column, date_df), how="outer", on="date")
+        max_list.append(daily_max)
         i = i + 1
-    max_df = pd.concat(max_list)
+    print(max_list)
+    max_df = pd.DataFrame(max_list, columns = ["date", "maximum", "site"])
+    print(max_df)
     return(max_df)
 
 # This makes sure the column headers are correct in the DataFrames
@@ -257,7 +256,7 @@ def label_sep(df, i):
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
     i = 0
-    monthly_series = pd.DataFrame(index = ["maximum", "site", "date"])
+    monthly_series = pd.DataFrame()
 #    print(monthly_series.shape)
 #    print(monthly_series)
     monthly_series = monthly_series.T
@@ -281,26 +280,23 @@ def ozone_parser(df_list, month_set):
             
             x = x + 1
         else:
-            x = x + 1
-        
-
-
-        
-        
+            print("Bad rows removed")
+              
         cols = month_looper(df)
-        month_maxes = max_finder(df, cols, label_row).T
+        month_maxes = monthmax_finder(df, cols, label_row)
         print(month_maxes.shape)
 #        print(month_maxes)
 #        print(month_maxes.shape)
 #        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
-        monthly_series = month_list.append(month_maxes)
+        month_list.append(month_maxes)
 #        print(monthly_series)
         
         i = i + 1
         
     else:
-        print(month_list)
-        final_df=pd.concat(month_list, axis=1)
+        for i in month_list:
+            print(len(i))
+        final_df=pd.concat(month_list)
         print(final_df)
         return(final_df) # Made string to simplify reading for testing
 
@@ -331,19 +327,7 @@ column_headers(df_set)
 row_headers(df_set)
 
 
-
-#labels = label_sep(month_df, 0)
-#print(labels)
-
-# This is going to get the max for every month and make a file out of it.
-# It should probably also remove the bad rows first
-#print(month_df)
-#print(label_sep(month_df, 0))
 final = ozone_parser(df_set, month_df)
-
-
-
-
 
 final.to_csv(output_filename)
 
