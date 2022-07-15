@@ -36,7 +36,7 @@ GLOBAL VARIABLES
 FUNCTION DEFINITIONS
 """
 def histo_builder(df, x, y):
-    hist = df.hist(column="maximum", figsize=(6,5), xlabel=x, ylabel=y)
+    hist = df.hist(column="maximum", figsize=(6,5))
     return(hist)
 
 def cluster_plotter(df):
@@ -82,9 +82,9 @@ with open(source_filepath) as source:
     
 #    data.hist(column = 'datestring', by = 'cluster')
 print("first by cluster")
-cluster_plotter(data)
+#cluster_plotter(data)
 print("now the months")
-month_bymonthplotter(data)
+#month_bymonthplotter(data)
 print("and finally years")
 year_overyearplotter(data)
 """
