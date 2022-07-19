@@ -223,15 +223,15 @@ def label_sep(df, i):
 
 def site_cleaner(input_df, whitelist):
     dimensions = input_df.shape
+    whitelist_df = pd.DataFrame(data=whitelist)
     print(dimensions)
+    sites_number = dimensions[0]
+    site_names = input_df['Monitoring_Site']
     i = 0
-    while i < dimensions[0]:
-        if input_df.iloc[i].index in whitelist:
-            print("Yes!")
-            i = i + 1
-        else:
-            print("No :(")
-            i = i + 1
+    while i < sites_number:
+        single_site = site_names.iloc[i]
+        print(type(single_site))
+        i = i + 1
     output_df = input_df
     
     return(output_df)
