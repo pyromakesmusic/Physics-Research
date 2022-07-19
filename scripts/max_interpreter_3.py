@@ -197,42 +197,11 @@ def month_looper(frame):
 #    print(days_list)
     return(days_list)
 
-# This function is supposed to remove the rows which correspond to sites that are not reliable. It is not yet ready.
-def badrow_getter(df_column, frame):
-    i = 1
-    drop_rows = []
-    while i < len(df_column):
-        if df_column[i] not in good_sites:
-            drop_rows.append(i)
-            i = i + 1
-        else:
-            i = i + 1
-#    frame.drop(labels = drop_rows, axis = 0)
-    return(drop_rows)
-
 # This gets the maxes for a month and gives back a pandas Series
 def column_looper(str_list, input_df):
     max_list = monthmax_finder(input_df, str_list)
     max_series = pd.Series(max_list)
     return(max_series)
-
-def badrow_remover(clean_sitelist, bad_rowlist, df):
-    '''
-    Takes a list of good sites, a list of indexes of bad rows, and a dataframe
-    and drops the bad rows from the dataframe, returning the good one.
-    '''
-    d = 1
-    while d < len(df.shape):
-        site_name = str(df[d])
-        if (site_name in clean_sitelist):
-#            print(site_name)
-            d = d + 1
-        else:
-            df.drop(index = site_name)
-            d = d + 1   
-    else:
-        output_df = df
-    return(output_df)
 
 def label_sep(df, i):
     """
@@ -252,6 +221,21 @@ def label_sep(df, i):
     
     return(output)
 
+def site_cleaner(input_df, whitelist):
+    dimensions = input_df.shape
+    print(dimensions)
+    i = 0
+    while i < dimensions[0]:
+        if input_df.iloc[i].index in whitelist:
+            print("Yes!")
+            i = i + 1
+        else:
+            print("No :(")
+            i = i + 1
+    output_df = input_df
+    
+    return(output_df)
+
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
 def ozone_parser(df_list, month_set):
@@ -266,25 +250,15 @@ def ozone_parser(df_list, month_set):
     # the set and perform the "else" logic when it is done.
     while i < len(df_list): # For the sake of debugging we're going to write this a different way:
 #    while i < 7:
-        df = df_list[i]
-        label_row = label_sep(month_set, i)
+        df = df_list[i] # In a list of DataFrames of individual months, this gives me a single month
+        label_row = label_sep(month_set, i) # This is pulling the name of each month from the file name
 #        print("The label for the row is " + str(label_row))
         # This gets me a list of the rows I don't want.
-        badrows = badrow_getter(df['Monitoring_Site'], df)
-        x = 0
-        while x < len(good_sites):
-            rowname = good_sites[x]
-            site_list = df['Monitoring_Site']
-            badrow_remover(good_sites, badrows, site_list)
-            cleaned_rows = [z for z in site_list if site_list[x] in good_sites]
-            
-            x = x + 1
-        else:
-            print("Bad rows removed")
-              
-        cols = month_looper(df)
-        month_maxes = monthmax_finder(df, cols, label_row)
-        print(month_maxes.shape)
+# Should take the dataframe for one month, its label, and a list of good sites and return an edited dataframe with only the data from the good sites included
+        cleaned_df = site_cleaner(df, good_sites)
+        cols = month_looper(cleaned_df)
+        month_maxes = monthmax_finder(cleaned_df, cols, label_row)
+#        print(month_maxes.shape)
 #        print(month_maxes)
 #        print(month_maxes.shape)
 #        print(month_maxes) # Okay, this works, up to here, so we have to find a way to add this to a larger dataframe - and correctly.
@@ -294,11 +268,9 @@ def ozone_parser(df_list, month_set):
         i = i + 1
         
     else:
-        for i in month_list:
-            print(len(i))
+        print("Congratulations!")
         final_df=pd.concat(month_list)
-        print(final_df)
-        print(cleaned_rows)
+#        print(final_df)
         return(final_df) # Made string to simplify reading for testing
 
 """
@@ -331,6 +303,7 @@ row_headers(df_set)
 final = ozone_parser(df_set, month_df)
 
 final.to_csv(output_filename)
+
 
 """
 Need to clean out the bad rows. Then error check, then start getting the histograms going.
