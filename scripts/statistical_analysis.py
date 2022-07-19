@@ -17,7 +17,9 @@ import ast
 """
 CONFIG
 """
-source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\SOM_cluster_AUGMENTED3_july19.csv"
+ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\SOM_cluster_AUGMENTED3_july19.csv"
+windrun_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\data_210726.txt"
+moody_wind_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\wind_data_2010_2019_MOOT_C695.csv"
 
 
 pd.options.display.width = 0
@@ -47,6 +49,9 @@ def cluster_plotter(df):
         i = i + 1
     return(True)
 
+def site_plotter(df):
+    return(True)
+
 def year_overyearplotter(df):
     i = 2010
     while i < 2020:
@@ -67,8 +72,8 @@ def month_bymonthplotter(df):
 """
 MAIN FUNCTION CALLS
 """
-with open(source_filepath) as source:
-    data = pd.read_csv(source_filepath)
+with open(ozone_filepath) as ozone:
+    data = pd.read_csv(ozone_filepath)
     print("Hello World")
     print(data)
     print(data.keys())
@@ -87,6 +92,17 @@ print("now the months")
 #month_bymonthplotter(data)
 print("and finally years")
 year_overyearplotter(data)
+
+with open(windrun_filepath) as windrun:
+    windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
+    print(windrun_data)
+    print(windrun_data.index)
+    print(windrun_data.describe())
+    
+with open(moody_wind_filepath) as moody_wind:
+    moody_data = pd.read_csv(moody_wind_filepath)
+    print(moody_data)
+    print(moody_data.describe())
 """
 FILE OUTPUT
 """
