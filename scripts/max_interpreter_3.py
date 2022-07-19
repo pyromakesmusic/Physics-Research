@@ -27,7 +27,7 @@ output_filepath = "D:\#PERSONAL\#STEDWARDS\#Summer2022Research\\scripts\\file_ou
 source_filepath = "D:\\#PERSONAL\\#STEDWARDS\\#Summer2022Research\\monthly_ozone_data\\"
 # This file is 23 rows long.
 
-output_filename = "july_8_test_version6.csv"
+output_filename = "july_18_cleaned_v1.csv"
 
 pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
@@ -212,7 +212,7 @@ def badrow_getter(df_column, frame):
 
 # This gets the maxes for a month and gives back a pandas Series
 def column_looper(str_list, input_df):
-    max_list = max_finder(input_df, str_list)
+    max_list = monthmax_finder(input_df, str_list)
     max_series = pd.Series(max_list)
     return(max_series)
 
@@ -298,6 +298,7 @@ def ozone_parser(df_list, month_set):
             print(len(i))
         final_df=pd.concat(month_list)
         print(final_df)
+        print(cleaned_rows)
         return(final_df) # Made string to simplify reading for testing
 
 """
