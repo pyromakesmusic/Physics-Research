@@ -227,11 +227,8 @@ def site_cleaner(input_df, whitelist):
     print(dimensions)
     sites_number = dimensions[0]
     site_names = input_df['Monitoring_Site']
-    i = 0
-    while i < sites_number:
-        single_site = site_names.iloc[i]
-        print(type(single_site))
-        i = i + 1
+    good_sites = site_names.isin(whitelist)
+    print(good_sites)
     output_df = input_df
     
     return(output_df)
