@@ -17,7 +17,7 @@ import ast
 """
 CONFIG
 """
-source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\july_8_test_version6.xlsx"
+source_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\SOM_cluster_AUGMENTED3_july19.csv"
 
 
 pd.options.display.width = 0
@@ -68,7 +68,7 @@ def month_bymonthplotter(df):
 MAIN FUNCTION CALLS
 """
 with open(source_filepath) as source:
-    data = pd.read_excel(source_filepath)
+    data = pd.read_csv(source_filepath)
     print("Hello World")
     print(data)
     print(data.keys())
