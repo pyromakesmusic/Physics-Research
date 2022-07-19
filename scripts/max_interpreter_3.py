@@ -228,10 +228,11 @@ def site_cleaner(input_df, whitelist):
     sites_number = dimensions[0]
     site_names = input_df['Monitoring_Site']
     good_sites = site_names.isin(whitelist)
-    print(good_sites)
-    output_df = input_df
+    output_df = pd.DataFrame()
+    good_rows = input_df[good_sites]
+    print(good_rows)
     
-    return(output_df)
+    return(good_rows)
 
 # This takes a list of dataframes and returns a big DataFrame with all of the daily 8 hour maxes
 # The month_set argument is expecting the dataframe with the month data in it
@@ -267,7 +268,7 @@ def ozone_parser(df_list, month_set):
     else:
         print("Congratulations!")
         final_df=pd.concat(month_list)
-#        print(final_df)
+        print(final_df)
         return(final_df) # Made string to simplify reading for testing
 
 """
