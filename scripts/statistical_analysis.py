@@ -12,6 +12,7 @@ import math
 import string
 import csv
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 import matplotlib as mpl
 import ast
 
@@ -39,6 +40,11 @@ toplayer = mpl.figure.Figure()
 """
 FUNCTION DEFINITIONS
 """
+def improved_hist(df):
+    fig, ax = plt.subplots(4,4, sharex=True,sharey=True)
+    plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,120])
+    return(True)
+
 def exceedance_counter():
     # Takes something and returns number of exceedance days graphed on the screen
     return(True)
@@ -46,6 +52,7 @@ def exceedance_counter():
 def histo_builder(df, x, y, figure):
 #    axes = mpl.axes.Axes(fig=figure, rect=[0,0,5,5], xlim=(0,120), ylim=(0,50))
     hist = df.hist(column="maximum", figsize=(6,5), bins=[0,10,20,30,40,50,60,70,80,90,100,120], legend = True, xlabelsize=10, ylabelsize=10)
+
     return(hist)
 
 def cluster_plotter(df):
@@ -98,9 +105,7 @@ print("first by cluster")
 print("now the months")
 #month_bymonthplotter(data)
 print("and finally years")
-year_overyearplotter(data)
-
-
+#year_overyearplotter(data)
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
@@ -114,6 +119,8 @@ with open(moody_wind_filepath) as moody_wind:
     print(moody_data.describe())
 """
 
+
+improved_hist(data)
     
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
