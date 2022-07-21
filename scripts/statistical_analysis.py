@@ -41,12 +41,16 @@ toplayer = mpl.figure.Figure()
 FUNCTION DEFINITIONS
 """
 def improved_hist(df):
-    fig, ax = plt.subplots(4,4, sharex=True,sharey=True)
-    plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,120])
+    fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
+    plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,110,120,130], histtype="barstacked", align="mid", rwidth=.85, label="maximum daily 8 hour ozone")
     return(True)
 
-def exceedance_counter():
-    # Takes something and returns number of exceedance days graphed on the screen
+def exceedance_counter(df, time_unit):
+    # Takes a dataframe and period of time and returns number and percentage of exceedance days graphed on the screen, for that unit of time
+#    df.groupby(by="function", axis =1, dropna="True")
+    print(df.index)
+    print(df["maximum"])
+    print(df.columns)
     return(True)
 
 def histo_builder(df, x, y, figure):
@@ -122,6 +126,7 @@ with open(moody_wind_filepath) as moody_wind:
 
 improved_hist(data)
     
+exceedance_counter(data)
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
     bbox=dict(boxstyle="round",  facecolor='blue', alpha=0.3) )
