@@ -41,13 +41,15 @@ toplayer = mpl.figure.Figure()
 FUNCTION DEFINITIONS
 """
 def improved_hist(df):
+    # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
     plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,110,120,130], histtype="barstacked", align="mid", rwidth=.85, label="maximum daily 8 hour ozone")
+    df.gt(70) # Think I need dropna or ge rather than gt
     return(True)
 
 def exceedance_counter(df, time_unit):
     # Takes a dataframe and period of time and returns number and percentage of exceedance days graphed on the screen, for that unit of time
-#    df.groupby(by="function", axis =1, dropna="True")
+    df.groupby(by="cluster", axis =1, dropna="True")
     print(df.index)
     print(df["maximum"])
     print(df.columns)
@@ -55,6 +57,7 @@ def exceedance_counter(df, time_unit):
 
 def histo_builder(df, x, y, figure):
 #    axes = mpl.axes.Axes(fig=figure, rect=[0,0,5,5], xlim=(0,120), ylim=(0,50))
+# Maybe ready to be deprecated
     hist = df.hist(column="maximum", figsize=(6,5), bins=[0,10,20,30,40,50,60,70,80,90,100,120], legend = True, xlabelsize=10, ylabelsize=10)
 
     return(hist)
@@ -126,7 +129,7 @@ with open(moody_wind_filepath) as moody_wind:
 
 improved_hist(data)
     
-exceedance_counter(data)
+exceedance_counter(data, "year")
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
     bbox=dict(boxstyle="round",  facecolor='blue', alpha=0.3) )
