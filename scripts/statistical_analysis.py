@@ -69,7 +69,7 @@ def exceedance_counter(df, time_unit):
 #    print(masked["maximum"])
     return(True)
 
-def histo_builder(df, x, y, figure):
+def histo_builder(df, x, y):
 #    axes = mpl.axes.Axes(fig=figure, rect=[0,0,5,5], xlim=(0,120), ylim=(0,50))
 # Maybe ready to be deprecated
     hist = df.hist(column="maximum", figsize=(6,5), bins=[0,10,20,30,40,50,60,70,80,90,100,120], legend = True, xlabelsize=10, ylabelsize=10)
@@ -80,7 +80,7 @@ def cluster_plotter(df):
     i = 0
     while i < 16:
         cluster = df.loc[df['cluster'] == i]
-        graph = histo_builder(cluster, "maximum daily 8 hour ozone (ppb)", "number of days", toplayer)
+        graph = histo_builder(cluster, "maximum daily 8 hour ozone (ppb)", "number of days")
         plt.savefig("foo.pdf")
         i = i + 1
     
@@ -93,7 +93,7 @@ def year_overyearplotter(df):
     i = 2010
     while i < 2020:
         year = df.loc[df['year'] == i]
-        histo_builder(year, "maximum daily 8 hour ozone (ppb)", "number of days", toplayer)
+        histo_builder(year, "maximum daily 8 hour ozone (ppb)", "number of days")
         i = i + 1
     return(True)
 
@@ -101,7 +101,7 @@ def month_bymonthplotter(df):
     i = 6
     while i < 10:
         month = df.loc[df['month'] == i]
-        histo_builder(month, "maximum daily 8 hour ozone (ppb)", "number of days", toplayer)
+        histo_builder(month, "maximum daily 8 hour ozone (ppb)", "number of days")
         i = i + 1
     return(True)
 
@@ -128,7 +128,7 @@ print("first by cluster")
 print("now the months")
 #month_bymonthplotter(data)
 print("and finally years")
-#year_overyearplotter(data)
+year_overyearplotter(data)
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
