@@ -35,7 +35,7 @@ pd.set_option('display.max_colwidth', None)
 """
 GLOBAL VARIABLES
 """
-toplayer = mpl.figure.Figure()
+#toplayer = mpl.figure.Figure()
 
 """
 FUNCTION DEFINITIONS
@@ -50,6 +50,8 @@ def improved_hist(df):
 def time_separator(df, time_unit):
     grouped = df.groupby(by=time_unit, as_index=True, sort=True, group_keys=True)
     print(grouped)
+    print(len(grouped))
+    print(grouped.max())
     return(True)
 
 def exceedance_counter(df, time_unit):
@@ -64,7 +66,7 @@ def exceedance_counter(df, time_unit):
     masked = df[exceedance]
 #    print(masked)
 #    print(len(masked))
-    print(masked["maximum"])
+#    print(masked["maximum"])
     return(True)
 
 def histo_builder(df, x, y, figure):
@@ -78,8 +80,10 @@ def cluster_plotter(df):
     i = 0
     while i < 16:
         cluster = df.loc[df['cluster'] == i]
-        histo_builder(cluster, "maximum daily 8 hour ozone (ppb)", "number of days", toplayer)
+        graph = histo_builder(cluster, "maximum daily 8 hour ozone (ppb)", "number of days", toplayer)
+        plt.savefig("foo.pdf")
         i = i + 1
+    
     return(True)
 
 def site_plotter(df):
@@ -143,7 +147,12 @@ with open(moody_wind_filepath) as moody_wind:
     
 exceedance_counter(data, "year")
 
+time_separator(data, "month")
 time_separator(data, "year")
+time_separator(data, "cluster")
+time_separator(data, "site")
+
+#cluster_plotter(data)
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
     bbox=dict(boxstyle="round",  facecolor='blue', alpha=0.3) )
