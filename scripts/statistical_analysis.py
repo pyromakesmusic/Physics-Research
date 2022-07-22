@@ -47,18 +47,23 @@ def improved_hist(df):
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
     return(True)
 
+def time_separator(df, time_unit):
+    grouped = df.groupby(by=time_unit, as_index=True, sort=True, group_keys=True)
+    print(grouped)
+    return(True)
+
 def exceedance_counter(df, time_unit):
     # Takes a dataframe and period of time and returns number and percentage of exceedance days graphed on the screen, for that unit of time
     df.groupby(by="cluster", axis =1, dropna="True")
-    print(df.index)
-    print(df.columns)
+#    print(df.index)
+#    print(df.columns)
     maxes = df["maximum"]
-    print(maxes)
+#    print(maxes)
     exceedance = maxes.ge(71)
-    print(exceedance)
+#    print(exceedance)
     masked = df[exceedance]
-    print(masked)
-    print(len(masked))
+#    print(masked)
+#    print(len(masked))
     print(masked["maximum"])
     return(True)
 
@@ -102,16 +107,16 @@ MAIN FUNCTION CALLS
 """
 with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
-    print("Hello World")
-    print(data)
-    print(data.keys())
-    print(data.describe())
+#    print("Hello World")
+#    print(data)
+#    print(data.keys())
+#    print(data.describe())
     data.groupby(by="cluster")
-    print(data)
-    print(data.describe())
+#    print(data)
+#    print(data.describe())
     
-    print(data.index)
-    print(data.columns)
+#    print(data.index)
+#    print(data.columns)
     
 #    data.hist(column = 'datestring', by = 'cluster')
 print("first by cluster")
@@ -137,6 +142,8 @@ with open(moody_wind_filepath) as moody_wind:
 #improved_hist(data)
     
 exceedance_counter(data, "year")
+
+time_separator(data, "year")
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
     bbox=dict(boxstyle="round",  facecolor='blue', alpha=0.3) )
