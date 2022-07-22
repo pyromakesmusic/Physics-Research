@@ -44,15 +44,22 @@ def improved_hist(df):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
     plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,110,120,130], histtype="barstacked", align="mid", rwidth=.85, label="maximum daily 8 hour ozone")
-    df.gt(70) # Think I need dropna or ge rather than gt
+    dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
     return(True)
 
 def exceedance_counter(df, time_unit):
     # Takes a dataframe and period of time and returns number and percentage of exceedance days graphed on the screen, for that unit of time
     df.groupby(by="cluster", axis =1, dropna="True")
     print(df.index)
-    print(df["maximum"])
     print(df.columns)
+    maxes = df["maximum"]
+    print(maxes)
+    exceedance = maxes.ge(71)
+    print(exceedance)
+    masked = df[exceedance]
+    print(masked)
+    print(len(masked))
+    print(masked["maximum"])
     return(True)
 
 def histo_builder(df, x, y, figure):
@@ -127,7 +134,7 @@ with open(moody_wind_filepath) as moody_wind:
 """
 
 
-improved_hist(data)
+#improved_hist(data)
     
 exceedance_counter(data, "year")
 """    
