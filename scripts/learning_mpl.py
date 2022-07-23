@@ -61,6 +61,10 @@ window.resizable(width=True,height=True)
 window.columnconfigure([0,1,2,3],minsize=250)
 window.rowconfigure([0,1,2,3], minsize=100)
 
+# Labels
+path_label = tk.Label(window, text = "Output Path")
+stringprefix_label = tk.Label(window, text="String Prefix")
+
 # Buttons
 generate_button = tk.Button(text="Generate")
 animate_button = tk.Button(text="Animate")
@@ -68,7 +72,7 @@ animate_button = tk.Button(text="Animate")
 # Checkboxes
 var1=tk.IntVar()
 save_checkbox = tk.Checkbutton(window, text = "Save to File", variable=var1, onvalue=1, offvalue=0, command=save_to_file)
-save_checkbox.grid(row=1, column=3)
+
 
 # Textboxes
 output_path = tk.Entry(window)
@@ -77,8 +81,11 @@ string_prefix = tk.Entry(window)
 #GUI Manager
 animate_button.grid(row=2, column=3, sticky="nsew")
 generate_button.grid(row=3, column=3, sticky = "nsew")
-output_path.grid(row=0, column=3)
-string_prefix.grid(row=1,column=3)
+save_checkbox.grid(row=3, column=2, sticky="se")
+output_path.grid(row=0, column=3, sticky = "ew")
+string_prefix.grid(row=1,column=3, sticky = "ew")
+path_label.grid(row=0, column=2, sticky = "e")
+stringprefix_label.grid(row=1, column=2, sticky="e")
 
 # Main Window Call
 window.mainloop()
