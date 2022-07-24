@@ -53,7 +53,8 @@ anim.save('continuousSineWave.gif',
           writer = "ffmpeg", fps= 20)
 """
 
-
+"""
+All of this is GUI stuff and it all works. Commenting out for now so I can work on the histogram.
 # Window Declarations
 window = tk.Tk()
 window.title("Interactive Ozone Analysis")
@@ -72,6 +73,8 @@ animate_button = tk.Button(text="Animate")
 # Checkboxes
 var1=tk.IntVar()
 save_checkbox = tk.Checkbutton(window, text = "Save to File", variable=var1, onvalue=1, offvalue=0, command=save_to_file)
+year_checkbox = "year_placeholder"
+month_checkbox = "month_placeholder"
 
 
 # Textboxes
@@ -89,3 +92,4 @@ stringprefix_label.grid(row=1, column=2, sticky="e")
 
 # Main Window Call
 window.mainloop()
+"""
