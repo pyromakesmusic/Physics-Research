@@ -38,7 +38,7 @@ plt.axvline(x=71, color="red", linestyle="dashed")
 plt.title("Houston Area Ozone Levels", family="sans-serif")
 plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
 plt.ylabel("Number of Days in Sample", family="sans=serif")
-plt.rc("bars", color="r")
+
 
 def bin_maker(xy, height):
     rect = matplotlib.patches.Rectangle(xy, 3, height, angle=0.0)
@@ -81,6 +81,8 @@ anim.save('continuousSineWave.gif',
 
 """
 All of this is GUI stuff and it all works. Commenting out for now so I can work on the histogram.
+
+"""
 # Window Declarations
 window = tk.Tk()
 window.title("Interactive Ozone Analysis")
@@ -107,6 +109,13 @@ month_checkbox = "month_placeholder"
 output_path = tk.Entry(window)
 string_prefix = tk.Entry(window)
 
+# Sliders
+slider = tk.Scale(
+    window,
+    from_=0,
+    to=100,
+    orient="horizontal")
+
 #GUI Manager
 animate_button.grid(row=2, column=3, sticky="nsew")
 generate_button.grid(row=3, column=3, sticky = "nsew")
@@ -115,7 +124,7 @@ output_path.grid(row=0, column=3, sticky = "ew")
 string_prefix.grid(row=1,column=3, sticky = "ew")
 path_label.grid(row=0, column=2, sticky = "e")
 stringprefix_label.grid(row=1, column=2, sticky="e")
+slider.grid(row=0, column=0, sticky="we")
 
 # Main Window Call
 window.mainloop()
-"""
