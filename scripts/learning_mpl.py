@@ -34,7 +34,6 @@ e = bin_maker((4,0), 2)
 
 barcontainer = matplotlib.container.BarContainer((a,b,c,d,e))
 
-plt.show()
 
 def init():
     line.set_data([],[])
@@ -136,3 +135,5 @@ chart_type.get_tk_widget().grid(row=1, column=0, sticky="nsew")
 
 # Main Window Call
 window.mainloop()
+
+plt.show()

@@ -40,7 +40,7 @@ GLOBAL VARIABLES
 """
 FUNCTION DEFINITIONS
 """
-def improved_hist(df):
+def histo_builder(df, place, holders):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
     plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,110,120,130], histtype="barstacked", align="mid", rwidth=.85, label="maximum daily 8 hour ozone")
@@ -69,7 +69,7 @@ def exceedance_counter(df, time_unit):
 #    print(masked["maximum"])
     return(True)
 
-def histo_builder(df, x, y):
+def histo_builder_deprecated(df, x, y):
 #    axes = mpl.axes.Axes(fig=figure, rect=[0,0,5,5], xlim=(0,120), ylim=(0,50))
 # Maybe ready to be deprecated
     hist = df.hist(column="maximum", figsize=(6,5), bins=[0,10,20,30,40,50,60,70,80,90,100,120], legend = True, xlabelsize=10, ylabelsize=10)
