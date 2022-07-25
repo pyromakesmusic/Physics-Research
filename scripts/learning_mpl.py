@@ -21,7 +21,7 @@ fig = plt.figure()
 axis = plt.axes(xlim=(0,140),
                 ylim=(0,300))
 
-x = np.linspace(0,59,20)
+x = np.linspace(0,140,14)
 
 bars = plt.bar(x, x)
 bars[2].set_color('orange')
