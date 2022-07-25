@@ -9,6 +9,7 @@ import tkinter as tk
 import numpy as np
 import matplotlib
 import matplotlib.pyplot as plt
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 import matplotlib.animation as animation
 
 
@@ -19,25 +20,6 @@ MatPlotLib stuff
 print(plt.isinteractive())
 plt.ion()
 plt.rc("lines", linewidth=2, color="r")
-
-fig = plt.figure()
-
-axis = plt.axes(xlim=(0,140),
-                ylim=(0,300))
-
-x = np.linspace(0,140,14)
-
-bars = plt.bar(x, x)
-bars[2].set_color('orange')
-
-line, = axis.plot([],[], lw=3)
-
-
-plt.axvline(x=71, color="red", linestyle="dashed")
-
-plt.title("Houston Area Ozone Levels", family="sans-serif")
-plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
-plt.ylabel("Number of Days in Sample", family="sans=serif")
 
 
 def bin_maker(xy, height):
@@ -78,6 +60,27 @@ anim = animation.FuncAnimation(fig, animate, init_func = init,
 anim.save('continuousSineWave.gif',
           writer = "ffmpeg", fps= 20)
 """
+
+fig = plt.figure()
+
+axis = plt.axes(xlim=(0,140),
+                ylim=(0,300))
+
+x = np.linspace(0,140,14)
+
+bars = plt.bar(x, x)
+bars[2].set_color('orange')
+
+line, = axis.plot([],[], lw=3)
+
+
+plt.axvline(x=71, color="red", linestyle="dashed")
+
+plt.title("Houston Area Ozone Levels", family="sans-serif")
+plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
+plt.ylabel("Number of Days in Sample", family="sans=serif")
+
+
 
 """
 All of this is GUI stuff and it all works. Commenting out for now so I can work on the histogram.
@@ -125,6 +128,11 @@ string_prefix.grid(row=1,column=3, sticky = "ew")
 path_label.grid(row=0, column=2, sticky = "e")
 stringprefix_label.grid(row=1, column=2, sticky="e")
 slider.grid(row=0, column=0, sticky="we")
+
+
+chart_type = FigureCanvasTkAgg(fig, window)
+chart_type.get_tk_widget().grid(row=1, column=0, sticky="nsew")
+
 
 # Main Window Call
 window.mainloop()
