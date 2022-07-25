@@ -16,6 +16,10 @@ import matplotlib.animation as animation
 MatPlotLib stuff
 """
 
+print(plt.isinteractive())
+plt.ion()
+plt.rc("lines", linewidth=2, color="r")
+
 fig = plt.figure()
 
 axis = plt.axes(xlim=(0,140),
@@ -31,9 +35,10 @@ line, = axis.plot([],[], lw=3)
 
 plt.axvline(x=71, color="red", linestyle="dashed")
 
-plt.title("Houston Area Ozone Levels")
-plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)")
-plt.ylabel("Number of Days in Sample")
+plt.title("Houston Area Ozone Levels", family="sans-serif")
+plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
+plt.ylabel("Number of Days in Sample", family="sans=serif")
+plt.rc("bars", color="r")
 
 def bin_maker(xy, height):
     rect = matplotlib.patches.Rectangle(xy, 3, height, angle=0.0)
