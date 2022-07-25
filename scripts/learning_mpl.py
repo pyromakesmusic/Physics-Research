@@ -11,6 +11,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 
+
+"""
+MatPlotLib stuff
+"""
+
 fig = plt.figure()
 
 axis = plt.axes(xlim=(0,140),
@@ -18,6 +23,12 @@ axis = plt.axes(xlim=(0,140),
 
 line, = axis.plot([],[], lw=3)
 
+
+plt.axvline(x=71, color="red", linestyle="dashed")
+
+plt.title("Houston Area Ozone Levels")
+plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)")
+plt.ylabel("Number of Days in Sample")
 
 def bin_maker(xy, height):
     rect = matplotlib.patches.Rectangle(xy, 3, height, angle=0.0)
@@ -30,6 +41,8 @@ d = bin_maker((3,0), 3)
 e = bin_maker((4,0), 2)
 
 barcontainer = matplotlib.container.BarContainer((a,b,c,d,e))
+
+plt.show()
 
 def init():
     line.set_data([],[])
@@ -46,6 +59,9 @@ def animate(i):
 def save_to_file():
     return(True)
 """
+
+This stuff is for saving animations of generated files.
+
 anim = animation.FuncAnimation(fig, animate, init_func = init,
                     frames = 400, interval = 5, blit = True)
 
