@@ -135,20 +135,8 @@ MAIN FUNCTION CALLS
 """
 with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
-#    print("Hello World")
-#    print(data)
-#    print(data.keys())
 #    print(data.describe())
-    data.groupby(by="cluster")
-#    print(data)
-#    print(data.describe())
-    
-#    print(data.index)
-#    print(data.columns)
-    
-#    data.hist(column = 'datestring', by = 'cluster')
-print("first by cluster")
-cluster_byclusterplotter(data)
+
 print("now the months")
 month_bymonthplotter(data)
 print("and finally years")
@@ -167,8 +155,6 @@ with open(moody_wind_filepath) as moody_wind:
 """
 
 
-#improved_hist(data)
-    
 exceedance_counter(data, "year")
 
 """
@@ -178,7 +164,6 @@ time_separator(data, "cluster")
 time_separator(data, "site")
 """
 
-#cluster_plotter(data)
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
     bbox=dict(boxstyle="round",  facecolor='blue', alpha=0.3) )
