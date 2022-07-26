@@ -60,16 +60,20 @@ def exceedance_counter(df, time_unit):
 def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
-    bins = np.linspace(1,141,15)
-    plt.xlim(0,140)
-    plt.ylim(0, 50)
+    bins = np.linspace(1,151,16)
+   
+    
     hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
     
+    
+    
     plt.axvline(x=71, color="red", linestyle="dashed")
     plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
+    plt.xlim(0,150)
+    plt.ylim(0, 120)
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
-    plt.xticks(np.arange(0,140,10))
+    plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=11)
     plt.yticks(fontsize=11)
     plt.ylabel("Number of Days in Sample", family="sans=serif")
@@ -80,6 +84,10 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     return(True)
 
 def time_separator(df, time_unit):
+    """
+    At this time it is unclear what this does
+    """
+
     grouped = df.groupby(by=time_unit, as_index=True, sort=True, group_keys=True)
     print(grouped)
     print(len(grouped))
@@ -97,8 +105,8 @@ def cluster_byclusterplotter(df):
     i = 0
     while i < 16:
         cluster = df.loc[df['cluster'] == i]
-        graph = histo_builder(cluster, "Cluster", i)
-        plt.savefig("foo.pdf")
+        print(cluster)
+        graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
         i = i + 1
     return(True)
 
@@ -117,7 +125,7 @@ def month_bymonthplotter(df):
     i = 6
     while i < 10:
         month = df.loc[df['month'] == i]
-        histo_builder(month, "Month", i)
+        histo_builder(month, "Month", i,  True, global_output_path, "month_by)month")
         i = i + 1
     return(True)
 
@@ -140,9 +148,9 @@ with open(ozone_filepath) as ozone:
     
 #    data.hist(column = 'datestring', by = 'cluster')
 print("first by cluster")
-#cluster_plotter(data)
+cluster_byclusterplotter(data)
 print("now the months")
-#month_bymonthplotter(data)
+month_bymonthplotter(data)
 print("and finally years")
 year_overyearplotter(data)
 """
