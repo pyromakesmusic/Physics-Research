@@ -71,7 +71,7 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     plt.axvline(x=71, color="red", linestyle="dashed")
     plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
     plt.xlim(0,150)
-    plt.ylim(0, 120)
+    plt.ylim(0, 320)
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
     plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=11)
@@ -110,7 +110,11 @@ def cluster_byclusterplotter(df):
         i = i + 1
     return(True)
 
-def site_plotter(df):
+def site_bysiteplotter(df):
+    """
+    Takes a dataframe and returns a bunch of ozone histograms split up by site.
+    """
+    print(df["site"])
     return(True)
 
 def year_overyearplotter(df):
@@ -125,7 +129,7 @@ def month_bymonthplotter(df):
     i = 6
     while i < 10:
         month = df.loc[df['month'] == i]
-        histo_builder(month, "Month", i,  True, global_output_path, "month_by)month")
+        histo_builder(month, "Month", i,  True, global_output_path, "month_by_month")
         i = i + 1
     return(True)
 
@@ -136,11 +140,16 @@ MAIN FUNCTION CALLS
 with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
 #    print(data.describe())
+
 cluster_byclusterplotter(data)
 print("now the months")
-#month_bymonthplotter(data)
+month_bymonthplotter(data)
 print("and finally years")
-#year_overyearplotter(data)
+year_overyearplotter(data)
+site_bysiteplotter(data)
+
+
+histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, "full_sample")
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
