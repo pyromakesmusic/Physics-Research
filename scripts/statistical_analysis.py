@@ -104,7 +104,7 @@ def histo_builder_deprecated(df, x, y):
 def cluster_byclusterplotter(df):
     i = 0
     while i < 16:
-        cluster = df.loc[df['cluster'] == i]
+        cluster = df.loc[df['cluster'] == str(i)]
         print(cluster)
         graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
         i = i + 1
@@ -136,11 +136,11 @@ MAIN FUNCTION CALLS
 with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
 #    print(data.describe())
-
+cluster_byclusterplotter(data)
 print("now the months")
-month_bymonthplotter(data)
+#month_bymonthplotter(data)
 print("and finally years")
-year_overyearplotter(data)
+#year_overyearplotter(data)
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
@@ -155,7 +155,7 @@ with open(moody_wind_filepath) as moody_wind:
 """
 
 
-exceedance_counter(data, "year")
+#exceedance_counter(data, "year")
 
 """
 time_separator(data, "month")
