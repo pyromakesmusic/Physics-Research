@@ -60,14 +60,18 @@ def exceedance_counter(df, time_unit):
 def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
-    bins = np.linspace(0,140,14)
+    bins = np.linspace(1,141,15)
+    plt.xlim(0,140)
     plt.ylim(0, 50)
-    hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="left", rwidth=.85, label="maximum daily 8 hour ozone")
+    hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
     
     plt.axvline(x=71, color="red", linestyle="dashed")
     plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
+    plt.xticks(np.arange(0,140,10))
+    plt.xticks(fontsize=11)
+    plt.yticks(fontsize=11)
     plt.ylabel("Number of Days in Sample", family="sans=serif")
     plt.grid(True)
     plt.show()
@@ -159,10 +163,12 @@ with open(moody_wind_filepath) as moody_wind:
     
 exceedance_counter(data, "year")
 
+"""
 time_separator(data, "month")
 time_separator(data, "year")
 time_separator(data, "cluster")
 time_separator(data, "site")
+"""
 
 #cluster_plotter(data)
 """    
