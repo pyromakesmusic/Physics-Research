@@ -57,78 +57,75 @@ def slugify(value, allow_unicode=False):
     value = re.sub(r'[^\w\s-]', '', value.lower())
     return re.sub(r'[-\s]+', '-', value).strip('-_')
 
-def exceedance_counter(df, time_unit):
+def exceedance_counter(df):
     # Takes a dataframe and period of time and returns number and percentage of exceedance days graphed on the screen, for that unit of time
-    df.groupby(by="cluster", axis =1, dropna="True")
-#    print(df.index)
-#    print(df.columns)
-    maxes = df["maximum"]
-#    print(maxes)
-    exceedance = maxes.ge(71)
-#    print(exceedance)
-    masked = df[exceedance]
-#    print(masked)
-#    print(len(masked))
-#    print(masked["maximum"])
-    exceedance_events = "Exceedance Events: " + str(len(masked))
-    exceedance_ratio = len(masked)/len(df)
-    exceedance_percent = str(round(exceedance_ratio*100, 2)) + "%"
-    ratio_string = "\nPercentage of Sample in Exceedance: " + exceedance_percent
-    output = exceedance_events + ratio_string
-    return(output)
-   
 
-def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
-    # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
-    fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
-    bins = np.linspace(1,151,16)
+    maxes = df["maximum"]
+    exceedance = maxes.ge(71)
+    masked = df[exceedance]
+    exceedance_count = len(masked)
+    sample_length = len(df)
+    exceedance_ratio = exceedance_count/sample_length
+    exceedance_percent = str(round(exceedance_ratio*100, 2)) + "%"
+    output_string = "Exceedance Events: " + str(exceedance_count) + "/" + str(sample_length) + "\nPercentage of Sample in Exceedance: " + exceedance_percent
+    return(output_string)
    
-    
-    hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
-    dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
-    
-    
-    
-    plt.axvline(x=71, color="red", linestyle="dashed")
-    plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
-    plt.xlim(0,150)
-    plt.ylim(0, 350)
+def histo_formatter():
+    # Formatting for the ozone histograms
+    # Change the y-axis scale here
+    plt.ylim(0, 80)
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
     plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=11)
     plt.yticks(fontsize=11)
     plt.ylabel("Number of Days in Sample", family="sans=serif")
     plt.grid(True)
+    plt.xlim(0,150)
+    plt.axvline(x=71, color="red", linestyle="dashed")
+    return(True)
+
+def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
+    # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
+    fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
+    bins = np.linspace(1,151,16)
+   
+    # Here is the histogram itself
+    hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
+    dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
     
-    text_string = exceedance_counter(df, unit)
+    
+    # Mostly formatting stuff
+    plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
+
+    
+    histo_formatter()
+    
+    text_string = exceedance_counter(df)
     props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
     
-    plt.text(75, -50, text_string, size=12, ha="center", va="center",
+    plt.text(75, -20, text_string, size=12, ha="center", va="center",
          bbox=dict(boxstyle="round",  facecolor='white', alpha=1) )
     
     plt.show()
     output_path_wname = str(output_path) + str(output_prefix) + str(unit) + str(graph_id)
-    fig.savefig(output_path_wname, format="pdf")
     
+    # Saving the file, this should be linked to a checkbutton flag once implemented in the GUI
+    fig.savefig(output_path_wname, format="pdf", bbox_inches="tight")
+    
+    return(True)
+
+def lineplot_builder():
     return(True)
 
 def time_separator(df, time_unit):
     """
-    At this time it is unclear what this does
+    At this time it is unclear what this does - I think it's supposed to feed me separated DataFrames for more granular visualization'
     """
-
     grouped = df.groupby(by=time_unit, as_index=True, sort=True, group_keys=True)
     print(grouped)
     print(len(grouped))
     print(grouped.max())
     return(True)
-
-def histo_builder_deprecated(df, x, y):
-#    axes = mpl.axes.Axes(fig=figure, rect=[0,0,5,5], xlim=(0,120), ylim=(0,50))
-# Maybe ready to be deprecated
-    hist = df.hist(column="maximum", figsize=(6,5), bins=[0,10,20,30,40,50,60,70,80,90,100,120], legend = True, xlabelsize=10, ylabelsize=10)
-
-    return(hist)
 
 def cluster_byclusterplotter(df):
     i = 0
@@ -180,15 +177,15 @@ with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
 #    print(data.describe())
 
-#cluster_byclusterplotter(data)
+cluster_byclusterplotter(data)
 print("now the months")
-#month_bymonthplotter(data)
+month_bymonthplotter(data)
 print("and finally years")
-#year_overyearplotter(data)
-#site_bysiteplotter(data)
+year_overyearplotter(data)
+site_bysiteplotter(data)
 
 
-histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
+#histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
