@@ -4,7 +4,8 @@ Created on Tue Jun 28 05:23:53 2022
 
 @author: Ghost
 """
-
+import unicodedata
+import re
 import pandas as pd
 import numpy as np
 import os
@@ -40,7 +41,21 @@ GLOBAL VARIABLES
 """
 FUNCTION DEFINITIONS
 """
-
+def slugify(value, allow_unicode=False):
+    """
+    Taken from https://github.com/django/django/blob/master/django/utils/text.py
+    Convert to ASCII if 'allow_unicode' is False. Convert spaces or repeated
+    dashes to single dashes. Remove characters that aren't alphanumerics,
+    underscores, or hyphens. Convert to lowercase. Also strip leading and
+    trailing whitespace, dashes, and underscores.
+    """
+    value = str(value)
+    if allow_unicode:
+        value = unicodedata.normalize('NFKC', value)
+    else:
+        value = unicodedata.normalize('NFKD', value).encode('ascii', 'ignore').decode('ascii')
+    value = re.sub(r'[^\w\s-]', '', value.lower())
+    return re.sub(r'[-\s]+', '-', value).strip('-_')
 
 def exceedance_counter(df, time_unit):
     # Takes a dataframe and period of time and returns number and percentage of exceedance days graphed on the screen, for that unit of time
@@ -55,6 +70,12 @@ def exceedance_counter(df, time_unit):
 #    print(masked)
 #    print(len(masked))
 #    print(masked["maximum"])
+    exceedance_events = "Exceedance Events: " + str(len(masked))
+    exceedance_ratio = len(masked)/len(df)
+    exceedance_percent = str(round(exceedance_ratio*100, 2)) + "%"
+    ratio_string = "\nPercentage of Sample in Exceedance: " + exceedance_percent
+    output = exceedance_events + ratio_string
+    return(output)
    
 
 def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
@@ -71,16 +92,24 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     plt.axvline(x=71, color="red", linestyle="dashed")
     plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
     plt.xlim(0,150)
-    plt.ylim(0, 50)
+    plt.ylim(0, 350)
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
     plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=11)
     plt.yticks(fontsize=11)
     plt.ylabel("Number of Days in Sample", family="sans=serif")
     plt.grid(True)
+    
+    text_string = exceedance_counter(df, unit)
+    props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
+    
+    plt.text(75, -50, text_string, size=12, ha="center", va="center",
+         bbox=dict(boxstyle="round",  facecolor='white', alpha=1) )
+    
     plt.show()
     output_path_wname = str(output_path) + str(output_prefix) + str(unit) + str(graph_id)
     fig.savefig(output_path_wname, format="pdf")
+    
     return(True)
 
 def time_separator(df, time_unit):
@@ -114,14 +143,24 @@ def site_bysiteplotter(df):
     """
     Takes a dataframe and returns a bunch of ozone histograms split up by site.
     """
-    print(df["site"])
+    unique_items = df["site"].unique()
+    unique_items = unique_items[:-1]
+    print(unique_items)
+    i = 0
+    while i < len(unique_items):
+        site = unique_items[i]
+        site_slug = slugify(site)
+        site_measurements = df.loc[df["site"] == site]
+        histo_builder(site_measurements, "Site", site_slug, True, global_output_path, r"site_by_site")
+        i = i + 1
+    print(df["site"].unique())
     return(True)
 
 def year_overyearplotter(df):
     i = 2010
     while i < 2020:
         year = df.loc[df['year'] == i]
-        histo_builder(year, "Year", i, True, global_output_path, "year_over_year")
+        histo_builder(year, "Year", i, True, global_output_path, r"year_over_year")
         i = i + 1
     return(True)
 
@@ -129,7 +168,7 @@ def month_bymonthplotter(df):
     i = 6
     while i < 10:
         month = df.loc[df['month'] == i]
-        histo_builder(month, "Month", i,  True, global_output_path, "month_by_month")
+        histo_builder(month, "Month", i,  True, global_output_path, r"month_by_month")
         i = i + 1
     return(True)
 
@@ -141,15 +180,15 @@ with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
 #    print(data.describe())
 
-cluster_byclusterplotter(data)
+#cluster_byclusterplotter(data)
 print("now the months")
-month_bymonthplotter(data)
+#month_bymonthplotter(data)
 print("and finally years")
-year_overyearplotter(data)
-site_bysiteplotter(data)
+#year_overyearplotter(data)
+#site_bysiteplotter(data)
 
 
-histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, "full_sample")
+histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
