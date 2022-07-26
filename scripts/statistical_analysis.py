@@ -43,8 +43,13 @@ FUNCTION DEFINITIONS
 def histo_builder(df, place, holders):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
-    plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,110,120,130], histtype="barstacked", align="mid", rwidth=.85, label="maximum daily 8 hour ozone")
+    hist = plt.hist(df["maximum"], bins=[0,10,20,30,40,50,60,70,80,90,100,110,120,130], histtype="barstacked", align="mid", rwidth=.85, label="maximum daily 8 hour ozone")
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
+    
+    plt.axvline(x=71, color="red", linestyle="dashed")
+    plt.title("Houston Area Ozone Levels", family="sans-serif")
+    plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
+    plt.ylabel("Number of Days in Sample", family="sans=serif")
     return(True)
 
 def time_separator(df, time_unit):

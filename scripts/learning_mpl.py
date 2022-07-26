@@ -92,6 +92,9 @@ window.resizable(width=True,height=True)
 window.columnconfigure([0,1,2,3],minsize=250)
 window.rowconfigure([0,1,2,3], minsize=100)
 
+
+firstframe = tk.Frame(window, height=20, width=20, relief="groove")
+
 # Labels
 path_label = tk.Label(window, text = "Output Path")
 stringprefix_label = tk.Label(window, text="String Prefix")
@@ -127,6 +130,8 @@ string_prefix.grid(row=1,column=3, sticky = "ew")
 path_label.grid(row=0, column=2, sticky = "e")
 stringprefix_label.grid(row=1, column=2, sticky="e")
 slider.grid(row=0, column=0, sticky="we")
+
+firstframe.grid(row=3,column=0)
 
 
 chart_type = FigureCanvasTkAgg(fig, window)
