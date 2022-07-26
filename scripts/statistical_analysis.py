@@ -114,7 +114,10 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     
     return(True)
 
-def lineplot_builder():
+def lineplot_builder(df):
+    fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
+    plt.plot(df["maximum"])
+    plt.xlim(0,1250)
     return(True)
 
 def time_separator(df, time_unit):
@@ -175,17 +178,19 @@ MAIN FUNCTION CALLS
 """
 with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
-#    print(data.describe())
+    print(data.describe())
 
-cluster_byclusterplotter(data)
+#cluster_byclusterplotter(data)
 print("now the months")
-month_bymonthplotter(data)
+#month_bymonthplotter(data)
 print("and finally years")
-year_overyearplotter(data)
-site_bysiteplotter(data)
+#year_overyearplotter(data)
+#site_bysiteplotter(data)
 
 
 #histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
+
+lineplot_builder(data)
 """
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
