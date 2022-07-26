@@ -71,7 +71,7 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     plt.axvline(x=71, color="red", linestyle="dashed")
     plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
     plt.xlim(0,150)
-    plt.ylim(0, 320)
+    plt.ylim(0, 50)
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
     plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=11)
