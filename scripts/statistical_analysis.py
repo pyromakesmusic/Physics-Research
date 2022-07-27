@@ -24,6 +24,7 @@ CONFIG
 ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\SOM_cluster_AUGMENTED3_july19.csv"
 windrun_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\data_210726.txt"
 moody_wind_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\wind_data_2010_2019_MOOT_C695.csv"
+site_coords_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\site_coordinates.txt"
 global_output_path = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\scripts\file_outputs\yearoveryear_histograms\\"
 
 pd.options.display.width = 0
@@ -207,7 +208,10 @@ with open(moody_wind_filepath) as moody_wind:
     print(moody_data)
     print(moody_data.describe())
 """
-
+with open(site_coords_filepath) as site_locations:
+    siteloc_df = pd.read_csv(site_coords_filepath, sep="\t")
+    print(siteloc_df)
+    print(siteloc_df.describe())
 
 #exceedance_counter(data, "year")
 
