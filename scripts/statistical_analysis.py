@@ -16,6 +16,7 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib as mpl
 import ast
+import geopandas as gpd
 
 """
 CONFIG
@@ -30,6 +31,8 @@ pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
+
+mpl.rcParams['figure.dpi'] = 300
 
 
 
@@ -116,8 +119,9 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
 
 def lineplot_builder(df):
     fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
-    plt.plot(df["maximum"])
-    plt.xlim(0,1250)
+    df.plot(x="date",y="maximum")
+    plt.xticks(fontsize=7)
+    print(df.columns)
     return(True)
 
 def time_separator(df, time_unit):
