@@ -7,16 +7,14 @@ Created on Tue Jun 28 05:23:53 2022
 import unicodedata
 import re
 import pandas as pd
+#import geopandas as gpd
 import numpy as np
-import os
-import math
-import string
-import csv
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib as mpl
-import ast
-import geopandas as gpd
+import os
+#import osmnx
+import math
 
 """
 CONFIG
@@ -25,6 +23,8 @@ ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\SOM_cluster_AUGME
 windrun_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\data_210726.txt"
 moody_wind_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\wind_data_2010_2019_MOOT_C695.csv"
 site_coords_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\site_coordinates.txt"
+particulate_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\daily_pm25_hgb_junsep2010_2019.csv"
+
 global_output_path = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\scripts\file_outputs\yearoveryear_histograms\\"
 
 pd.options.display.width = 0
@@ -185,12 +185,12 @@ with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
     print(data.describe())
 
-cluster_byclusterplotter(data)
+#cluster_byclusterplotter(data)
 print("now the months")
-month_bymonthplotter(data)
+#month_bymonthplotter(data)
 print("and finally years")
-year_overyearplotter(data)
-site_bysiteplotter(data)
+#year_overyearplotter(data)
+#site_bysiteplotter(data)
 
 
 #histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
@@ -213,6 +213,12 @@ with open(site_coords_filepath) as site_locations:
     print(siteloc_df)
     print(siteloc_df.describe())
 
+with open(particulate_filepath) as particulate:
+    partic_df = pd.read_csv(particulate_filepath, sep=",")
+    print(partic_df)
+    print(partic_df.describe())
+    dates = pd.to_datetime(partic_df["Date"], dayfirst = False, yearfirst = True, format = "%Y%m%d")
+    print(dates)
 #exceedance_counter(data, "year")
 
 """
@@ -221,6 +227,12 @@ time_separator(data, "year")
 time_separator(data, "cluster")
 time_separator(data, "site")
 """
+
+
+"""
+Map Stuff I guess?
+"""
+#houston = osmnx.graph_from_place("Houston, Harris County, Texas, United States")
 
 """    
     plt.text(2, 4, "r2_cell", size=12, ha="center", va="center",
