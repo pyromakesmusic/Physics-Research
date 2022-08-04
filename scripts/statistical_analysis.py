@@ -199,30 +199,30 @@ lineplot_builder(data)
 
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
-    print(windrun_data)
     print(windrun_data.index)
     print(windrun_data.describe())
     
 with open(moody_wind_filepath) as moody_wind:
     moody_data = pd.read_csv(moody_wind_filepath)
-    print(moody_data)
     print(moody_data.describe())
 
 with open(site_coords_filepath) as site_locations:
     siteloc_df = pd.read_csv(site_coords_filepath, sep="\t")
-    print(siteloc_df)
     print(siteloc_df.describe())
 
 with open(particulate_filepath) as particulate:
     partic_df = pd.read_csv(particulate_filepath, sep=",")
-    print(partic_df)
     print(partic_df.describe())
     orig_datecols = partic_df["Date"]
     dates = pd.to_datetime(orig_datecols, dayfirst = False, yearfirst = True, format = "%Y%m%d")
     partic_df["datetime"] = dates
     partic_df.drop("Date", inplace=True, axis=1)
-    print(partic_df.describe())
-    print(partic_df)
+
+    partic_df['day'] = partic_df['datetime'].dt.day
+    partic_df['month'] = partic_df['datetime'].dt.month
+    partic_df['year'] = partic_df['datetime'].dt.year
+    print(partic_df.columns)
+    print(partic_df.index)
 #exceedance_counter(data, "year")
 
 """
