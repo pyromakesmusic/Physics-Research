@@ -217,8 +217,12 @@ with open(particulate_filepath) as particulate:
     partic_df = pd.read_csv(particulate_filepath, sep=",")
     print(partic_df)
     print(partic_df.describe())
-    dates = pd.to_datetime(partic_df["Date"], dayfirst = False, yearfirst = True, format = "%Y%m%d")
-    print(dates)
+    orig_datecols = partic_df["Date"]
+    dates = pd.to_datetime(orig_datecols, dayfirst = False, yearfirst = True, format = "%Y%m%d")
+    partic_df["datetime"] = dates
+    partic_df.drop("Date", inplace=True, axis=1)
+    print(partic_df.describe())
+    print(partic_df)
 #exceedance_counter(data, "year")
 
 """
