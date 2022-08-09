@@ -88,6 +88,28 @@ def histo_formatter():
     plt.axvline(x=71, color="red", linestyle="dashed")
     return(True)
 
+def corr_formatter():
+    # Formatting for the ozone histograms
+    # Change the y-axis scale here
+    plt.ylim(0, 80)
+    plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
+    plt.xticks(np.arange(0,150,10))
+    plt.xticks(fontsize=11)
+    plt.yticks(fontsize=11)
+    plt.ylabel("Number of Days in Sample", family="sans=serif")
+    plt.grid(True)
+    plt.xlim(0,150)
+    plt.axvline(x=71, color="red", linestyle="dashed")
+    return(True)
+
+
+def correlation_builder(df1, unit1, df2, unit2):
+    corr = df1[unit1].corr(df2[unit2])
+    plt.scatter(df1[unit1],df2[unit2])
+    print(corr)
+    
+    return(True)
+
 def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
@@ -125,14 +147,12 @@ def lineplot_builder(df):
     print(df.columns)
     return(True)
 
-def time_separator(df, time_unit):
+def unit_separator(df, unit):
     """
     At this time it is unclear what this does - I think it's supposed to feed me separated DataFrames for more granular visualization'
     """
-    grouped = df.groupby(by=time_unit, as_index=True, sort=True, group_keys=True)
+    grouped = df.groupby(by=unit, as_index=True, sort=True, group_keys=True)
     print(grouped)
-    print(len(grouped))
-    print(grouped.max())
     return(True)
 
 def cluster_byclusterplotter(df):
@@ -183,7 +203,6 @@ MAIN FUNCTION CALLS
 """
 with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
-    print(data.describe())
 
 #cluster_byclusterplotter(data)
 print("now the months")
@@ -196,23 +215,18 @@ print("and finally years")
 #histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
 
 lineplot_builder(data)
-
+# Don't need right now
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
-    print(windrun_data.index)
-    print(windrun_data.describe())
-    
+# Don't need right now  
 with open(moody_wind_filepath) as moody_wind:
     moody_data = pd.read_csv(moody_wind_filepath)
-    print(moody_data.describe())
-
+# Don't need right now
 with open(site_coords_filepath) as site_locations:
     siteloc_df = pd.read_csv(site_coords_filepath, sep="\t")
-    print(siteloc_df.describe())
-
+# Working on this
 with open(particulate_filepath) as particulate:
     partic_df = pd.read_csv(particulate_filepath, sep=",")
-    print(partic_df.describe())
     orig_datecols = partic_df["Date"]
     dates = pd.to_datetime(orig_datecols, dayfirst = False, yearfirst = True, format = "%Y%m%d")
     partic_df["datetime"] = dates
@@ -221,16 +235,90 @@ with open(particulate_filepath) as particulate:
     partic_df['day'] = partic_df['datetime'].dt.day
     partic_df['month'] = partic_df['datetime'].dt.month
     partic_df['year'] = partic_df['datetime'].dt.year
+    
+    
+    
+    data = data.rename(columns=({"date": "datetime"})) # This ins't working right now
+    
+    print(data.columns)
+    print(data.index)
+    
+    
     print(partic_df.columns)
     print(partic_df.index)
+    
+    data.info()
+    partic_df.info()
+    
+    data['datetime'] = pd.to_datetime(data['datetime'])
+    
+    partic_df['datetime'] = pd.to_datetime(partic_df['datetime'])
+    
+    data.info()
+    partic_df.info()
+    
+    
+    
+    data = data.merge(partic_df, how="inner", on=["datetime", "day", "month", "year"])
+    
+    
+    print(partic_df.columns)
+    print(partic_df.index)
+    
+    print(data.columns)
+    print(data.index)
 #exceedance_counter(data, "year")
+
+print("\n This should have changed columns now")
+
+print(data.columns)
+print(data.index)
+
+# Onward ho!
+
+cols = data.columns.values.tolist()
+print(cols)
+cols.pop(0)
+cols.pop(0)
+cols.pop(0)
+cols.pop(0)
+
+cols.pop(0)
+cols.pop(0)
+cols.pop(0)
+
+print("\n now the merge has completed")
+
+print(cols)
+
+plt.cla()
+
+
+
+i = 0
+while i < len(cols):
+    plt.scatter(data["maximum"], data[cols[i]], s=1)
+    i = i + 1
 
 """
 time_separator(data, "month")
 time_separator(data, "year")
 time_separator(data, "cluster")
-time_separator(data, "site")
 """
+
+
+"""
+i = 0
+site_indexes = partic_df.columns
+while i < 7:
+    site = site_indexes[i]
+    correlation_builder(data, "maximum", partic_df, site)
+    i = i + 1
+
+correlation_builder(data, "maximum", partic_df, "year")
+"""
+
+
 
 
 """
