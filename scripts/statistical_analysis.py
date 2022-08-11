@@ -24,7 +24,7 @@ windrun_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\data_210726.txt
 moody_wind_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\wind_data_2010_2019_MOOT_C695.csv"
 site_coords_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\site_coordinates.txt"
 particulate_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\daily_pm25_hgb_junsep2010_2019.csv"
-hourly_ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\ozone_1hr_junsep2010_2019_goodsites_SOM_project.xlsx"
+hourly_ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\ozone_1hr_editedcopy.xlsx"
 
 global_output_path = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\scripts\file_outputs\yearoveryear_histograms\\"
 
@@ -275,8 +275,6 @@ with open(particulate_filepath) as particulate:
 print("\n This should have changed columns now")
 
 print(data.columns)
-print(data.index)
-
 # Onward ho!
 
 cols = data.columns.values.tolist()
@@ -312,9 +310,11 @@ plt.scatter(data["C45_3"], data["C1_3"], s=1)
 
 
 with open(hourly_ozone_filepath) as hourly_ozone:
-    hourlyozone_df = pd.read_excel(hourly_ozone_filepath)
+    df1 = pd.read_excel(hourly_ozone_filepath, 0)
+    df2 = pd.read_excel(hourly_ozone_filepath, 1)
     
-    print(hourlyozone_df.columns)
+    
+    hourlyozone_df = pd.concat([df1, df2])
     
     
 plt.cla()
@@ -323,8 +323,9 @@ plt.xlim(0,140)
 plt.ylim(0,140)
 
 
-print(hourlyozone_keys)
 print(len(hourlyozone_keys))
+print(hourlyozone_df.shape)
+
 
 """
 plt.scatter(hourlyozone_df["C45_3"], hourlyozone_df["C1_3"])
