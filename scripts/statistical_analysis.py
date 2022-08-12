@@ -109,7 +109,6 @@ def corr_formatter():
 def correlation_builder(df1, unit1, df2, unit2):
     corr = df1[unit1].corr(df2[unit2])
     plt.scatter(df1[unit1],df2[unit2])
-    print(corr)
     
     return(True)
 
@@ -147,7 +146,6 @@ def lineplot_builder(df):
     fig, ax = plt.subplots(1,1, sharex=True, sharey=True)
     df.plot(x="date",y="maximum")
     plt.xticks(fontsize=7)
-    print(df.columns)
     return(True)
 
 def unit_separator(df, unit):
@@ -155,14 +153,12 @@ def unit_separator(df, unit):
     At this time it is unclear what this does - I think it's supposed to feed me separated DataFrames for more granular visualization'
     """
     grouped = df.groupby(by=unit, as_index=True, sort=True, group_keys=True)
-    print(grouped)
     return(True)
 
 def cluster_byclusterplotter(df):
     i = 0
     while i < 16:
         cluster = df.loc[df['cluster'] == str(i)]
-        print(cluster)
         graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
         i = i + 1
     return(True)
@@ -173,7 +169,6 @@ def site_bysiteplotter(df):
     """
     unique_items = df["site"].unique()
     unique_items = unique_items[:-1]
-    print(unique_items)
     i = 0
     while i < len(unique_items):
         site = unique_items[i]
@@ -181,7 +176,6 @@ def site_bysiteplotter(df):
         site_measurements = df.loc[df["site"] == site]
         histo_builder(site_measurements, "Site", site_slug, True, global_output_path, r"site_by_site")
         i = i + 1
-    print(df["site"].unique())
     return(True)
 
 def year_overyearplotter(df):
@@ -208,9 +202,7 @@ with open(ozone_filepath) as ozone:
     data = pd.read_csv(ozone_filepath)
 
 #cluster_byclusterplotter(data)
-print("now the months")
 #month_bymonthplotter(data)
-print("and finally years")
 #year_overyearplotter(data)
 #site_bysiteplotter(data)
 
@@ -243,42 +235,20 @@ with open(particulate_filepath) as particulate:
     
     data = data.rename(columns=({"date": "datetime"})) # This ins't working right now
     
-    print(data.columns)
-    print(data.index)
-    
-    
-    print(partic_df.columns)
-    print(partic_df.index)
-    
-    data.info()
-    partic_df.info()
-    
     data['datetime'] = pd.to_datetime(data['datetime'])
     
     partic_df['datetime'] = pd.to_datetime(partic_df['datetime'])
-    
-    data.info()
-    partic_df.info()
     
     
     
     data = data.merge(partic_df, how="inner", on=["datetime", "day", "month", "year"])
     
-    
-    print(partic_df.columns)
-    print(partic_df.index)
-    
-    print(data.columns)
-    print(data.index)
 #exceedance_counter(data, "year")
 
-print("\n This should have changed columns now")
 
-print(data.columns)
 # Onward ho!
 
 cols = data.columns.values.tolist()
-print(cols)
 cols.pop(0)
 cols.pop(0)
 cols.pop(0)
@@ -287,9 +257,6 @@ cols.pop(0)
 cols.pop(0)
 cols.pop(0)
 cols.pop(0)
-
-print("\n now the merge has completed")
-
 
 plt.cla()
 
@@ -309,22 +276,19 @@ plt.scatter(data["C45_3"], data["C1_3"], s=1)
 
 
 with open(hourly_ozone_filepath) as hourly_ozone:
-    df1 = pd.read_excel(hourly_ozone_filepath, 0)
-    df2 = pd.read_excel(hourly_ozone_filepath, 1)
+    hourly_ozone_xls = pd.ExcelFile(hourly_ozone_filepath)
+    df = pd.read_excel(hourly_ozone_xls, 0)
+    print(df.iloc[0])
+    print(df.shape)
     
     
-    hourlyozone_df = pd.concat([df1, df2])
-    
+    # At this point I've read the data in and need to split the individual column entries into two columns using whitespace as the delimiter
     
 plt.cla()
 
 plt.xlim(0,140)
 plt.ylim(0,140)
 
-print(hourlyozone_keys)
-print(len(hourlyozone_keys))
-print(hourlyozone_df.shape)
-print(hourlyozone_df.iloc[1])
 
 
 """
