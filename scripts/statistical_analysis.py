@@ -290,7 +290,6 @@ cols.pop(0)
 
 print("\n now the merge has completed")
 
-print(cols)
 
 plt.cla()
 
@@ -322,9 +321,10 @@ plt.cla()
 plt.xlim(0,140)
 plt.ylim(0,140)
 
-
+print(hourlyozone_keys)
 print(len(hourlyozone_keys))
 print(hourlyozone_df.shape)
+print(hourlyozone_df.iloc[1])
 
 
 """
