@@ -24,7 +24,7 @@ windrun_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\data_210726.txt
 moody_wind_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\wind_data_2010_2019_MOOT_C695.csv"
 site_coords_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\site_coordinates.txt"
 particulate_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\daily_pm25_hgb_junsep2010_2019.csv"
-hourly_ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\ozone_1hr_editedcopy.xlsx"
+hourly_ozone_filepath = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\ozone_1hr_v2.csv"
 
 global_output_path = r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\scripts\file_outputs\yearoveryear_histograms\\"
 
@@ -276,11 +276,13 @@ plt.scatter(data["C45_3"], data["C1_3"], s=1)
 
 
 with open(hourly_ozone_filepath) as hourly_ozone:
-    hourly_ozone_xls = pd.ExcelFile(hourly_ozone_filepath)
-    df = pd.read_excel(hourly_ozone_xls, 0)
-    print(df.iloc[0])
-    print(df.shape)
+    hourlyozone_df = pd.read_csv(hourly_ozone_filepath)
+    print(hourlyozone_df.iloc[0])
+    print(hourlyozone_df.shape)
+    print(hourlyozone_df.keys)
+    print(hourlyozone_df.columns)
     
+    hourlyozone_df[hourlyozone_keys] = hourlyozone_df["data"].str.split(',', n=None, expand=True)
     
     # At this point I've read the data in and need to split the individual column entries into two columns using whitespace as the delimiter
     
@@ -289,6 +291,9 @@ plt.cla()
 plt.xlim(0,140)
 plt.ylim(0,140)
 
+print(hourlyozone_df)
+print(hourlyozone_df.keys)
+print(hourlyozone_df.columns)
 
 
 """
