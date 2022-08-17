@@ -38,9 +38,11 @@ pd.set_option('display.max_colwidth', None)
 mpl.rcParams['figure.dpi'] = 300
 
 
-plt.xlim(0,140)
-plt.ylim(0,140)
-
+plt.xticks(np.arange(0,150,10))
+plt.yticks(np.arange(0,150,10))
+    
+plt.xticks(fontsize=11)
+plt.yticks(fontsize=11)
 
 """
 GLOBAL VARIABLES
