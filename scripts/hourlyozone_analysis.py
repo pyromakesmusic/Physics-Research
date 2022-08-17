@@ -38,6 +38,9 @@ pd.set_option('display.max_colwidth', None)
 mpl.rcParams['figure.dpi'] = 300
 
 
+plt.xlim(0,140)
+plt.ylim(0,140)
+
 
 """
 GLOBAL VARIABLES
@@ -65,3 +68,9 @@ with open(hourly_ozone_filepath) as hourly_ozone:
 #    pd.to_numeric(hourlyozone_df[ozone_sites], errors="coerce")
 
 print(hourlyozone_df.keys)
+print(hourlyozone_df.columns)
+
+x_ozone = "C1_2"
+y_ozone = "C15_3"
+
+plt.scatter(hourlyozone_df[x_ozone], hourlyozone_df[y_ozone], s=.5)
