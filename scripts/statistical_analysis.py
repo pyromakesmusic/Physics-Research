@@ -44,6 +44,11 @@ GLOBAL VARIABLES
 #toplayer = mpl.figure.Figure()
 
 hourlyozone_keys = ["Date", "Time", "C1_2", "C8_2", "C15_3", "C26_2", "C35_1", "C45_1", "C53_1", "C78_1", "C84_1", "C403_3", "C405_1", "C406_1", "C408_2", "C409_2", "C410_1", "C416_1", "C603_1", "C603_2", "C603_3", "C617_1", "C620_1", "C1015_1", "C1016_1", "C1034_1"]
+ozone_sites = ['C1_2', 'C8_2', 'C15_3', 'C26_2', 'C35_1',
+       'C45_1', 'C53_1', 'C78_1', 'C84_1', 'C403_3', 'C405_1', 'C406_1',
+       'C408_2', 'C409_2', 'C410_1', 'C416_1', 'C603_1', 'C603_2', 'C603_3',
+       'C617_1', 'C620_1', 'C1015_1', 'C1016_1', 'C1034_1']
+
 
 """
 FUNCTION DEFINITIONS
@@ -199,7 +204,7 @@ def month_bymonthplotter(df):
 MAIN FUNCTION CALLS
 """
 with open(ozone_filepath) as ozone:
-    data = pd.read_csv(ozone_filepath)
+    ozone_data = pd.read_csv(ozone_filepath)
 
 #cluster_byclusterplotter(data)
 #month_bymonthplotter(data)
@@ -209,7 +214,7 @@ with open(ozone_filepath) as ozone:
 
 #histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
 
-lineplot_builder(data)
+lineplot_builder(ozone_data)
 # Don't need right now
 with open(windrun_filepath) as windrun:
     windrun_data = pd.read_csv(windrun_filepath, delim_whitespace=True)
@@ -233,22 +238,22 @@ with open(particulate_filepath) as particulate:
     
     
     
-    data = data.rename(columns=({"date": "datetime"})) # This ins't working right now
+    ozone_data = ozone_data.rename(columns=({"date": "datetime"})) # This ins't working right now
     
-    data['datetime'] = pd.to_datetime(data['datetime'])
+    ozone_data['datetime'] = pd.to_datetime(ozone_data['datetime'])
     
     partic_df['datetime'] = pd.to_datetime(partic_df['datetime'])
     
     
     
-    data = data.merge(partic_df, how="inner", on=["datetime", "day", "month", "year"])
+    data = ozone_data.merge(partic_df, how="inner", on=["datetime", "day", "month", "year"])
     
 #exceedance_counter(data, "year")
 
 
 # Onward ho!
 
-cols = data.columns.values.tolist()
+cols = ozone_data.columns.values.tolist()
 cols.pop(0)
 cols.pop(0)
 cols.pop(0)
@@ -264,44 +269,69 @@ plt.cla()
 
 i = 0
 while i < len(cols):
-    plt.scatter(data["maximum"], data[cols[i]], s=1)
+    plt.scatter(ozone_data["maximum"], ozone_data[cols[i]], s=1)
     i = i + 1
 
 
 plt.cla()
 
-plt.xlim(0,50)
+plt.xlim(0,140)
 plt.ylim(0,50)
-plt.scatter(data["C45_3"], data["C1_3"], s=1)
-
+plt.scatter(data["maximum"], partic_df["C1034_3"], s=1)
+print(ozone_data.columns)
+print(partic_df.columns)
 
 with open(hourly_ozone_filepath) as hourly_ozone:
     hourlyozone_df = pd.read_csv(hourly_ozone_filepath)
-    print(hourlyozone_df.iloc[0])
-    print(hourlyozone_df.shape)
-    print(hourlyozone_df.keys)
-    print(hourlyozone_df.columns)
     
     hourlyozone_df[hourlyozone_keys] = hourlyozone_df["data"].str.split(',', n=None, expand=True)
     
     # At this point I've read the data in and need to split the individual column entries into two columns using whitespace as the delimiter
+#    pd.to_numeric(hourlyozone_df[ozone_sites], errors="coerce")
     
+   
+    
+print(len(ozone_sites))
+
+list_len = len(ozone_sites)
+i = 0
+ozone_column = hourlyozone_df[ozone_sites[i]]
+while i < list_len:
+    pd.to_numeric(ozone_column, errors = "coerce")
+    print(ozone_column)
+    print(ozone_column.describe())
+    i = i + 1
+pd.to_numeric(hourlyozone_df["C1_2"], errors="coerce")
+pd.to_numeric(hourlyozone_df["C8_2"], errors="coerce")
+
+
+"""
 plt.cla()
+
 
 plt.xlim(0,140)
 plt.ylim(0,140)
 
-print(hourlyozone_df)
+
+#plt.xticks(np.arange(0,150,10))
+    
+#plt.yticks(np.arange(0,150,10))
+plt.xticks(fontsize=3)
+plt.yticks(fontsize=3)
 print(hourlyozone_df.keys)
 print(hourlyozone_df.columns)
 
+x_ozone = "C1_2"
+y_ozone = "C8_2"
 
-"""
-plt.scatter(hourlyozone_df["C45_3"], hourlyozone_df["C1_3"])
-"""
+print(hourlyozone_df[x_ozone].unique())
+print(hourlyozone_df[y_ozone].unique())
 
+plt.scatter(hourlyozone_df[x_ozone], hourlyozone_df[y_ozone], s=1)
 
-    
+print(ozone_sites)
+
+    """
 """
 time_separator(data, "month")
 time_separator(data, "year")
