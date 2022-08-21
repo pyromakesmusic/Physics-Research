@@ -252,7 +252,7 @@ with open(particulate_filepath) as particulate:
 
 
 # Onward ho!
-
+"""
 cols = ozone_data.columns.values.tolist()
 cols.pop(0)
 cols.pop(0)
@@ -304,6 +304,8 @@ while i < list_len:
 pd.to_numeric(hourlyozone_df["C1_2"], errors="coerce")
 pd.to_numeric(hourlyozone_df["C8_2"], errors="coerce")
 
+
+"""
 
 """
 plt.cla()
