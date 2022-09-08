@@ -244,25 +244,31 @@ with open(particulate_filepath) as particulate:
     
     partic_df['datetime'] = pd.to_datetime(partic_df['datetime'])
     
+    print(partic_df)
+    print(partic_df.keys)
+
+    pm_sites = partic_df.iloc[: , :8]
+        
+    print(pm_sites)
+    print(pm_sites.columns)
+
+    pm_max = pm_sites.max(axis = 1)
+    pm_max.name = "Max PM2.5"
+    print(pm_max)
+    print(len(pm_sites))
+    print(len(pm_max))
+    print(pm_max[0])
+    #exceedance_counter(data, "year")
+
     
+    data = ozone_data.join(pm_max)
+    print(data)
+    print(data.columns)
+    data.to_csv(path_or_buf = (global_output_path + "ozone_and_particulate.csv"), sep=",")
     
-    data = ozone_data.merge(partic_df, how="inner", on=["datetime", "day", "month", "year"])
     
 # This is the last thing you need to do before school. max ozone + max pm2.5 spdsheet
 
-print(partic_df)
-print(partic_df.keys)
-
-pm_sites = partic_df.iloc[: , :8]
-    
-print(pm_sites)
-print(pm_sites.columns)
-
-pm_max = pm_sites.max(axis = 1)
-print(pm_max)
-print(len(pm_sites))
-print(len(pm_max))
-#exceedance_counter(data, "year")
 
 
 # Onward ho!
