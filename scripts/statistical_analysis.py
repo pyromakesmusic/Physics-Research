@@ -88,8 +88,8 @@ def histo_formatter():
     plt.ylim(0, 80)
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
     plt.xticks(np.arange(0,150,10))
-    plt.xticks(fontsize=11)
-    plt.yticks(fontsize=11)
+    plt.xticks(fontsize=3)
+    plt.yticks(fontsize=3)
     plt.ylabel("Number of Days in Sample", family="sans=serif")
     plt.grid(True)
     plt.xlim(0,150)
@@ -119,7 +119,6 @@ def correlation_builder(df1, unit1, df2, unit2):
 
 def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
-    fig, ax = plt.subplots()
     bins = np.linspace(1,151,16)
     # Here is the histogram itself
     hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
@@ -135,14 +134,14 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     text_string = exceedance_counter(df)
     props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
     
-    plt.text(75, -20, text_string, size=12, ha="center", va="center",
+    plt.text(75, -20, text_string, size=5, ha="right", va="center",
          bbox=dict(boxstyle="round",  facecolor='white', alpha=1) )
     
     plt.show()
     output_path_wname = str(output_path) + str(output_prefix) + str(unit) + str(graph_id)
     
     # Saving the file, this should be linked to a checkbutton flag once implemented in the GUI
-    fig.savefig(output_path_wname, format="pdf", bbox_inches="tight")
+#    fig.savefig(output_path_wname, format="pdf", bbox_inches="tight")
     
     return(True)
 
@@ -158,8 +157,24 @@ def unit_separator(df, unit):
     """
     grouped = df.groupby(by=unit, as_index=True, sort=True, group_keys=True)
     return(True)
-
 def cluster_byclusterplotter(df):
+    fig, axes = plt.subplots(4,4, sharex=True,sharey=True)
+    i = 0
+    for ax in zip(axes.ravel()):
+        cluster = df.loc[df['cluster'] == str(i)]
+        graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
+        i = i + 1
+        
+        """        
+    i = 0
+    while i < 16:
+        cluster = df.loc[df['cluster'] == str(i)]
+        graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
+        i = i + 1
+        """        
+    return(True)
+
+def cluster_byclusterplotter_deprecated(df):
     fig, ax = plt.subplots(4,4, sharex=True,sharey=True)
     bins = np.linspace(1,151,16)
 
