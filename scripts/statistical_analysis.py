@@ -119,9 +119,8 @@ def correlation_builder(df1, unit1, df2, unit2):
 
 def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
-    fig, ax = plt.subplots(1,1, sharex=True,sharey=True)
+    fig, ax = plt.subplots()
     bins = np.linspace(1,151,16)
-   
     # Here is the histogram itself
     hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
@@ -161,6 +160,9 @@ def unit_separator(df, unit):
     return(True)
 
 def cluster_byclusterplotter(df):
+    fig, ax = plt.subplots(4,4, sharex=True,sharey=True)
+    bins = np.linspace(1,151,16)
+
     i = 0
     while i < 16:
         cluster = df.loc[df['cluster'] == str(i)]
