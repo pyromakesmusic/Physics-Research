@@ -96,6 +96,19 @@ def histo_formatter():
     plt.axvline(x=71, color="red", linestyle="dashed")
     return(True)
 
+def histo_formatter2():
+    # Formatting for the ozone histograms
+    # Change the y-axis scale here
+    plt.ylim(0, 130)
+    plt.xticks(np.arange(0,150,25))
+    plt.xticks(fontsize=5)
+    plt.yticks(np.arange(0,130,10))
+    plt.yticks(fontsize=5)
+    plt.grid(True)
+    plt.xlim(0,150)
+    plt.axvline(x=71, color="red", linestyle="dashed")
+    return(True)
+
 def corr_formatter():
     # Formatting for the ozone histograms
     # Change the y-axis scale here
@@ -179,9 +192,11 @@ def cluster_byclusterplotter(df):
     bins = np.linspace(1,151,16)
     for i in range(1,17):
         plt.subplot(4,4,i)
+        histo_formatter2()
         cluster = df.loc[df['cluster'] == str(i)]
-        hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
+        hist = plt.hist(cluster["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     plt.show()
+    plt.savefig("clusters_pres_graph.png", dpi=500)
     """        
     i = 0
     while i < 16:
