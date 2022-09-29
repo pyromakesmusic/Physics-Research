@@ -99,14 +99,14 @@ def histo_formatter():
 def histo_formatter2():
     # Formatting for the ozone histograms
     # Change the y-axis scale here
-    plt.ylim(0, 130)
-    plt.xticks(np.arange(0,150,25))
-    plt.xticks(fontsize=5)
-    plt.yticks(np.arange(0,130,10))
-    plt.yticks(fontsize=5)
+    plt.ylim(0, 100)
+    plt.xticks(np.arange(0,150,10))
+    plt.xticks(fontsize=3)
+    plt.yticks(np.arange(0,100,10))
+    plt.yticks(fontsize=3)
     plt.grid(True)
     plt.xlim(0,150)
-    plt.axvline(x=71, color="red", linestyle="dashed")
+    plt.axvline(x=71, color="red", linestyle="dashed", linewidth=.5)
     return(True)
 
 def corr_formatter():
@@ -120,7 +120,7 @@ def corr_formatter():
     plt.ylabel("Number of Days in Sample", family="sans=serif")
     plt.grid(True)
     plt.xlim(0,150)
-    plt.axvline(x=71, color="red", linestyle="dashed")
+    plt.axvline(x=71, color="red", linestyle="dashed", linewidth=1)
     return(True)
 
 def correlation_builder(df1, unit1, df2, unit2):
@@ -310,9 +310,7 @@ with open(particulate_filepath) as particulate:
 
     
     data = ozone_data.join(pm_max)
-    print(data)
-    print(data.columns)
-    data.to_csv(path_or_buf = (global_output_path + "ozone_and_particulate.csv"), sep=",")
+#    data.to_csv(path_or_buf = (global_output_path + "ozone_and_particulate.csv"), sep=",")
     
     
     cluster_byclusterplotter(data)
