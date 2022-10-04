@@ -77,8 +77,11 @@ def exceedance_counter(df):
     masked = df[exceedance]
     exceedance_count = len(masked)
     sample_length = len(df)
-    exceedance_ratio = exceedance_count/sample_length
-    exceedance_percent = str(round(exceedance_ratio*100, 2)) + "%"
+    if sample_length != 0:
+        exceedance_ratio = exceedance_count/sample_length
+        exceedance_percent = str(round(exceedance_ratio*100, 2)) + "%"
+    else:
+        exceedance_percent = "NULL"
     output_string = "Exceedance Events: " + str(exceedance_count) + "/" + str(sample_length) + "\nPercentage of Sample in Exceedance: " + exceedance_percent
     return(output_string)
    
@@ -212,8 +215,8 @@ def lineplot_builder(df):
 def cluster_byclusterplotter(df):
     fig, axes = plt.subplots(4,4, sharex=True,sharey=True)
     bins = np.linspace(1,151,16)
-    for i in range(1,17):
-        plt.subplot(4,4,i)
+    for i in range(16):
+        plt.subplot(4,4,(i + 1))
         histo_formatterX()
         cluster = df.loc[df['cluster'] == str(i)]
         stat_items = ("Cluster: " + str(i) + "\n" + exceedance_counter(cluster) + "\n Standard Error: " + str(histo_statgrabber(cluster["maximum"])))
@@ -225,7 +228,7 @@ def cluster_byclusterplotter(df):
 
         hist = plt.hist(cluster["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     plt.show()
-    plt.savefig("clusters_pres_graph.png", dpi=500)
+    plt.savefig(r"D://#PERSONAL//#STEDWARDS//#Summer2022Research//clusters_pres_graph.png", dpi=500)
   
     return(True)
 """
