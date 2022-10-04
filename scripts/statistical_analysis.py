@@ -97,6 +97,14 @@ def histo_formatter():
     return(True)
 
 def histo_formatter2():
+    """
+    This is the one we want to use for presentation.
+
+    Returns
+    -------
+    None.
+
+    """
     # Formatting for the ozone histograms
     # Change the y-axis scale here
     plt.ylim(0, 100)
