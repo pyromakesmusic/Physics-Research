@@ -96,7 +96,7 @@ def histo_formatter():
     plt.axvline(x=71, color="red", linestyle="dashed")
     return(True)
 
-def histo_formatter2():
+def histo_formatterX():
     """
     This is the one we want to use for presentation.
 
@@ -214,11 +214,15 @@ def cluster_byclusterplotter(df):
     bins = np.linspace(1,151,16)
     for i in range(1,17):
         plt.subplot(4,4,i)
-        histo_formatter2()
+        histo_formatterX()
         cluster = df.loc[df['cluster'] == str(i)]
-        print("Cluster: ", i)
-        print("Standard Error: ", end="")
-        stats = histo_statgrabber(cluster["maximum"])
+        stat_items = ("Cluster: " + str(i) + "\n" + exceedance_counter(cluster) + "\n Standard Error: " + str(histo_statgrabber(cluster["maximum"])))
+        props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
+        
+        plt.text(148, 88, stat_items, size=2, ha="right", va="center",
+             bbox=dict(boxstyle="square",  facecolor='white', alpha=1) )
+
+
         hist = plt.hist(cluster["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     plt.show()
     plt.savefig("clusters_pres_graph.png", dpi=500)
