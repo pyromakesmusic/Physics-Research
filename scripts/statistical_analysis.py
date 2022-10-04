@@ -117,6 +117,25 @@ def histo_formatter2():
     plt.axvline(x=71, color="red", linestyle="dashed", linewidth=.5)
     return(True)
 
+def histo_statgrabber(df):
+    """
+    Takes a dataframe and gives some useful stats we want to print on the histogram.
+
+    Parameters
+    ----------
+    df : TYPE
+        DESCRIPTION.
+
+    Returns
+    -------
+    stderr : TYPE
+        DESCRIPTION.
+
+    """
+    stderr = np.std(df)
+    print(stderr)
+    return stderr
+
 def corr_formatter():
     # Formatting for the ozone histograms
     # Change the y-axis scale here
@@ -142,6 +161,8 @@ def histo_builder(df, unit, graph_id, print_flag, output_path, output_prefix):
     # Here is the histogram itself
     hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
+    stats = histo_statgrabber(df)
+    print(stats)
     # Mostly formatting stuff
     plt.title("Houston Area Ozone Levels by " + unit + ": " + str(graph_id), family="sans-serif")
 
