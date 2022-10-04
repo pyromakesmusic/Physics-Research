@@ -209,13 +209,6 @@ def lineplot_builder(df):
     plt.xticks(fontsize=7)
     return(True)
 
-def unit_separator(df, unit):
-    """
-    At this time it is unclear what this does - I think it's supposed to feed me separated DataFrames for more granular visualization'
-    """
-    grouped = df.groupby(by=unit, as_index=True, sort=True, group_keys=True)
-    return(True)
-
 def cluster_byclusterplotter(df):
     fig, axes = plt.subplots(4,4, sharex=True,sharey=True)
     bins = np.linspace(1,151,16)
@@ -223,18 +216,15 @@ def cluster_byclusterplotter(df):
         plt.subplot(4,4,i)
         histo_formatter2()
         cluster = df.loc[df['cluster'] == str(i)]
+        print("Cluster: ", i)
+        print("Standard Error: ", end="")
+        stats = histo_statgrabber(cluster["maximum"])
         hist = plt.hist(cluster["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
     plt.show()
     plt.savefig("clusters_pres_graph.png", dpi=500)
-    """        
-    i = 0
-    while i < 16:
-        cluster = df.loc[df['cluster'] == str(i)]
-        graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
-        i = i + 1
-        """        
+  
     return(True)
-
+"""
 def cluster_byclusterplotter_deprecated(df):
     fig, ax = plt.subplots(4,4, sharex=True,sharey=True)
     bins = np.linspace(1,151,16)
@@ -245,7 +235,7 @@ def cluster_byclusterplotter_deprecated(df):
         graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
         i = i + 1
     return(True)
-
+"""
 def site_bysiteplotter(df):
     """
     Takes a dataframe and returns a bunch of ozone histograms split up by site.
@@ -312,23 +302,21 @@ with open(particulate_filepath) as particulate:
     partic_df['day'] = partic_df['datetime'].dt.day
     partic_df['month'] = partic_df['datetime'].dt.month
     partic_df['year'] = partic_df['datetime'].dt.year
-    
-    
-    
+   
+   
+   
     ozone_data = ozone_data.rename(columns=({"date": "datetime"})) # This ins't working right now
     
     ozone_data['datetime'] = pd.to_datetime(ozone_data['datetime'])
     
     partic_df['datetime'] = pd.to_datetime(partic_df['datetime'])
-    
+   
 #    print(partic_df)
 #    print(partic_df.keys)
-
     pm_sites = partic_df.iloc[: , :8]
-        
+     
 #    print(pm_sites)
 #    print(pm_sites.columns)
-
     pm_max = pm_sites.max(axis = 1)
     pm_max.name = "Max PM2.5"
 #    print(pm_max)
@@ -336,19 +324,12 @@ with open(particulate_filepath) as particulate:
 #    print(len(pm_max))
 #    print(pm_max[0])
     #exceedance_counter(data, "year")
-
-    
     data = ozone_data.join(pm_max)
 #    data.to_csv(path_or_buf = (global_output_path + "ozone_and_particulate.csv"), sep=",")
     
-    
     cluster_byclusterplotter(data)
     
-# This is the last thing you need to do before school. max ozone + max pm2.5 spdsheet
 
-
-
-# Onward ho!
 """
 cols = ozone_data.columns.values.tolist()
 cols.pop(0)
