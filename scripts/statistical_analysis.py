@@ -113,6 +113,7 @@ def histo_formatterX():
     plt.ylim(0, 100)
     plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=3)
+    plt.xticks(rotation=-90)
     plt.yticks(np.arange(0,100,10))
     plt.yticks(fontsize=3)
     plt.grid(True)
