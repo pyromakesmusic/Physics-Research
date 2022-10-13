@@ -135,9 +135,10 @@ def histo_statgrabber(df):
         DESCRIPTION.
 
     """
-    stderr = np.around(np.std(df), decimals=2)
+    stderr = np.around(np.std(df), decimals=1)
+    stderr_string = (str(stderr) + "ppbv")
     print(stderr)
-    return stderr
+    return stderr_string
 
 def corr_formatter():
     # Formatting for the ozone histograms
@@ -146,6 +147,7 @@ def corr_formatter():
     plt.xlabel("Maximum Daily 8 Hour Ozone (ppb)", family="sans-serif")
     plt.xticks(np.arange(0,150,10))
     plt.xticks(fontsize=11)
+    plt.xticks(rotation=90)
     plt.yticks(fontsize=11)
     plt.ylabel("Number of Days in Sample", family="sans=serif")
     plt.grid(True)
@@ -275,8 +277,6 @@ with open(ozone_filepath) as ozone:
 #site_bysiteplotter(data)
 
 
-#histo_builder(data, "2010-2019", "Full Sample", True, global_output_path, r"full_sample")
-
 lineplot_builder(ozone_data)
 # Don't need right now
 with open(windrun_filepath) as windrun:
@@ -315,118 +315,12 @@ with open(particulate_filepath) as particulate:
 #    print(pm_sites.columns)
     pm_max = pm_sites.max(axis = 1)
     pm_max.name = "Max PM2.5"
-#    print(pm_max)
-#    print(len(pm_sites))
-#    print(len(pm_max))
-#    print(pm_max[0])
-    #exceedance_counter(data, "year")
+
     data = ozone_data.join(pm_max)
 #    data.to_csv(path_or_buf = (global_output_path + "ozone_and_particulate.csv"), sep=",")
     
     cluster_byclusterplotter(data)
     
-
-"""
-cols = ozone_data.columns.values.tolist()
-cols.pop(0)
-cols.pop(0)
-cols.pop(0)
-cols.pop(0)
-
-cols.pop(0)
-cols.pop(0)
-cols.pop(0)
-
-plt.cla()
-
-
-
-i = 0
-while i < len(cols):
-    plt.scatter(ozone_data["maximum"], ozone_data[cols[i]], s=1)
-    i = i + 1
-
-
-plt.cla()
-
-plt.xlim(0,140)
-plt.ylim(0,50)
-plt.scatter(data["maximum"], partic_df["C1034_3"], s=1)
-print(ozone_data.columns)
-print(partic_df.columns)
-
-with open(hourly_ozone_filepath) as hourly_ozone:
-    hourlyozone_df = pd.read_csv(hourly_ozone_filepath)
-    
-    hourlyozone_df[hourlyozone_keys] = hourlyozone_df["data"].str.split(',', n=None, expand=True)
-    
-    # At this point I've read the data in and need to split the individual column entries into two columns using whitespace as the delimiter
-#    pd.to_numeric(hourlyozone_df[ozone_sites], errors="coerce")
-    
-   
-    
-print(len(ozone_sites))
-
-list_len = len(ozone_sites)
-i = 0
-ozone_column = hourlyozone_df[ozone_sites[i]]
-while i < list_len:
-    pd.to_numeric(ozone_column, errors = "coerce")
-    print(ozone_column)
-    print(ozone_column.describe())
-    i = i + 1
-pd.to_numeric(hourlyozone_df["C1_2"], errors="coerce")
-pd.to_numeric(hourlyozone_df["C8_2"], errors="coerce")
-
-
-"""
-
-"""
-plt.cla()
-
-
-plt.xlim(0,140)
-plt.ylim(0,140)
-
-
-#plt.xticks(np.arange(0,150,10))
-    
-#plt.yticks(np.arange(0,150,10))
-plt.xticks(fontsize=3)
-plt.yticks(fontsize=3)
-print(hourlyozone_df.keys)
-print(hourlyozone_df.columns)
-
-x_ozone = "C1_2"
-y_ozone = "C8_2"
-
-print(hourlyozone_df[x_ozone].unique())
-print(hourlyozone_df[y_ozone].unique())
-
-plt.scatter(hourlyozone_df[x_ozone], hourlyozone_df[y_ozone], s=1)
-
-print(ozone_sites)
-
-    """
-"""
-time_separator(data, "month")
-time_separator(data, "year")
-time_separator(data, "cluster")
-"""
-
-
-"""
-i = 0
-site_indexes = partic_df.columns
-while i < 7:
-    site = site_indexes[i]
-    correlation_builder(data, "maximum", partic_df, site)
-    i = i + 1
-
-correlation_builder(data, "maximum", partic_df, "year")
-"""
-
-
 
 
 """
