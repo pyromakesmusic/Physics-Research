@@ -135,7 +135,7 @@ def histo_statgrabber(df):
         DESCRIPTION.
 
     """
-    stderr = np.std(df)
+    stderr = np.around(np.std(df), decimals=2)
     print(stderr)
     return stderr
 
@@ -190,7 +190,7 @@ def histo_builder_updated(df, unit, graph_id, print_flag, output_path, output_pr
     # Takes a dataframe and returns a matplotlib histogram tuned to the output I want
     bins = np.linspace(1,151,16)
     # Here is the histogram itself
-    hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
+    hist = plt.hist(df["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, linewidth=.01, label="maximum daily 8 hour ozone")
     dropped = df.dropna(axis=0, how="any") # Think I need dropna or ge rather than gt
   
     
@@ -200,9 +200,9 @@ def histo_builder_updated(df, unit, graph_id, print_flag, output_path, output_pr
     text_string = exceedance_counter(df)
     props = dict(boxstyle="round", facecolor="wheat", alpha=0.5)
     
-    plt.text(75, -20, text_string, size=5, ha="right", va="center",
+    plt.text(75, -20, text_string, size=5, linewidth=1, ha="right", va="center",
     bbox=dict(boxstyle="round",  facecolor='white', alpha=1) ) 
-    plt.subplot(4,4,graph_id)
+    plt.subplot(4,4,graph_id, linewidth=1)
        
     return(True)
 
@@ -226,23 +226,12 @@ def cluster_byclusterplotter(df):
              bbox=dict(boxstyle="square",  facecolor='white', alpha=1) )
 
 
-        hist = plt.hist(cluster["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, label="maximum daily 8 hour ozone")
+        hist = plt.hist(cluster["maximum"], bins=bins, histtype="barstacked", align="mid", rwidth=.92, linewidth=1, label="maximum daily 8 hour ozone")
     plt.show()
     plt.savefig(r"D://#PERSONAL//#STEDWARDS//#Summer2022Research//clusters_pres_graph.png", dpi=500)
   
     return(True)
-"""
-def cluster_byclusterplotter_deprecated(df):
-    fig, ax = plt.subplots(4,4, sharex=True,sharey=True)
-    bins = np.linspace(1,151,16)
 
-    i = 0
-    while i < 16:
-        cluster = df.loc[df['cluster'] == str(i)]
-        graph = histo_builder(cluster, "Cluster", i,  True, global_output_path, "cluster_by_cluster")
-        i = i + 1
-    return(True)
-"""
 def site_bysiteplotter(df):
     """
     Takes a dataframe and returns a bunch of ozone histograms split up by site.
