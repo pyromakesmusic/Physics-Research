@@ -7,7 +7,7 @@ import matplotlib.animation as animation
 import matplotlib as mpl
 
 def main():
-    houston = ox.graph_from_place("Houston, Texas", network_type="all")
+    houston = ox.graph_from_place("Harris County, Texas")
     ox.plot_graph(houston)
 
 main()
