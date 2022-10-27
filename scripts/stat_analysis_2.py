@@ -6,8 +6,19 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib as mpl
 
+def coords():
+    coords = open(r"file_inputs\site_coordinates.txt")
+    coords_line1 = coords.read()
+    print(coords_line1)
+    coords.close()
+
+def augmented_file():
+    aug = open(r"file_inputs\SOM_cluster_ozone_augmentedv3.csv")
+    aug_df = pd.read_csv(aug)
+    print(aug_df)
+    aug.close()
 def main():
-    houston = ox.graph_from_place("Harris County, Texas")
-    ox.plot_graph(houston)
+    coords()
+    augmented_file()
 
 main()
