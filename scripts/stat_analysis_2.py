@@ -16,7 +16,13 @@ def augmented_file():
     aug = open(r"file_inputs\SOM_cluster_ozone_augmentedv3.csv")
     aug_df = pd.read_csv(aug)
     print(aug_df)
+    stacked_bars(aug_df)
     aug.close()
+
+def stacked_bars(df):
+    df.plot.bar(x="site", y="maximum", stacked=True)
+    plt.show()
+    return
 def main():
     coords()
     augmented_file()
