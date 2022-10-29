@@ -6,10 +6,37 @@ import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib as mpl
 
+"""
+CONFIG
+"""
+
+
+pd.options.display.width = 0
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', None)
+pd.set_option('display.max_colwidth', None)
+
+mpl.rcParams['figure.dpi'] = 300
+
+
+
+def map():
+    houston = ox.graph_from_place("Houston, Texas")
+    ox.plot_graph(houston)
+
 def coords():
     coords = open(r"file_inputs\site_coordinates.txt")
-    coords_line1 = coords.read()
-    print(coords_line1)
+    coords_labels = pd.Series(coords.readline().split(sep="\t"))
+    coords_series_list = [coords_labels]
+    for line in coords:
+        elements = coords.readline().split(sep="\t")
+        elements_series = pd.Series(elements)
+        coords_series_list.append(elements_series)
+
+    coords_output_df = pd.concat(coords_series_list, axis=1).T
+
+    print(coords_output_df)
     coords.close()
 
 def augmented_file():
@@ -25,6 +52,7 @@ def stacked_bars(df):
     return
 def main():
     coords()
+#    map()
 #    augmented_file()
 
 main()
