@@ -25,6 +25,6 @@ def stacked_bars(df):
     return
 def main():
     coords()
-    augmented_file()
+#    augmented_file()
 
 main()
