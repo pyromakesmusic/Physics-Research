@@ -21,15 +21,17 @@ pd.set_option('display.max_columns', None)
 pd.set_option('display.width', None)
 pd.set_option('display.max_colwidth', None)
 
-mpl.rcParams['figure.dpi'] = 90
+mpl.rcParams['figure.dpi'] = 150
 
 def map():
+    fig, ax = plt.subplots()
     houston_file = (r"D:\Downloads\COH_ADMINISTRATIVE_BOUNDARY_-_MIL(1)\COH_ADMINISTRATIVE_BOUNDARY_-_MIL.shp")
     houston = gpd.read_file(houston_file)
-    houston.plot()
-    plt.title("Houston/Galveston Bay Area")
+    houston.plot(ax=ax)
     geo_coords, site_info = coords()
+    geo_coords.plot(ax=ax, color="red")
 
+    plt.title("Houston/Galveston Bay Area")
 
     plt.xticks(rotation=90)
     plt.show()
@@ -50,7 +52,7 @@ def coords():
             elements_series = pd.Series(elements)
             print(elements_series)
             coords_series_list.append(elements_series)
-            lat_long_list.append(Point(float(elements_series[6]), float(elements_series[7])))
+            lat_long_list.append(Point(float(elements_series[7]), float(elements_series[6])))
         coords_output_df = pd.concat(coords_series_list, axis=1).T
         coords_output_df.columns = coords_output_df.iloc[0]
         coords_output_df = coords_output_df[1:]
