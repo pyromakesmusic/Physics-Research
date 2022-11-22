@@ -11,6 +11,8 @@ import matplotlib as mpl
 CONFIG
 """
 
+crs = {'init':'epsg:4326'} # This is setting a coordinate reference system for geopandas, check this later if it doesn't work.
+
 
 pd.options.display.width = 0
 pd.set_option('display.max_rows', None)
@@ -21,9 +23,15 @@ pd.set_option('display.max_colwidth', None)
 mpl.rcParams['figure.dpi'] = 90
 
 def map():
-    houston_file = (r"D:\#PERSONAL\#STEDWARDS\#Summer2022Research\scripts\file_inputs\COH_ADMINISTRATIVE_BOUNDARY_-_MIL\COH_ADMINISTRATIVE_BOUNDARY_-_MIL.shp")
+    houston_file = (r"D:\Downloads\COH_ADMINISTRATIVE_BOUNDARY_-_MIL(1)\COH_ADMINISTRATIVE_BOUNDARY_-_MIL.shp")
     houston = gpd.read_file(houston_file)
     houston.plot()
+    plt.title("Houston/Galveston Bay Area")
+    site_coords = coords()
+    print(site_coords)
+    # ax = site_coords.plot()
+
+    plt.xticks(rotation=90)
     plt.show()
 
 
@@ -61,7 +69,7 @@ def main():
     #augmented_file()
     #basemap()
     map()
-    site_coords = coords()
-    print(site_coords)
+
+    plt.draw()
 
 main()
