@@ -4,6 +4,7 @@ import geopandas as gpd
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
 import matplotlib as mpl
+from shapely.geometry import Point
 
 
 
@@ -27,9 +28,8 @@ def map():
     houston = gpd.read_file(houston_file)
     houston.plot()
     plt.title("Houston/Galveston Bay Area")
-    site_coords = coords()
-    print(site_coords)
-    # ax = site_coords.plot()
+    geo_coords, site_info = coords()
+
 
     plt.xticks(rotation=90)
     plt.show()
@@ -44,15 +44,21 @@ def coords():
     with open(r"file_inputs\site_coordinates.txt") as coords:
         coords_labels = pd.Series(coords.readline().split(sep="\t"))
         coords_series_list = [coords_labels]
+        lat_long_list = []
         for line in coords:
             elements = coords.readline().split(sep="\t")
             elements_series = pd.Series(elements)
+            print(elements_series)
             coords_series_list.append(elements_series)
+            lat_long_list.append(Point(float(elements_series[6]), float(elements_series[7])))
         coords_output_df = pd.concat(coords_series_list, axis=1).T
         coords_output_df.columns = coords_output_df.iloc[0]
         coords_output_df = coords_output_df[1:]
 
-        return coords_output_df
+        coords_geoseries = gpd.GeoSeries(lat_long_list, crs="EPSG:4326")
+        print(coords_geoseries)
+
+        return coords_geoseries, coords_output_df
 
 def augmented_file():
     aug = open(r"file_inputs\SOM_cluster_ozone_augmentedv3.csv")
