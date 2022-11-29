@@ -56,6 +56,7 @@ def map(chemdata):
 
     for name in site_info["Site Name"]:
         stat, info = exceedance_counter(chemdata.loc[name])
+        color = dotcolor(chemdata.loc[name]) # need to change both of these to account for wildcard chars in front and back
         print(stat)
     geo_coords.plot(ax=ax, color="red")
     plt.title("Houston/Galveston Bay Area")
