@@ -55,7 +55,8 @@ def map(chemdata):
     geo_coords, site_info = coords()
 
     for name in site_info["Site Name"]:
-        pass
+        stat, info = exceedance_counter(chemdata.loc[name])
+        print(stat)
     geo_coords.plot(ax=ax, color="red")
     plt.title("Houston/Galveston Bay Area")
     plt.xticks(rotation=90)
