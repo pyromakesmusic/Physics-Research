@@ -5,10 +5,14 @@ import tkinter as tk
 
 
 def main():
+    data_path = "placeholder"
     with open("config.txt") as config:
         print(config.readline().rstrip())
         data_path = config.readline().rstrip()
-        print(data_path)
+
+    with open(data_path) as no2_file:
+        for line in no2_file:
+            print(no2_file.readline().rstrip())
 
 
 if __name__ == "__main__":
