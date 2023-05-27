@@ -19,8 +19,9 @@ def main():
 
         for line in no2_file.readlines():
             linelists.append(pd.Series(line))
-        no2_df = pd.DataFrame(no2_file.readlines(), columns=no2_file.readline())
+        no2_df = pd.DataFrame(data=linelists)
         print(no2_df)
+        no2_df.columns = no2_df[0]
 
 
 if __name__ == "__main__":
