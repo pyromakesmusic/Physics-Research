@@ -18,11 +18,14 @@ def main():
         data_path = config.readline().rstrip()
 
     no2_df = pd.read_csv(data_path)
+    no2_day_df = no2_df[no2_df[' Datetime'] > 7942]
     # print(no2_df)
     # print(no2_df.shape)
     # print(no2_df.columns)
     print(no2_df[' Datetime'])
-    plt.plot(no2_df[' Datetime'], no2_df[' NO2_total_vertical_column'])
+    plt.plot(' Datetime', ' NO2_total_vertical_column', data=no2_day_df)
+    plt.xlabel("Fractional day since 00:00:00 UTC on 01-January-2000")
+    plt.ylabel("Total vertical column NO2 in moles/m^2")
     plt.show()
 
 
