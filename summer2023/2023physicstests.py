@@ -4,6 +4,12 @@ import matplotlib.pyplot as plt
 
 import tkinter as tk
 
+"""
+CONFIGURATION
+"""
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
 
 def main():
     data_path = "placeholder"
@@ -15,7 +21,7 @@ def main():
     print(no2_df)
     print(no2_df.shape)
     print(no2_df.columns)
-    plt.plot(no2_df['N02_total_vertical_column'])
+    print(no2_df["Datetime"])
 
 
 if __name__ == "__main__":
