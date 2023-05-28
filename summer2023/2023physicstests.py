@@ -18,10 +18,12 @@ def main():
         data_path = config.readline().rstrip()
 
     no2_df = pd.read_csv(data_path)
-    print(no2_df)
-    print(no2_df.shape)
-    print(no2_df.columns)
-    print(no2_df["Datetime"])
+    # print(no2_df)
+    # print(no2_df.shape)
+    # print(no2_df.columns)
+    print(no2_df[' Datetime'])
+    plt.plot(no2_df[' Datetime'], no2_df[' NO2_total_vertical_column'])
+    plt.show()
 
 
 if __name__ == "__main__":
