@@ -1,0 +1,49 @@
+49, 1001
+Hanisco, Tom
+NASA Goddard Space Flight Center
+Pandora Spectrometer System
+TRACER-AQ - TRacking Aerosol Convection ExpeRiment – Air Quality
+1,1
+2021, 08, 01, 2021, 09, 30
+1
+Index_number, number, Index_for_measurements
+8
+1,1,1,1,1,1,1,1
+-9999,-9999,-9999,-9999,-9999,-9999,-9999,-9999
+Datetime, fractional_day, UTC_date_time_for_measurement_center, fractional day since 00:00:00 UTC on 01-January-2000
+Solar_zenith, degrees, measurement_solar_zenith_angle, Solar zenith angle
+Solar_azimuth, degrees, measurement_solar_azimuth_angle_in_deg
+Normalized_rms, unitless, normalized_root_mean_squared, Normalized rms of fitting residuals
+Data_quality_flag, unitless, data_quality_flags_for_filtering, L2 data quality flag for nitrogen dioxide
+NO2_total_vertical_column, moles per square meter, total_column_NO2_in_moles_per_square_meter, Nitrogen dioxide total vertical column amount
+Uncertainty_NO2_vertical_column, moles per square meter, uncertainty_total_column_NO2_in_moles_per_square_meter, total uncertainty of nitrogen dioxide total vertical column amount
+Direct_sun_air_mass_factor, unitless, geometric_air_mass_factor, Direct nitrogen dioxide air mass factor
+0
+27
+PI_CONTACT_INFO: thomas.hanisco@nasa.gov
+PLATFORM: Pandora Spectrometer System
+LOCATION: University Of Houston, Houston(TX), Lat: 29.7200 Lon: -95.3400
+ASSOCIATED_DATA: N/A
+INSTRUMENT_INFO: Pandora 25. Direct sun/moon retrievals
+DATA_INFO: N/A
+UNCERTAINTY: Uncertainty given as separate variable
+ULOD_FLAG: -777777777
+ULOD_VALUE: N/A
+LLOD_FLAG: -888888888
+LLOD_VALUE: N/A
+DM_CONTACT_INFO: Alexander Kotsakis, alexander.e.kotsakis@nasa.gov
+PROJECT_INFO: TRACER-AQ - TRacking Aerosol Convection ExpeRiment – Air Quality, September 2021
+STIPULATIONS_ON_USE: The public domain data you have downloaded are contributed by the NASA Goddard Space Flight Center Pandora Project, PI Thomas Hanisco. Central data processing with common algorithms is conducted under the direction of the NASA-ESA Pandonia Global Network
+OTHER_COMMENTS: Lunar data may be included in this file, but no lunar viewing geometries are given. Lunar data may not be quality controlled. Lunar viewing geometries available upon request
+Data quality flags may be given. Data quality flags correspond to:
+0 = final/assured high quality
+1 = final/assured medium quality
+2 = final/assured low quality
+10 = preliminary/not assured high quality
+11 = preliminary/not assured medium quality
+12 = preliminary/not assured low quality
+It is recommended to only use data of high quality (0 and 10), however data of medium quality (1 and 11) are acceptable for use.To perform filtering without using data quality flags, only use data with NO2 uncertainty < 0.1 and Normalized rms < 0.01
+RMS is the dimensionless spectral fitting residual. Normalized RMS includes algorithmic error
+REVISION: R1
+R1: Bug fixed with data quality flags
+Index_number, Datetime, Solar_zenith, Solar_azimuth, Normalized_rms, Data_quality_flag, NO2_total_vertical_column, Uncertainty_NO2_vertical_column, Direct_sun_air_mass_factor
