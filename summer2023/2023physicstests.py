@@ -1,5 +1,6 @@
 import pandas as pd
 import matplotlib as mpl
+import matplotlib.pyplot as plt
 
 import tkinter as tk
 
@@ -14,6 +15,7 @@ def main():
     print(no2_df)
     print(no2_df.shape)
     print(no2_df.columns)
+    plt.plot(no2_df['N02_total_vertical_column'])
 
 
 if __name__ == "__main__":
