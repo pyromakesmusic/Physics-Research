@@ -23,10 +23,11 @@ def main():
     # print(no2_df.shape)
     # print(no2_df.columns)
     print(no2_df[' Datetime'])
-    plt.plot(' Datetime', ' NO2_total_vertical_column', data=no2_day_df)
-    plt.xlabel("Fractional day since 00:00:00 UTC on 01-January-2000")
+    plt.scatter(' Datetime', ' Solar_azimuth', data=no2_df, s=2)
+    plt.xlabel("Solar_azimuth")
     plt.ylabel("Total vertical column NO2 in moles/m^2")
     plt.show()
+    print(no2_df.columns)
 
 
 if __name__ == "__main__":
