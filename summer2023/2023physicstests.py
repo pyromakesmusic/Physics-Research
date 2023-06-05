@@ -23,9 +23,10 @@ def main():
     # print(no2_df.shape)
     # print(no2_df.columns)
     print(no2_df[' Datetime'])
-    plt.scatter(' Datetime', ' Solar_zenith', data=no2_df, s=2)
+    plt.scatter(' Solar_zenith', ' NO2_total_vertical_column', data=no2_df, s=2)
     plt.xlabel("Solar_zenith")
     plt.ylabel("Total vertical column NO2 in moles/m^2")
+    plt.yticks()
     plt.show()
     print(no2_df.columns)
 
