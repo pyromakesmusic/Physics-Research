@@ -23,6 +23,11 @@ def main():
     site188_no2_df = pd.read_csv(site188_data_path)
 
     print(site25_no2_df.dtypes)
+    refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
+    refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
+    refined_188no2_0 = site188_no2_df[site188_no2_df[' Data_quality_flag'] == 0]
+    refined_188no2_10 = site188_no2_df[site188_no2_df[' Data_quality_flag'] == 10]
+    plt.scatter(refined_188no2_0[' Datetime'], refined_188no2_0[' NO2_total_vertical_column'], s=1)
     # Here go the commands, may want to modularize the code somewhat
 
     plt.show()
