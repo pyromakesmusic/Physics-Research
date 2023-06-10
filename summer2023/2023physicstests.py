@@ -22,6 +22,7 @@ def main():
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
 
+    print(site25_no2_df.dtypes)
     # Here go the commands, may want to modularize the code somewhat
 
     plt.show()
