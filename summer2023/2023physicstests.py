@@ -27,7 +27,16 @@ def main():
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
     refined_188no2_0 = site188_no2_df[site188_no2_df[' Data_quality_flag'] == 0]
     refined_188no2_10 = site188_no2_df[site188_no2_df[' Data_quality_flag'] == 10]
-    plt.scatter(refined_188no2_0[' Datetime'], refined_188no2_0[' NO2_total_vertical_column'], s=1)
+
+    site25no2 = pd.concat([refined_25no2_0, refined_25no2_10])
+    site188no2 = pd.concat([refined_188no2_0, refined_188no2_10])
+
+    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1)
+    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1)
+
+    plt.show()
+
+
     # Here go the commands, may want to modularize the code somewhat
 
     plt.show()
