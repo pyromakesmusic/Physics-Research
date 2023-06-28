@@ -35,8 +35,6 @@ def main():
     site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
 
 
-    print(site25no2.dtypes)
-
     plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2.loc[1:900], s=1)
     plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2.loc[1:900], s=1)
     plt.show()
