@@ -30,7 +30,7 @@ def main():
 
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
-    pgn25_df = pd.read_csv(pgn25_data_path)
+    pgn25_df = pd.read_csv(pgn25_data_path, delim_whitespace=True)
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
@@ -45,14 +45,13 @@ def main():
     site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
 
 
-    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2.loc[8000:15000], s=1)
-    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2.loc[8000:15000], s=1)
-    plt.show()
+    # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2.loc[8000:15000], s=1)
+    # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2.loc[8000:15000], s=1)
+    # plt.show()
 
 
     # Here go the commands, may want to modularize the code somewhat
-
-    plt.show()
+    print("Pandonia shape: ", pgn25_df.shape)
 
 
 if __name__ == "__main__":
