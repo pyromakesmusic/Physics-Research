@@ -74,4 +74,3 @@ Column 51: Uncertainty of direct nitrogen dioxide air mass factor, -7=uncertaint
 Column 52: Diffuse correction applied before fitting at effective fitting wavelength for nitrogen dioxide [%], 0=no diffuse correction applied or fitting not successful, >0=measured diffuse correction, <0=(negative value of) calculated diffuse correction
 Column 53: Climatological nitrogen dioxide stratospheric column amount [moles per square meter]
 Column 54: Uncertainty of climatological nitrogen dioxide stratospheric column amount [moles per square meter]
----------------------------------------------------------------------------------------

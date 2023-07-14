@@ -24,8 +24,17 @@ pd.set_option('display.width', 1000)
 FUNCTION DEFINITIONS
 """
 def header_processor(header_file):
-
-    return
+    """
+    Given a filepath returns a dataframe of header info
+    """
+    with open(header_file) as file_obj:
+        for i in range(22):
+            print(file_obj.readline().rstrip())
+        header_info = file_obj.readlines()
+        header_df = pd.Series(header_info)
+        #print(header_df)
+        print(header_df.shape)
+        return header_df
 
 def main():
     with open("config.txt") as config:
@@ -41,6 +50,7 @@ def main():
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
     pgn25_df = pd.read_csv(pgn25_data_path, delim_whitespace=True)
+    pgnhead = header_processor(pgn25_header_path)
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
@@ -53,13 +63,14 @@ def main():
     # Should be converting the datetime to something readable
     site25no2[' Datetime'] = pd.to_datetime(site25no2[' Datetime'],unit='D', origin='2000-01-01')
     site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
-
+    pgn25_df.columns = pgnhead
+    print(pgn25_df.columns)
 
     # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2.loc[8000:15000], s=1)
     # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2.loc[8000:15000], s=1)
 
-    print(pgn25_df.columns)
-    print(pgn25_df[1])
+    #print(pgn25_df.columns)
+    #print(pgn25_df[1])
     #plt.scatter(pgn25_df[1], pgn25_df[38])
     plt.show()
 
