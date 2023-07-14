@@ -1,0 +1,77 @@
+File name: Pandora25s1_HoustonTX_L2_rnvs3p1-8.txt
+File generation date: 20230627T071309.854546Z
+Data description: Level 2 file (columns and more)
+Data file version: rnvs3p1-8
+Data product status: Nitrogen dioxide data are official
+Local principal investigator: Jimmy Flynn
+Network principal investigator: Alexander Cede
+DOI: 10.48596/pgn.rnvs3p1-8.HoustonTX.P25s1
+Instrument type: Pandora
+Instrument number: 25
+Spectrometer number: 1
+Processing software version used: BlickP v1.8.17
+Full location name: University Of Houston
+Short location name: HoustonTX
+Country of location: United States
+Location latitude [deg]: 29.7200
+Location longitude [deg]: -95.3400
+Location altitude [m]: 19
+Data start time: 20201003T125349.
+Data end time: NONE
+Data caveats: None
+---------------------------------------------------------------------------------------
+Column 1: UT date and time for measurement center, yyyymmddThhmmssZ (ISO 8601)
+Column 2: Fractional days since 1-Jan-2000 UT midnight for measurement center
+Column 3: Effective duration of measurement [s]
+Column 4: Solar zenith angle for measurement center [deg]
+Column 5: Solar azimuth for measurement center [deg], 0=north, increases clockwise
+Column 6: Lunar zenith angle for measurement center [deg]
+Column 7: Lunar azimuth for measurement center [deg], 0=north, increases clockwise
+Column 8: rms of unweighted fitting residuals, -9=fitting not successful
+Column 9: Normalized rms of fitting residuals weighted with independent uncertainty, -9=fitting not successful or no uncertainty given
+Column 10: Expected rms of unweighted fitting residuals based on independent uncertainty, -9=fitting not successful or no uncertainty given
+Column 11: Expected normalized rms of weighted fitting residuals based on independent uncertainty, -9=fitting not successful or no uncertainty given
+Column 12: Climatological station pressure [mbar]
+Column 13: Data processing type index
+Column 14: Calibration file version
+Column 15: Calibration file validity starting date
+Column 16: Mean value of measured data inside fitting window [same units as measurements]
+Column 17: Wavelength effective temperature [°C], 999=no effective temperature given
+Column 18: Estimated average residual stray light level [%] (only valid for stray light correction methods 2 and higher)
+Column 19: Retrieved wavelength shift from L1 data [nm], -9=no wavelength change determination
+Column 20: Retrieved total wavelength shift [nm], -9=no wavelength change fitting
+Column 21: Retrieved resolution change [%], -999=no resolution change fitting
+Column 22: Integration time [ms]
+Column 23: Number of bright count cycles
+Column 24: Effective position of filterwheel #1, 0=filterwheel not used, 1-9 are valid positions
+Column 25: Effective position of filterwheel #2, 0=filterwheel not used, 1-9 are valid positions
+Column 26: Atmospheric variability [%], 999=no atmospheric variability was determined
+Column 27: Estimated aerosol optical depth at starting wavelength of fitting window
+Column 28: Estimated aerosol optical depth at center wavelength of fitting window
+Column 29: Estimated aerosol optical depth at ending wavelength of fitting window
+Column 30: L1 data quality flag, 0=assured high quality, 1=assured medium quality, 2=assured low quality, 10=not-assured high quality, 11=not-assured medium quality, 12=not-assured low quality
+Column 31: Sum over 2^i using those i, for which the corresponding L1 data quality parameter exceeds the DQ1 limit, 0=Saturated data, 1=Too few dark counts measurements, 2=No temperature given or effective temperature too different from the reference temperature, 3=Dark count too high, 4=Unsuccessful dark background fitting, 5=The dark count differs significantly from the dark map for too many pixels, 6=Absolute value of estimated average residual stray light level too high, 7=Although attempted, no wavelength change could be retrieved, 8=Absolute value of retrieved wavelength shift too large, 9=Retrieved wavelength shift differs too much from the shift predicted by the effective temperature
+Column 32: Sum over 2^i using those i, for which the corresponding L1 data quality parameter exceeds the DQ2 limit (same parameters as for DQ1)
+Column 33: L2Fit data quality flag, 0=assured high quality, 1=assured medium quality, 2=assured low quality, 10=not-assured high quality, 11=not-assured medium quality, 12=not-assured low quality
+Column 34: Sum over 2^i using those i, for which the corresponding L2Fit data quality parameter exceeds the DQ1 limit, 0=L1 data quality above 0, 1=Spectral fitting was not successful, 2=Wavelength shift too large, 3=Normalized rms of fitting residuals weighted with independent uncertainty too large
+Column 35: Sum over 2^i using those i, for which the corresponding L2Fit data quality parameter exceeds the DQ2 limit (same parameters as for DQ1)
+Column 36: L2 data quality flag for nitrogen dioxide, 0=assured high quality, 1=assured medium quality, 2=assured low quality, 10=not-assured high quality, 11=not-assured medium quality, 12=not-assured low quality, 20=unusable high quality, 21=unusable medium quality, 22=unusable low quality
+Column 37: Sum over 2^i using those i, for which the corresponding L2 data quality parameter for nitrogen dioxide exceeds the DQ1 limit, 0=L2Fit data quality above 0, 1=Retrieval error, 2=Air mass factor too large, 3=Atmospheric variability too large
+Column 38: Sum over 2^i using those i, for which the corresponding L2 data quality parameter for nitrogen dioxide exceeds the DQ2 limit (same parameters as for DQ1)
+Column 39: Nitrogen dioxide total vertical column amount [moles per square meter], -9e99=retrieval not successful
+Column 40: Independent uncertainty of nitrogen dioxide total vertical column amount [moles per square meter], -1=cross section is zero in this wavelength range, -3=spectral fitting was done, but no independent uncertainty could be retrieved, -5=no independent uncertainty input was given, -9=spectral fitting was not successful
+Column 41: Structured uncertainty of nitrogen dioxide total vertical column amount [moles per square meter], -1=cross section is zero in this wavelength range, -7=not given since method "MEAS" was chosen, -9=spectral fitting was not successful
+Column 42: Common uncertainty of nitrogen dioxide total vertical column amount [moles per square meter], -1=cross section is zero in this wavelength range, -6=no common uncertainty input was given, -7=not given since method "MEAS" was chosen, -9=spectral fitting was not successful
+Column 43: Total uncertainty of nitrogen dioxide total vertical column amount [moles per square meter], -1=cross section is zero in this wavelength range, -3=spectral fitting was done, but no independent uncertainty could be retrieved, -5=no independent uncertainty input was given, -6=no common uncertainty input was given, -7=not given since method "MEAS" was chosen, -8=not given, since not all components are given
+Column 44: rms-based uncertainty of nitrogen dioxide total vertical column amount [moles per square meter], -1=cross section is zero in this wavelength range, -3=spectral fitting was done, but no independent uncertainty could be retrieved, -9=spectral fitting was not successful
+Column 45: Nitrogen dioxide effective temperature [K]
+Column 46: Independent uncertainty of nitrogen dioxide effective temperature [K] , -1=temperature fitting was requested, but cross section is zero in this wavelength range, -2=no temperature fitting was requested and output for effective temperature and common uncertainty of it is based on f-code, -3=spectral fitting was done, but no independent uncertainty could be retrieved, -4=temperature fitting was requested, but differential optical depth is too small to retrieve temperature, -5=spectral fitting was done without using the independent uncertainty input, -6=no independent uncertainty input was given, -9=spectral fitting was not successful
+Column 47: Structured uncertainty of nitrogen dioxide effective temperature [K] , -1=temperature fitting was requested, but cross section is zero in this wavelength range, -4=temperature fitting was requested, but differential optical depth is too small to retrieve temperature, -9=spectral fitting was not successful
+Column 48: Common uncertainty of nitrogen dioxide effective temperature [K] , -1=temperature fitting was requested, but cross section is zero in this wavelength range, -2=no temperature fitting was requested and output for effective temperature and common uncertainty of it is based on f-code, -3=spectral fitting was done, but no independent uncertainty could be retrieved, -4=temperature fitting was requested, but differential optical depth is too small to retrieve temperature, -6=no independent uncertainty input was given, -9=spectral fitting was not successful
+Column 49: Total uncertainty of nitrogen dioxide effective temperature [K] , -1=temperature fitting was requested, but cross section is zero in this wavelength range, -2=no temperature fitting was requested and output for effective temperature and common uncertainty of it is based on f-code, -3=spectral fitting was done, but no independent uncertainty could be retrieved, -4=temperature fitting was requested, but differential optical depth is too small to retrieve temperature, -5=spectral fitting was done without using the independent uncertainty input, -6=no independent uncertainty or common uncertainty input was given, -9=spectral fitting was not successful
+Column 50: Direct nitrogen dioxide air mass factor
+Column 51: Uncertainty of direct nitrogen dioxide air mass factor, -7=uncertainty could not be retrieved since slant column uncertainties were missing
+Column 52: Diffuse correction applied before fitting at effective fitting wavelength for nitrogen dioxide [%], 0=no diffuse correction applied or fitting not successful, >0=measured diffuse correction, <0=(negative value of) calculated diffuse correction
+Column 53: Climatological nitrogen dioxide stratospheric column amount [moles per square meter]
+Column 54: Uncertainty of climatological nitrogen dioxide stratospheric column amount [moles per square meter]
+---------------------------------------------------------------------------------------
