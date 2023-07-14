@@ -27,6 +27,8 @@ def main():
         site188_data_path = config.readline().rstrip()
         print(config.readline().rstrip())
         pgn25_data_path = config.readline().rstrip()
+        print(config.readline().rstrip())
+        pgn25_header_path = config.readline().rstrip()
 
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
@@ -47,7 +49,11 @@ def main():
 
     # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2.loc[8000:15000], s=1)
     # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2.loc[8000:15000], s=1)
-    # plt.show()
+
+    print(pgn25_df.columns)
+    print(pgn25_df[1])
+    #plt.scatter(pgn25_df[1], pgn25_df[38])
+    plt.show()
 
 
     # Here go the commands, may want to modularize the code somewhat
