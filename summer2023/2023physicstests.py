@@ -30,6 +30,7 @@ def main():
 
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
+    pgn25_df = pd.read_csv(pgn25_data_path)
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]

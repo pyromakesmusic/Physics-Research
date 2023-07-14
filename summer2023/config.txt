@@ -3,4 +3,4 @@ C:\\Users\\Pyro\Documents\\Physics-Research\\summer2023\\data\\traceraq-Pandora2
 Site 188 File:
 C:\\Users\\Pyro\\Documents\\Physics-Research\\summer2023\data\\traceraq-Pandora188-NO2-MoodyTower_UH_20210801_R0_thru20210930_formatted.ict
 PGN NO2 file:
-C:\\Users\\Pyro\\Documents\\Physics-Research\\summer2023\data\\Pandora25s1_HoustonTX_L2_rnvs3p1-8_short.txt
+C:\\Users\\Pyro\\Documents\\Physics-Research\\summer2023\data\\pgn\\Pandora25s1_HoustonTX_L2_rnvs3p1-8_short.txt
