@@ -1,6 +1,7 @@
 import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+from datetime import datetime
 
 import tkinter as tk
 
@@ -54,7 +55,7 @@ def main():
     site188_no2_df = pd.read_csv(site188_data_path)
     pgn25_df = pd.read_csv(pgn25_data_path, delim_whitespace=True)
     pgnhead = header_processor(pgn25_header_path)
-    moody_df = pd.read_csv(moody_surfacedata_path)
+    moody_df = pd.read_csv(moody_surfacedata_path, parse_dates={'datetime': ['dateGMT','timeGMT']})
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
@@ -75,7 +76,7 @@ def main():
     # plt.scatter(pgn25_df.iloc[:,1], pgn25_df.iloc[:,38], s=1)
 
     print(moody_df.columns)
-    plt.scatter('dateGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
+    plt.scatter('datetime', 'NOx_NO2conc_value', data=moody_df, s=1)
     plt.show()
 
 
