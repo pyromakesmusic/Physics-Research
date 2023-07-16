@@ -46,11 +46,15 @@ def main():
         pgn25_data_path = config.readline().rstrip()
         print(config.readline().rstrip())
         pgn25_header_path = config.readline().rstrip()
+        print(config.readline().rstrip())
+        moody_surfacedata_path = config.readline().rstrip()
+
 
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
     pgn25_df = pd.read_csv(pgn25_data_path, delim_whitespace=True)
-    #pgnhead = header_processor(pgn25_header_path)
+    pgnhead = header_processor(pgn25_header_path)
+    moody_df = pd.read_csv(moody_surfacedata_path)
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
@@ -68,7 +72,10 @@ def main():
 
     # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2.loc[8000:15000], s=1)
     # plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2.loc[8000:15000], s=1)
-    plt.scatter(pgn25_df.iloc[:,1], pgn25_df.iloc[:,38], s=1)
+    # plt.scatter(pgn25_df.iloc[:,1], pgn25_df.iloc[:,38], s=1)
+
+    print(moody_df.columns)
+    plt.scatter('dateGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
     plt.show()
 
 
