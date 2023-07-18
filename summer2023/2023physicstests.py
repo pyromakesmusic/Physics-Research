@@ -70,6 +70,9 @@ def main():
     # Should be converting the datetime to something readable
     site25no2[' Datetime'] = pd.to_datetime(site25no2[' Datetime'],unit='D', origin='2000-01-01')
     site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
+    moody_df.dateGMT = pd.to_datetime(moody_df.dateGMT, yearfirst=True)
+    moody_df.timeGMT = pd.to_datetime(moody_df.timeGMT, unit )
+    #moody_df['datetime'] = pd.to_datetime()
     #pgn25_df.columns = pgnhead
     #print(pgn25_df.columns)
 
@@ -79,7 +82,9 @@ def main():
 
     print(moody_df.columns)
 
-    print(moody_df.datetime)
+    # This print statement is for bug testing
+    print(moody_df.dateGMT)
+    print(moody_df.timeGMT)
 
     plt.xticks()
     plt.scatter('dateGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
