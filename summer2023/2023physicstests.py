@@ -39,6 +39,7 @@ def header_processor(header_file):
 
 def main():
     with open("config.txt") as config:
+        # Reading in the file locations
         print(config.readline().rstrip())
         site25_data_path = config.readline().rstrip()
         print(config.readline().rstrip())
@@ -50,18 +51,19 @@ def main():
         print(config.readline().rstrip())
         moody_surfacedata_path = config.readline().rstrip()
 
-
+    # Dataframe creation
     site25_no2_df = pd.read_csv(site25_data_path)
     site188_no2_df = pd.read_csv(site188_data_path)
     pgn25_df = pd.read_csv(pgn25_data_path, delim_whitespace=True)
     pgnhead = header_processor(pgn25_header_path)
-    moody_df = pd.read_csv(moody_surfacedata_path, parse_dates={'datetime': ['dateGMT','timeGMT']})
+    moody_df = pd.read_csv(moody_surfacedata_path)
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
     refined_188no2_0 = site188_no2_df[site188_no2_df[' Data_quality_flag'] == 0]
     refined_188no2_10 = site188_no2_df[site188_no2_df[' Data_quality_flag'] == 10]
 
+    # Adds the 0 flagged data points to the 10 flagged data points
     site25no2 = pd.concat([refined_25no2_0, refined_25no2_10])
     site188no2 = pd.concat([refined_188no2_0, refined_188no2_10])
 
@@ -76,7 +78,11 @@ def main():
     # plt.scatter(pgn25_df.iloc[:,1], pgn25_df.iloc[:,38], s=1)
 
     print(moody_df.columns)
-    plt.scatter('datetime', 'NOx_NO2conc_value', data=moody_df, s=1)
+
+    print(moody_df.datetime)
+
+    plt.xticks()
+    plt.scatter('dateGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
     plt.show()
 
 
