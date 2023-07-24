@@ -70,14 +70,17 @@ def main():
     # Should be converting the datetime to something readable
     site25no2[' Datetime'] = pd.to_datetime(site25no2[' Datetime'],unit='D', origin='2000-01-01')
     site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
-    moody_df.dateGMT = pd.to_datetime(moody_df.dateGMT, yearfirst=True)
+
 
 
     # This print statement is for bug testing
 
 
-    plt.xticks()
-    plt.scatter('dateGMT', 'NOx_NO2conc_value', data=moody_df, s=1, c=mpl.colors.Normalize(moody_df['timeGMT']), cmap='hsv')
+    plt.scatter('dateGMT', 'NOx_NO2conc_value', data=moody_df, s=1, cmap='hsv')
+
+    plt.xticks(['21/08/01','21/09/01','21/10/01','21/11/01'],rotation=45)
+    plt.xlabel('Date')
+    plt.ylabel('NO2 Concentration')
     plt.show()
 
 
