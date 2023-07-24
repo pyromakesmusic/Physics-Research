@@ -76,11 +76,11 @@ def main():
     # This print statement is for bug testing
 
 
-    plt.scatter('dateGMT', 'SO2_SO2Conc_value', data=moody_df, s=1, cmap='hsv')
+    plt.scatter('dateGMT', 'NOy_NOyconc_value', data=moody_df, s=1, cmap='hsv')
 
     plt.xticks(['21/08/01','21/09/01','21/10/01','21/11/01'],rotation=45)
     plt.xlabel('Date')
-    plt.ylabel('SO2 Concentration')
+    plt.ylabel('NOy NOy Concentration')
     plt.show()
 
 
