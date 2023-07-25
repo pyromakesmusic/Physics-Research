@@ -3,6 +3,7 @@ import matplotlib as mpl
 import matplotlib.pyplot as plt
 from datetime import datetime
 import tkinter as tk
+from tkinter import ttk
 
 """
 GLOBAL VARIABLES
@@ -73,8 +74,13 @@ def dataframe_loader():
     return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
 def gui_maker():
-    w = tk.Tk()
-    return w
+    root = tk.Tk()
+    frame = ttk.Frame(master=root,padding=10)
+    frame.grid()
+    ttk.Label(frame, text="Hello World!").grid(column=0, row=0)
+    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=0)
+    root.mainloop()
+
 
 def main():
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
