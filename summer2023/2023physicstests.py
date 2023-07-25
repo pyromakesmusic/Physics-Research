@@ -73,12 +73,23 @@ def dataframe_loader():
 
     return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
+
+def graph_plotter(df):
+    # Takes a dataframe and a variable name and graphs it over the time period
+    plt.scatter('dateGMT', 'NOy_NOyconc_value', data=df, s=1, cmap='hsv')
+
+    plt.xticks(['21/08/01','21/09/01','21/10/01','21/11/01'],rotation=45)
+    plt.xlabel('Date')
+    plt.ylabel('NOy NOy Concentration')
+    plt.show()
+    return
+
 def gui_maker():
     root = tk.Tk()
     frame = ttk.Frame(master=root,padding=10)
     frame.grid()
     ttk.Label(frame, text="Hello World!").grid(column=0, row=0)
-    ttk.Button(frame, text="Quit", command=root.destroy).grid(column=1, row=0)
+    ttk.Button(frame, text="Plot", command=root.destroy).grid(column=1, row=0)
     root.mainloop()
 
 
@@ -86,18 +97,6 @@ def main():
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
 
     window = gui_maker()
-
-    plt.scatter('dateGMT', 'NOy_NOyconc_value', data=moody_df, s=1, cmap='hsv')
-
-    plt.xticks(['21/08/01','21/09/01','21/10/01','21/11/01'],rotation=45)
-    plt.xlabel('Date')
-    plt.ylabel('NOy NOy Concentration')
-    plt.show()
-
-
-    # Here go the commands, may want to modularize the code somewhat
-    #print("Pandonia shape: ", pgn25_df.shape)
-
 
 if __name__ == "__main__":
     main()
