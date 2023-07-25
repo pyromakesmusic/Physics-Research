@@ -37,7 +37,7 @@ def header_processor(header_file):
         #print(header_df)
         return header_df
 
-def main():
+def dataframe_loader():
     with open("config.txt") as config:
         # Reading in the file locations
         print(config.readline().rstrip())
@@ -71,10 +71,10 @@ def main():
     site25no2[' Datetime'] = pd.to_datetime(site25no2[' Datetime'],unit='D', origin='2000-01-01')
     site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
 
+    return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
-
-    # This print statement is for bug testing
-
+def main():
+    site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
 
     plt.scatter('dateGMT', 'NOy_NOyconc_value', data=moody_df, s=1, cmap='hsv')
 
