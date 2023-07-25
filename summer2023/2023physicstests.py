@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
 from datetime import datetime
-
 import tkinter as tk
 
 """
@@ -73,8 +72,14 @@ def dataframe_loader():
 
     return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
+def gui_maker():
+    w = tk.Tk()
+    return w
+
 def main():
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
+
+    window = gui_maker()
 
     plt.scatter('dateGMT', 'NOy_NOyconc_value', data=moody_df, s=1, cmap='hsv')
 
