@@ -8,10 +8,14 @@ from tkinter import ttk
 """
 GLOBAL VARIABLES
 """
-ozone_sites = ['C1_2', 'C8_2', 'C15_3', 'C26_2', 'C35_1',
+OZONE_SITES = ['C1_2', 'C8_2', 'C15_3', 'C26_2', 'C35_1',
        'C45_1', 'C53_1', 'C78_1', 'C84_1', 'C403_3', 'C405_1', 'C406_1',
        'C408_2', 'C409_2', 'C410_1', 'C416_1', 'C603_1', 'C603_2', 'C603_3',
        'C617_1', 'C620_1', 'C1015_1', 'C1016_1', 'C1034_1']
+
+TIME_TICKS = ['00:00:00','03:00:00', '06:00:00','09:00:00', '12:00:00','15:00:00', '18:00:00', '21:00:00']
+
+DATE_TICKS = ['21/08/01','21/08/15','21/09/01','21/09/15','21/10/01','21/10/15','21/11/01', '21/11/15']
 
 """
 CONFIGURATION
@@ -74,13 +78,20 @@ def dataframe_loader():
     return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
 
-def graph_plotter(df):
+def graph_plotter(df, x, y):
     # Takes a dataframe and a variable name and graphs it over the time period
-    plt.scatter('dateGMT', 'NOy_NOyconc_value', data=df, s=1, cmap='hsv')
+    plt.scatter(x, y, data=df, s=1, cmap='hsv')
+    plt.title('Houston Atmospheric Measurement Data')
+    plt.xticks(rotation=45)
+    if x == 'dateGMT':
+        plt.xlabel('Date')
+    elif x == 'timeGMT':
+        plt.xlabel('Time')
+    else:
+        plt.xlabel(x)
 
-    plt.xticks(['21/08/01','21/09/01','21/10/01','21/11/01'],rotation=45)
-    plt.xlabel('Date')
-    plt.ylabel('NOy NOy Concentration')
+    plt.ylabel(y)
+
     plt.show()
     return
 
@@ -97,7 +108,7 @@ def main():
     plt.scatter('timeGMT', 'NOy_NOyconc_value', data=moody_df, s=1)
     plt.xlabel('Time (GMT)')
     plt.ylabel('NOy Concentration')
-    plt.xticks(['00:00:00','03:00:00', '06:00:00','09:00:00', '12:00:00','15:00:00', '18:00:00', '21:00:00'],rotation=45)
+    plt.xticks(,rotation=45)
     plt.show()
     #window = gui_maker()
 

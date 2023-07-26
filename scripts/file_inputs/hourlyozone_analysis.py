@@ -67,7 +67,7 @@ with open(hourly_ozone_filepath) as hourly_ozone:
     hourlyozone_df[hourlyozone_keys] = hourlyozone_df["data"].str.split(',', n=None, expand=True)
     
     # At this point I've read the data in and need to split the individual column entries into two columns using whitespace as the delimiter
-#    pd.to_numeric(hourlyozone_df[ozone_sites], errors="coerce")
+#    pd.to_numeric(hourlyozone_df[OZONE_SITES], errors="coerce")
 
 print(hourlyozone_df.keys)
 print(hourlyozone_df.columns)
