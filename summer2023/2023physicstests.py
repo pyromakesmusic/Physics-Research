@@ -88,7 +88,6 @@ def gui_maker():
     root = tk.Tk()
     frame = ttk.Frame(master=root,padding=10)
     frame.grid()
-    ttk.Label(frame, text="Hello World!").grid(column=0, row=0)
     ttk.Button(frame, text="Plot", command=root.destroy).grid(column=1, row=0)
     root.mainloop()
 
