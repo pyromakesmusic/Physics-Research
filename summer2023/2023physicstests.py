@@ -106,6 +106,7 @@ def gui_maker():
 def main():
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
     plt.scatter('timeGMT', 'NOy_NOyconc_value', data=moody_df, s=1)
+    plt.xticks(DATE_TICKS, rotation=45)
     plt.xlabel('Time (GMT)')
     plt.ylabel('NOy Concentration')
     plt.show()
