@@ -60,7 +60,7 @@ def dataframe_loader():
     site188_no2_df = pd.read_csv(site188_data_path)
     pgn25_df = pd.read_csv(pgn25_data_path, delim_whitespace=True)
     pgnhead = header_processor(pgn25_header_path)
-    moody_df = pd.read_csv(moody_surfacedata_path)
+    moody_df = pd.read_csv(moody_surfacedata_path) # Can I use this to parse the datetime?
 
     refined_25no2_0 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 0]
     refined_25no2_10 = site25_no2_df[site25_no2_df[' Data_quality_flag'] == 10]
@@ -79,7 +79,7 @@ def dataframe_loader():
 
 
 def graph_plotter(df, x, y):
-    # Takes a dataframe and a variable name and graphs it over the time period
+    # Takes a dataframe and x and y variable names and graphs it over the time period
     plt.scatter(x, y, data=df, s=1, cmap='hsv')
     plt.title('Houston Atmospheric Measurement Data')
     plt.xticks(rotation=45)
@@ -91,7 +91,6 @@ def graph_plotter(df, x, y):
         plt.xlabel(x)
 
     plt.ylabel(y)
-
     plt.show()
     return
 
@@ -100,6 +99,7 @@ def gui_maker():
     frame = ttk.Frame(master=root,padding=10)
     frame.grid()
     ttk.Button(frame, text="Plot", command=root.destroy).grid(column=1, row=0)
+    ttk.Combobox(frame).grid(column=2, row=0)
     root.mainloop()
 
 
@@ -108,7 +108,6 @@ def main():
     plt.scatter('timeGMT', 'NOy_NOyconc_value', data=moody_df, s=1)
     plt.xlabel('Time (GMT)')
     plt.ylabel('NOy Concentration')
-    plt.xticks(,rotation=45)
     plt.show()
     #window = gui_maker()
 
