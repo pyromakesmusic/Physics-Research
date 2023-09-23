@@ -132,22 +132,23 @@ def main():
 
 
 
-    plt.xticks(DATETIME_TICKS, rotation=30)
+    #plt.xticks(DATETIME_TICKS, rotation=30)
 
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1)
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1)
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=2, color='blue')
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=2, color='purple')
+    ax1.legend(["Site 25", "Site 188"])
 
     ax2 = ax1.twinx()
     ax2.set_ylabel("NO2 Concentration (Moody Tower)")
 
-    ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
+    ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=2, color='red')
 
 
 
     plt.xlabel('Datetime (GMT)')
     plt.ylabel('NO2 Concentration')
-    plt.title('NO2 Concentration: Moody Tower | NO2 Total Vertical Column Pandora sites 25 and 188')
-    #plt.legend()
+    plt.title('Left: NO2 Total Vertical Column Pandora Sites 25, 188 | Right: NO2 Concentration: Moody Tower')
+    ax2.legend(["Moody Tower"])
 
     plt.show()
     #print(moody_df.columns)
