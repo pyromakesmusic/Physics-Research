@@ -129,17 +129,20 @@ def main():
 
     ax1.set_xlabel("Datetime")
     ax1.set_ylabel("NO2 Total Vertical Column")
+    ax1.set_xlim(['2021 August 1', '2021 September 30'])
+    ax1.set_ylim([0,0.0006])
 
 
 
     #plt.xticks(DATETIME_TICKS, rotation=30)
 
     ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=2, color='blue')
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=2, color='purple')
-    ax1.legend(["Site 25", "Site 188"])
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=2, color='green')
+    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2)
 
     ax2 = ax1.twinx()
-    ax2.set_ylabel("NO2 Concentration (Moody Tower)")
+    ax2.set_ylabel("NO2 Mixing Ratio (ppbv)")
+    ax2.set_ylim([0,70])
 
     ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=2, color='red')
 
@@ -148,7 +151,7 @@ def main():
     plt.xlabel('Datetime (GMT)')
     plt.ylabel('NO2 Concentration')
     plt.title('Left: NO2 Total Vertical Column Pandora Sites 25, 188 | Right: NO2 Concentration: Moody Tower')
-    ax2.legend(["Moody Tower"])
+    ax2.legend(["NO2 Analyzer (UH Moody Tower)"], loc=1)
 
     plt.show()
     #print(moody_df.columns)
