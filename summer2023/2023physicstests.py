@@ -8,6 +8,8 @@ from tkinter import ttk
 """
 GLOBAL VARIABLES
 """
+DATETIME_FORMAT = '%y/%m/%d %H:%M:%S'
+
 OZONE_SITES = ['C1_2', 'C8_2', 'C15_3', 'C26_2', 'C35_1',
        'C45_1', 'C53_1', 'C78_1', 'C84_1', 'C403_3', 'C405_1', 'C406_1',
        'C408_2', 'C409_2', 'C410_1', 'C416_1', 'C603_1', 'C603_2', 'C603_3',
@@ -15,8 +17,8 @@ OZONE_SITES = ['C1_2', 'C8_2', 'C15_3', 'C26_2', 'C35_1',
 
 TIME_TICKS = ['00:00:00','03:00:00', '06:00:00','09:00:00', '12:00:00','15:00:00', '18:00:00', '21:00:00']
 DATE_TICKS = ['21/08/01','21/08/15','21/09/01','21/09/15','21/10/01','21/10/15','21/11/01', '21/11/15']
-DATETIME_TICKS = ['21/08/05 00:00:00', '21/08/20 00:00:00', '21/09/05 00:00:00', '21/09/20 00:00:00',
-                  '21/10/05 00:00:00', '21/10/20 00:00:00', '21/11/05 00:00:00']
+DATETIME_TICKS = pd.Series(['21/08/05 00:00:00', '21/08/20 00:00:00', '21/09/05 00:00:00', '21/09/20 00:00:00',
+                  '21/10/05 00:00:00', '21/10/20 00:00:00', '21/11/05 00:00:00'], dtype="datetime64[ns]")
 
 """
 CONFIGURATION
@@ -72,9 +74,24 @@ def dataframe_loader():
     site25no2 = pd.concat([refined_25no2_0, refined_25no2_10])
     site188no2 = pd.concat([refined_188no2_0, refined_188no2_10])
 
+    site25dates = pd.Series(site25no2[' Datetime'])
+    site188dates = pd.Series(site188no2[' Datetime'])
+    moody_dates = pd.Series(moody_df['dateGMT_timeGMT'])
+
     # Should be converting the datetime to something readable
-    site25no2[' Datetime'] = pd.to_datetime(site25no2[' Datetime'],unit='D', origin='2000-01-01')
-    site188no2[' Datetime'] = pd.to_datetime(site188no2[' Datetime'], unit='D', origin='2000-01-01')
+    # site25dates = site25dates.apply(pd.to_datetime(site25dates, unit='D', origin='2000-01-01'))
+    # site188dates = site188dates.apply(pd.to_datetime(site188dates, unit='D', origin='2000-01-01'))
+    # moody_dates = moody_dates.apply(pd.to_datetime(moody_dates, format=DATETIME_FORMAT))
+
+    site25dates = site25dates.apply(pd.to_datetime, unit='D', origin='2000-01-01')
+    site188dates = site188dates.apply(pd.to_datetime, unit='D', origin='2000-01-01')
+    moody_dates = moody_dates.apply(pd.to_datetime, format=DATETIME_FORMAT)
+
+    site25no2[' Datetime'] = site25dates
+    site188no2[' Datetime'] = site188dates
+    moody_df['dateGMT_timeGMT'] = moody_dates
+
+    #print(site25no2[' Datetime'])
 
     return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
@@ -107,14 +124,31 @@ def gui_maker():
 def main():
 
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
-    #plt.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
-    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1)
-    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1)
-    #plt.xticks(DATETIME_TICKS, rotation=30)
+
+    fig, ax1 = plt.subplots()
+
+    ax1.set_xlabel("Datetime")
+    ax1.set_ylabel("NO2 Total Vertical Column")
+
+
+
+    plt.xticks(DATETIME_TICKS, rotation=30)
+
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1)
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1)
+
+    ax2 = ax1.twinx()
+    ax2.set_ylabel("NO2 Concentration (Moody Tower)")
+
+    ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
+
+
+
     plt.xlabel('Datetime (GMT)')
     plt.ylabel('NO2 Concentration')
     plt.title('NO2 Concentration: Moody Tower | NO2 Total Vertical Column Pandora sites 25 and 188')
-    plt.legend()
+    #plt.legend()
+
     plt.show()
     #print(moody_df.columns)
     #window = gui_maker()
