@@ -15,29 +15,8 @@ OZONE_SITES = ['C1_2', 'C8_2', 'C15_3', 'C26_2', 'C35_1',
 
 TIME_TICKS = ['00:00:00','03:00:00', '06:00:00','09:00:00', '12:00:00','15:00:00', '18:00:00', '21:00:00']
 DATE_TICKS = ['21/08/01','21/08/15','21/09/01','21/09/15','21/10/01','21/10/15','21/11/01', '21/11/15']
-DATETIME_TICKS = ['21/08/01 00:00:00', '21/08/02 00:00:00', '21/08/03 00:00:00', '21/08/04 00:00:00',
-                  '21/08/05 00:00:00', '21/08/06 00:00:00', '21/08/07 00:00:00', '21/08/08 00:00:00',
-                  '21/08/09 00:00:00', '21/08/10 00:00:00', '21/08/11 00:00:00', '21/08/12 00:00:00',
-                  '21/08/13 00:00:00', '21/08/14 00:00:00', '21/08/15 00:00:00', '21/08/16 00:00:00',
-                  '21/08/17 00:00:00', '21/08/18 00:00:00', '21/08/19 00:00:00', '21/08/20 00:00:00',
-                  '21/08/21 00:00:00', '21/08/22 00:00:00', '21/08/23 00:00:00', '21/08/24 00:00:00',
-                  '21/08/25 00:00:00', '21/08/26 00:00:00', '21/08/27 00:00:00', '21/08/28 00:00:00',
-                  '21/08/29 00:00:00', '21/08/30 00:00:00', '21/08/31 00:00:00', '21/09/01 00:00:00',
-                  '21/09/03 00:00:00', '21/09/04 00:00:00', '21/09/05 00:00:00', '21/09/06 00:00:00',
-                  '21/09/07 00:00:00', '21/09/08 00:00:00', '21/09/09 00:00:00', '21/09/10 00:00:00',
-                  '21/09/11 00:00:00', '21/09/12 00:00:00', '21/09/13 00:00:00', '21/09/14 00:00:00',
-                  '21/09/15 00:00:00', '21/09/16 00:00:00', '21/09/17 00:00:00', '21/09/18 00:00:00',
-                  '21/09/19 00:00:00', '21/09/20 00:00:00', '21/09/21 00:00:00', '21/09/22 00:00:00',
-                  '21/09/23 00:00:00', '21/09/24 00:00:00', '21/09/25 00:00:00', '21/09/26 00:00:00',
-                  '21/09/27 00:00:00', '21/09/28 00:00:00', '21/09/29 00:00:00', '21/09/30 00:00:00',
-                  '21/10/01 00:00:00', '21/10/02 00:00:00', '21/10/03 00:00:00', '21/10/04 00:00:00',
-                  '21/10/05 00:00:00', '21/10/06 00:00:00', '21/10/07 00:00:00', '21/10/08 00:00:00',
-                  '21/10/09 00:00:00', '21/10/10 00:00:00', '21/10/11 00:00:00', '21/10/12 00:00:00',
-                  '21/10/13 00:00:00', '21/10/14 00:00:00', '21/10/15 00:00:00', '21/10/16 00:00:00',
-                  '21/10/17 00:00:00', '21/10/18 00:00:00', '21/10/19 00:00:00', '21/10/20 00:00:00',
-                  '21/10/21 00:00:00', '21/10/22 00:00:00', '21/10/23 00:00:00', '21/10/24 00:00:00',
-                  '21/10/25 00:00:00', '21/10/26 00:00:00', '21/10/27 00:00:00', '21/10/28 00:00:00',
-                  '21/10/29 00:00:00', '21/10/30 00:00:00', '21/10/31 00:00:00', '21/11/01 00:00:00']
+DATETIME_TICKS = ['21/08/05 00:00:00', '21/08/20 00:00:00', '21/09/05 00:00:00', '21/09/20 00:00:00',
+                  '21/10/05 00:00:00', '21/10/20 00:00:00', '21/11/05 00:00:00']
 
 """
 CONFIGURATION
@@ -66,15 +45,15 @@ def header_processor(header_file):
 def dataframe_loader():
     with open("config.txt") as config:
         # Reading in the file locations
-        print(config.readline().rstrip())
+        print(config.readline().rstrip() + " initialized")
         site25_data_path = config.readline().rstrip()
-        print(config.readline().rstrip())
+        print(config.readline().rstrip() + " initialized")
         site188_data_path = config.readline().rstrip()
-        print(config.readline().rstrip())
+        print(config.readline().rstrip() + " initialized")
         pgn25_data_path = config.readline().rstrip()
-        print(config.readline().rstrip())
+        print(config.readline().rstrip() + " initialized")
         pgn25_header_path = config.readline().rstrip()
-        print(config.readline().rstrip())
+        print(config.readline().rstrip() + " initialized")
         moody_surfacedata_path = config.readline().rstrip()
 
     # Dataframe creation
@@ -126,13 +105,16 @@ def gui_maker():
 
 
 def main():
-    plt.rcParams["figure.figsize"] = (12,8)
 
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
-    plt.scatter('dateGMT_timeGMT', 'O3_O3conc_value', data=moody_df, s=1)
-    plt.xticks(DATETIME_TICKS, rotation=45)
-    plt.xlabel('DateTime (GMT)')
-    plt.ylabel('Ozone Concentration')
+    #plt.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1)
+    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1)
+    plt.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1)
+    #plt.xticks(DATETIME_TICKS, rotation=30)
+    plt.xlabel('Datetime (GMT)')
+    plt.ylabel('NO2 Concentration')
+    plt.title('NO2 Concentration: Moody Tower | NO2 Total Vertical Column Pandora sites 25 and 188')
+    plt.legend()
     plt.show()
     #print(moody_df.columns)
     #window = gui_maker()
