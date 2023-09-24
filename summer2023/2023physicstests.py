@@ -1,3 +1,4 @@
+import matplotlib
 import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
@@ -19,13 +20,25 @@ TIME_TICKS = ['00:00:00','03:00:00', '06:00:00','09:00:00', '12:00:00','15:00:00
 DATE_TICKS = ['21/08/01','21/08/15','21/09/01','21/09/15','21/10/01','21/10/15','21/11/01', '21/11/15']
 DATETIME_TICKS = pd.Series(['21/08/05 00:00:00', '21/08/20 00:00:00', '21/09/05 00:00:00', '21/09/20 00:00:00',
                   '21/10/05 00:00:00', '21/10/20 00:00:00', '21/11/05 00:00:00'], dtype="datetime64[ns]")
+LUCIAN_TICKS = pd.Series(['2021-08-01 00:00:00.000000000', '2021-09-30 00:00:00.000000000'])
+LUCIAN_TICKS = LUCIAN_TICKS.apply(pd.to_datetime)
+
+SEPTEMBER_EIGHTH = pd.Series(['2021-09-08 00:00:00.000000000', '2021-09-09 00:00:00.000000000'])
+SEPTEMBER_EIGHTH = SEPTEMBER_EIGHTH.apply(pd.to_datetime)
+
+SEPTEMBER_FIFTEENTH = pd.Series(['2021-09-15 00:00:00.000000000', '2021-09-16 00:00:00.000000000'])
+SEPTEMBER_FIFTEENTH = SEPTEMBER_FIFTEENTH.apply(pd.to_datetime)
 
 """
 CONFIGURATION
 """
+# Increases number of data values displayed by pandas
 pd.set_option('display.max_rows', 500)
 pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
+
+# Manually sets the DPI
+matplotlib.rcParams['figure.dpi'] = 250
 
 
 """
@@ -126,36 +139,38 @@ def main():
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
 
     fig, ax1 = plt.subplots()
+    plt.tight_layout()
+    plt.xticks(fontsize=3)
 
-    ax1.set_xlabel("Datetime")
-    ax1.set_ylabel("NO2 Total Vertical Column")
-    ax1.set_xlim(['2021 August 1', '2021 September 30'])
+    ax1.set_xlabel("Date", fontsize=3)
+    ax1.set_ylabel("NO2 Total Vertical Column (moles/square meter)", fontsize=3)
+    ax1.set_xlim(SEPTEMBER_FIFTEENTH)
     ax1.set_ylim([0,0.0006])
 
+    # left side yticks
+    plt.yticks(fontsize=3)
 
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1, color='blue')
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1, color='maroon')
 
-    #plt.xticks(DATETIME_TICKS, rotation=30)
-
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=2, color='blue')
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=2, color='green')
-    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2)
+    # Legend for Pandora Sites
+    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2, fontsize=4)
 
     ax2 = ax1.twinx()
-    ax2.set_ylabel("NO2 Mixing Ratio (ppbv)")
+    ax2.set_ylabel("NO2 Mixing Ratio (ppbv)", fontsize=3)
     ax2.set_ylim([0,70])
 
-    ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=2, color='red')
+    ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1, color='orange')
 
+    # right side yticks
+    plt.yticks(fontsize=3)
 
+    plt.xlabel('Date')
 
-    plt.xlabel('Datetime (GMT)')
-    plt.ylabel('NO2 Concentration')
-    plt.title('Left: NO2 Total Vertical Column Pandora Sites 25, 188 | Right: NO2 Concentration: Moody Tower')
-    ax2.legend(["NO2 Analyzer (UH Moody Tower)"], loc=1)
+    # Legend for Moody Tower analyzer
+    ax2.legend(["NO2 Analyzer (UH Moody Tower)"], loc=1, fontsize=4)
 
     plt.show()
-    #print(moody_df.columns)
-    #window = gui_maker()
 
 if __name__ == "__main__":
     main()
