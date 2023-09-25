@@ -2,7 +2,6 @@ import matplotlib
 import pandas as pd
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-from datetime import datetime
 import tkinter as tk
 from tkinter import ttk
 
@@ -47,7 +46,7 @@ pd.set_option('display.max_columns', 500)
 pd.set_option('display.width', 1000)
 
 # Manually sets the DPI
-matplotlib.rcParams['figure.dpi'] = 250
+mpl.rcParams['figure.dpi'] = 200
 
 
 """
@@ -59,11 +58,9 @@ def header_processor(header_file):
     """
     with open(header_file) as file_obj:
         for i in range(22):
-            #print(file_obj.readline().rstrip())
             file_obj.readline().rstrip()
         header_info = file_obj.readlines()
         header_df = pd.Series(header_info)
-        #print(header_df)
         return header_df
 
 def dataframe_loader():
@@ -100,11 +97,6 @@ def dataframe_loader():
     site188dates = pd.Series(site188no2[' Datetime'])
     moody_dates = pd.Series(moody_df['dateGMT_timeGMT'])
 
-    # Should be converting the datetime to something readable
-    # site25dates = site25dates.apply(pd.to_datetime(site25dates, unit='D', origin='2000-01-01'))
-    # site188dates = site188dates.apply(pd.to_datetime(site188dates, unit='D', origin='2000-01-01'))
-    # moody_dates = moody_dates.apply(pd.to_datetime(moody_dates, format=DATETIME_FORMAT))
-
     site25dates = site25dates.apply(pd.to_datetime, unit='D', origin='2000-01-01')
     site188dates = site188dates.apply(pd.to_datetime, unit='D', origin='2000-01-01')
     moody_dates = moody_dates.apply(pd.to_datetime, format=DATETIME_FORMAT)
@@ -112,8 +104,6 @@ def dataframe_loader():
     site25no2[' Datetime'] = site25dates
     site188no2[' Datetime'] = site188dates
     moody_df['dateGMT_timeGMT'] = moody_dates
-
-    #print(site25no2[' Datetime'])
 
     return site25no2, site188no2, pgnhead, pgn25_df, moody_df
 
