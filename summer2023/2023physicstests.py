@@ -139,35 +139,35 @@ def main():
 
     fig, ax1 = plt.subplots()
     plt.tight_layout()
-    plt.xticks(fontsize=3)
+    plt.xticks(fontsize=6)
 
-    ax1.set_xlabel("Date", fontsize=3)
-    ax1.set_ylabel("NO2 Total Vertical Column (moles/square meter)", fontsize=3)
+    ax1.set_xlabel("Date", fontsize=8)
+    ax1.set_ylabel("NO2 Total Vertical Column (moles/square meter)", fontsize=8)
     ax1.set_xlim(SEPTEMBER_HI2)
     ax1.set_ylim([0,0.0006])
 
     # left side yticks
-    plt.yticks(fontsize=3)
+    plt.yticks(fontsize=6)
 
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1, color='blue')
-    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1, color='maroon')
 
     # Legend for Pandora Sites
-    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2, fontsize=4)
+    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2, fontsize=6)
 
     ax2 = ax1.twinx()
-    ax2.set_ylabel("NO2 Mixing Ratio (ppbv)", fontsize=3)
+    ax2.set_ylabel("NO2 Mixing Ratio (ppbv)", fontsize=8)
     ax2.set_ylim([0,70])
 
     ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1, color='orange')
 
-    # right side yticks
-    plt.yticks(fontsize=3)
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1, color='maroon')
+    ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1, color='blue')
 
-    plt.xlabel('Date')
+
+    # right side yticks
+    plt.yticks(fontsize=6)
 
     # Legend for Moody Tower analyzer
-    ax2.legend(["NO2 Analyzer (UH Moody Tower)"], loc=1, fontsize=4)
+    ax2.legend(["NO2 Analyzer (UH Moody Tower)"], loc=1, fontsize=6)
 
     plt.show()
 
