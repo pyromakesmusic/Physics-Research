@@ -153,7 +153,7 @@ def main():
 
     ax1.set_xlabel("Date", fontsize=3)
     ax1.set_ylabel("NO2 Total Vertical Column (moles/square meter)", fontsize=3)
-    ax1.set_xlim(SEPTEMBER_FIFTEENTH)
+    ax1.set_xlim(SEPTEMBER_HI2)
     ax1.set_ylim([0,0.0006])
 
     # left side yticks
