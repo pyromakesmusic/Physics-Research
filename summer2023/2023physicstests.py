@@ -137,8 +137,10 @@ def main():
 
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
 
-    fig, ax1 = plt.subplots()
+    fig, ax1 = plt.subplots(figsize=(18,7))
     plt.xticks(fontsize=8, rotation=45)
+
+
 
     ax1.set_xlabel("Date", fontsize=10)
     ax1.set_ylabel("NO₂ Total Vertical Column (moles/m²)", fontsize=10)
@@ -152,14 +154,6 @@ def main():
     ax2.set_ylabel("NO₂ Mixing Ratio (ppbv)", fontsize=10)
     ax2.set_ylim([0, 70])
 
-    # Aspect ratio calculations
-    # ratio = 1
-    # x_left, x_right = ax1.get_xlim()
-    # y_low1, y_high1 = ax1.get_ylim()
-    # y_low2, y_high2 = ax2.get_ylim()
-
-    # ax1.set_aspect(abs((x_right - x_left) / (y_low1 - y_high1)) * ratio)
-    # ax2.set_aspect(abs((x_right - x_left) / (y_low2 - y_high2)) * ratio)
 
     # Plot creation
     ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1, color='orange')
@@ -178,13 +172,13 @@ def main():
     # Legend for Moody Tower analyzer
     ax2.legend(["NO₂ Analyzer (UH Moody Tower)"], loc=1, fontsize=8)
 
-
     plt.title("NO₂ in August-September 2021 in Houston")
     plt.tight_layout()
     fig.savefig("lucian_no2_v5_200dpi.png")
 
     # display plot
     plt.show()
+
 
 if __name__ == "__main__":
     main()
