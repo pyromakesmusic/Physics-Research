@@ -138,45 +138,50 @@ def main():
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
 
     fig, ax1 = plt.subplots()
-    plt.tight_layout()
-    plt.xticks(fontsize=6)
+    plt.xticks(fontsize=8, rotation=45)
 
-    ax1.set_xlabel("Date", fontsize=8)
-    ax1.set_ylabel("NO₂ Total Vertical Column (moles/square meter)", fontsize=8)
-    ax1.set_xlim(SEPTEMBER_HI2)
-    ax1.set_ylim([0,0.0006])
+    ax1.set_xlabel("Date", fontsize=10)
+    ax1.set_ylabel("NO₂ Total Vertical Column (moles/m²)", fontsize=10)
+    ax1.set_xlim(LUCIAN_TICKS)
+    ax1.set_ylim([0, 0.0006])
 
     # left side yticks
-    plt.yticks(fontsize=6)
-
-
+    plt.yticks(fontsize=8)
 
     ax2 = ax1.twinx()
-    ax2.set_ylabel("NO₂ Mixing Ratio (ppbv)", fontsize=8)
-    ax2.set_ylim([0,70])
+    ax2.set_ylabel("NO₂ Mixing Ratio (ppbv)", fontsize=10)
+    ax2.set_ylim([0, 70])
 
+    # Aspect ratio calculations
+    # ratio = 1
+    # x_left, x_right = ax1.get_xlim()
+    # y_low1, y_high1 = ax1.get_ylim()
+    # y_low2, y_high2 = ax2.get_ylim()
+
+    # ax1.set_aspect(abs((x_right - x_left) / (y_low1 - y_high1)) * ratio)
+    # ax2.set_aspect(abs((x_right - x_left) / (y_low2 - y_high2)) * ratio)
+
+    # Plot creation
     ax2.scatter('dateGMT_timeGMT', 'NOx_NO2conc_value', data=moody_df, s=1, color='orange')
 
     ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site188no2, s=1, color='maroon')
+
     ax1.scatter(' Datetime', ' NO2_total_vertical_column', data=site25no2, s=1, color='blue')
 
 
     # right side yticks
-    plt.yticks(fontsize=6)
+    plt.yticks(fontsize=8)
 
     # Legend for Pandora Sites
-    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2, fontsize=6)
+    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2, fontsize=8)
 
     # Legend for Moody Tower analyzer
-    ax2.legend(["NO₂ Analyzer (UH Moody Tower)"], loc=1, fontsize=6)
+    ax2.legend(["NO₂ Analyzer (UH Moody Tower)"], loc=1, fontsize=8)
 
-    # Aspect ratio calculations
-    ratio = 1
-    x_left, x_right = ax1.get_xlim()
-    y_low1, y_high1 = ax1.get_ylim()
-    ax1.set_aspect(abs((x_right - x_left) / (y_low1 - y_high1)) * ratio)
 
-    plt.title("NO₂ on higher O₃ days")
+    plt.title("NO₂ in August-September 2021 in Houston")
+    plt.tight_layout()
+    fig.savefig("lucian_no2_v5_200dpi.png")
 
     # display plot
     plt.show()
