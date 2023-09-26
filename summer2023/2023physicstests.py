@@ -167,7 +167,7 @@ def main():
     plt.yticks(fontsize=8)
 
     # Legend for Pandora Sites
-    ax1.legend(["Pandora #25 (UH Launch Trailer)", "Pandora #188 (UH Moody Tower)"], loc=2, fontsize=8)
+    ax1.legend(["Pandora #188 (UH Moody Tower)", "Pandora #25 (UH Launch Trailer)"], loc=2, fontsize=8)
 
     # Legend for Moody Tower analyzer
     ax2.legend(["NO₂ Analyzer (UH Moody Tower)"], loc=1, fontsize=8)
