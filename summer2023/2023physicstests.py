@@ -137,14 +137,14 @@ def main():
 
     site25no2, site188no2, pgnhead, pgn25_df, moody_df = dataframe_loader()
 
-    fig, ax1 = plt.subplots(figsize=(18,7))
+    fig, ax1 = plt.subplots(figsize=(9,7))
     plt.xticks(fontsize=8, rotation=45)
 
 
 
     ax1.set_xlabel("Date", fontsize=10)
     ax1.set_ylabel("NO₂ Total Vertical Column (moles/m²)", fontsize=10)
-    ax1.set_xlim(LUCIAN_TICKS)
+    ax1.set_xlim(SEPTEMBER_HI2)
     ax1.set_ylim([0, 0.0006])
 
     # left side yticks
@@ -172,9 +172,9 @@ def main():
     # Legend for Moody Tower analyzer
     ax2.legend(["NO₂ Analyzer (UH Moody Tower)"], loc=1, fontsize=8)
 
-    plt.title("NO₂ in August-September 2021 in Houston")
+    plt.title("NO₂ on higher O₃ days")
     plt.tight_layout()
-    fig.savefig("lucian_no2_v5_200dpi.png")
+    fig.savefig("sept_hiozone_late_v5.png")
 
     # display plot
     plt.show()
